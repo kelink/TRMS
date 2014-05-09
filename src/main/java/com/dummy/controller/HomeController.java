@@ -1,4 +1,4 @@
-package com.dummy.trms;
+package com.dummy.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -35,5 +35,4 @@ public class HomeController {
 		
 		return "home";
 	}
-	
 }
