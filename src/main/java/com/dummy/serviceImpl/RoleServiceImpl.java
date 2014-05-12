@@ -1,5 +1,5 @@
 package com.dummy.serviceImpl;
 
-public class Team_ServiceImpl {
+public class RoleServiceImpl {
 
 }

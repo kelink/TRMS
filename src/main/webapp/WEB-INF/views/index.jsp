@@ -32,11 +32,11 @@
             <c:if test="${!empty userList }">  
                 <c:forEach items="${userList }" var="user">  
                     <tr>  
-                        <td>${user.userName }</td>  
-                        <td>${user.age }</td>  
+                        <td>${user.account }</td>  
+                        <td>${user.LN }</td>  
                         <td>  
-                            <a href="/test_ssh/user/getUser?id=${user.id }">编辑</a>  
-                            <a href="javascript:del('${user.id }')">删除</a>  
+                            <a href="/test_ssh/user/getUser?id=${user.user_ID }">编辑</a>  
+                            <a href="javascript:del('${user.user_ID }')">删除</a>  
                         </td>  
                     </tr>               
                 </c:forEach>  
