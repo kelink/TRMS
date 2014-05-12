@@ -9,9 +9,12 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
-		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
+		<org.springframework-version>4.0.0.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<org.hibernate-version>4.3.1.Final</org.hibernate-version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -32,6 +35,43 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency> 
+         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+          
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+		
 				
 		<!-- AspectJ -->
 		<dependency>
@@ -58,6 +98,7 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -115,7 +156,75 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency> 
+		<!-- MySQL驱动 -->  
+        <dependency>  
+            <groupId>mysql</groupId>  
+            <artifactId>mysql-connector-java</artifactId>  
+            <version>5.1.24</version>  
+        </dependency>  
+         <!-- mchange C3P0 数据源 -->  
+        <dependency>  
+            <groupId>com.mchange</groupId>  
+            <artifactId>c3p0</artifactId>  
+            <version>0.9.5-pre2</version>  
+        </dependency>  
+   
+        <!-- hiberante 4 -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${org.hibernate-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${org.hibernate-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${org.hibernate-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.0.0.GA</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--enable hibernate to use its proxy model-->
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.18.1-GA</version>
+        </dependency>
+
+         <!-- Jackson -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+        	<!--Spring security -->
+        <dependency>
+       	 	<groupId>org.springframework.security</groupId>
+        	<artifactId>spring-security-web</artifactId>
+        	<version>3.2.3.RELEASE</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.springframework.security</groupId>
+	        <artifactId>spring-security-config</artifactId>
+	        <version>3.2.3.RELEASE</version>
+	    </dependency>
+	    <!-- Maven Jquery -->
+        <dependency>
+	<groupId>com.efsavage.jquery</groupId>
+		<artifactId>jquery-maven</artifactId>
+		<version>1.7.2</version>
+	</dependency>
+            
+	     
 	</dependencies>
     <build>
         <plugins>

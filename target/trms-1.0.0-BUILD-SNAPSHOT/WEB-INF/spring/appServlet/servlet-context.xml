@@ -21,8 +21,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	<!-- 配置controller的默认扫描包 -->
-	<context:component-scan base-package="com.dummy.controller" />
-	
-	
+	<context:component-scan base-package="com.dummy.controller"></context:component-scan>
 	
 </beans:beans>
