@@ -7,6 +7,21 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd">  
 
 <!-- 配置hiberate操作中自定义需要的beans -->
+<!-- User Bean -->
+	<bean id="userDao" class="com.dummy.daoImpl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="userServiceBase" class="com.dummy.serviceImpl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean name="userService" parent="transactionProxy">
+		<property name="target" ref="userServiceBase"></property>
+	</bean>	
+
+
+<!-- Sample  -->
+<!--  
 	<bean id="userDao" class="com.tgb.dao.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -14,9 +29,13 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<bean id="userManagerBase" class="com.tgb.manager.UserManagerImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
-	
+	-->
+	  
 	<!-- 此处为代理 -->
+	<!--
 	<bean name="userManager" parent="transactionProxy">
 		<property name="target" ref="userManagerBase"></property>
 	</bean>	
+	-->	
+	
 </beans>

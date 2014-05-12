@@ -13,7 +13,7 @@ package com.dummy.domain;
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
  *
  */
-public class User_Role {
+public class UserRole {
 	private int role_ID;
 	private int user_ID;
 	public int getRole_ID() {

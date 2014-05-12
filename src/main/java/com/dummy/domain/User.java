@@ -3,10 +3,9 @@ package com.dummy.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /***
  * User Table
@@ -31,16 +30,15 @@ import org.hibernate.annotations.GenericGenerator;
 public class User {
 
 	@Id
-	@GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name = "system-uuid",strategy="uuid")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(length=11)
 	private int user_ID;
 	
 	@Column(length=255)
-	private String Account;
+	private String account;
 	
 	@Column(length=255)
-	private String Password;
+	private String password;
 	
 	@Column(length=11)
 	private int gender;
@@ -60,19 +58,19 @@ public class User {
 	}
 
 	public String getAccount() {
-		return Account;
+		return account;
 	}
 
 	public void setAccount(String account) {
-		Account = account;
+		this.account = account;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 	public int getGender() {
@@ -98,6 +96,7 @@ public class User {
 	public void setTele(String tele) {
 		Tele = tele;
 	}
+
 	
 	
 }

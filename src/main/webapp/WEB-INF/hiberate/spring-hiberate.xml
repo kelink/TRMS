@@ -9,7 +9,7 @@
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost/test_ssh"></property>
+		<property name="url" value="jdbc:mysql://localhost/trms1"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="link"></property>
 	</bean>
@@ -28,7 +28,7 @@
 		<!-- 注解domain类  -->
 		<property name="annotatedClasses">
 			<list>
-				<value>com.tgb.entity.User</value>
+				<value>com.dummy.domain.User</value>
 			</list>
 		</property>
 
