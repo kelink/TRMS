@@ -2,18 +2,20 @@ package com.dummy.dao;
 
 import java.util.List;
 
-import com.dummy.domain.User;
+import com.dummy.domain.DBUser;
 
 public interface UserDao {
-	public User getUser(int id);
-	
-	public List<User> getAllUser();
-	
-	public void addUser(User user);
-	
+	public DBUser getUser(int id);
+
+	public List<DBUser> getAllUser();
+
+	public void addUser(DBUser user);
+
 	public boolean delUser(int id);
-	
-	public boolean updateUser(User user);
-	
-	public User auth(String account,String password);
+
+	public boolean updateUser(DBUser user);
+
+	public DBUser getUserByAccount(String account);
+
+	public DBUser auth(String account, String password);
 }

@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	welcome,Please <a href="login/index">Login</a> 
+	<h1>Common Page</h1>
+	<p>每个人都能访问的页面.</p>
+	<a href="/spring3-security-integration/main/admin"> Go AdminPage </a>
+	<br />
+	<a href="/spring3-security-integration/auth/login">退出登录</a>
+
 </body>
 </html>

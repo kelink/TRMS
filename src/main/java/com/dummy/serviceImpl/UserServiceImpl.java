@@ -2,31 +2,34 @@ package com.dummy.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.dummy.dao.UserDao;
-import com.dummy.domain.User;
+import com.dummy.domain.DBUser;
 import com.dummy.service.UserService;
 
-public class UserServiceImpl implements UserService{
-	
+@Service("UserService")
+public class UserServiceImpl implements UserService {
+
 	private UserDao userDao;
-	
+
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
 
 	@Override
-	public User getUser(int id) {	
+	public DBUser getUser(int id) {
 		return userDao.getUser(id);
 	}
 
 	@Override
-	public List<User> getAllUser() {
+	public List<DBUser> getAllUser() {
 		return userDao.getAllUser();
 	}
 
 	@Override
-	public void addUser(User user) {
-		userDao.addUser(user);		
+	public void addUser(DBUser user) {
+		userDao.addUser(user);
 	}
 
 	@Override
@@ -35,14 +38,14 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public boolean updateUser(User user) {
-		return userDao.updateUser(user);			
+	public boolean updateUser(DBUser user) {
+		return userDao.updateUser(user);
 	}
 
-	//authority the User
+	// authority the User
 	@Override
-	public User auth(String account, String password) {	
-		return userDao.auth(account,password);
+	public DBUser auth(String account, String password) {
+		return userDao.auth(account, password);
 	}
-	
+
 }

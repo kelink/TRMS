@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	welcome,Please <a href="login/index">Login</a> 
+	welcome,Please <a href="login/index">Login</a>
 </body>
 </html>

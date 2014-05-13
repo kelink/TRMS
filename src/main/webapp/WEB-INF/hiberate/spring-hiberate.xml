@@ -20,7 +20,7 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 			</props>
@@ -28,13 +28,14 @@
 		<!-- 注解domain类  -->
 		<property name="annotatedClasses">
 			<list>
-				<value>com.dummy.domain.User</value>
+				<value>com.dummy.domain.DBUser</value>
 				<value>com.dummy.domain.Role</value>
 				<value>com.dummy.domain.UserRole</value>
 				<value>com.dummy.domain.BlackList</value>
 				<value>com.dummy.domain.Team</value>
-				<value>com.dummy.domain.Room</value>
 				<value>com.dummy.domain.Reservation</value>
+				<value>com.dummy.domain.Room</value>
+				
 			</list>
 		</property>
 

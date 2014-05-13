@@ -9,19 +9,19 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="T_USER")
+@Table(name = "T_USER")
 public class User {
 
 	@Id
-	@GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name = "system-uuid",strategy="uuid")
-	@Column(length=32)
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid")
+	@Column(length = 32)
 	private String id;
-	
-	@Column(length=32)
+
+	@Column(length = 32)
 	private String userName;
-	
-	@Column(length=32)
+
+	@Column(length = 32)
 	private String age;
 
 	public String getId() {
@@ -47,5 +47,5 @@ public class User {
 	public void setAge(String age) {
 		this.age = age;
 	}
-	
+
 }

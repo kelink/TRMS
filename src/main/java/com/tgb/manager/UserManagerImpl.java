@@ -8,7 +8,7 @@ import com.tgb.entity.User;
 public class UserManagerImpl implements UserManager {
 
 	private UserDao userDao;
-	
+
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
@@ -30,7 +30,7 @@ public class UserManagerImpl implements UserManager {
 
 	@Override
 	public boolean delUser(String id) {
-		
+
 		return userDao.delUser(id);
 	}
 

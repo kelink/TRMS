@@ -8,48 +8,50 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 /***
  * User Table
  *
  *
- *CREATE TABLE `user` (
- `User_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'User 表的id',
- `Account` varchar(255) NOT NULL COMMENT 'User的登陆account',
- `Password` varchar(255) NOT NULL COMMENT 'User的登陆密码',
- `Gender` int(11) NOT NULL COMMENT 'User的性别',
- `LN` varchar(50) NOT NULL COMMENT 'User的LN ，用于发邮件',
- `Tele` varchar(50) NOT NULL COMMENT 'User的电话',
- PRIMARY KEY (`User_ID`),
- UNIQUE KEY `Account` (`Account`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='User 用户登陆表'
-*
-*
-*
+ * CREATE TABLE `user` ( `User_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'User
+ * 表的id', `Account` varchar(255) NOT NULL COMMENT 'User的登陆account', `Password`
+ * varchar(255) NOT NULL COMMENT 'User的登陆密码', `Gender` int(11) NOT NULL COMMENT
+ * 'User的性别', `LN` varchar(50) NOT NULL COMMENT 'User的LN ，用于发邮件', `Tele`
+ * varchar(50) NOT NULL COMMENT 'User的电话', PRIMARY KEY (`User_ID`), UNIQUE KEY
+ * `Account` (`Account`) ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
+ * COMMENT='User 用户登陆表'
+ *
+ *
+ *
  */
 @Entity
-@Table(name = "User")  
-public class User  implements Serializable{
+@Table(name = "DBUser")
+public class DBUser implements Serializable {
 
 	/**
 	 * 用戶表
 	 */
-	@Id  
-	@GeneratedValue(strategy = GenerationType.IDENTITY)  
-	@Column(length=11)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(length = 11)
 	private int user_ID;
-	
-	@Column(length=255)
+
+	@Column(length = 11)
+	private int access;
+
+	@Column(length = 255)
 	private String account;
-	@Column(length=255)
+
+	@Column(length = 255)
 	private String password;
-	
-	@Column(length=11)
+
+	@Column(length = 11)
 	private int gender;
-	
-	@Column(length=50)
+
+	@Column(length = 50)
 	private String LN;
-	
-	@Column(length=50)
+
+	@Column(length = 50)
 	private String Tele;
 
 	public int getUser_ID() {
@@ -58,6 +60,14 @@ public class User  implements Serializable{
 
 	public void setUser_ID(int user_ID) {
 		this.user_ID = user_ID;
+	}
+
+	public int getAccess() {
+		return access;
+	}
+
+	public void setAccess(int access) {
+		this.access = access;
 	}
 
 	public String getAccount() {
@@ -99,6 +109,5 @@ public class User  implements Serializable{
 	public void setTele(String tele) {
 		Tele = tele;
 	}
-	
-	
+
 }
