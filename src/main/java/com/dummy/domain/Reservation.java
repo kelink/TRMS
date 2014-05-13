@@ -12,7 +12,7 @@ import javax.xml.crypto.Data;
  `Team_ID` int(11) NOT NULL,
  `Room_ID` int(11) NOT NULL,
  `User_ID` int(11) NOT NULL,
- `Applied_Eend_ Date` datetime NOT NULL,
+ `Applied_End_ Date` datetime NOT NULL,
  `Applied_Start_Date` datetime NOT NULL,
  `Status` int(11) NOT NULL DEFAULT '0',
  `Order_Time` datetime NOT NULL,
