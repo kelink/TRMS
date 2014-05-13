@@ -11,7 +11,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost/trms1"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="link"></property>
+		<property name="password" value=""></property>
 	</bean>
 	
 	<!-- 配置SessionFactory -->
@@ -39,6 +39,43 @@
 		</property>
 
 	</bean>  
+	
+	
+	
+<!--
+   <hibernate-mapping>
+         <class name="BlackList" table="black_list">
+               <id name="bl_ID" column="BL_ID" type="java.lang.Integer" length="11" not-null="true">
+                     <generator class="identity" />
+               </id>
+               <property name="team_ID" column="Team_ID" type="java.lang.Integer" length="11" not-null="true" />
+               <property name="reason" column="Reason" type="java.lang.String" length="255" not-null="true" />
+         </class>>
+         <class name="Reservation" table="reservation">
+               <id name="reservation_ID" column="Reservation_ID" type="java.lang.Integer" length="11" not-null="true">
+                     <generator class="identity" />
+               </id>
+               <property name="team_ID" column="Team_ID" type="java.lang.Integer" length="11"  not-null="true"/>
+               <property name="room_ID" column="Room_ID" type="java.lang.Integer" length="11" not-null="true"/>
+               <property name="user_ID" column="User_ID" type="java.lang.Integer" length="11" not-null="true"/>
+               <property name="Applied_End_ Date" column="Applied_End_ Date" type="java.util.Date"  not-null="true"/>
+               <property name="Applied_Start_ Date" column="Applied_Start_ Date" type="java.util.Date"  not-null="true"/>
+               <property name="status" column="Status" type="java.lang.Integer" length="11" default="0"  not-null="true"/>
+               <property name="Order_Time" column="order_Time" type="java.util.Date"  not-null="true"/>
+               <property name="usage" column="Usage" type="java.lang.String" length="255" not-null="true"/>
+         </class>
+         <class name="Role" table="role">
+                <id name="role_ID" column="Role_ID" type="java.lang.Integer" length="11" not-null="true">
+                     <generator class="identity" />
+               </id>
+               <property name="authority" column="Authority" type="java.lang.String" length="50" not-null="true" />
+               <property name="reason" column="Reason" type="java.lang.String" length="255" not-null="true" />
+         </class>
+   </hibernate-mapping>
+-->
+
+
+
 
 
 

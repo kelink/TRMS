@@ -69,6 +69,10 @@
   <filter-mapping>  
     <filter-name>openSession</filter-name>  
     <url-pattern>/*</url-pattern>  
+<<<<<<< HEAD
   </filter-mapping> 
     
+=======
+  </filter-mapping>   
+>>>>>>> 7c3c733c013f773baf298154429fbbdea0009a34
 </web-app>
