@@ -5,10 +5,6 @@
 	<title>Home</title>
 </head>
 <body>
-<h5>
-	<form action="" method="">
-	</form>
-
-</h5>  
+<h5><a href="/test_ssh/user/getAllUser">进入用户管理页</a></h5>  
 </body>
 </html>

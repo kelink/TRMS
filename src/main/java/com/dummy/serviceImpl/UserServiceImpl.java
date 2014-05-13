@@ -38,5 +38,11 @@ public class UserServiceImpl implements UserService{
 	public boolean updateUser(User user) {
 		return userDao.updateUser(user);			
 	}
+
+	//authority the User
+	@Override
+	public User auth(String account, String password) {	
+		return userDao.auth(account,password);
+	}
 	
 }

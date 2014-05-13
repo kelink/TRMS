@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dummy.service.UserService;
 @Controller
+@RequestMapping()
 public class UserController {
 	@Resource(name="userService")
 	private UserService userService;

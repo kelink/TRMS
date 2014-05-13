@@ -47,11 +47,21 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean updateUser(User user) {
-		String hql = "update User u set u.account = ?,u.ln=? where u.gender = ?";
+//		String hql = "update User u set u.account = ?,u.ln=? where u.gender = ?";
+//		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+//		query.setString(0, user.getAccount());
+//		query.setString(1, String.valueOf(user.getUser_ID()));	
+//		return (query.executeUpdate() > 0);
+		return false;
+	}
+	//User authority
+	@Override
+	public User auth(String account, String password) {
+		String hql = "from User u where u.account=? and u.password=?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		query.setString(0, user.getAccount());
-		query.setString(1, String.valueOf(user.getUser_ID()));	
-		return (query.executeUpdate() > 0);
+		query.setString(0, account);	
+		query.setString(1, password);
+		return (User)query.uniqueResult();
 	}
 	
 }

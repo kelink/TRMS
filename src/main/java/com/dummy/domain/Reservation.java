@@ -2,7 +2,12 @@ package com.dummy.domain;
 
 import java.sql.Date;
 
-import javax.xml.crypto.Data;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  * 
  * Reservation Domain
@@ -26,15 +31,33 @@ import javax.xml.crypto.Data;
  CONSTRAINT `Re_User_Fk` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
  */
-public class Reservation {
+@Entity
+@Table(name="Reservation")
+public class Reservation{
+	
+	@Id  
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  
+	@Column(length=11)
 	private int reservation_ID;
+	
+	@Column(length=11)
 	private int team_ID;
+	
+	@Column(length=11)
 	private int room_ID;
+	
+	@Column(length=11)
 	private int user_ID;
-	private Data Applied_Start_Date;
+	
+	private Date Applied_Start_Date;
 	private Date Applied_End_Date;
+	
+	@Column(length=11)
 	private int status;
+	
 	private Date order_Time;
+	
+	@Column(length=11)
 	private String Usage;
 	public int getReservation_ID() {
 		return reservation_ID;
@@ -60,10 +83,10 @@ public class Reservation {
 	public void setUser_ID(int user_ID) {
 		this.user_ID = user_ID;
 	}
-	public Data getApplied_Start_Date() {
+	public Date getApplied_Start_Date() {
 		return Applied_Start_Date;
 	}
-	public void setApplied_Start_Date(Data applied_Start_Date) {
+	public void setApplied_Start_Date(Date applied_Start_Date) {
 		Applied_Start_Date = applied_Start_Date;
 	}
 	public Date getApplied_End_Date() {

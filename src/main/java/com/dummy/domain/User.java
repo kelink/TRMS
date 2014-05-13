@@ -1,12 +1,13 @@
 package com.dummy.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 /***
  * User Table
  *
@@ -26,17 +27,19 @@ import javax.persistence.Table;
 *
  */
 @Entity
-@Table(name="T_USER")
-public class User {
+@Table(name = "User")  
+public class User  implements Serializable{
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	/**
+	 * ÓÃ‘ô±í
+	 */
+	@Id  
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  
 	@Column(length=11)
 	private int user_ID;
 	
 	@Column(length=255)
 	private String account;
-	
 	@Column(length=255)
 	private String password;
 	
@@ -96,7 +99,6 @@ public class User {
 	public void setTele(String tele) {
 		Tele = tele;
 	}
-
 	
 	
 }

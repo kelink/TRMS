@@ -1,4 +1,14 @@
 package com.dummy.domain;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * 
  * Team Domain
@@ -13,10 +23,25 @@ package com.dummy.domain;
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
  *
  */
-public class Team {
+@Entity
+@Table(name="Team")
+public class Team  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8906539116524638309L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(length=11)
 	private int team_ID;
+	
+	 @Column(nullable=false,length=50)
 	private int user_ID;
+	
+    @Column(nullable=false,length=50)  
 	private String department;
+    
 	public int getTeam_ID() {
 		return team_ID;
 	}

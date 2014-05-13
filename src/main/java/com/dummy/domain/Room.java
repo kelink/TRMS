@@ -1,6 +1,14 @@
 package com.dummy.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  * 
  * Room Domain
@@ -16,12 +24,31 @@ import java.sql.Date;
 
  *
  */
-public class Room {
+@Entity
+@Table(name="Room")
+public class Room  implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -135886627681640355L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(length=11)
 	private int room_ID;
+	
+	@Column(length=50)
 	private String item;
+	
+	@Column(length=50)
 	private String ownBy;
+	
+	@Column(length=11)
 	private int room_Status;
+	
+	
 	private Date last_Used_Date;
+	
 	public int getRoom_ID() {
 		return room_ID;
 	}

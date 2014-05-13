@@ -5,7 +5,17 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+	<!-- 可以引入property配置 -->
+	<!--  
+	  <bean id="propertyConfigurer"  
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+            <list>  
+                <value>classpath:/cn/com/sunjiesh/springmvcdemo/spring/jdbc.properties</value>  
+            </list>  
+        </property>  
+    </bean>
+    --> 
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
@@ -28,19 +38,24 @@
 		<!-- 注解domain类  -->
 		<property name="annotatedClasses">
 			<list>
-				<value>com.dummy.domain.User</value>
+				<value>com.dummy.domain.User</value>			
 				<value>com.dummy.domain.Role</value>
-				<value>com.dummy.domain.UserRole</value>
-				<value>com.dummy.domain.BlackList</value>
+				
 				<value>com.dummy.domain.Team</value>
 				<value>com.dummy.domain.Room</value>
+				<!-- 			
+				<value>com.dummy.domain.UserRole</value>	 			
+				<value>com.dummy.domain.BlackList</value>
 				<value>com.dummy.domain.Reservation</value>
+				
+				-->
 			</list>
 		</property>
+		<!--  
+		<property name="packagesToScan" value="com.dummy.domain" />
+		-->
 
 	</bean>  
-
-
 
 	<!-- 配置一个事务管理器 -->
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -61,10 +76,9 @@
                 <prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>  
                 <prop key="save*">PROPAGATION_REQUIRED</prop>  
                 <prop key="update*">PROPAGATION_REQUIRED</prop>  
-                <prop key="remove*">PROPAGATION_REQUIRED</prop>
-            </props>
+                <prop key="remove*">PROPAGATION_REQUIRED</prop>  
+	        </props>  
 	    </property>  
 	</bean> 
 	
 </beans>
- 

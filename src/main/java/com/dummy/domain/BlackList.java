@@ -1,4 +1,12 @@
 package com.dummy.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * BlackList Domain
  * 
@@ -13,10 +21,21 @@ package com.dummy.domain;
 
  *
  */
-public class BlackList {
+@Entity
+@Table(name="BlackList")
+public class BlackList{
+	
+	@Id  
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  
+	@Column(length=11)
 	private int bl_ID;
+	
+	@Column(length=11)
 	private int team_ID;
+	
+	@Column(length=255)
 	private String reason;
+	
 	public int getBl_ID() {
 		return bl_ID;
 	}

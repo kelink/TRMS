@@ -14,5 +14,6 @@ public interface UserService {
 	public boolean delUser(int id);
 	
 	public boolean updateUser(User user);
-
+	
+	public User auth(String account,String password);
 }

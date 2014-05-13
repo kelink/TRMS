@@ -1,5 +1,12 @@
 package com.dummy.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * User_Role Domain
  * 
@@ -13,20 +20,40 @@ package com.dummy.domain;
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
  *
  */
-public class UserRole {
-	private int role_ID;
-	private int user_ID;
-	public int getRole_ID() {
-		return role_ID;
+@Entity
+@Table(name="UserRole")
+public class UserRole  {
+	
+	/**
+	 * ÓÃ‘ô½ÇÉ«±í
+	 */
+
+	@Id  
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  
+	@Column(length=11)
+	private int id;  
+	@Column(length=11)
+	private int user_id;
+	@Column(length=11)
+	private int role_id;
+	public int getId() {
+		return id;
 	}
-	public void setRole_ID(int role_ID) {
-		this.role_ID = role_ID;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public int getUser_ID() {
-		return user_ID;
+	public int getUser_id() {
+		return user_id;
 	}
-	public void setUser_ID(int user_ID) {
-		this.user_ID = user_ID;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
+	public int getRole_id() {
+		return role_id;
+	}
+	public void setRole_id(int role_id) {
+		this.role_id = role_id;
+	}
+	
 	
 }
