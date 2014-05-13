@@ -22,7 +22,7 @@
  <div id="leftPanel">
  </div>
      <div id="loginPanel">
-	     <form method="post" action="">
+	     <form method="post" action="userAuth">
 		 <h2>Login For System</h2>
 		 <div id="inputWrapper">
 		 <div class="inputLine">

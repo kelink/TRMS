@@ -2,15 +2,15 @@ package com.dummy.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dummy.dao.UserDao;
 import com.dummy.domain.DBUser;
 import com.dummy.service.UserService;
-
-@Service("UserService")
+@Service(value="userService")
 public class UserServiceImpl implements UserService {
-
+	@Autowired
 	private UserDao userDao;
 
 	public void setUserDao(UserDao userDao) {
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 	// authority the User
 	@Override
 	public DBUser auth(String account, String password) {
-		return userDao.auth(account, password);
+		return userDao.getAuthUser(account, password);
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.dummy.domain;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,12 +44,17 @@ public class Reservation {
 
 	@Column(length = 11)
 	private int user_ID;
-
-	private Date Applied_Start_Date;
-	private Date Applied_End_Date;
-	private int status;
-	private Date order_Time;	
+	
+	@Column(length = 255)
 	private String Usage;
+	
+	@Column(length = 11)
+	private int status;
+	
+	private Date Applied_Start_Date;
+	private Date Applied_End_Date;	
+	private Date order_Time;	
+	
 	public int getReservation_ID() {
 		return reservation_ID;
 	}
@@ -100,7 +107,7 @@ public class Reservation {
 		return Usage;
 	}
 	public void setUsage(String usage) {
-		Usage = usage;
+		this.Usage = usage;
 	}
 
 	

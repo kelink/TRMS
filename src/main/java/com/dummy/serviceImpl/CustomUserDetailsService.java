@@ -34,7 +34,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 			System.out.println(userDao);
 			DBUser dbUser = userDao.getUserByAccount(account);
 			System.out.println(dbUser);
-			System.out.println("-------->>>>>>>>>>>");
 			System.out.println(dbUser.getAccess());
 			System.out.println("-------->>>>>>>>>>>");
 			user = new User(dbUser.getAccount(), dbUser.getPassword()

@@ -25,11 +25,9 @@
 	<!-- 配置serviceIml的默认扫描包 -->
 	<context:component-scan base-package="com.dummy.serviceImpl"></context:component-scan>
 	<!-- 配置daoIml的默认扫描包 -->
-	<context:component-scan base-package="com.dummy.daoImpl"></context:component-scan>
-	
+	<context:component-scan base-package="com.dummy.daoImpl"></context:component-scan>	
 	<!-- 配置domain的默认扫描包 -->
-	
-	<context:component-scan base-package="com.dummy.daoImpl"></context:component-scan>
+	<context:component-scan base-package="com.dummy.domain"></context:component-scan>
 	
 	
 	
