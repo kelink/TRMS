@@ -22,9 +22,10 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = { "/index", "" })
-	public String index() {
-		logger.info("---进入用户登陆界面-----");
+	
+	@RequestMapping(value={"/index",""})
+	public String index(){
+		logger.info("---进入用户界面-----");
 		return "loginPage";
 	}
 

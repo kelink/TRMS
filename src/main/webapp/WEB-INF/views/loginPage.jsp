@@ -1,36 +1,71 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+ <head>
 
-	<h1>Login</h1>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title> Login </title>
+  <link href="../resources/css/style.css" rel="stylesheet" type="text/css">
 
-	<div id="login-error">${error}</div>
+ </head>
 
-	<form action="../j_spring_security_check" method="post">
+ <body>
 
-		<p>
-			<label for="j_username">Username</label> <input id="j_username"
-				name="j_username" type="text" />
-		</p>
+ <div id="header">
+     <div id="headerContainer">
+	     <div id="logo">
+	     </div>
+     </div>
+ </div>
+ 
+ <div id="viewport">
+ <div id="leftPanel">
+ </div>
+     <div id="loginPanel">
+	     <form method="post" action="">
+		 <h2>Login For System</h2>
+		 <div id="inputWrapper">
+		 <div class="inputLine">
+		     <label id="label1" for="account">
+			     <span id="icon1">
+				 </span>
+			 </label>
+		     <input type="text" class="textLine" id="account" name="account">
+	     </div>
+		 <div class="inputLine">
+		     <label id="label2" for="password">
+			     <span id="icon2">
+				 </span>
+			 </label>
+		     <input type="password" class="textLine"id="password" name="password">
+		 </div>
 
-		<p>
-			<label for="j_password">Password</label> <input id="j_password"
-				name="j_password" type="password" />
-		</p>
+		 </div>
 
-		<input type="submit" value="Login" />
+		 <div id="reset-btn">
+		     <input type="reset" id="reset" value="reset">
+		 </div>
 
-	</form>
+		 <div id="login-btn">
+			 <input type="submit" value="Login" class="btn-style" >
+		 </div>
+		 </form>
+	 </div>
 
-</body>
+ </div>
+
+
+ <div id="footer">
+ <div id="footerContainer">
+ <div id="footerContent">
+      <h3>Design by Ljj and Link in 2014.</h3>
+
+ </div>
+ </div>
+ </div>
+  
+
+
+
+ </body>
 </html>
