@@ -20,7 +20,7 @@ public class LoginController {
 	@RequestMapping(value={"/index",""})
 	public String index(){
 		logger.info("---进入用户界面-----");
-		return "index";
+		return "loginPage";
 	}
 	public String userAuth(HttpServletRequest request,HttpServletResponse response){
 		logger.info("---进入userAuth-----");	

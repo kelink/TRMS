@@ -18,6 +18,46 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+
+
+ <servlet> 
+        <servlet-name>default</servlet-name> 
+        <servlet-class> 
+          org.apache.catalina.servlets.DefaultServlet 
+        </servlet-class> 
+        <init-param> 
+            <param-name>debug</param-name> 
+            <param-value>0</param-value> 
+        </init-param> 
+        <init-param> 
+            <param-name>listings</param-name> 
+            <param-value>true</param-value> 
+        </init-param> 
+        <load-on-startup>1</load-on-startup> 
+    </servlet> 
+
+
+ 
+
+
+<servlet-mapping>       
+	<servlet-name>default</servlet-name>  
+	  
+	<url-pattern>*.jpg</url-pattern>     
+</servlet-mapping>   
+	
+<servlet-mapping>           
+	<servlet-name>default</servlet-name>        
+	<url-pattern>*.js</url-pattern>    
+</servlet-mapping>   
+<servlet-mapping>            
+	<servlet-name>default</servlet-name>           
+	<url-pattern>*.css</url-pattern>      
+</servlet-mapping>  
+
+
+
+
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
@@ -28,6 +68,9 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	
+	
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
