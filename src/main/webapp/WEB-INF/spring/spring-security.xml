@@ -5,22 +5,19 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd http://www.springframework.org/schema/security 
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
-    
+   
 	<!-- Spring-Security 的配置 -->
 	<!-- 注意开启use-expressions.表示开启表达式. -->
 	<security:http auto-config="true" use-expressions="true" access-denied-page="/user/denied">
 		<!--intercept-url:拦截器 。可以设定哪些路径需要哪些权限来访问. filters=none 不使用过滤,也可以理解为忽略 -->
-		<security:intercept-url pattern="/login"
-			access="permitAll" />
-		<security:intercept-url pattern="/user/home_TA"
-			access="hasRole('ROLE_TA')" />
-		<security:intercept-url pattern="/user/home_LC"
-			access="hasRole('ROLE_LC')" />
+		<security:intercept-url pattern="/login" access="permitAll" />
+		<security:intercept-url pattern="/user/home_TA" access="hasRole('ROLE_TA')" />
+		<security:intercept-url pattern="/user/home_LC" access="hasRole('ROLE_LC')" />
 			
 		<!-- login-page::默认指定的登录页面. authentication-failure-url:出错后跳转页面. default-target-url:成功登陆后跳转页面 -->
 		<security:form-login 
 			login-page="/login/index"
-			authentication-failure-url="/login/auth?error=true"
+			authentication-failure-url="/login/fail?error=true"
 			always-use-default-target="true" 
 			default-target-url="/login/success" />
 		<!-- logout-success-url:成功注销后跳转到的页面; -->
@@ -30,25 +27,45 @@
 	</security:http>
 
 	<!-- 指定一个自定义的authentication-manager :customUserDetailsService -->
+	<!--  
 	<security:authentication-manager>
 		<security:authentication-provider
 			user-service-ref="customUserDetailsService">
+			-->
 			<!-- <security:password-encoder
 				 hash="md5"/> -->
+				 <!-- 
 					</security:authentication-provider>
 
 	</security:authentication-manager>
+	
+	<security:authentication-manager alias="authenticationManager">  
+  <security:authentication-provider> 
+  --> 
+   <!-- 直接使用SQL语句查询登录帐号对应权限， users-by-username-query：查询登录用户是否存在 authorities-by-username-query：查询登录用户权限(登录用户可以不属于任何组，从t_user_role表中获取权限)  
+    group-authorities-by-username-query：查询登录用户所在组的权限 -->  
+    <security:authentication-manager alias="authenticationManager">  
+  <security:authentication-provider>  
+   <!-- 直接使用SQL语句查询登录帐号对应权限， users-by-username-query：查询登录用户是否存在 authorities-by-username-query：查询登录用户权限(登录用户可以不属于任何组，从t_user_role表中获取权限)  
+    group-authorities-by-username-query：查询登录用户所在组的权限 -->  
+   <security:jdbc-user-service data-source-ref="dataSource"  
+    users-by-username-query="SELECT account AS username,password as password,access AS access FROM DbUser WHERE DbUser.account = ?"  
+    authorities-by-username-query="select dbuser.account as username,role.authority 
+    								from dbuser,role 
+    								where 
+    								dbuser.access=role.role_id 
+    								and
+    								dbuser.account=?" />  
+   </security:authentication-provider>  
+  </security:authentication-manager> 
+  
 
 
 	<!-- 对密码进行MD5编码 ,使用这个类对请求处理 -->
-	<bean
-		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"
-		id="passwordEncoder" >
+	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder">
 		<property name="encodeHashAsBase64" value="true"/>
 	</bean>
 
-	<!-- 通过 customUserDetailsService,Spring会自动的用户的访问级别. 也可以理解成:以后我们和数据库操作就是通过customUserDetailsService来进行关联. -->
-	<bean id="customUserDetailsService" class="com.dummy.serviceImpl.CustomUserDetailsService" />
-	<!-- 在登录的时候使用了security-check机制，他会使用到上面的一个services,并自动调用loadUserByName()方法 -->
+
 
 </beans>

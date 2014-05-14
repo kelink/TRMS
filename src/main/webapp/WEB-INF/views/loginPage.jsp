@@ -23,22 +23,23 @@
  <div id="leftPanel">
  </div>
      <div id="loginPanel">
-	     <form method="post" action="userAuth">
+    
+	    <form method="post" action="/trms/j_spring_security_check">
 		 <h2>Login For System</h2>
 		 <div id="inputWrapper">
 		 <div class="inputLine">
 		     <label id="label1" for="account">
 			     <span id="icon1">
 				 </span>
-			 </label>
-		     <input type="text" class="textLine" id="account" name="account">
+			 </label> 
+		     <input type="text" class="textLine" id="account" name="j_username">
 	     </div>
 		 <div class="inputLine">
 		     <label id="label2" for="password">
 			     <span id="icon2">
 				 </span>
 			 </label>
-		     <input type="password" class="textLine"id="password" name="password">
+		     <input type="password" class="textLine"id="password" name="j_password" >
 		 </div>
 
 		 </div>
@@ -52,7 +53,7 @@
 		 </div>
 		 </form>
 	 </div>
-
+ 
  </div>
 
 

@@ -11,22 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * 
- * Reservation Domain
- * 
- * CREATE TABLE `reservation` ( `Reservation_ID` int(11) NOT NULL
- * AUTO_INCREMENT, `Team_ID` int(11) NOT NULL, `Room_ID` int(11) NOT NULL,
- * `User_ID` int(11) NOT NULL, `Applied_End_ Date` datetime NOT NULL,
- * `Applied_Start_Date` datetime NOT NULL, `Status` int(11) NOT NULL DEFAULT
- * '0', `Order_Time` datetime NOT NULL, `Usage` varchar(255) DEFAULT NULL,
- * PRIMARY KEY (`Reservation_ID`), KEY `Re_User_Fk` (`User_ID`), KEY
- * `RE_Team_Fk` (`Team_ID`), KEY `RE_Room_FK` (`Room_ID`), CONSTRAINT
- * `RE_Room_FK` FOREIGN KEY (`Room_ID`) REFERENCES `room` (`Room_ID`),
- * CONSTRAINT `RE_Team_Fk` FOREIGN KEY (`Team_ID`) REFERENCES `team`
- * (`Team_ID`), CONSTRAINT `Re_User_Fk` FOREIGN KEY (`User_ID`) REFERENCES
- * `user` (`User_ID`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8
- */
 @Entity
 @Table(name = "Reservation")
 public class Reservation {
@@ -46,7 +30,7 @@ public class Reservation {
 	private int user_ID;
 	
 	@Column(length = 255)
-	private String Usage;
+	private String purpose;
 	
 	@Column(length = 11)
 	private int status;
@@ -103,12 +87,13 @@ public class Reservation {
 	public void setOrder_Time(Date order_Time) {
 		this.order_Time = order_Time;
 	}
-	public String getUsage() {
-		return Usage;
+	public String getPurpose() {
+		return purpose;
 	}
-	public void setUsage(String usage) {
-		this.Usage = usage;
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
 	}
+	
 
 	
 

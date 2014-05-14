@@ -8,7 +8,7 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 <!-- 配置hiberate操作中自定义需要的beans -->
 <!-- User Bean -->
-  
+  <!--  
 	<bean id="userDao" class="com.dummy.daoImpl.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -19,7 +19,7 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<bean name="userService" parent="transactionProxy">
 		<property name="target" ref="userServiceBase"></property>
 	</bean>	
-
+-->
 <!-- Role Bean -->
 
 

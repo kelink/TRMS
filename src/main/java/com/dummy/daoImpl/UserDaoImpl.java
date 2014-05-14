@@ -2,18 +2,24 @@ package com.dummy.daoImpl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.dummy.controller.LoginController;
 import com.dummy.dao.UserDao;
 import com.dummy.domain.DBUser;
 
 @Repository(value="userDao")
 public class UserDaoImpl implements UserDao {
+	private static final Logger logger = LoggerFactory
+			.getLogger(LoginController.class);
 	// ªÒ»°session
-	@Autowired
+	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -28,7 +34,6 @@ public class UserDaoImpl implements UserDao {
 		return (DBUser) query.uniqueResult();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<DBUser> getAllUser() {
 		String hql = "from DBUser";
@@ -57,8 +62,6 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public DBUser getAuthUser(String account, String password) {
 		String hql = "from DBUser u where u.account=? and u.password=?";
-		System.out.println(account);
-		System.out.println(password);
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setString(0, account);
 		query.setString(1, password);
@@ -67,9 +70,11 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public DBUser getUserByAccount(String account) {
-		String hql = "from DBUser u where u.account=?";
+		logger.info("userDaImpl getUserByAccount---->>>  "+account);
+		logger.info("sessionFactory:"+sessionFactory);
+		String hql = "from DBUser u where u.account= ?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		query.setString(0, account);
+		query.setParameter(0, account);
 		return (DBUser) query.uniqueResult();
 	}
 

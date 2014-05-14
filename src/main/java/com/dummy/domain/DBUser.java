@@ -110,4 +110,12 @@ public class DBUser implements Serializable {
 		Tele = tele;
 	}
 
+	@Override
+	public String toString() {
+		return "DBUser [user_ID=" + user_ID + ", access=" + access
+				+ ", account=" + account + ", password=" + password
+				+ ", gender=" + gender + ", LN=" + LN + ", Tele=" + Tele + "]";
+	}
+
+	
 }

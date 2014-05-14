@@ -11,7 +11,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost/trms1"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="link"></property>
+		<property name="password" value="123"></property>
 	</bean>
 	
 	<!-- 配置SessionFactory -->
@@ -20,6 +20,10 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<!-- 每次开启时候创建数据库，destroy 时候删除数据库
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				 -->
+				 <!-- 按照更新模式进行数据库操作，需要改表结构是才用上面 -->
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
@@ -35,7 +39,10 @@
 				<value>com.dummy.domain.Team</value>
 				<value>com.dummy.domain.Reservation</value>
 				<value>com.dummy.domain.Room</value>
-				
+				<!-- 下面两个类用于权限管理，不同于角色 
+				<value>com.dummy.domain.Authority</value>	
+				<value>com.dummy.domain.RoleAuthority</value>
+				-->				
 			</list>
 		</property>
 

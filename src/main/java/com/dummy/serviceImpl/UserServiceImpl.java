@@ -2,7 +2,8 @@ package com.dummy.serviceImpl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.dummy.dao.UserDao;
@@ -10,11 +11,12 @@ import com.dummy.domain.DBUser;
 import com.dummy.service.UserService;
 @Service(value="userService")
 public class UserServiceImpl implements UserService {
-	@Autowired
-	private UserDao userDao;
 
+	@Resource(name="userDao")
+	private UserDao userDao;
+	
 	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
+		this.userDao=userDao;
 	}
 
 	@Override
@@ -42,10 +44,14 @@ public class UserServiceImpl implements UserService {
 		return userDao.updateUser(user);
 	}
 
-	// authority the User
 	@Override
-	public DBUser auth(String account, String password) {
+	public DBUser getAuthUser(String account, String password) {
 		return userDao.getAuthUser(account, password);
+	}
+
+	@Override
+	public DBUser getUserByAccount(String account) {
+		return userDao.getUserByAccount(account);
 	}
 
 }
