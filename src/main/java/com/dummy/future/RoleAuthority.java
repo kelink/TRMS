@@ -1,3 +1,4 @@
+package com.dummy.future;
 //package com.dummy.domain;
 //
 //import javax.persistence.Column;

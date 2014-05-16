@@ -1,5 +1,17 @@
 package com.dummy.service;
 
-public interface RoomService {
+import java.util.List;
 
+import com.dummy.domain.Room;
+
+public interface RoomService {
+	public Room getRoom(int id);
+
+	public List<Room> getAllRoom();
+
+	public void addRoom(Room room);
+
+	public boolean delRoom(int id);
+
+	public boolean updateRoom(Room room);
 }

@@ -12,16 +12,26 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dummy.domain.Reservation;
 import com.dummy.domain.Room;
 import com.dummy.service.ReservationService;
+import com.dummy.service.RoomService;
 
 @Controller
-@RequestMapping(value = { "/user*/book" })
+@RequestMapping(value = { "/book" })
 public class BookController {
-	@Resource(name="reservationService")
+	@Resource(name = "reservationService")
 	private ReservationService reservationService;
-	
-	@RequestMapping("/bookRoom")
-	public ModelAndView bookRoom(
+
+	@Resource(name = "roomService")
+	private RoomService roomService;
+
+	@RequestMapping("/index")
+	public ModelAndView index(
 			@RequestParam("reservation") Reservation reservation) {
+		List<Room> variableRooms = getVariableRooms();
+		List<Room> getBusyRooms = getVariableRooms();
+		return null;
+	}
+
+	public ModelAndView book() {
 		return null;
 	}
 
@@ -31,6 +41,10 @@ public class BookController {
 	}
 
 	public List<Room> getBusyRooms() {
+		return null;
+	}
+
+	public List<Room> getAllRooms() {
 		return null;
 	}
 }

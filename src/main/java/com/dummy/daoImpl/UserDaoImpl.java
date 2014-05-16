@@ -18,7 +18,7 @@ import com.dummy.domain.DBUser;
 public class UserDaoImpl implements UserDao {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
-	// ªÒ»°session
+	// ???session
 	@Resource(name = "sessionFactory")
 	private SessionFactory sessionFactory;
 

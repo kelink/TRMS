@@ -2,7 +2,7 @@ package com.dummy.serviceImpl;
 
 import org.springframework.stereotype.Service;
 
-@Service(value = "roleService")
-public class RoleServiceImpl {
+@Service(value = "departmentService")
+public class DepartmentServiceImpl {
 
 }

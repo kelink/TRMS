@@ -8,11 +8,11 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import com.dummy.dao.RoleDao;
-import com.dummy.domain.Role;
+import com.dummy.dao.DepartmentDao;
+import com.dummy.domain.Department;
 
-@Repository(value = "roleDao")
-public class RoleDaoImpl implements RoleDao {
+@Repository(value = "departmentDao")
+public class DepartmentDaoImpl implements DepartmentDao {
 	// ªÒ»°session
 	@Resource(name = "sessionFactory")
 	private SessionFactory sessionFactory;
@@ -22,35 +22,36 @@ public class RoleDaoImpl implements RoleDao {
 	}
 
 	@Override
-	public Role getRole(int id) {
-		String hql = "from Role r where r.Role_ID=?";
+	public Department getDepartment(int id) {
+		String hql = "from Department d where d.deptment_ID=?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, id);
-		return (Role) query.uniqueResult();
+		return (Department) query.uniqueResult();
 	}
 
 	@Override
-	public List<Role> getAllRole() {
-		String hql = "from Role";
+	public List<Department> getAllDepartment() {
+		String hql = "from Department";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
 
 	@Override
-	public void addRole(Role role) {
-		sessionFactory.getCurrentSession().save(role);
+	public void addDepartment(Department department) {
+		sessionFactory.getCurrentSession().save(department);
+
 	}
 
 	@Override
-	public boolean delRole(int id) {
-		String hql = "delete Role r where r.Role_ID= ?";
+	public boolean delDepartment(int id) {
+		String hql = "delete Department d where d.deptment_ID= ?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, id);
 		return (query.executeUpdate() > 0);
 	}
 
 	@Override
-	public boolean updateRole(Role Role) {
+	public boolean updateDepartment(Department department) {
 		return false;
 	}
 

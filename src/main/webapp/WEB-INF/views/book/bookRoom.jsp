@@ -11,9 +11,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<title>订房界面</title>
-	<form action="#" method="post">
-	</form>
+<h1>订房界面</h1>
+<script type="text/javascript">
+
+</script>
+
+<form action="#" method="post" name="bookForm">
+Room
+Planned Use End Time：
+
+Planned Use Start Time：
+User LN 
+User Team:
+
+User TelLine:
+
+Use Resaon:
+</form>
  
 </body>
 </html>
