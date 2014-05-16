@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2014 年 05 月 14 日 14:45
+-- 生成日期: 2014 年 05 月 16 日 04:35
 -- 服务器版本: 5.6.12-log
 -- PHP 版本: 5.4.16
 
@@ -45,21 +45,20 @@ CREATE TABLE IF NOT EXISTS `dbuser` (
   `user_ID` int(11) NOT NULL AUTO_INCREMENT,
   `LN` varchar(50) DEFAULT NULL,
   `Tele` varchar(50) DEFAULT NULL,
-  `access` int(11) DEFAULT NULL COMMENT '标记角色',
+  `access` int(11) DEFAULT NULL,
   `account` varchar(255) DEFAULT NULL,
   `gender` int(11) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `dbuser`
 --
 
 INSERT INTO `dbuser` (`user_ID`, `LN`, `Tele`, `access`, `account`, `gender`, `password`) VALUES
-(1, '1030041097@qq.com', '18864648656', 1, 'luo', 1, '123'),
-(2, '266469874@qq.com', '56566354', 2, 'luo2', 0, '1234'),
-(3, 'dashen@qq.com', '15645824', 2, 'luo3', 1, '1234');
+(1, '1030041097@qq.com', '44452165695', 1, 'luo', 1, '123'),
+(2, '18544565@qq.com', '1487784', 2, 'luo2', 0, '1234');
 
 -- --------------------------------------------------------
 
@@ -77,6 +76,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `status` int(11) DEFAULT NULL,
   `team_ID` int(11) DEFAULT NULL,
   `user_ID` int(11) DEFAULT NULL,
+  `user_LN` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`reservation_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 
 CREATE TABLE IF NOT EXISTS `role` (
   `Role_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `authority` varchar(11) DEFAULT NULL COMMENT '验证角色',
+  `authority` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`Role_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
@@ -123,22 +123,9 @@ CREATE TABLE IF NOT EXISTS `room` (
 
 CREATE TABLE IF NOT EXISTS `team` (
   `team_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `department` varchar(50) NOT NULL,
+  `department_ID` varchar(11) DEFAULT NULL,
   `user_ID` int(11) NOT NULL,
   PRIMARY KEY (`team_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- 表的结构 `userrole`
---
-
-CREATE TABLE IF NOT EXISTS `userrole` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
