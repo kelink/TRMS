@@ -14,12 +14,12 @@ import com.dummy.controller.LoginController;
 import com.dummy.dao.UserDao;
 import com.dummy.domain.DBUser;
 
-@Repository(value="userDao")
+@Repository(value = "userDao")
 public class UserDaoImpl implements UserDao {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
 	// »ñÈ¡session
-	@Resource(name="sessionFactory")
+	@Resource(name = "sessionFactory")
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -70,8 +70,8 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public DBUser getUserByAccount(String account) {
-		logger.info("userDaImpl getUserByAccount---->>>  "+account);
-		logger.info("sessionFactory:"+sessionFactory);
+		logger.info("userDaImpl getUserByAccount---->>>  " + account);
+		logger.info("sessionFactory:" + sessionFactory);
 		String hql = "from DBUser u where u.account= ?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setParameter(0, account);

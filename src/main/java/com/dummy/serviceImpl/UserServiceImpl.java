@@ -9,14 +9,15 @@ import org.springframework.stereotype.Service;
 import com.dummy.dao.UserDao;
 import com.dummy.domain.DBUser;
 import com.dummy.service.UserService;
-@Service(value="userService")
+
+@Service(value = "userService")
 public class UserServiceImpl implements UserService {
 
-	@Resource(name="userDao")
+	@Resource(name = "userDao")
 	private UserDao userDao;
-	
+
 	public void setUserDao(UserDao userDao) {
-		this.userDao=userDao;
+		this.userDao = userDao;
 	}
 
 	@Override

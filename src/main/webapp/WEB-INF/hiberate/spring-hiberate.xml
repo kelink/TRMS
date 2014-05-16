@@ -34,7 +34,6 @@
 			<list>
 				<value>com.dummy.domain.DBUser</value>
 				<value>com.dummy.domain.Role</value>
-				<value>com.dummy.domain.UserRole</value>
 				<value>com.dummy.domain.BlackList</value>
 				<value>com.dummy.domain.Team</value>
 				<value>com.dummy.domain.Reservation</value>

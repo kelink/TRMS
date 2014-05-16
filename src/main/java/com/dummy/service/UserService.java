@@ -16,6 +16,6 @@ public interface UserService {
 	public boolean updateUser(DBUser user);
 
 	public DBUser getAuthUser(String account, String password);
-	
+
 	public DBUser getUserByAccount(String account);
 }

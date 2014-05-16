@@ -27,37 +27,15 @@
 	</security:http>
 
 	<!-- 指定一个自定义的authentication-manager :customUserDetailsService -->
-	<!--  
-	<security:authentication-manager>
-		<security:authentication-provider
-			user-service-ref="customUserDetailsService">
-			-->
-			<!-- <security:password-encoder
-				 hash="md5"/> -->
-				 <!-- 
-					</security:authentication-provider>
+	 
+	 <!-- 指定一个自定义的authentication-manager :customUserDetailsService -->  
+    <security:authentication-manager>  
+        <security:authentication-provider user-service-ref="customUserDetailsService">  
+            <security:password-encoder ref="passwordEncoder" />  
+        </security:authentication-provider>  
+    </security:authentication-manager> 
 
-	</security:authentication-manager>
-	
-	<security:authentication-manager alias="authenticationManager">  
-  <security:authentication-provider> 
-  --> 
-   <!-- 直接使用SQL语句查询登录帐号对应权限， users-by-username-query：查询登录用户是否存在 authorities-by-username-query：查询登录用户权限(登录用户可以不属于任何组，从t_user_role表中获取权限)  
-    group-authorities-by-username-query：查询登录用户所在组的权限 -->  
-    <security:authentication-manager alias="authenticationManager">  
-  <security:authentication-provider>  
-   <!-- 直接使用SQL语句查询登录帐号对应权限， users-by-username-query：查询登录用户是否存在 authorities-by-username-query：查询登录用户权限(登录用户可以不属于任何组，从t_user_role表中获取权限)  
-    group-authorities-by-username-query：查询登录用户所在组的权限 -->  
-   <security:jdbc-user-service data-source-ref="dataSource"  
-    users-by-username-query="SELECT account AS username,password as password,access AS access FROM DbUser WHERE DbUser.account = ?"  
-    authorities-by-username-query="select dbuser.account as username,role.authority 
-    								from dbuser,role 
-    								where 
-    								dbuser.access=role.role_id 
-    								and
-    								dbuser.account=?" />  
-   </security:authentication-provider>  
-  </security:authentication-manager> 
+   <bean id="customUserDetailsService" class=" com.dummy.serviceImpl.CustomUserDetailsService"/>  
   
 
 

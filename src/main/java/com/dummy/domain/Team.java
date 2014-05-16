@@ -26,7 +26,6 @@ public class Team implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8906539116524638309L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,9 +35,10 @@ public class Team implements Serializable {
 	@Column(nullable = false, length = 50)
 	private int user_ID;
 
-	@Column(nullable = false, length = 50)
-	private String department;
+	@Column(length = 11)
+	private String department_ID;
 
+	
 	public int getTeam_ID() {
 		return team_ID;
 	}
@@ -55,12 +55,16 @@ public class Team implements Serializable {
 		this.user_ID = user_ID;
 	}
 
-	public String getDepartment() {
-		return department;
+	public String getDepartment_ID() {
+		return department_ID;
 	}
 
-	public void setDepartment(String department) {
-		this.department = department;
+	public void setDepartment_ID(String department_ID) {
+		this.department_ID = department_ID;
 	}
+
+
+
+
 
 }

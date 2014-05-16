@@ -117,5 +117,4 @@ public class DBUser implements Serializable {
 				+ ", gender=" + gender + ", LN=" + LN + ", Tele=" + Tele + "]";
 	}
 
-	
 }

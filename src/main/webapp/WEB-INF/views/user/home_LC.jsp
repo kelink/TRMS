@@ -14,5 +14,12 @@
 	welcome  LC <security:authentication property="principal.username"></security:authentication> 
 	<c:url value="/j_spring_security_logout" var="logoutUrl"/>  
 <li><a href="${logoutUrl}">Log Out</a></li> 
+
+
+<a href="#">Book Room</a>
+<a href="#">Check My Reservation</a>
+<a href="#">Delete My Reservation</a>
+<a href="#">Manage My Profile</a>
+ 
 </body>
 </html>

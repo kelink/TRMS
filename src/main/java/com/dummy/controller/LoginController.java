@@ -24,44 +24,48 @@ import com.dummy.service.UserService;
 public class LoginController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
-	@Resource(name="userService")
+	@Resource(name = "userService")
 	private UserService userService;
-	
-	@RequestMapping(value={"/index","","/"})
-	public String index(){
+
+	@RequestMapping(value = { "/index", "", "/" })
+	public String index() {
 		logger.info("---进入/login/index界面-----");
-		return "loginPage";
+		return "login/loginPage";
 	}
-	
-	@RequestMapping(value = { "/success"})
+
+	@RequestMapping(value = { "/success" })
 	public ModelAndView success() {
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
-			    .getAuthentication()
-			    .getPrincipal();
-		Collection<? extends GrantedAuthority> authorityList=userDetails.getAuthorities();
-		Iterator<? extends GrantedAuthority> iterator=authorityList.iterator();
-		ArrayList<Object> authoritiesList=new ArrayList<Object>();
-		while (iterator.hasNext()) {		
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		Collection<? extends GrantedAuthority> authorityList = userDetails
+				.getAuthorities();
+		Iterator<? extends GrantedAuthority> iterator = authorityList
+				.iterator();
+		ArrayList<Object> authoritiesList = new ArrayList<Object>();
+		while (iterator.hasNext()) {
 			authoritiesList.add(iterator.next());
 		}
-		String role=(String)authoritiesList.get(0).toString();
-		DBUser currentUser=userService.getUserByAccount(userDetails.getUsername());
-		ModelMap modelMap=new ModelMap();
-		logger.info(currentUser+"---login success-----");
-		if (role.equals("ROLE_LC")) {			
-			modelMap.addAttribute("currentUser", currentUser);  
-            return new ModelAndView("redirect:/user/home_LC", modelMap);  
-		}if (role.equals("ROLE_TA")) {
-			modelMap.addAttribute("currentUser", currentUser);  
-            return new ModelAndView("redirect:/user/home_TA", modelMap); 
-		}else {
-			
+		String role = (String) authoritiesList.get(0).toString();
+		DBUser currentUser = userService.getUserByAccount(userDetails
+				.getUsername());
+		ModelMap modelMap = new ModelMap();
+		logger.info(currentUser + "---login success-----");
+		if (role.equals("ROLE_LC")) {
+			modelMap.addAttribute("currentUser", currentUser);
+			return new ModelAndView("redirect:/user/home_LC", modelMap);
+		}
+		if (role.equals("ROLE_TA")) {
+			modelMap.addAttribute("currentUser", currentUser);
+			return new ModelAndView("redirect:/user/home_TA", modelMap);
+		} else {
+
 			return null;
-		}	
+		}
 	}
-	@RequestMapping(value = { "/fail"})
+
+	@RequestMapping(value = { "/fail" })
 	public String fail() {
 		logger.info("---进入用户登陆/fail界面-----");
-		return "login_fail";
+		return "login/login_fail";
 	}
 }
