@@ -29,7 +29,7 @@
  <div class="wrapper">
      <div class="header">
 	     <div class="headerContainer">
-		 <span id="logo"><img src="/trms/resources/images/hsbclogo.png"/></span>
+		 <span id="logo"><img src="/trms/resources/images/hsbcLogo.png"/></span>
 		 </div>
 	 </div>
 	 <div>

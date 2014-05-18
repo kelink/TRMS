@@ -6,7 +6,7 @@ window.onload=function()
 		{
 		    $("#list1").animate({height:"500"}, 400);	    
 			$("#calArea1").css("display","block");
-			$("#iframe1").attr("src","calendar.html?room=1");
+			$("#iframe1").attr("src","calendar?room=1");
 			expand1=true;
 		}
 		else if(expand1==true)
