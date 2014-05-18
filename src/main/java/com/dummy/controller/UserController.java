@@ -66,22 +66,21 @@ public class UserController {
 		map.addAttribute("rooms", rooms);
 		return new ModelAndView("user/home_LC", map);
 	}
-	
+
 	@RequestMapping(value = "/calendar")
 	public ModelAndView calendar(
 			@ModelAttribute("currentUser") DBUser currentUser) {
 		logger.info("½øÈë /user/home_TC ÏÂ£¬currentUser" + currentUser);
-		
+
 		return new ModelAndView("user/calendar");
 	}
-	
 
 	private List<Room> getAllRooms() {
 		return roomService.getAllRoom();
 	}
 
-	@RequestMapping(value = "/calendar")
-	public ModelAndView calendar() {
-		return new ModelAndView("user/calendar");
-	}
+	// @RequestMapping(value = "/calendar")
+	// public ModelAndView calendar() {
+	// return new ModelAndView("user/calendar");
+	// }
 }
