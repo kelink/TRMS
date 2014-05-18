@@ -14,7 +14,6 @@
  <link href="/trms/resources/css/lcIndex.css" rel="stylesheet" >
  <script src="/trms/resources/js/lcIndex.js" type="text/javascript"></script>
  <script src="/trms/resources/js/jquery.js" type="text/javascript"></script>
-
 </head>
 <body>
 	<security:authentication property="principal.username"></security:authentication> 
@@ -69,7 +68,7 @@
 					<!-- 显示room的信息 -->
 				 <ul>
 				 <c:forEach items="${rooms}" var="room"> 
-				     <li id="list1"class="roomListContent">
+				     <li id="list1" class="roomListContent">
 					     <span class="roomListNum">1</span>
 						 <span class="roomicon"><img src="/trms/resources/images/roomicon.png"width="43px"height="43px"/></span>
 						 <span class="roomNum"><span>${room.item }</span></span>

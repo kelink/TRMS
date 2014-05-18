@@ -1,6 +1,6 @@
 package com.dummy.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class CalanderDataDomain {
 	private Date Applied_END_Date;

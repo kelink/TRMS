@@ -6,7 +6,7 @@ window.onload = function() {
 				height : "500"
 			}, 400);
 			$("#calArea1").css("display", "block");
-			$("#iframe1").attr("src", "calendar.jsp?room=1");
+			$("#iframe1").attr("src", "/trms/user/calendar?room=1");
 			expand1 = true;
 		} else if (expand1 == true) {
 			$("#list1").animate({

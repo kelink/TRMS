@@ -48,31 +48,36 @@ public class BookController {
 		int room_ID = 1;
 		// String result = "{\"name\":\"" + "test" + "\"}";
 		// Æ´½ÓjsonÊä³ö
+		@SuppressWarnings("unused")
 		String result = "";
 		@SuppressWarnings("unchecked")
 		List<CalanderDataDomain> list = reservationService
 				.getAllReservationInfo(room_ID);
 		StringBuilder builder = new StringBuilder();
 
-		builder.append("{");
-		int i=0;
+		builder.append("[");
 		for (CalanderDataDomain calanderDataDomain : list) {
-			
-			builder.append("\""+i+"\":");
-			builder.append("[");
-			builder.append("{\"account\":\"" + calanderDataDomain.getAccount() + "\"},");
-			builder.append("{\"email\":\"" + calanderDataDomain.getEmail() + "\"},");
-			builder.append("{\"purpose\":\"" + calanderDataDomain.getPurpose() + "\"},");
-			builder.append("{\"room_ID\":\"" + calanderDataDomain.getRoom_ID() + "\"},");
-			builder.append("{\"teamName\":\"" + calanderDataDomain.getTeamName() + "\"},");
-			builder.append("{\"user_ID\":\"" + calanderDataDomain.getUser_ID() + "\"},");
-			builder.append("{\"applied_end_Date\":\"" + calanderDataDomain.getApplied_END_Date() + "\"},");
-			builder.append("{\"applied_start_Date\":\"" + calanderDataDomain.getApplied_Start_Date()+ "\"},");
-			builder.append("{\"order_Time\":\"" + calanderDataDomain.getOrder_Time()+ "\"}");
-			builder.append("]");
-			++i;
+			builder.append("{");
+			builder.append("account:" + calanderDataDomain.getAccount() + ",");
+			builder.append("email:" + calanderDataDomain.getEmail() + ",");
+			builder.append("purpose:" + calanderDataDomain.getPurpose() + ",");
+			builder.append("room_ID:" + calanderDataDomain.getRoom_ID() + ",");
+			builder.append("teamName:" + calanderDataDomain.getTeamName() + ",");
+			builder.append("user_ID:" + calanderDataDomain.getUser_ID() + ",");
+
+			String temp = calanderDataDomain.getApplied_END_Date().toString();
+			String[] data = temp.split("-");
+			builder.append("year:" + data[0] + ",");
+			builder.append("month:" + data[1] + ",");
+			builder.append("day:" + data[2] + ",");
+			builder.append("applied_end_Date:"
+					+ calanderDataDomain.getApplied_END_Date() + ",");
+			builder.append("applied_start_Date:"
+					+ calanderDataDomain.getApplied_Start_Date() + ",");
+			builder.append("order_Time:" + calanderDataDomain.getOrder_Time());
+			builder.append("}");
 		}
-		builder.append("}");
+		builder.append("]");
 		System.out.println(builder.toString());
 		PrintWriter out = null;
 		response.setContentType("application/json");
