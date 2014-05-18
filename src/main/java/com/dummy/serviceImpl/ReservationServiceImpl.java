@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.dummy.dao.ReservationDao;
+import com.dummy.dao.TeamDao;
+import com.dummy.dao.UserDao;
 import com.dummy.domain.Reservation;
 import com.dummy.service.ReservationService;
 
@@ -14,6 +16,12 @@ import com.dummy.service.ReservationService;
 public class ReservationServiceImpl implements ReservationService {
 	@Resource(name = "reservationDao")
 	private ReservationDao reservationDao;
+
+	@Resource(name = "userDao")
+	private UserDao userDao;
+
+	@Resource(name = "teamDao")
+	private TeamDao teamDao;
 
 	@Override
 	public Reservation getReservation(int id) {
@@ -39,4 +47,10 @@ public class ReservationServiceImpl implements ReservationService {
 	public boolean updateReservationById(int id, Reservation reservation) {
 		return reservationDao.updateReservationById(id, reservation);
 	}
+
+	@Override
+	public List getAllReservationInfo(int room_ID) {
+		return reservationDao.getAllReservationInfo(room_ID);
+	}
+
 }

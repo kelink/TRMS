@@ -14,4 +14,6 @@ public interface ReservationDao {
 	public boolean delReservation(int id);
 
 	public boolean updateReservationById(int id, Reservation reservation);
+
+	public List getAllReservationInfo(int room_ID);
 }

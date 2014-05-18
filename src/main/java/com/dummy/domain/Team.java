@@ -20,13 +20,13 @@ public class Team implements Serializable {
 	@Column(length = 11)
 	private int team_ID;
 
-	@Column(nullable = false, length = 11)
+	@Column(length = 11)
 	private int user_ID;
 
-	@Column(length = 11, nullable = false)
+	@Column(length = 11)
 	private int department_ID;
 
-	@Column(length = 255, nullable = false)
+	@Column(length = 255)
 	private String teamName;
 
 	public int getTeam_ID() {

@@ -73,10 +73,10 @@ public class RoomDaoImpl implements RoomDao {
 	}
 
 	@Override
-	public List<Room> getFreeRooms() {
+	public List<Room> getRoomByStatus(int status) {
 		String hql = "from Room where r.room_Status=?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger(0, 0);
+		query.setInteger(0, status);
 		return query.list();
 	}
 

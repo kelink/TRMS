@@ -46,6 +46,6 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	public List<Room> getFreeRooms() {
-		return roomDao.getFreeRooms();
+		return roomDao.getRoomByStatus(0);
 	}
 }

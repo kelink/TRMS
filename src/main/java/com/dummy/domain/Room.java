@@ -17,10 +17,10 @@ public class Room {
 	@Column(length = 11)
 	private int room_ID;
 
-	@Column(length = 255, nullable = false)
+	@Column(length = 255)
 	private String item;
 
-	@Column(length = 11, nullable = false)
+	@Column(length = 11)
 	private int room_Status;
 
 	private Date last_Used_Date;

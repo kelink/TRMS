@@ -17,5 +17,5 @@ public interface RoomDao {
 
 	public List<Room> getRoomOnPage(int pageNum, int pageSize);
 
-	public List<Room> getFreeRooms();
+	public List<Room> getRoomByStatus(int status);
 }

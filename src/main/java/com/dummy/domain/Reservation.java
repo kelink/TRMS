@@ -1,6 +1,6 @@
 package com.dummy.domain;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,22 +18,22 @@ public class Reservation {
 	@Column(length = 11)
 	private int reservation_ID;
 
-	@Column(length = 11, nullable = false)
+	@Column(length = 11)
 	private int team_ID;
 
-	@Column(length = 11, nullable = false)
+	@Column(length = 11)
 	private int room_ID;
 
-	@Column(length = 11, nullable = false)
+	@Column(length = 11)
 	private int user_ID;
 
 	@Column(length = 255)
 	private String purpose;
 
-	@Column(length = 11, nullable = false)
+	@Column(length = 11)
 	private int status;
 
-	@Column(length = 255, nullable = false)
+	@Column(length = 255)
 	private String email;
 
 	private Date Applied_Start_Date;
