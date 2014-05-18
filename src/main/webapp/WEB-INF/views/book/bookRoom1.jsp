@@ -13,25 +13,45 @@
 <body>
 <h1>订房界面</h1>
 <script type="text/javascript" src="../resources/js/jquery-1.7.2.js"></script>  
- 
+<script type="text/javascript">  
+$(document).ready(function(){
+    $("button").click(function(){ 
+    	 var saveDataAry=[];  
+         var data1={"userName":"test","address":"gz"};  
+         var data2={"userName":"ququ","address":"gr"};  
+         saveDataAry.push(data1);  
+         saveDataAry.push(data2);         
+        $.ajax({ 
+            type:"POST", 
+            url:"<%=request.getContextPath()%>/book/ajaxtest", 
+            dataType:"json",      
+            contentType:"application/json",               
+            data:JSON.stringify(saveData), 
+            success:function(data,status){ 
+				    alert(data);                                    
+            } 
+         });
+    });  
+});  
+</script> 
+
 
 <button id="button" name="button" value="test">test</button>
 
 <%=request.getContextPath()%>
 
 <form action="<%=request.getContextPath()%>/book/" method="post" name="bookForm">
-Free Room:
-<select>
-	<c:forEach items="${rooms}" var="room"> 
-		<option>${room.item }</option>
-	</c:forEach>
-</select>
-User Start Time:<input type="text" name="begin_time"/>
-User End  Time:<input type="text" name="room"/>
-User LN:<input type="text" name="room"/>
-User Team<input type="text" name="room"/>
-User TelLine<input type="text" name="userTelLine">
-Use Resaon:<input type="text" name="purpose">
+
+Room
+Planned Use End Time：
+
+Planned Use Start Time：
+User LN 
+User Team:
+
+User TelLine:
+
+Use Resaon:
 </form>
  
 </body>

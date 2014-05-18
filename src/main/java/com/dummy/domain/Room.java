@@ -10,17 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * 
- * Room Domain
- *
- * CREATE TABLE `room` ( `Room_ID` int(11) NOT NULL AUTO_INCREMENT, `item`
- * varchar(50) NOT NULL, `OwnBy` varchar(50) NOT NULL, `Room_Status` int(11)
- * DEFAULT '0', `Last_Used_Date` datetime NOT NULL, PRIMARY KEY (`Room_ID`) )
- * ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
- * 
- *
- */
 @Entity
 @Table(name = "Room")
 public class Room implements Serializable {
@@ -83,6 +72,11 @@ public class Room implements Serializable {
 
 	public void setLast_Used_Date(Date last_Used_Date) {
 		this.last_Used_Date = last_Used_Date;
+	}
+
+	@Override
+	public String toString() {
+		return item;
 	}
 
 }

@@ -26,11 +26,8 @@
         <context:include-filter type="annotation"    
             expression="org.springframework.stereotype.Service" />   
         <context:include-filter type="annotation"    
-            expression="org.springframework.stereotype.Controller" />    
-           
-           
+            expression="org.springframework.stereotype.Controller" />          
     </context:component-scan>  
-	
 	<!-- mvc拦截器 -->
 	<!-- 不用拦截器，改为Spring security 安全验证 -->
 	<!-- 

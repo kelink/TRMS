@@ -7,17 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * BlackList Domain
- * 
- * CREATE TABLE `blacklist` ( `BL_ID` int(11) NOT NULL AUTO_INCREMENT, `Team_ID`
- * int(11) NOT NULL, `Reason` varchar(255) NOT NULL, PRIMARY KEY (`BL_ID`), KEY
- * `BL_FK` (`Team_ID`), CONSTRAINT `BL_FK` FOREIGN KEY (`Team_ID`) REFERENCES
- * `team` (`Team_ID`) ON DELETE CASCADE ON UPDATE CASCADE ) ENGINE=InnoDB
- * DEFAULT CHARSET=utf8
- * 
- *
- */
 @Entity
 @Table(name = "BlackList")
 public class BlackList {

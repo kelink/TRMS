@@ -1,12 +1,21 @@
 package com.dummy.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dummy.domain.Reservation;
@@ -17,27 +26,68 @@ import com.dummy.service.RoomService;
 @Controller
 @RequestMapping(value = { "/book" })
 public class BookController {
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(BookController.class);
+
 	@Resource(name = "reservationService")
 	private ReservationService reservationService;
 
 	@Resource(name = "roomService")
 	private RoomService roomService;
 
-	@RequestMapping("/index")
-	public ModelAndView index(
-			@RequestParam("reservation") Reservation reservation) {
-		List<Room> variableRooms = getVariableRooms();
-		List<Room> getBusyRooms = getVariableRooms();
-		return null;
+	@RequestMapping(value = { "/index", "" })
+	public ModelAndView index() {
+		return new ModelAndView("book/index");
 	}
 
-	public ModelAndView book() {
-		return null;
+	// ∑÷“≥
+	@RequestMapping("/listPosition")
+	public String listPosition(
+			Model model,
+			@RequestParam(value = "pagesize", required = false, defaultValue = "5") int pageSize,
+			@RequestParam(value = "pagenum", required = false, defaultValue = "1") int pageNum) {
+		int recordCount = roomService.getAllRoom().size();
+		int pageCount = (recordCount + pageSize - 1) / pageSize;
+		model.addAttribute("pageTitle", "Position List");
+		return "positionlist";
 	}
 
-	public List<Room> getVariableRooms() {
-		return null;
+	@RequestMapping("/roomList")
+	public @ResponseBody List<Room> roomList(
+			Model model,
+			@RequestParam(value = "pagesize", required = false, defaultValue = "5") int pageSize,
+			@RequestParam(value = "pagenum", required = false, defaultValue = "1") int pageNum) {
+		List<Room> roomPageList = roomService.getRoomOnPage(pageNum, pageSize);
+		return roomPageList;
+	}
 
+	@RequestMapping(value = { "/book" })
+	public ModelAndView book(Reservation reservation) {
+		List<Room> rooms = this.getFreeRooms();
+		ModelMap map = new ModelMap();
+		map.addAttribute("rooms", rooms);
+		return new ModelAndView("bookRoom", map);
+	}
+
+	// ≤‚ ‘ajax
+	@RequestMapping(value = { "/test" })
+	public void test(HttpServletRequest request, HttpServletResponse response) {
+		logger.info("Ω¯»Î≤‚ ‘/test");
+		String result = "{\"name\":\"" + "test" + "\"}";
+		PrintWriter out = null;
+		System.out.println(result);
+		response.setContentType("application/json");
+		try {
+			out = response.getWriter();
+			out.write(result);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<Room> getFreeRooms() {
+		return roomService.getFreeRooms();
 	}
 
 	public List<Room> getBusyRooms() {

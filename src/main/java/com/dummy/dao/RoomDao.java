@@ -14,4 +14,8 @@ public interface RoomDao {
 	public boolean delRoom(int id);
 
 	public boolean updateRoom(Room room);
+
+	public List<Room> getRoomOnPage(int pageNum, int pageSize);
+
+	public List<Room> getFreeRooms();
 }

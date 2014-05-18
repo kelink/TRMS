@@ -13,8 +13,9 @@ import org.springframework.stereotype.Repository;
 import com.dummy.controller.LoginController;
 import com.dummy.dao.RoomDao;
 import com.dummy.domain.Room;
-@Repository(value="roomDao")
-public class RoomDaoImpl implements RoomDao{
+
+@Repository(value = "roomDao")
+public class RoomDaoImpl implements RoomDao {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
 	// 获取session
@@ -24,6 +25,7 @@ public class RoomDaoImpl implements RoomDao{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+
 	@Override
 	public Room getRoom(int id) {
 		String hql = "from Room r where r.room_ID=?";
@@ -32,6 +34,7 @@ public class RoomDaoImpl implements RoomDao{
 		return (Room) query.uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Room> getAllRoom() {
 		String hql = "from Room";
@@ -41,7 +44,7 @@ public class RoomDaoImpl implements RoomDao{
 
 	@Override
 	public void addRoom(Room room) {
-		sessionFactory.getCurrentSession().save(room);		
+		sessionFactory.getCurrentSession().save(room);
 	}
 
 	@Override
@@ -54,8 +57,27 @@ public class RoomDaoImpl implements RoomDao{
 
 	@Override
 	public boolean updateRoom(Room room) {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	// 分页获取对象
+	@SuppressWarnings("unchecked")
+	public List<Room> getRoomOnPage(int pageNum, int pageSize) {
+		String hql = "from Room order by r.room_ID desc limit ?,?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		int offSet = (pageNum - 1) * pageSize;
+		logger.info("offset:" + offSet);
+		query.setInteger(0, offSet);
+		query.setInteger(1, pageSize);
+		return query.list();
+	}
+
+	@Override
+	public List<Room> getFreeRooms() {
+		String hql = "from Room where r.room_Status=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, 0);
+		return query.list();
 	}
 
 }

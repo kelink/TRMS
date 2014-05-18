@@ -33,11 +33,19 @@ public class Reservation {
 	@Column(length = 11)
 	private int status;
 
-	private String user_LN;
+	private String email;
 
 	private Date Applied_Start_Date;
 	private Date Applied_End_Date;
 	private Date order_Time;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public int getReservation_ID() {
 		return reservation_ID;

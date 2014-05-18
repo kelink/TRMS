@@ -40,4 +40,12 @@ public class RoomServiceImpl implements RoomService {
 		return roomDao.updateRoom(room);
 	}
 
+	@Override
+	public List<Room> getRoomOnPage(int pageNum, int pageSize) {
+		return roomDao.getRoomOnPage(pageNum, pageSize);
+	}
+
+	public List<Room> getFreeRooms() {
+		return roomDao.getFreeRooms();
+	}
 }

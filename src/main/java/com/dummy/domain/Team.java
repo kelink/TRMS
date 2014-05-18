@@ -1,7 +1,5 @@
 package com.dummy.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,20 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * 
- * Team Domain
- * 
- * CREATE TABLE `team` ( `Team_ID` int(11) NOT NULL AUTO_INCREMENT, `User_ID`
- * int(11) NOT NULL, `Department` varchar(50) NOT NULL, PRIMARY KEY (`Team_ID`),
- * KEY `Team_FK` (`User_ID`), CONSTRAINT `Team_FK` FOREIGN KEY (`User_ID`)
- * REFERENCES `user` (`User_ID`) ON DELETE CASCADE ON UPDATE CASCADE )
- * ENGINE=InnoDB DEFAULT CHARSET=utf8
- *
- */
 @Entity
 @Table(name = "Team")
-public class Team implements Serializable {
+public class Team {
 	/**
 	 * 
 	 */
@@ -38,7 +25,6 @@ public class Team implements Serializable {
 	@Column(length = 11)
 	private String department_ID;
 
-	
 	public int getTeam_ID() {
 		return team_ID;
 	}
@@ -62,9 +48,5 @@ public class Team implements Serializable {
 	public void setDepartment_ID(String department_ID) {
 		this.department_ID = department_ID;
 	}
-
-
-
-
 
 }
