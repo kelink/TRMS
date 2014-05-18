@@ -1,0 +1,42 @@
+.calBody{padding:0;margin:0;font:normal 14px/25px "\5FAE\8F6F\96C5\9ED1";color:#555;}
+.day ul,.day li{margin:0;padding:0;}
+.day li{list-style:none;}
+
+.day{width:350px;margin:10px auto;}
+.day table{width:100%;text-align:center;border-collapse:collapse;border-spacing:0;line-height:30px;}
+.day table th{background:#F5F5F5;font-weight:normal;line-height:30px;font-size:14px;}
+.day table td,.day th{border:1px solid #EEE;}
+.day table td:hover{background:#4092CC;color:#FFF;}
+.day table td:nth-child(1),table td:nth-child(7),table th:nth-child(1),table th:nth-child(7){color:#C00}
+.day table td.now{background:#4092CC;color:#FFF;cursor:pointer;}
+
+.DaySelect{margin-bottom:10px;}
+.DaySelect > div{display:inline-block;#float:left;}
+.DaySelect i{cursor:pointer;#float:left;}
+.DaySelect i:hover{color:#C00;}
+.DaySelect .lr{width:30px;display:inline-block;text-align:center;font-size:18px;}
+
+.select{width:90px;text-indent:10px;position:relative;}
+.stop{border:1px solid #EEE;}
+.stop:before{content:"";width:8px;height:8px;display:block;float:right;margin-right:10px;margin-top:5px;font-size:0;line-height:0;border:1px solid #AAA;border-left:none;border-top:none;transform:rotate(45deg);}
+.sbox{width:88px;max-height:0;overflow:auto;cursor:pointer;position:absolute;top:25px;left:0;background:#FFF;font-size:12px;text-align:center;}
+.sbox li:hover{background:#EEE;}
+.select:hover .stop{background:#EEE;}
+.select:hover .stop:before{transform:rotate(225deg);margin-top:10px;transition:transform .2s linear}
+.select:hover .sbox{max-height:200px;border:1px solid #EEE;border-top-color:#FFF;;transition:max-height .2s ease-in-out;}
+
+#cy:after{content:" 年";}
+#cm:after{content:" 月";}
+#sm{width:70px;}
+#mm{width:68px;}
+
+.booked
+{
+background-color:rgb(252, 237, 178);
+color:white;
+cursor:pointer;
+}
+.idle
+{
+cursor:pointer;
+}
