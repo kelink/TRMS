@@ -1,5 +1,7 @@
 package com.dummy.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dummy.domain.CalanderDataDomain;
 import com.dummy.domain.Reservation;
 import com.dummy.domain.Room;
 import com.dummy.service.ReservationService;
@@ -41,9 +44,45 @@ public class BookController {
 	@RequestMapping("/getAllReservationInfo")
 	public void getAllReservationInfo(HttpServletRequest request,
 			HttpServletResponse response) {
+		logger.info("进入测试/getAllReservationInfo");
 		int room_ID = 1;
-		System.out.println();
-		reservationService.getAllReservationInfo(1);
+		// String result = "{\"name\":\"" + "test" + "\"}";
+		// 拼接json输出
+		String result = "";
+		@SuppressWarnings("unchecked")
+		List<CalanderDataDomain> list = reservationService
+				.getAllReservationInfo(room_ID);
+		StringBuilder builder = new StringBuilder();
+
+		builder.append("{");
+		int i=0;
+		for (CalanderDataDomain calanderDataDomain : list) {
+			
+			builder.append("\""+i+"\":");
+			builder.append("[");
+			builder.append("{\"account\":\"" + calanderDataDomain.getAccount() + "\"},");
+			builder.append("{\"email\":\"" + calanderDataDomain.getEmail() + "\"},");
+			builder.append("{\"purpose\":\"" + calanderDataDomain.getPurpose() + "\"},");
+			builder.append("{\"room_ID\":\"" + calanderDataDomain.getRoom_ID() + "\"},");
+			builder.append("{\"teamName\":\"" + calanderDataDomain.getTeamName() + "\"},");
+			builder.append("{\"user_ID\":\"" + calanderDataDomain.getUser_ID() + "\"},");
+			builder.append("{\"applied_end_Date\":\"" + calanderDataDomain.getApplied_END_Date() + "\"},");
+			builder.append("{\"applied_start_Date\":\"" + calanderDataDomain.getApplied_Start_Date()+ "\"},");
+			builder.append("{\"order_Time\":\"" + calanderDataDomain.getOrder_Time()+ "\"}");
+			builder.append("]");
+			++i;
+		}
+		builder.append("}");
+		System.out.println(builder.toString());
+		PrintWriter out = null;
+		response.setContentType("application/json");
+		try {
+			out = response.getWriter();
+			out.write(builder.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@RequestMapping("/getAllReservation")
@@ -99,20 +138,19 @@ public class BookController {
 	// }
 
 	// // 测试ajax
-	// @RequestMapping(value = { "/test" })
-	// public void test(HttpServletRequest request, HttpServletResponse
-	// response) {
-	// logger.info("进入测试/test");
-	// String result = "{\"name\":\"" + "test" + "\"}";
-	// PrintWriter out = null;
-	// System.out.println(result);
-	// response.setContentType("application/json");
-	// try {
-	// out = response.getWriter();
-	// out.write(result);
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// }
+	@RequestMapping(value = { "/test" })
+	public void test(HttpServletRequest request, HttpServletResponse response) {
+		logger.info("进入测试/test");
+		String result = "{\"name\":\"" + "test" + "\"}";
+		PrintWriter out = null;
+		System.out.println(result);
+		response.setContentType("application/json");
+		try {
+			out = response.getWriter();
+			out.write(result);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

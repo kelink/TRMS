@@ -1,5 +1,7 @@
 package com.dummy.daoImpl;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import org.hibernate.type.StandardBasicTypes;
 import org.springframework.stereotype.Repository;
 
 import com.dummy.dao.ReservationDao;
+import com.dummy.domain.CalanderDataDomain;
 import com.dummy.domain.Reservation;
 import com.dummy.util.CalanderUtil;
 
@@ -61,7 +64,13 @@ public class ReservationDaoImpl implements ReservationDao {
 
 	@Override
 	public List getAllReservationInfo(int room_ID) {
-		String sqlStr = "select Applied_END_Date,Applied_Start_Date,email,order_Time,purpose,Team.teamName from Reservation,Team  where Reservation.team_ID=Team.team_ID and Reservation.status=? and applied_start_date>=? and applied_end_date<=? and reservation.room_ID=?;";
+		String sqlStr = "select "
+				+ "Applied_END_Date,Applied_Start_Date,email,order_Time,purpose,Team.teamName,Dbuser.user_ID,Dbuser.account,Reservation.room_ID "
+				+ "from Reservation,Team,DBUser "
+				+ "where Reservation.team_ID=Team.team_ID "
+				+ "and Reservation.status=? " + "and applied_start_date>=? "
+				+ "and applied_end_date<=? " + "and reservation.room_ID=? "
+				+ "and Dbuser.user_ID=reservation.user_ID;";
 		SQLQuery query = sessionFactory.openSession().createSQLQuery(sqlStr);
 		query.setInteger(0, 1);
 		query.setString(1, CalanderUtil.getFirstDay());
@@ -73,14 +82,25 @@ public class ReservationDaoImpl implements ReservationDao {
 				.addScalar("email", StandardBasicTypes.STRING)
 				.addScalar("order_Time", StandardBasicTypes.DATE)
 				.addScalar("purpose", StandardBasicTypes.STRING)
-				.addScalar("teamName", StandardBasicTypes.STRING).list();
+				.addScalar("teamName", StandardBasicTypes.STRING)
+				.addScalar("user_ID", StandardBasicTypes.INTEGER)
+				.addScalar("account", StandardBasicTypes.STRING)
+				.addScalar("room_ID", StandardBasicTypes.INTEGER).list();
+		List<CalanderDataDomain> list = new ArrayList<CalanderDataDomain>();
 		for (Iterator iterator = stus.iterator(); iterator.hasNext();) {
+			CalanderDataDomain data = new CalanderDataDomain();
 			Object[] rows = (Object[]) iterator.next();
-			for (int i = 0; i < rows.length; i++) {
-				System.out.println("" + rows[i]);
-			}
-
+			data.setApplied_END_Date((Date) rows[0]);
+			data.setApplied_Start_Date((Date) rows[1]);
+			data.setEmail((String) rows[2]);
+			data.setOrder_Time((Date) rows[3]);
+			data.setPurpose((String) rows[4]);
+			data.setTeamName((String) rows[5]);
+			data.setUser_ID((Integer) rows[6]);
+			data.setAccount((String) rows[7]);
+			data.setRoom_ID((Integer) rows[8]);
+			list.add(data);
 		}
-		return stus;
+		return list;
 	}
 }

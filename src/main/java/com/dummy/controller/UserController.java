@@ -70,4 +70,9 @@ public class UserController {
 	private List<Room> getAllRooms() {
 		return roomService.getAllRoom();
 	}
+
+	@RequestMapping(value = "/calendar")
+	public ModelAndView calendar() {
+		return new ModelAndView("user/calendar");
+	}
 }

@@ -12,7 +12,7 @@
 <link href="..resources/css/calendar.css" rel="stylesheet" type="text/css">
 
 </head>
-
+<%=request.getParameter("room") %>
 <body class="calBody">
 <div class="day">
     <div class="DaySelect">
@@ -47,13 +47,13 @@ var SY,SM,SD,cy,cm
 SY = new Date().getFullYear();
 SM = new Date().getMonth()+1;
 SD = new Date().getDate();
-cy = document.getElementById("cy")
-cm = document.getElementById("cm")
+cy = document.getElementById("cy");
+cm = document.getElementById("cm");
 window.onload = function(){
 	getDynamicTable(SY,SM)
 	document.getElementById("YearAll").innerHTML = YearAll(SY)
 	document.getElementById("DateAll").innerHTML = DateAll(SY,SM)
-}
+};
 function YearAll(Y){
 	var Ystr = ""
 	for (var y = Y - 10; y <= Y + 10; y++) {
