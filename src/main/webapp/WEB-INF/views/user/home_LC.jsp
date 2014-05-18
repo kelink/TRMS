@@ -8,12 +8,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="..resources/images/hsbcicon.ico" type="image/x-icon"/>
+<link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
 
   <title> LC Page </title>
- <link href="..resources/css/lcIndex.css" rel="stylesheet" >
- <script src="..resources/js/lcIndex.js" type="text/javascript"></script>
- <script src="..resources/js/jquery.js" type="text/javascript"></script>
+ <link href="/trms/resources/css/lcIndex.css" rel="stylesheet" >
+ <script src="/trms/resources/js/lcIndex.js" type="text/javascript"></script>
+ <script src="/trms/resources/js/jquery.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -26,21 +26,7 @@
 <a href="#">Delete My Reservation</a>
 <a href="#">Manage My Profile</a>
 <br/>
-<!-- 显示room的信息 -->
-Room:
-<ul>
-	<c:forEach items="${rooms}" var="room"> 
-			<li>
-			${room.item}-----------
-			日期显示:
-			<select>
-				<%for(int i=1;i<=31;i++){
-					out.write("<option value="+i+">"+i+"</option>");
-				} %>
-			</select>
-			</li>
-	</c:forEach> 	
-</ul>
+
 
 
 <div class="cover">
@@ -48,7 +34,7 @@ Room:
  <div class="wrapper">
      <div class="header">
 	     <div class="headerContainer">
-		 <span id="logo"><img src="..resources/images/hsbclogo.png"/></span>
+		 <span id="logo"><img src="/trms/resources/images/hsbclogo.png"/></span>
 		 </div>
 	 </div>
 	 <div>
@@ -85,90 +71,26 @@ Room:
 					 
 				 </div>
 
+					<!-- 显示room的信息 -->
 				 <ul>
+				 <c:forEach items="${rooms}" var="room"> 
 				     <li id="list1"class="roomListContent">
 					     <span class="roomListNum">1</span>
-						 <span class="roomicon"><img src="..resources/images/roomicon.png"width="43px"height="43px"/></span>
-						 <span class="roomNum"><span>TKH 0T2 /</span><strong>22.5</strong></span>
+						 <span class="roomicon"><img src="/trms/resources/images/roomicon.png"width="43px"height="43px"/></span>
+						 <span class="roomNum"><span>${room.item }</span></span>
 
 						 <button id="cal1" class="btn btnCalendar">
 						 <span class="calIcon">
-						 <img class="calImg" src="..resources/images/calendaricon.png"width="20px"height="20px"/>
+						 <img class="calImg" src="/trms/resources/images/calendaricon.png"width="20px"height="20px"/>
 						 </span>
 						 <span class="calText">Calendar</span>
 						 </button>
 
-						 <div id="calArea1"class="calArea">
-						 
+						 <div id="calArea1"class="calArea">						 
 							  <iframe id="iframe1" name="calendar"width="100%"height="100%"frameborder="0"style="overflow:auto;"scrolling="no"></iframe>
 						 </div>
-
-
 					 </li>
-					 <li id="list2" class="roomListContent">
-					 <span class="roomListNum">2</span>
-						 <span class="roomicon"><img src="..resources/images/roomicon.png"width="43px"height="43px"/></span>
-						 <span class="roomNum"><span>TKH 0T2 /</span><strong>24.5</strong></span>
-
-						 <button id="cal2"class="btn btnCalendar">
-						 <span class="calIcon">
-						 <img class="calImg" src="..resources/images/calendaricon.png"width="20px"height="20px"/>
-						 </span>
-						 <span class="calText">Calendar</span>
-						 </button>
-
-						 <div id="calArea2"class="calArea">
-						       <iframe id="iframe2" name="calendar"width="100%"height="100%"frameborder="0"style="overflow:auto;"scrolling="no"></iframe>
-						 </div>
-					 </li>
-					 <li id="list3" class="roomListContent">
-					 <span class="roomListNum">3</span>
-						 <span class="roomicon"><img src="..resources/images/roomicon.png"width="43px"height="43px"/></span>
-						 <span class="roomNum"><span>TKH 0T2 /</span><strong>25.5</strong></span>
-
-						 <button id="cal3"class="btn btnCalendar">
-						 <span class="calIcon">
-						 <img class="calImg" src="..resources/images/calendaricon.png"width="20px"height="20px"/>
-						 </span>
-						 <span class="calText">Calendar</span>
-						 </button>
-
-						 <div id="calArea3"class="calArea">
-						      <iframe id="iframe3" name="calendar"width="100%"height="100%"frameborder="0"style="overflow:auto;"scrolling="no"></iframe>
-						 </div>
-					 </li>
-					 <li id="list4" class="roomListContent">
-					 <span class="roomListNum">4</span>
-						 <span class="roomicon"><img src="..resources/images/roomicon.png"width="43px"height="43px"/></span>
-						 <span class="roomNum"><span>TKH 0T2 /</span><strong>26.5</strong></span>
-
-						 <button id="cal4"class="btn btnCalendar">
-						 <span class="calIcon">
-						 <img class="calImg" src="..resources/images/calendaricon.png"width="20px"height="20px"/>
-						 </span>
-						 <span class="calText">Calendar</span>
-						 </button>
-
-						 <div id="calArea4"class="calArea">
-						      <iframe id="iframe4" name="calendar"width="100%"height="100%"frameborder="0"style="overflow:auto;"scrolling="no"></iframe>
-						 </div>
-					 </li>
-					 <li id="list5" class="roomListContent">
-					 <span class="roomListNum">5</span>
-						 <span class="roomicon"><img src="..resources/images/roomicon.png"width="43px"height="43px"/></span>
-						 <span class="roomNum"><span>TKH 0T2 /</span><strong>27.5</strong></span>
-
-						 <button id="cal5"class="btn btnCalendar">
-						 <span class="calIcon">
-						 <img class="calImg" src="..resources/images/calendaricon.png"width="20px"height="20px"/>
-						 </span>
-						 <span class="calText">Calendar</span>
-						 </button>
-
-						 <div id="calArea5"class="calArea">
-						      <iframe id="iframe5" name="calendar"width="100%"height="100%"frameborder="0"style="overflow:auto;"scrolling="no"></iframe>
-						 </div>
-					 </li>
+				</c:forEach> 
 				 </ul>
 				
 					 

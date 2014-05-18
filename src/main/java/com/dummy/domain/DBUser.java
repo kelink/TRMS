@@ -19,19 +19,19 @@ public class DBUser {
 	@Column(length = 11)
 	private int user_ID;
 
-	@Column(length = 11)
+	@Column(length = 11, nullable = false)
 	private int access;
 
-	@Column(length = 255)
+	@Column(length = 255, nullable = false)
 	private String account;
 
-	@Column(length = 255)
+	@Column(length = 255, nullable = false)
 	private String password;
 
 	@Column(length = 11)
 	private int gender;
 
-	@Column(length = 50)
+	@Column(length = 50, nullable = false)
 	private String Tele;
 
 	public int getUser_ID() {

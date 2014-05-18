@@ -16,7 +16,7 @@ public class BlackList {
 	@Column(length = 11)
 	private int bl_ID;
 
-	@Column(length = 11)
+	@Column(length = 11, nullable = false)
 	private int team_ID;
 
 	@Column(length = 255)

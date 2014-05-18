@@ -18,7 +18,7 @@ public class Role {
 	@Column(length = 11)
 	private int Role_ID;
 
-	@Column(length = 11)
+	@Column(length = 11, nullable = false)
 	private String authority;
 
 	public int getRole_ID() {

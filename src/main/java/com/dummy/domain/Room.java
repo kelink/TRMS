@@ -1,6 +1,5 @@
 package com.dummy.domain;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -12,24 +11,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Room")
-public class Room implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -135886627681640355L;
-
+public class Room {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(length = 11)
 	private int room_ID;
 
-	@Column(length = 50)
+	@Column(length = 255, nullable = false)
 	private String item;
 
-	@Column(length = 50)
-	private String ownBy;
-
-	@Column(length = 11)
+	@Column(length = 11, nullable = false)
 	private int room_Status;
 
 	private Date last_Used_Date;
@@ -48,14 +39,6 @@ public class Room implements Serializable {
 
 	public void setItem(String item) {
 		this.item = item;
-	}
-
-	public String getOwnBy() {
-		return ownBy;
-	}
-
-	public void setOwnBy(String ownBy) {
-		this.ownBy = ownBy;
 	}
 
 	public int getRoom_Status() {
