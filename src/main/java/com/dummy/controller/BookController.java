@@ -70,7 +70,7 @@ public class BookController {
 		ModelMap map = new ModelMap();
 		map.addAttribute("recordCount", recordCount);
 		map.addAttribute("pageCount", pageCount);
-		return new ModelAndView("book/testPage", map);
+		return new ModelAndView("user/home_LC", map);
 	}
 
 	@RequestMapping("/listPageRoom")
