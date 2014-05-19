@@ -143,21 +143,21 @@
 					
 				 <ul>
 				 <c:forEach items="${rooms}" var="room"> 
-				
-				     <li id="${room.room_ID }" class="roomListContent">
-					     <span class="roomListNum">1</span>
+				     <li id="list${room.room_ID }" class="roomListContent">
+					     <span class="roomListNum">${room.room_ID }</span>
+
 						 <span class="roomicon"><img src="/trms/resources/images/roomicon.png"width="43px"height="43px"/></span>
 						 <span class="roomNum"><span>${room.item }</span></span>
 
-						 <button id="cal1" class="btn btnCalendar">
+						 <button id="cal${room.room_ID }" class="btn btnCalendar" onclick="displayCal('${room.room_ID }')">
 						 <span class="calIcon">
 						 <img class="calImg" src="/trms/resources/images/calendaricon.png"width="20px"height="20px"/>
 						 </span>
 						 <span class="calText">Calendar</span>
 						 </button>
 
-						 <div id="calArea1"class="calArea">						 
-							  <iframe id="iframe1" name="calendar"width="100%"height="100%"frameborder="0"style="overflow:auto;"scrolling="no"></iframe>
+						 <div id="calArea${room.room_ID }"class="calArea">						 
+							  <iframe id="iframe${room.room_ID }" name="calendar"width="100%"height="100%"frameborder="0"style="overflow:auto;"scrolling="no"></iframe>
 						 </div>
 					 </li>
 				</c:forEach> 
