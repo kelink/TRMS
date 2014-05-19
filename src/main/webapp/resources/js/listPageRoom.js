@@ -8,7 +8,7 @@ $(function() {
 function AjaxGetData(index, size) {
 	$
 			.ajax({
-				url : "${pageContext.request.contextPath}/book/listPageRoom",
+				url : "/trms/book/listPageRoom",
 				type : "Get",
 				data : "pageNum=" + index + "&pageSize=" + size,
 				dataType : "json",
@@ -16,6 +16,23 @@ function AjaxGetData(index, size) {
 					var html = "";
 					// 获取构造输出查询内容
 					for (position in json) {
+						html += "<li id='' class='roomListContent'>";
+
+						html += " <span class='roomListNum'>1</span>";
+						html += "<span class='roomicon'>";
+						html += "<img src='/trms/resources/images/roomicon.png' width='43px' height='43px'/></span>";
+						html += "<span class='roomNum'><span>${room.item }</span></span>'";
+						html += "<button id='cal1' class='btn btnCalendar'>";
+						html += "<span class='calIcon'>";
+						html += "<img class='calImg' src='/trms/resources/images/calendaricon.png' width='20px' height='20px'/>";
+						html += "</span>";
+						html += "<span class='calText'>Calendar</span>";
+						html += "</button>";
+						html += "<div id='calArea1' class='calArea'>";
+						html += "<iframe id='iframe1' name='calendar' width='100%' height='100%' frameborder='0' style='overflow:auto;'scrolling='no'></iframe>";
+						html += "</div>";
+						html += "</li>";
+
 						html += "<tr>";
 						html += "<td>" + json[position].room_ID + "</td>";
 						html += "<td>" + json[position].item + "</td>";
@@ -35,7 +52,14 @@ function AjaxGetData(index, size) {
 					html += "<tfoot>";
 					html += "<tr>";
 					html += "<td colspan='7'>";
-					html += "<span>Total Records:" + ${recordCount}+"; Total Page:<span id='count'>" + ${pageCount}
+					html += "<span>Total Records:" + $
+					{
+						recordCount
+					}
+					+"; Total Page:<span id='count'>" + $
+					{
+						pageCount
+					}
 					+"" + "<br/>";
 					html += "<a href='javascript:void' onclick='GoToFirstPage()' id='FirstPage' >First&nbsp;&nbsp; ";
 					html += "<a href='javascript:void' onclick='GoToPrePage()' id='PrePage' >Pre&nbsp;&nbsp; ";
@@ -48,6 +72,7 @@ function AjaxGetData(index, size) {
 					html += "</table>";
 					// 写入文件
 					$('#divResult').html("");
+					alert(html);
 					$('#divResult').html(html);
 				},
 				error : function(XMLHttpRequest, textStatus, errorThrown) {

@@ -82,21 +82,4 @@ public class BookController {
 		return roomPageList;
 	}
 
-	// // ≤‚ ‘ajax
-	// @RequestMapping(value = { "/test" })
-	// public void test(HttpServletRequest request, HttpServletResponse
-	// response) {
-	// logger.info("Ω¯»Î≤‚ ‘/test");
-	// String result = "{\"name\":\"" + "test" + "\"}";
-	// PrintWriter out = null;
-	// System.out.println(result);
-	// response.setContentType("application/json");
-	// try {
-	// out = response.getWriter();
-	// out.write(result);
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// }
-
 }

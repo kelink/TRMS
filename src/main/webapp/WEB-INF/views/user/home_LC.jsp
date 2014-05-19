@@ -12,9 +12,81 @@
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
 
   <title> LC Page </title>
- <link href="/trms/resources/css/lcIndex.css" rel="stylesheet" >
- <script src="/trms/resources/js/lcIndex.js" type="text/javascript"></script>
- <script src="/trms/resources/js/jquery.js" type="text/javascript"></script>
+ <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
+ <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+ <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+ <script type="text/javascript" >
+ var pageIndex = 0;
+ var pageSize = 5;
+ $(function() {
+ 	pageIndex = 1;
+ 	AjaxGetData(pageIndex, pageSize);
+ });
+
+ function AjaxGetData(index, size) {
+ 	$
+ 			.ajax({
+ 				url : "<%=request.getContextPath()%>/book/listPageRoom",
+ 				type : "Get",
+ 				data : "pageNum=" + index + "&pageSize=" + size,
+ 				dataType : "json",
+ 				success : function(json) {
+ 					for (position in json) {
+ 						var room_ID=json[position].room_ID;
+ 						var item=json[position].item;
+ 						var room_Status=json[position].room_Status;
+ 						var last_Used_Date=json[position].last_Used_Date;
+ 						alert(room_ID+item+room_Status+last_Used_Date);
+ 					}
+ 				},
+ 				error : function(XMLHttpRequest, textStatus, errorThrown) {
+ 					alert(XMLHttpRequest);
+ 					alert(textStatus);
+ 					alert(errorThrown);
+ 				}
+ 			});
+ }
+
+ function GoToFirstPage() {
+ 	pageIndex = 1;
+ 	AjaxGetData(pageIndex, pageSize);
+ }
+
+ function GoToPrePage() {
+ 	pageIndex -= 1;
+ 	pageIndex = pageIndex >= 1 ? pageIndex : 1;
+ 	AjaxGetData(pageIndex, pageSize);
+ }
+
+ function GoToNextPage() {
+ 	if (pageIndex < parseInt($("#count").text())) {
+ 		pageIndex += 1;
+ 	}
+ 	AjaxGetData(pageIndex, pageSize);
+ }
+
+ function GoToEndPage() {
+ 	pageIndex = parseInt($("#count").text());
+ 	AjaxGetData(pageIndex, pageSize);
+ }
+
+ function GoToAppointPage(e) {
+ 	var page = $(e).prev().val();
+ 	if (isNaN(page)) {
+ 		alert("Page should be a valid number");
+ 	} else {
+ 		var tempPageIndex = pageIndex;
+ 		pageIndex = parseInt($(e).prev().val());
+ 		if (pageIndex <= 0 || pageIndex > parseInt($("#count").text())) {
+ 			pageIndex = tempPageIndex;
+ 			alert("Please input valid page scope!");
+ 		} else {
+ 			AjaxGetData(pageIndex, pageSize);
+ 		}
+ 	}
+ }
+
+ </script>
 </head>
 <body>
 	<security:authentication property="principal.username"/> 
@@ -65,10 +137,13 @@
 					 </div>
 					 
 				 </div>
-
+ 					<div id="divResult"></div>
+ 
 					<!-- 显示room的信息 -->
+					
 				 <ul>
 				 <c:forEach items="${rooms}" var="room"> 
+				
 				     <li id="${room.room_ID }" class="roomListContent">
 					     <span class="roomListNum">1</span>
 						 <span class="roomicon"><img src="/trms/resources/images/roomicon.png"width="43px"height="43px"/></span>
@@ -87,7 +162,7 @@
 					 </li>
 				</c:forEach> 
 				 </ul>
-				
+				s
 					 
 				 
 			 </div>
