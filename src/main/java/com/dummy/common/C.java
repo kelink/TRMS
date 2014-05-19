@@ -11,9 +11,9 @@ public class C {
 		public static final int DEFAULT_ROOM_STATUS = 0;
 
 		// Reservation ´¦Àí×´Ì¬
-		public static final int DEFAULT_RESERVATION_ACCEPT = 0;
+		public static final int DEFAULT_RESERVATION_ACCEPT = 1;
 		public static final int DEFAULT_RESERVATION_REFUSE = 0;
-		public static final int DEFAULT_RESERVATION_UNHANDLE = 0;
+		public static final int DEFAULT_RESERVATION_UNHANDLE = -1;
 	}
 
 }
