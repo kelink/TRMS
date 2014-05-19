@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.dummy.dao.ReservationDao;
 import com.dummy.dao.TeamDao;
 import com.dummy.dao.UserDao;
+import com.dummy.domain.CalanderDataDomain;
 import com.dummy.domain.Reservation;
 import com.dummy.service.ReservationService;
 
@@ -48,9 +49,45 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationDao.updateReservationById(id, reservation);
 	}
 
+	// 后续需要添加类型判断和异常处理
 	@Override
-	public List getAllReservationInfo(int room_ID) {
-		return reservationDao.getAllReservationInfo(room_ID);
+	public String getCalanderData(int room_ID) {
+		List<CalanderDataDomain> list = reservationDao
+				.getAllReservationInfo(room_ID);
+		StringBuilder builder = new StringBuilder();
+		if (list.isEmpty()) {
+			return null;
+		}
+		int temp = 0;
+		builder.append("[");
+		for (int i = 0; i < list.size(); i++) {
+			builder.append(createCalanderJson(list.get(i)));
+			if (temp + 1 != list.size()) {
+				builder.append(",");
+				++temp;
+			}
+		}
+		builder.append("]");
+		return builder.toString();
 	}
 
+	// 创建日历类需要的JSON对象字符串
+	// 如{year:2014,month:1,day:20,department:"USER_EXPERIENCE",lc:"xx",usage:"xx",usertele:"xx"}
+	private String createCalanderJson(CalanderDataDomain calanderDataDomain) {
+		StringBuilder builder = new StringBuilder();
+		// 构建年月日
+		String temp = calanderDataDomain.getApplied_END_Date().toString();
+		String[] data = temp.split("-");
+		builder.append("{");
+		builder.append("year:" + data[0] + ",");
+		builder.append("month:" + data[1] + ",");
+		builder.append("day:" + data[2] + ",");
+		builder.append("lc:" + "\"" + calanderDataDomain.getAccount() + "\",");
+		builder.append("usage:" + "\"" + calanderDataDomain.getPurpose()
+				+ "\",");
+		builder.append("usertele:" + "\"" + calanderDataDomain.getUser_Tele()
+				+ "\"");
+		builder.append("}");
+		return builder.toString();
+	}
 }

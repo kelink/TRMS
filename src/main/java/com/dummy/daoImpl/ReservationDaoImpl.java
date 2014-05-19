@@ -62,10 +62,12 @@ public class ReservationDaoImpl implements ReservationDao {
 		return false;
 	}
 
+	// 后续需要添加Exception处理
+	@SuppressWarnings("unchecked")
 	@Override
-	public List getAllReservationInfo(int room_ID) {
+	public List<CalanderDataDomain> getAllReservationInfo(int room_ID) {
 		String sqlStr = "select "
-				+ "Applied_END_Date,Applied_Start_Date,email,order_Time,purpose,Team.teamName,Dbuser.user_ID,Dbuser.account,Reservation.room_ID "
+				+ "Applied_END_Date,Applied_Start_Date,email,order_Time,purpose,Team.teamName,DBUser.user_ID,DBUser.account,Reservation.room_ID,DBUser.Tele "
 				+ "from Reservation,Team,DBUser "
 				+ "where Reservation.team_ID=Team.team_ID "
 				+ "and Reservation.status=? " + "and applied_start_date>=? "
@@ -85,9 +87,10 @@ public class ReservationDaoImpl implements ReservationDao {
 				.addScalar("teamName", StandardBasicTypes.STRING)
 				.addScalar("user_ID", StandardBasicTypes.INTEGER)
 				.addScalar("account", StandardBasicTypes.STRING)
-				.addScalar("room_ID", StandardBasicTypes.INTEGER).list();
+				.addScalar("room_ID", StandardBasicTypes.INTEGER)
+				.addScalar("Tele", StandardBasicTypes.STRING).list();
 		List<CalanderDataDomain> list = new ArrayList<CalanderDataDomain>();
-		for (Iterator iterator = stus.iterator(); iterator.hasNext();) {
+		for (Iterator<Object[]> iterator = stus.iterator(); iterator.hasNext();) {
 			CalanderDataDomain data = new CalanderDataDomain();
 			Object[] rows = (Object[]) iterator.next();
 			data.setApplied_END_Date((Date) rows[0]);
@@ -99,6 +102,7 @@ public class ReservationDaoImpl implements ReservationDao {
 			data.setUser_ID((Integer) rows[6]);
 			data.setAccount((String) rows[7]);
 			data.setRoom_ID((Integer) rows[8]);
+			data.setUser_Tele((String) rows[9]);
 			list.add(data);
 		}
 		return list;

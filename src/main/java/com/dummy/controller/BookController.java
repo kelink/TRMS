@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dummy.domain.CalanderDataDomain;
 import com.dummy.domain.Reservation;
 import com.dummy.domain.Room;
 import com.dummy.service.ReservationService;
@@ -36,58 +35,6 @@ public class BookController {
 	@RequestMapping(value = { "/index", "" })
 	public ModelAndView index() {
 		return new ModelAndView("book/index");
-	}
-
-	// 查看房间的使用情况（使用日历）
-	// 查找订单中room_id 和申请时间在当前月下，而且订单状态为已经安排状态的romm的其他可以日期
-	// 返回当月中所有的订房者信息和订单
-	@RequestMapping("/getAllReservationInfo")
-	public void getAllReservationInfo(HttpServletRequest request,
-			HttpServletResponse response) {
-		logger.info("进入测试/getAllReservationInfo");
-		int room_ID = 1;
-		// String result = "{\"name\":\"" + "test" + "\"}";
-		// 拼接json输出
-		@SuppressWarnings("unused")
-		String result = "";
-		@SuppressWarnings("unchecked")
-		List<CalanderDataDomain> list = reservationService
-				.getAllReservationInfo(room_ID);
-		StringBuilder builder = new StringBuilder();
-
-		builder.append("[");
-		for (CalanderDataDomain calanderDataDomain : list) {
-			builder.append("{");
-			builder.append("account:" + calanderDataDomain.getAccount() + ",");
-			builder.append("email:" + calanderDataDomain.getEmail() + ",");
-			builder.append("purpose:" + calanderDataDomain.getPurpose() + ",");
-			builder.append("room_ID:" + calanderDataDomain.getRoom_ID() + ",");
-			builder.append("teamName:" + calanderDataDomain.getTeamName() + ",");
-			builder.append("user_ID:" + calanderDataDomain.getUser_ID() + ",");
-
-			String temp = calanderDataDomain.getApplied_END_Date().toString();
-			String[] data = temp.split("-");
-			builder.append("year:" + data[0] + ",");
-			builder.append("month:" + data[1] + ",");
-			builder.append("day:" + data[2] + ",");
-			builder.append("applied_end_Date:"
-					+ calanderDataDomain.getApplied_END_Date() + ",");
-			builder.append("applied_start_Date:"
-					+ calanderDataDomain.getApplied_Start_Date() + ",");
-			builder.append("order_Time:" + calanderDataDomain.getOrder_Time());
-			builder.append("}");
-		}
-		builder.append("]");
-		System.out.println(builder.toString());
-		PrintWriter out = null;
-		response.setContentType("application/json");
-		try {
-			out = response.getWriter();
-			out.write(builder.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	@RequestMapping("/getAllReservation")

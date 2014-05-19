@@ -2,6 +2,7 @@ package com.dummy.dao;
 
 import java.util.List;
 
+import com.dummy.domain.CalanderDataDomain;
 import com.dummy.domain.Reservation;
 
 public interface ReservationDao {
@@ -15,5 +16,5 @@ public interface ReservationDao {
 
 	public boolean updateReservationById(int id, Reservation reservation);
 
-	public List getAllReservationInfo(int room_ID);
+	public List<CalanderDataDomain> getAllReservationInfo(int room_ID);
 }

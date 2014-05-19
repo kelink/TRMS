@@ -15,5 +15,5 @@ public interface ReservationService {
 
 	public boolean updateReservationById(int id, Reservation reservation);
 
-	public List getAllReservationInfo(int room_ID);
+	public String getCalanderData(int room_ID);
 }

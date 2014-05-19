@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dummy.domain.CalanderDataDomain;
 import com.dummy.domain.DBUser;
 import com.dummy.domain.Room;
 import com.dummy.service.ReservationService;
@@ -56,7 +55,7 @@ public class UserController {
 	public ModelAndView home_TA(
 			@ModelAttribute("currentUser") DBUser currentUser) {
 		logger.info("进入 /user/home_TA 下，currentUser" + currentUser);
-		List<Room> rooms = getAllRooms();
+		List<Room> rooms = roomService.getAllRoom();
 		ModelMap map = new ModelMap();
 		map.addAttribute("rooms", rooms);
 		return new ModelAndView("admin/home_TA", map);
@@ -66,60 +65,20 @@ public class UserController {
 	public ModelAndView home_LC(
 			@ModelAttribute("currentUser") DBUser currentUser) {
 		logger.info("进入 /user/home_TC 下，currentUser" + currentUser);
-		List<Room> rooms = getAllRooms();
+		List<Room> rooms = roomService.getAllRoom();
 		ModelMap map = new ModelMap();
 		map.addAttribute("rooms", rooms);
 		return new ModelAndView("user/home_LC", map);
 	}
 
-	private List<Room> getAllRooms() {
-		return roomService.getAllRoom();
-	}
-
 	@RequestMapping(value = "/calendar")
 	public ModelAndView calendar(HttpServletRequest request) {
-		// System.out.println(request.getParameter("room"));
-		String result = getAllReservationInfo();
+		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
+		String calendarData = reservationService.getCalanderData(room_ID);
 		ModelMap map = new ModelMap();
-		map.addAttribute("result", result);
-		System.out.println(result);
+		map.addAttribute("calendarData", calendarData);
+		System.out.println(calendarData);
 		return new ModelAndView("user/calendar", map);
 	}
 
-	// var
-	// bookedDate=[{year:2014,month:1,day:20,department:"USER_EXPERIENCE",lc:"xx",usage:"xx",usertele:"xx"},{year:2014,month:1,day:23,department:"xx",lc:"xx",usage:"xx",usertele:"xx"}];//这里是传入一个存放键值对的对象的数组，说明哪些天被订了。Key有year,month,day，department,lc,usage,usertele。格式参照上面例子。
-
-	public String getAllReservationInfo() {
-		int room_ID = 1;
-		// String result = "{\"name\":\"" + "test" + "\"}";
-		// 拼接json输出
-		@SuppressWarnings("unused")
-		String result = "";
-		@SuppressWarnings("unchecked")
-		List<CalanderDataDomain> list = reservationService
-				.getAllReservationInfo(room_ID);
-		StringBuilder builder = new StringBuilder();
-
-		builder.append("[");
-		for (CalanderDataDomain calanderDataDomain : list) {
-			builder.append("{");
-			String temp = calanderDataDomain.getApplied_END_Date().toString();
-			String[] data = temp.split("-");
-			builder.append("year:" + data[0] + ",");
-			builder.append("month:" + data[1] + ",");
-			builder.append("day:" + data[2] + ",");
-			builder.append("department:" + "\""
-					+ calanderDataDomain.getTeamName() + "\",");
-			builder.append("lc:" + "\"" + calanderDataDomain.getUser_ID()
-					+ "\",");
-			builder.append("usage:" + "\"" + calanderDataDomain.getPurpose()
-					+ "\",");
-			builder.append("usertele:" + "\"" + calanderDataDomain.getEmail()
-					+ "\"");
-			builder.append("}");
-		}
-		builder.append("]");
-		System.out.println(builder.toString());
-		return builder.toString();
-	}
 }

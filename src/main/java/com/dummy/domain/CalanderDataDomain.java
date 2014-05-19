@@ -12,10 +12,15 @@ public class CalanderDataDomain {
 	private int user_ID;
 	private String account;
 	private int room_ID;
+	private String user_Tele;
+
+	public CalanderDataDomain() {
+		super();
+	}
 
 	public CalanderDataDomain(Date applied_END_Date, Date applied_Start_Date,
 			String email, Date order_Time, String purpose, String teamName,
-			int user_ID, String account, int room_ID) {
+			int user_ID, String account, int room_ID, String user_Tele) {
 		super();
 		Applied_END_Date = applied_END_Date;
 		Applied_Start_Date = applied_Start_Date;
@@ -26,10 +31,17 @@ public class CalanderDataDomain {
 		this.user_ID = user_ID;
 		this.account = account;
 		this.room_ID = room_ID;
+		this.user_Tele = user_Tele;
 	}
 
-	public CalanderDataDomain() {
-		super();
+	@Override
+	public String toString() {
+		return "CalanderDataDomain [Applied_END_Date=" + Applied_END_Date
+				+ ", Applied_Start_Date=" + Applied_Start_Date + ", email="
+				+ email + ", order_Time=" + order_Time + ", purpose=" + purpose
+				+ ", teamName=" + teamName + ", user_ID=" + user_ID
+				+ ", account=" + account + ", room_ID=" + room_ID
+				+ ", user_Tele=" + user_Tele + "]";
 	}
 
 	public Date getApplied_END_Date() {
@@ -104,13 +116,12 @@ public class CalanderDataDomain {
 		this.room_ID = room_ID;
 	}
 
-	@Override
-	public String toString() {
-		return "CalanderDataDomain [Applied_END_Date=" + Applied_END_Date
-				+ ", Applied_Start_Date=" + Applied_Start_Date + ", email="
-				+ email + ", order_Time=" + order_Time + ", purpose=" + purpose
-				+ ", teamName=" + teamName + ", user_ID=" + user_ID
-				+ ", account=" + account + ", room_ID=" + room_ID + "]";
+	public String getUser_Tele() {
+		return user_Tele;
+	}
+
+	public void setUser_Tele(String user_Tele) {
+		this.user_Tele = user_Tele;
 	}
 
 }

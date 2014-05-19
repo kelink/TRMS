@@ -16,7 +16,7 @@
  <script src="/trms/resources/js/jquery.js" type="text/javascript"></script>
 </head>
 <body>
-	<security:authentication property="principal.username"></security:authentication> 
+	<security:authentication property="principal.username"/> 
 	<c:url value="/j_spring_security_logout" var="logoutUrl"/>  
 <a href="${logoutUrl}">Log Out</a> 
 <br/>

@@ -7,12 +7,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>万年历</title>
 <link href="/trms/resources/css/calendar.css" rel="stylesheet" type="text/css">
-
+<link href="/trms/resources/css/lcIndex.css" rel="stylesheet" >
+<script src="/trms/resources/js/lcIndex.js" type="text/javascript"></script>
 </head>
-<%=request.getParameter("room") %>
 <body class="calBody">
 <div class="day">
     <div class="DaySelect">
@@ -39,13 +39,8 @@
     <div id="DayAll"></div>
 </div>
 </body>
-
-<%out.write("<script>var bookedDate=");%>${result}<%="</script>" %>
-
-
-
 <script>
-
+var bookedDate=${calendarData}
 //var bookedDate=[{year:2014,month:1,day:20,department:"USER_EXPERIENCE",lc:"xx",usage:"xx",usertele:"xx"},{year:2014,month:1,day:23,department:"xx",lc:"xx",usage:"xx",usertele:"xx"}];//这里是传入一个存放键值对的对象的数组，说明哪些天被订了。Key有year,month,day，department,lc,usage,usertele。格式参照上面例子。
 var book=false;
 
