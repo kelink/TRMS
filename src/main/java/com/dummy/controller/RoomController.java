@@ -93,7 +93,7 @@ public class RoomController {
 		ModelMap map = new ModelMap();
 		map.addAttribute("calendarData", calendarData);
 		System.out.println(calendarData);
-		return new ModelAndView("user/calendar", map);
+		return new ModelAndView("room/calendar", map);
 	}
 
 }

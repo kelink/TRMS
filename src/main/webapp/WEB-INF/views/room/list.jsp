@@ -31,13 +31,32 @@
  				data : "pageNum=" + index + "&pageSize=" + size,
  				dataType : "json",
  				success : function(json) {
- 					for (position in json) {
+ 					var html="";
+ 					for (position in json) {				
  						var room_ID=json[position].room_ID;
  						var item=json[position].item;
  						var room_Status=json[position].room_Status;
  						var last_Used_Date=json[position].last_Used_Date;
- 						alert("success");
+ 						
+ 						html+="<li id='list"+room_ID+"'class='roomListContent'>";
+ 						html+="<span class='roomListNum'>"+room_ID+"</span>";
+ 						html+="<span class='roomicon'><img src='/trms/resources/images/roomicon.png' width='43px' height='43px'/></span>";
+ 						html+="<span class='roomNum'><span>"+item+"</span></span>";
+ 											
+ 						html+="<button id='cal"+room_ID+"' class='btn btnCalendar' onclick='displayCal("+room_ID+")'>";
+ 						html+="<span class='calIcon'>";
+ 						html+="<img class='calImg' src='/trms/resources/images/calendaricon.png'"+"width='20px' height='20px'/>";
+ 						html+=" </span>";
+ 						html+="<span class='calText'>Calendar</span>";
+ 						html+=" </button>";
+	
+ 						html+=" <div id='calArea"+room_ID+"' class='calArea'>";
+ 						html+= "<iframe id='iframe"+room_ID+"' name='calendar' width='100%' height='100%' frameborder='0' style='overflow:auto;'scrolling='no'></iframe>";
+ 						html+="</div>";
+ 						html+=" </li>";         
+					
  					}
+ 					 document.getElementById("roomInfo").innerHTML=html;
  				},
  				error : function(XMLHttpRequest, textStatus, errorThrown) {
  					alert(XMLHttpRequest);
@@ -140,25 +159,9 @@
 					<!-- 显示room的信息 -->
 					
 				 <ul>
-				 <c:forEach items="${rooms}" var="room"> 
-				     <li id="list${room.room_ID }" class="roomListContent">
-					     <span class="roomListNum">ss${room.room_ID }</span>
-
-						 <span class="roomicon"><img src="/trms/resources/images/roomicon.png"width="43px"height="43px"/></span>
-						 <span class="roomNum"><span>${room.item }</span></span>
-
-						 <button id="cal${room.room_ID }" class="btn btnCalendar" onclick="displayCal('${room.room_ID }')">
-						 <span class="calIcon">
-						 <img class="calImg" src="<%=request.getContextPath()%>/resources/images/calendaricon.png"width="20px"height="20px"/>
-						 </span>
-						 <span class="calText">Calendar</span>
-						 </button>
-
-						 <div id="calArea${room.room_ID }"class="calArea">						 
-							  <iframe id="iframe${room.room_ID }" name="calendar"width="100%"height="100%"frameborder="0"style="overflow:auto;"scrolling="no"></iframe>
-						 </div>
-					 </li>
-				</c:forEach> 
+				 
+				    <div id="roomInfo"></div>
+				
 				 </ul>
 		 </div>
 		 </div>
