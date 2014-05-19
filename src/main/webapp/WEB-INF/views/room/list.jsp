@@ -26,7 +26,7 @@
  function AjaxGetData(index, size) {
  	$
  			.ajax({
- 				url : "<%=request.getContextPath()%>/book/listPageRoom",
+ 				url : "<%=request.getContextPath()%>/room/listPageRoom",
  				type : "Get",
  				data : "pageNum=" + index + "&pageSize=" + size,
  				dataType : "json",
@@ -36,7 +36,7 @@
  						var item=json[position].item;
  						var room_Status=json[position].room_Status;
  						var last_Used_Date=json[position].last_Used_Date;
- 						alert(room_ID+item+room_Status+last_Used_Date);
+ 						alert("success");
  					}
  				},
  				error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -134,24 +134,22 @@
 			  	 <div class="roomListHeader">
 				     <div class="roomListTitle">
 					     Room
-					 </div>
-					 
+					 </div>					 
 				 </div>
- 					<div id="divResult"></div>
  
 					<!-- 显示room的信息 -->
 					
 				 <ul>
 				 <c:forEach items="${rooms}" var="room"> 
 				     <li id="list${room.room_ID }" class="roomListContent">
-					     <span class="roomListNum">${room.room_ID }</span>
+					     <span class="roomListNum">ss${room.room_ID }</span>
 
 						 <span class="roomicon"><img src="/trms/resources/images/roomicon.png"width="43px"height="43px"/></span>
 						 <span class="roomNum"><span>${room.item }</span></span>
 
 						 <button id="cal${room.room_ID }" class="btn btnCalendar" onclick="displayCal('${room.room_ID }')">
 						 <span class="calIcon">
-						 <img class="calImg" src="/trms/resources/images/calendaricon.png"width="20px"height="20px"/>
+						 <img class="calImg" src="<%=request.getContextPath()%>/resources/images/calendaricon.png"width="20px"height="20px"/>
 						 </span>
 						 <span class="calText">Calendar</span>
 						 </button>
@@ -162,10 +160,7 @@
 					 </li>
 				</c:forEach> 
 				 </ul>
-				s
-					 
-				 
-			 </div>
+		 </div>
 		 </div>
 	 </div>
 	 <div class="footer">

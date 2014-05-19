@@ -64,22 +64,7 @@ public class UserController {
 	@RequestMapping(value = "/home_LC")
 	public ModelAndView home_LC(
 			@ModelAttribute("currentUser") DBUser currentUser) {
-		logger.info("½øÈë /user/home_TC ÏÂ£¬currentUser" + currentUser);
-		List<Room> rooms = roomService.getAllRoom();
-		ModelMap map = new ModelMap();
-		map.addAttribute("rooms", rooms);
-		return new ModelAndView("user/home_LC", map);
-	}
-
-	@RequestMapping(value = "/calendar")
-	public ModelAndView calendar(HttpServletRequest request) {
-		// int room_ID = Integer.parseInt(request.getParameter("room_ID"));
-		int room_ID = 2;
-		String calendarData = reservationService.getCalanderData(room_ID);
-		ModelMap map = new ModelMap();
-		map.addAttribute("calendarData", calendarData);
-		System.out.println(calendarData);
-		return new ModelAndView("user/calendar", map);
+		return new ModelAndView("user/index");
 	}
 
 }
