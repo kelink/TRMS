@@ -1,19 +1,26 @@
-window.onload = function() {
-	var expand1 = false;
-	$("#cal1").click(function() {
+var expand1 = false;
+function displayCal(id)
+{
+    list="#list"+id
+    calArea="#calArea"+id
+    ifr="#iframe"+id
+    
+	
+	
 		if (expand1 == false) {
-			$("#list1").animate({
+			$(list).animate({
 				height : "500"
 			}, 400);
-			$("#calArea1").css("display", "block");
-			$("#iframe1").attr("src", "/trms/user/calendar?room_ID=1");
+			$(calArea).css("display", "block");
+			$(ifr).attr("src", "/trms/user/calendar?room_ID="+"room");
 			expand1 = true;
 		} else if (expand1 == true) {
-			$("#list1").animate({
+			$(list).animate({
 				height : "84"
 			}, 400);
-			$("#calArea1").css("display", "none");
+			$(calArea).css("display", "none");
 			expand1 = false;
 		}
-	});
+	
 }
+
