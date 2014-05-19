@@ -9,7 +9,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import com.dummy.dao.TeamDao;
-import com.dummy.domain.Role;
 import com.dummy.domain.Team;
 
 @Repository(value = "teamDao")
@@ -52,7 +51,7 @@ public class TeamDaoImpl implements TeamDao {
 	}
 
 	@Override
-	public boolean updateTeam(Role Role) {
+	public boolean updateTeam(Team team) {
 		return false;
 	}
 

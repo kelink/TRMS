@@ -38,7 +38,7 @@ $(document).ready(function(){
 
 <button id="button" name="button" value="test">test</button>
 
-<%=request.getContextPath()%>
+<%=request.getContextPath()%> 
 
 <form action="<%=request.getContextPath()%>/book/" method="post" name="bookForm">
 

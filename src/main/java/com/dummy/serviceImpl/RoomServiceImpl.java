@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.dummy.common.C;
 import com.dummy.dao.RoomDao;
 import com.dummy.domain.Room;
 import com.dummy.service.RoomService;
@@ -46,6 +47,6 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	public List<Room> getFreeRooms() {
-		return roomDao.getRoomByStatus(0);
+		return roomDao.getRoomByStatus(C.DB.DEFAULT_FREE_ROOM);
 	}
 }

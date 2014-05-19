@@ -73,7 +73,8 @@ public class UserController {
 
 	@RequestMapping(value = "/calendar")
 	public ModelAndView calendar(HttpServletRequest request) {
-		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
+		// int room_ID = Integer.parseInt(request.getParameter("room_ID"));
+		int room_ID = 2;
 		String calendarData = reservationService.getCalanderData(room_ID);
 		ModelMap map = new ModelMap();
 		map.addAttribute("calendarData", calendarData);

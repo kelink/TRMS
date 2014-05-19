@@ -58,14 +58,7 @@ public class LoginController {
 			modelMap.addAttribute("currentUser", currentUser);
 			return new ModelAndView("redirect:/user/home_TA", modelMap);
 		} else {
-
 			return null;
 		}
-	}
-
-	@RequestMapping(value = { "/fail" })
-	public String fail() {
-		logger.info("---进入用户登陆/fail界面-----");
-		return "login/login_fail";
 	}
 }

@@ -2,7 +2,6 @@ package com.dummy.dao;
 
 import java.util.List;
 
-import com.dummy.domain.Role;
 import com.dummy.domain.Team;
 
 public interface TeamDao {
@@ -14,5 +13,5 @@ public interface TeamDao {
 
 	public boolean delTeam(int id);
 
-	public boolean updateTeam(Role Role);
+	public boolean updateTeam(Team team);
 }

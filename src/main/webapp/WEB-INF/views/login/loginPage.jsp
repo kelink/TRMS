@@ -18,7 +18,7 @@
 	     </div>
      </div>
  </div>
- 
+
  <div id="viewport">
  <div id="leftPanel">
  </div>
@@ -47,7 +47,7 @@
 		 <div id="reset-btn">
 		     <input type="reset" id="reset" value="reset">
 		 </div>
-
+	${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message} 
 		 <div id="login-btn">
 			 <input type="submit" value="Login" class="btn-style" >
 		 </div>
@@ -61,7 +61,6 @@
  <div id="footerContainer">
  <div id="footerContent">
       <h3>Design by Ljj and Link in 2014.</h3>
-
  </div>
  </div>
  </div>

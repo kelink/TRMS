@@ -1,18 +1,40 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
-<%@ taglib prefix='security' uri='http://www.springframework.org/security/tags'%>
+<%@ taglib prefix='security' uri='http://www.springframework.org/security/tags'%>  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>  
-<head>  
-<base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">  
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
-<script type="text/javascript" src="/trms/resources/js/jquery-1.7.2.js"></script>  
-<title>添加用户</title>  
-  
-<body>  
-
-</body>  
-</html>  
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>订房界面</h1>
+<h1><a href="<%=request.getContextPath()%>/user/home_TA">BACK</a></h1>
+<form action="<%=request.getContextPath()%>/book/" method="post" name="bookForm">
+Free Room:
+<select>
+	<c:forEach items="${freeRooms}" var="room"> 
+		<option value="${room.room_ID }">${room.item }</option>
+	</c:forEach>
+</select>
+<br/>
+Start_Time<input type="date"  name="begin_time"/><br/>
+End_Time:<input type="date" name="end_time"/><br/>
+Email<input type="text" name="room"/><br/>
+Team
+<select>
+	<c:forEach items="${teams}" var="team"> 
+		<option value="${team.team_ID} }">${team.teamName }</option>
+	</c:forEach>
+</select>
+<br/>
+TelLine<input type="text" name="userTelLine"><br/>
+Purpose:<input type="text" name="purpose"><br/>
+<input type="submit" name="submit" value="Submit"/>
+</form>
+ 
+</body>
+</html>

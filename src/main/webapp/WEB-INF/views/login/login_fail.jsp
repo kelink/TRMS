@@ -8,5 +8,6 @@
 </head>
 <body>
 	login fail! 
+	${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message} <!-- 输出异常信息 -->
 </body>
 </html>

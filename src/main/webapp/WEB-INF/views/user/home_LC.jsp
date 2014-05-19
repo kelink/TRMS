@@ -1,3 +1,4 @@
+<%@page import="com.dummy.domain.Room"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
@@ -28,7 +29,7 @@
  <div class="wrapper">
      <div class="header">
 	     <div class="headerContainer">
-		 <span id="logo"><img src="/trms/resources/images/hsbcLogo.png"/></span>
+		 <span id="logo"><img src="<%=request.getContextPath()%>/resources/images/hsbcLogo.png"/></span>
 		 </div>
 	 </div>
 	 <div>
@@ -68,7 +69,7 @@
 					<!-- 显示room的信息 -->
 				 <ul>
 				 <c:forEach items="${rooms}" var="room"> 
-				     <li id="list1" class="roomListContent">
+				     <li id="${room.room_ID }" class="roomListContent">
 					     <span class="roomListNum">1</span>
 						 <span class="roomicon"><img src="/trms/resources/images/roomicon.png"width="43px"height="43px"/></span>
 						 <span class="roomNum"><span>${room.item }</span></span>

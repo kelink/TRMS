@@ -17,7 +17,7 @@
 		<!-- login-page::默认指定的登录页面. authentication-failure-url:出错后跳转页面. default-target-url:成功登陆后跳转页面 -->
 		<security:form-login 
 			login-page="/login/index"
-			authentication-failure-url="/login/fail?error=true"
+			authentication-failure-url="/login/index?error=true"
 			always-use-default-target="true" 
 			default-target-url="/login/success" />
 		<!-- logout-success-url:成功注销后跳转到的页面; -->
@@ -67,10 +67,9 @@
 	</bean>
 	 
 	<!-- 自定义登陆错误提示，可以取出mymessages.properties的国际化消息-->  
-   <!-- 
+  
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">  
-        <property name="basename" value="classpath:org/yzsoft/springmvcdemo/mymessages" />  
+        <property name="basename" value="/resources/i18n/messages_zh_CN.properties" />  
     </bean>  
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver" /> 
-	-->
 </beans>

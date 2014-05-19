@@ -15,8 +15,10 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.dummy.domain.DBUser;
+import com.dummy.service.UserService;
 
 /**
  * 一个自定义的类用来和数据库进行操作. 即以后我们要通过数据库保存权限.则需要我们继承UserDetailsService
@@ -24,17 +26,18 @@ import com.dummy.domain.DBUser;
  * @author
  * 
  */
+@Service(value = "customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 	private static final Logger logger = LoggerFactory
 			.getLogger(CustomUserDetailsService.class);
 	@Resource(name = "userService")
-	private UserServiceImpl userService;
+	private UserService userService;
 
-	public UserServiceImpl getUsersService() {
+	public UserService getUserService() {
 		return userService;
 	}
 
-	public void setUsersService(UserServiceImpl userService) {
+	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
 
