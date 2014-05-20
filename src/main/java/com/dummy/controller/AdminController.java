@@ -22,8 +22,7 @@ public class AdminController {
 
 	// 进入TA主界面
 	@RequestMapping(value = "/index")
-	public ModelAndView home_TA(
-			@ModelAttribute("currentUser") DBUser currentUser) {
+	public ModelAndView index(@ModelAttribute("currentUser") DBUser currentUser) {
 		return new ModelAndView("admin/index");
 	}
 }
