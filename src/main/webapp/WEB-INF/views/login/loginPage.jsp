@@ -15,7 +15,7 @@
 
  </head>
 
- <body>
+ <body id="lcBody">
 
 <div class="wrapper">
  

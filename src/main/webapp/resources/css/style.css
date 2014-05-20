@@ -23,7 +23,7 @@ font-size:26px;
 position: absolute;
 z-index: 3000;
 float: left;
-margin-left: 120px;
+margin-left: 20px;
 height:74px;
 
 //border-top:4px solid #db0011;
@@ -43,7 +43,7 @@ height:74px;
 position:relative;
 background-image:url(../images/homepage-bg.jpg);
 height:650px;
-min-width:1140px;
+
 background-repeat:no-repeat;
 background-size:cover;
 }
@@ -72,7 +72,7 @@ height: 300px;
 background-image:url(../images/topic.png);
 float:left;
 margin-top: 40px;
-margin-left: 130px;
+margin-left: 30px;
 background-repeat:no-repeat;
 background-size:cover;
 
@@ -80,7 +80,7 @@ background-size:cover;
 #loginPanel
 {
 float:right;
-margin-right:100px;
+margin-right:10px;
 
 width:400px;
 height:420px;
@@ -113,6 +113,11 @@ border-bottom: 1px solid #a7a7a7;
 border-left: 1px solid #a7a7a7;
 cursor:pointer;
 background-image:url(../images/icon2.png);
+}
+#lcBody
+{
+overflow-x:hidden;
+overflow-y:hidden;
 }
 #icon1
 {
@@ -230,7 +235,7 @@ margin-top: 30px;
 	}
 #viewportContainer
 {
-	max-width: 1150px;
+	width: 950px;
 margin: 0 auto;
 overflow: hidden;
 }
