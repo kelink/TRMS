@@ -18,15 +18,15 @@
     <div class="DaySelect">
 		<i class="lr" onclick="Month('l')" title="上一月"><</i>
         <div class="select">
-            <div class="stop" id="cy">2013</div>
+            <div class="stop" id="cy">2014</div>
             <div class="sbox">
                 <ul id="YearAll">
-                    <li>2013</li>
+                    
                 </ul>
             </div>
         </div>
         <div class="select" id="sm">
-            <div class="stop" id="cm">06</div>
+            <div class="stop" id="cm">05</div>
             <div class="sbox" id="mm">
                 <ul id="DateAll">
                     <li>01</li>
@@ -52,19 +52,19 @@ cy = document.getElementById("cy");
 cm = document.getElementById("cm");
 window.onload = function(){
 	getDynamicTable(SY,SM)
-	document.getElementById("YearAll").innerHTML = YearAll(SY)
+	document.getElementById("YearAll").innerHTML = YearAll(SY)//设置下拉列表的内容
 	document.getElementById("DateAll").innerHTML = DateAll(SY,SM)
 };
-function YearAll(Y){
+function YearAll(Y){//下拉列表只显示本年
 	var Ystr = ""
-	for (var y = Y - 10; y <= Y + 10; y++) {
-		Ystr += "<li onclick='getym(this,\"cy\")'>"+ y +"</li>"
-	}
+	
+		Ystr += "<li onclick='getym(this,\"cy\")'>"+ Y +"</li>"
+	
 	return Ystr
 }
-function DateAll(Y,M){
+function DateAll(Y,M){//只显示本月和下月
 	var Mstr = "",Mnum = GetDaysInMonth(Y,M)
-	for (var m = 1; m <= 12; m++) {
+	for (var m = M; m <= M+1; m++) {
 		Mstr += "<li onclick='getym(this,\"cm\")'>"+ (m < 10 ? "0" + m : m) +"</li>"
 	}
 	return Mstr
@@ -73,7 +73,7 @@ function getym(o,s){
 	document.getElementById(s).innerHTML = parseInt(o.innerHTML)
 	getDynamicTable(parseInt(cy.innerHTML),parseInt(cm.innerHTML))
 }
-function Month(s){
+function Month(s){//设置已选年月，产生日历表
 	var y = parseInt(cy.innerHTML),m = parseInt(cm.innerHTML)
 	if (s == "l") {
 		if (m <= 1) {
@@ -94,12 +94,12 @@ function Month(s){
 	cm.innerHTML = m
 	getDynamicTable(y,m)
 }
-function now(){
+function now(){//按照当前日期设置日历表
 	getDynamicTable(SY,SM)
 	cy.innerHTML = SY
 	cm.innerHTML = SM
 }
-function getDynamicTable(Y,M){
+function getDynamicTable(Y,M){//按照传入的年月创造日历表
 	var Temp,i,j,k,l
 	
 	var FirstDate,MonthDate,CirNum,ErtNum // '当月第一天为星期几,当月的总天数,表格的单元格数及循环数,表格第一排空格数与当月天数之和
@@ -185,6 +185,42 @@ function setDate(year,month,day)
 {
 	var url='<%=request.getContextPath()%>/room/check?room_ID=${room_ID}'+'&year='+year+'&month='+month+'&day='+day;
 	window.location.href=url;
+	var a=window.top.document.getElementById("calArea8");
+	var b=window.top.document.getElementById("cover");
+	
+    a.setAttribute("class","calArea floatTicket");
+    b.setAttribute("class","cover");
+    b.setAttribute("onclick","turnback();");
+  //  document.getElementById('turnback').style.backgroundColor='#ff0000';
+//     document.getElementById("turnback").setAttribute("onclick",);
+    
+    
 }
+
 </script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

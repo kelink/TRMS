@@ -11,8 +11,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<button id="turnback">返回</button>
 <h1>订房界面</h1>
-<h1><a href="<%=request.getContextPath()%>/user/index">BACK</a></h1>
+
 <form action="<%=request.getContextPath()%>/room/bookRoom" method="post" name="bookForm">
 Free Room:
 <select name="room"> 

@@ -111,8 +111,8 @@
 <body>
 <security:authentication property="principal.username"/> 
 <c:url value="/j_spring_security_logout" var="logoutUrl"/>  
-<a href="${logoutUrl}">Log Out</a> <br/>
-<div class="cover">
+
+<div id="cover">
  </div>
  <div class="wrapper">
      <div class="header">
@@ -120,10 +120,19 @@
 		 <span id="logo"><img src="<%=request.getContextPath()%>/resources/images/hsbcLogo.png"/></span>
 		 </div>
 	 </div>
+	 
+	 <div class="status">
+	     <div class="statusContainer">
+	         <button id="logoutBtn" class="btn" onclick="logout('${logoutUrl}');">Log Out</button>
+	      
+	     </div>
+	 </div>
+	 
 	 <div>
 	     <div class="seperateLine">
 		 </div>
 	 </div>
+	
 	 <div class="navigator">
 	     <div class="navContainer">
 		     <ul class="navi">

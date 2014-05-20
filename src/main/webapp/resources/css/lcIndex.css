@@ -52,7 +52,7 @@ margin-top: 8px;
 } 
 .seperateLine
 {
-padding-top:20px;
+
 border-bottom: 1px solid #eee;
 padding-bottom:20px;
 margin-bottom:20px;
@@ -155,11 +155,11 @@ padding:20px;
 }
 .cover
 {
-//position: absolute;
-//width: 100%;
-//height: 100%;
-//z-index: 3000;
-//background-color: rgba(0, 0, 0, 0.57);
+position: absolute;
+width: 100%;
+height: 100%;
+z-index: 3000;
+background-color: rgba(0, 0, 0, 0.72);
 }
 
 .roomListHeader
@@ -263,4 +263,42 @@ margin-top:20px;
 height:380px;
 
 display:none;
+}
+.status
+{
+	height:50px;
+}
+.statusContainer
+{
+	width:980px;
+	margin:0 auto;
+}
+#logoutBtn
+{
+	float:right;
+	margin-top:30px;
+}
+.btnSelected
+{
+	background-color: #dcdcdc;
+background-image: none;
+border-color: #b5b5b5;
+box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+}
+.btnHover
+{
+	background-image: none;
+border-color: #b5b5b5;
+}
+.floatTicket
+{
+position: fixed;
+left: 50%;
+margin-left: -200px;
+top: 200px;
+z-index: 3000;
+background-color: white;
+border: 1px solid #cccccc;
+border-top: 5px solid #458fce;
+box-shadow: 0 0 20px;	
 }
