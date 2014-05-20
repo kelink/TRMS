@@ -183,7 +183,7 @@ function bookInfo(a)
 }
 function setDate(year,month,day)
 {
-	var url='<%=request.getContextPath()%>/room/check?room_ID=${room_ID}'+'&year='+year+'&month='+month+'&day='+day;
+	var url='<%=request.getContextPath()%>/room/getForm?room_ID=${room_ID}'+'&year='+year+'&month='+month+'&day='+day;
 	window.location.href=url;
 }
 </script>

@@ -19,8 +19,8 @@ Free Room:
 		<option value="${room.room_ID }">${room.item }</option>
 </select>
 <br/>
-Start_Time<input type="text"  name="begin_time" value="${bookDate}"readonly="readonly"/><br/>
-End_Time:<input type="text" name="end_time" value="${bookDate}"readonly="readonly"/><br/>
+Start_Time<input type="date" name="begin_time" value="${select_date}"/><br/>
+End_Time:<input type="date" name="end_time" value="${select_date}""/><br/>
 Email<input type="text" name="email"/><br/>
 Team
 <select name="team">

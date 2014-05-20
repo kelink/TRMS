@@ -53,22 +53,26 @@ public class RoomController {
 	private UserService userService;
 
 	// Room 管理主界面
-	@RequestMapping(value = { "/check", "" })
-	public ModelAndView check(HttpServletRequest request) {
+	@RequestMapping(value = { "/getForm", "" })
+	public ModelAndView getForm(HttpServletRequest request) {
 		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
-		int year = Integer.parseInt(request.getParameter("year"));
-		int month = Integer.parseInt(request.getParameter("month"));
-		int day = Integer.parseInt(request.getParameter("day"));
-		Date date = new Date(year, month, day);
-		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-		String bookDate = format1.format(date);
+		String year = request.getParameter("year");
+		String month = request.getParameter("month");
+		String day = request.getParameter("day");
+		if (month.length() == 1) {
+			month = "0" + month;
+		}
+		if (day.length() == 1) {
+			month = "0" + month;
+		}
+		String select_date = year + "-" + month + "-" + day;
 		Room room = roomService.getRoom(room_ID);
 		List<Team> teams = teamService.getAllTeam();
 		ModelMap map = new ModelMap();
 		map.addAttribute("room", room);
 		map.addAttribute("teams", teams);
-		map.addAttribute("bookDate", bookDate);
-		return new ModelAndView("room/check", map);
+		map.addAttribute("select_date", select_date);
+		return new ModelAndView("room/form", map);
 	}
 
 	// 分页list 所有的房间
@@ -117,6 +121,7 @@ public class RoomController {
 		int room_ID = Integer.parseInt(request.getParameter("room"));
 		String begin_time = request.getParameter("begin_time");
 		String end_time = request.getParameter("end_time");
+
 		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 		String email = request.getParameter("email");
 		String tele = request.getParameter("userTelLine");
