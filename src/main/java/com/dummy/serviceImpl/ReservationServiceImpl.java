@@ -87,8 +87,7 @@ public class ReservationServiceImpl implements ReservationService {
 		builder.append("lc:" + "\"" + calanderDataDomain.getAccount() + "\",");
 		builder.append("usage:" + "\"" + calanderDataDomain.getPurpose()
 				+ "\",");
-		builder.append("usertele:" + "\"" + calanderDataDomain.getUser_Tele()
-				+ "\"");
+		builder.append("usertele:" + "\"" + calanderDataDomain.getTele() + "\"");
 		builder.append("}");
 		return builder.toString();
 	}

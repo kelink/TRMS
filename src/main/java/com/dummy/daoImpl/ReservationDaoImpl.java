@@ -68,7 +68,7 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public List<CalanderDataDomain> getAllReservationInfo(int room_ID) {
 		String sqlStr = "select "
-				+ "Applied_END_Date,Applied_Start_Date,email,order_Time,purpose,Team.teamName,DBUser.user_ID,DBUser.account,Reservation.room_ID,DBUser.Tele "
+				+ "Applied_END_Date,Applied_Start_Date,email,order_Time,purpose,Team.teamName,DBUser.user_ID,DBUser.account,Reservation.room_ID,Reservation.tele "
 				+ "from Reservation,Team,DBUser "
 				+ "where Reservation.team_ID=Team.team_ID "
 				+ "and Reservation.status=? " + "and applied_start_date>=? "
@@ -89,7 +89,7 @@ public class ReservationDaoImpl implements ReservationDao {
 				.addScalar("user_ID", StandardBasicTypes.INTEGER)
 				.addScalar("account", StandardBasicTypes.STRING)
 				.addScalar("room_ID", StandardBasicTypes.INTEGER)
-				.addScalar("Tele", StandardBasicTypes.STRING).list();
+				.addScalar("tele", StandardBasicTypes.STRING).list();
 		List<CalanderDataDomain> list = new ArrayList<CalanderDataDomain>();
 		for (Iterator<Object[]> iterator = stus.iterator(); iterator.hasNext();) {
 			CalanderDataDomain data = new CalanderDataDomain();
@@ -103,7 +103,7 @@ public class ReservationDaoImpl implements ReservationDao {
 			data.setUser_ID((Integer) rows[6]);
 			data.setAccount((String) rows[7]);
 			data.setRoom_ID((Integer) rows[8]);
-			data.setUser_Tele((String) rows[9]);
+			data.setTele((String) rows[9]);
 			list.add(data);
 		}
 		return list;
