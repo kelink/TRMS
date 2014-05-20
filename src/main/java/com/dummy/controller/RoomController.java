@@ -39,6 +39,7 @@ public class RoomController {
 	@Resource(name = "roomService")
 	private RoomService roomService;
 
+	// Room 管理主界面
 	@RequestMapping(value = { "/index", "" })
 	public ModelAndView index() {
 		List<Room> freeRooms = roomService.getFreeRooms();
@@ -48,17 +49,6 @@ public class RoomController {
 		map.addAttribute("teams", teams);
 		return new ModelAndView("room/index", map);
 	}
-
-	public ModelAndView bookRoom() {
-		return new ModelAndView("room/success");
-	}
-
-	@RequestMapping("/getAllReservation")
-	public List<Reservation> getAllReservation(HttpServletResponse response) {
-		return reservationService.getAllReservation();
-	}
-
-	// 获取所有的队伍信息
 
 	// 分页list 所有的房间
 	@RequestMapping("/list")
@@ -76,6 +66,7 @@ public class RoomController {
 		return new ModelAndView("room/list", map);
 	}
 
+	// 用于AJAX获取房间信息
 	@RequestMapping("/listPageRoom")
 	public @ResponseBody List<Room> listPageRoom(
 			Model model,
@@ -85,10 +76,10 @@ public class RoomController {
 		return roomPageList;
 	}
 
+	// 显示日历
 	@RequestMapping(value = "/calendar")
 	public ModelAndView calendar(HttpServletRequest request) {
-		// int room_ID = Integer.parseInt(request.getParameter("room_ID"));
-		int room_ID = 2;
+		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
 		String calendarData = reservationService.getCalanderData(room_ID);
 		ModelMap map = new ModelMap();
 		map.addAttribute("calendarData", calendarData);
@@ -96,4 +87,14 @@ public class RoomController {
 		return new ModelAndView("room/calendar", map);
 	}
 
+	// 订房逻辑
+	public ModelAndView bookRoom() {
+		return new ModelAndView("room/success");
+	}
+
+	// 获得所有订单信息
+	@RequestMapping("/getAllReservation")
+	public List<Reservation> getAllReservation(HttpServletResponse response) {
+		return reservationService.getAllReservation();
+	}
 }

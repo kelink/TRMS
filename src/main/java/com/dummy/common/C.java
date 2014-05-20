@@ -7,6 +7,9 @@ public class C {
 
 	// 下面是数据库默认值的常量值
 	public static final class DB {
+		// DBUser
+		public static final int DEFAULT_ROLE_LC = 1;
+		public static final int DEFAULT_ROLE_TA = 2;
 		// Room 状态
 		public static final int DEFAULT_FREE_ROOM = 0;
 		public static final int DEFAULT_UNFREE_ROOM = 1;

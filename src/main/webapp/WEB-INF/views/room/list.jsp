@@ -56,8 +56,9 @@
  						html+=" </li>";         
 					
  					}
- 					 document.getElementById("roomInfo").innerHTML=html;
- 				},
+ 					$('#roomInfo').html("");
+ 	                $('#roomInfo').html(html); 
+ 	                },
  				error : function(XMLHttpRequest, textStatus, errorThrown) {
  					alert(XMLHttpRequest);
  					alert(textStatus);
@@ -80,8 +81,8 @@
  function GoToNextPage() {
  	if (pageIndex < parseInt($("#count").text())) {
  		pageIndex += 1;
- 	}
- 	AjaxGetData(pageIndex, pageSize);
+ 		AjaxGetData(pageIndex, pageSize);
+ 	}	
  }
 
  function GoToEndPage() {
@@ -108,13 +109,9 @@
  </script>
 </head>
 <body>
-	<security:authentication property="principal.username"/> 
-	<c:url value="/j_spring_security_logout" var="logoutUrl"/>  
-<a href="${logoutUrl}">Log Out</a> 
-<br/>
-
-
-
+<security:authentication property="principal.username"/> 
+<c:url value="/j_spring_security_logout" var="logoutUrl"/>  
+<a href="${logoutUrl}">Log Out</a> <br/>
 <div class="cover">
  </div>
  <div class="wrapper">
@@ -158,11 +155,21 @@
  
 					<!-- 显示room的信息 -->
 					
-				 <ul>
-				 
-				    <div id="roomInfo"></div>
-				
+				 <ul>			 
+				    <div id="roomInfo"></div>				
 				 </ul>
+				 <div>
+					 Total Page:<span id='count'>${pageCount}</span>
+					Total Records:<span id='recordCount'>${recordCount}</span>
+				</div>
+				 <div>
+					 <a href='javascript:void' onclick='GoToFirstPage()' id='FirstPage' >FirstPage</a>
+					 <a href='javascript:void' onclick='GoToPrePage()' id='PrePage' >PrePage</a>
+					 <a href='javascript:void' onclick='GoToNextPage()' id='NextPage' >NextPage</a>
+					 <a href='javascript:void' onclick='GoToEndPage()' id='EndPage' >EndPage</a>
+					 <input type='text' size='4' name='page' />
+					 <input type='button' value='Jump' onclick='GoToAppointPage(this)' />
+				 </div>
 		 </div>
 		 </div>
 	 </div>

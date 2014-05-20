@@ -13,7 +13,7 @@ function displayCal(id) {
 			height : "500"
 		}, 400);
 		$(calArea).css("display", "block");
-		$(ifr).attr("src", "/trms/room/calendar?room_ID=" + "room");
+		$(ifr).attr("src", "/trms/room/calendar?room_ID=" + id);
 		expand[id] = true;
 	} else if (expand[id] == true) {
 		$(list).animate({

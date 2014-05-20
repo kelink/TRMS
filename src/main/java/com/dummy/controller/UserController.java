@@ -1,21 +1,17 @@
 package com.dummy.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dummy.domain.DBUser;
-import com.dummy.domain.Room;
 import com.dummy.service.ReservationService;
 import com.dummy.service.RoomService;
 import com.dummy.service.UserService;
@@ -39,32 +35,23 @@ public class UserController {
 		this.userService = userService;
 	}
 
+	// 进入LC主界面
+	@RequestMapping(value = "/index")
+	public ModelAndView index(@ModelAttribute("currentUser") DBUser currentUser) {
+		return new ModelAndView("user/index");
+	}
+
+	// 获取所有LC用户
 	@RequestMapping(value = "/getAllUser", method = RequestMethod.GET)
 	public String getAllUser(HttpServletRequest request) {
 		request.setAttribute("userList", userService.getAllUser());
 		return "user/index";
-
 	}
 
+	// 进入公共访问界面
 	@RequestMapping(value = "/denied", method = RequestMethod.GET)
 	public String denied(HttpServletRequest request) {
 		return "common/deniedpage";
-	}
-
-	@RequestMapping(value = "/home_TA")
-	public ModelAndView home_TA(
-			@ModelAttribute("currentUser") DBUser currentUser) {
-		logger.info("进入 /user/home_TA 下，currentUser" + currentUser);
-		List<Room> rooms = roomService.getAllRoom();
-		ModelMap map = new ModelMap();
-		map.addAttribute("rooms", rooms);
-		return new ModelAndView("admin/home_TA", map);
-	}
-
-	@RequestMapping(value = "/home_LC")
-	public ModelAndView home_LC(
-			@ModelAttribute("currentUser") DBUser currentUser) {
-		return new ModelAndView("user/index");
 	}
 
 }

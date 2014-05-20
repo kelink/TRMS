@@ -33,6 +33,7 @@ public class LoginController {
 		return "login/loginPage";
 	}
 
+	// 登陆成功后进入
 	@RequestMapping(value = { "/success" })
 	public ModelAndView success() {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
@@ -52,11 +53,11 @@ public class LoginController {
 		logger.info(currentUser + "---login success-----");
 		if (role.equals("ROLE_LC")) {
 			modelMap.addAttribute("currentUser", currentUser);
-			return new ModelAndView("redirect:/user/home_LC", modelMap);
+			return new ModelAndView("redirect:/user/index", modelMap);
 		}
 		if (role.equals("ROLE_TA")) {
 			modelMap.addAttribute("currentUser", currentUser);
-			return new ModelAndView("redirect:/user/home_TA", modelMap);
+			return new ModelAndView("redirect:/admin/index", modelMap);
 		} else {
 			return null;
 		}
