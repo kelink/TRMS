@@ -1,9 +1,14 @@
 package com.dummy.serviceImpl;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import com.dummy.dao.ReservationDao;
@@ -49,62 +54,105 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationDao.updateReservationById(id, reservation);
 	}
 
-	// 后续需要添加类型判断和异常处理
+	// 获取日历需要的信息
 	@Override
 	public String getCalanderData(int room_ID) {
 		List<CalanderDataDomain> list = reservationDao
 				.getAllReservationInfo(room_ID);
-		StringBuilder builder = new StringBuilder();
+		ArrayList<JSONObject> calanderData = new ArrayList<JSONObject>();
 		if (list.isEmpty()) {
 			return null;
 		}
-		int temp = 0;
-		builder.append("[");
 		for (int i = 0; i < list.size(); i++) {
-			builder.append(createCalanderJson(list.get(i)));
-			if (temp + 1 != list.size()) {
-				builder.append(",");
-				++temp;
+			ArrayList<JSONObject> jsonArrayList = createCalendarJsonObject(list
+					.get(i));
+			for (JSONObject jsonObject : jsonArrayList) {
+				calanderData.add(jsonObject);
 			}
 		}
-		builder.append("]");
-		return builder.toString();
+		return calanderData.toString();
 	}
 
-	// 创建日历类需要的JSON对象字符串
-	// 如{year:2014,month:1,day:20,department:"USER_EXPERIENCE",lc:"xx",usage:"xx",usertele:"xx"}
-	private String createCalanderJson(CalanderDataDomain calanderDataDomain) {
-		StringBuilder builder = new StringBuilder();
-		// 构建年月日
-		String temp = calanderDataDomain.getApplied_END_Date().toString();
-		String[] data = temp.split("-");
-		builder.append("{");
-		builder.append("year:" + data[0] + ",");
-		builder.append("month:" + data[1] + ",");
-		builder.append("day:" + data[2] + ",");
-		builder.append("department:" + "\"" + calanderDataDomain.getTeamName()
-				+ "\",");
-		builder.append("lc:" + "\"" + calanderDataDomain.getAccount() + "\",");
-		builder.append("usage:" + "\"" + calanderDataDomain.getPurpose()
-				+ "\",");
-		builder.append("usertele:" + "\"" + calanderDataDomain.getTele() + "\"");
-		builder.append("}");
-		return builder.toString();
+	// 解析并且封装为多个JSON对象，便于日历显示
+	private ArrayList<JSONObject> createCalendarJsonObject(
+			CalanderDataDomain calanderDataDomain) {
+		long onDay = 24 * 60 * 60 * 1000;
+		long start = calanderDataDomain.getApplied_Start_Date().getTime();
+		long end = calanderDataDomain.getApplied_END_Date().getTime();
+
+		ArrayList<JSONObject> result = new ArrayList<JSONObject>();
+		if (start == end) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			int[] dateInfo = ChangeDate(start);
+			// 此处添加字段
+			map.put("year", String.valueOf(dateInfo[0]));
+			map.put("month", String.valueOf(dateInfo[1]));
+			map.put("day", String.valueOf(dateInfo[2]));
+			map.put("email", calanderDataDomain.getEmail());
+			map.put("tele", calanderDataDomain.getTele());
+			map.put("approveBy",
+					userDao.getUser(calanderDataDomain.getUser_ID())
+							.getAccount());
+			map.put("applicant_Team", calanderDataDomain.getTeamName());
+
+			JSONObject jsonObject = new JSONObject(map);
+			result.add(jsonObject);
+		} else {
+			while (start < end) {
+				// 创建JSON对象
+				HashMap<String, String> map = new HashMap<String, String>();
+				int[] dateInfo = ChangeDate(start);
+				// 此处添加字段
+				map.put("year", String.valueOf(dateInfo[0]));
+				map.put("month", String.valueOf(dateInfo[1]));
+				map.put("day", String.valueOf(dateInfo[2]));
+				map.put("email", calanderDataDomain.getEmail());
+				map.put("tele", calanderDataDomain.getTele());
+				map.put("approveBy",
+						userDao.getUser(calanderDataDomain.getUser_ID())
+								.getAccount());
+				map.put("applicant_Team", calanderDataDomain.getTeamName());
+
+				JSONObject jsonObject = new JSONObject(map);
+				result.add(jsonObject);
+				start += onDay;
+				if (start == end) {
+					HashMap<String, String> temp = new HashMap<String, String>();
+					int[] tempDate = ChangeDate(start);
+					// 此处添加字段
+					temp.put("year", String.valueOf(tempDate[0]));
+					temp.put("month", String.valueOf(tempDate[1]));
+					temp.put("day", String.valueOf(tempDate[2]));
+					temp.put("email", calanderDataDomain.getEmail());
+					temp.put("tele", calanderDataDomain.getTele());
+					temp.put("approveBy",
+							userDao.getUser(calanderDataDomain.getUser_ID())
+									.getAccount());
+					temp.put("applicant_Team", calanderDataDomain.getTeamName());
+
+					JSONObject last = new JSONObject(temp);
+					result.add(last);
+				} else {
+					continue;
+				}
+			}
+		}
+
+		return result;
 	}
 
-	// private JSONObject createCalendarJsonObject(
-	// CalanderDataDomain calanderDataDomain) {
-	// Date start = calanderDataDomain.getApplied_Start_Date();
-	// Date end = calanderDataDomain.getApplied_END_Date();
-	// long day = (Math.abs(end.getTime() - start.getTime()) / (24 * 60 * 60 *
-	// 1000)) + 1;
-	// for (int i = 0; i < day; i++) {
-	//
-	// HashMap<String, Object> map = new HashMap<String, Object>();
-	// String[] data = start.split("-");
-	// map.put(key, value);
-	// }
-	// JSONObject jsonObject = JSONObject.fromObject(map);
-	// return null;
-	// }
+	// 0表示年，1表示月,2表示日
+	private int[] ChangeDate(long dayTime) {
+		Date date = new Date(dayTime);
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+		String dateStr = f.format(date);
+		String[] temp = dateStr.split("-");
+		int[] result = new int[3];
+		for (int i = 0; i < temp.length; i++) {
+			result[0] = Integer.parseInt(temp[0]);
+			result[1] = Integer.parseInt(temp[1]);
+			result[2] = Integer.parseInt(temp[2]);
+		}
+		return result;
+	}
 }

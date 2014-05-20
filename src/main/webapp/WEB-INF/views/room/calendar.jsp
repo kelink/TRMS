@@ -179,11 +179,19 @@ function GetWeekdayMonthStartsOn(Y,M){		//'得到该月的第一天是星期几
 
 function bookInfo(a)
 {
-    alert("dept:"+bookedDate[a].department+"lc:"+bookedDate[a].lc+"tele:"+bookedDate[a].usertele);
+	alert("Sorry, This Room has been booked by"
+			+bookedDate[a].applicant_Team
+			+"More Information Please Contact："
+			+bookedDate[a].tele
+			+"or emails to this Address:"
+			+bookedDate[a].email
+			+"or contact LC:"
+			+bookedDate[a].approveBy);
+    //alert("dept:"+bookedDate[a].department+"lc:"+bookedDate[a].lc+"tele:"+bookedDate[a].usertele);
 }
 function setDate(year,month,day)
 {
-	var url='<%=request.getContextPath()%>/room/check?room_ID=${room_ID}'+'&year='+year+'&month='+month+'&day='+day;
+	var url='<%=request.getContextPath()%>/room/getForm?room_ID=${room_ID}'+'&year='+year+'&month='+month+'&day='+day;
 	window.location.href=url;
 	var a=window.top.document.getElementById("calArea"+${room_ID});
 	var b=window.top.document.getElementById("cover");
