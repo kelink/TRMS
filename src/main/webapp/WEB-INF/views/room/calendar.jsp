@@ -185,12 +185,14 @@ function setDate(year,month,day)
 {
 	var url='<%=request.getContextPath()%>/room/check?room_ID=${room_ID}'+'&year='+year+'&month='+month+'&day='+day;
 	window.location.href=url;
-	var a=window.top.document.getElementById("calArea8");
+	var a=window.top.document.getElementById("calArea"+${room_ID});
 	var b=window.top.document.getElementById("cover");
 	
     a.setAttribute("class","calArea floatTicket");
     b.setAttribute("class","cover");
-    b.setAttribute("onclick","turnback();");
+    eval(
+    		"b.setAttribute(\"onclick\",\"turnback("+${room_ID}+");\");"		
+    )
   //  document.getElementById('turnback').style.backgroundColor='#ff0000';
 //     document.getElementById("turnback").setAttribute("onclick",);
     

@@ -30,11 +30,11 @@ function logout(url){
 	$("#logoutBtn").attr("class","btn btnSelected");
 	window.location.href=url;
 }
-function turnback()
+function turnback(id)
 {
-	var a=window.top.document.getElementById("calArea8");
+	var a=window.top.document.getElementById("calArea"+id);
 	var b=window.top.document.getElementById("cover");
-	window.top.document.getElementById("iframe8").setAttribute("src","/trms/room/calendar?room_ID=8");
+	window.top.document.getElementById("iframe"+id).setAttribute("src","/trms/room/calendar?room_ID="+id);
     a.setAttribute("class","calArea");
     b.setAttribute("class","");
     
