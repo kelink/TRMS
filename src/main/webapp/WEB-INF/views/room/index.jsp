@@ -12,10 +12,10 @@
 </head>
 <body>
 <h1>订房界面</h1>
-<h1><a href="<%=request.getContextPath()%>/user/home_TA">BACK</a></h1>
-<form action="<%=request.getContextPath()%>/book/" method="post" name="bookForm">
+<h1><a href="<%=request.getContextPath()%>/user/index">BACK</a></h1>
+<form action="<%=request.getContextPath()%>/room/bookRoom" method="post" name="bookForm">
 Free Room:
-<select>
+<select name="room">
 	<c:forEach items="${freeRooms}" var="room"> 
 		<option value="${room.room_ID }">${room.item }</option>
 	</c:forEach>
@@ -23,11 +23,11 @@ Free Room:
 <br/>
 Start_Time<input type="date"  name="begin_time"/><br/>
 End_Time:<input type="date" name="end_time"/><br/>
-Email<input type="text" name="room"/><br/>
+Email<input type="text" name="email"/><br/>
 Team
-<select>
+<select name="team">
 	<c:forEach items="${teams}" var="team"> 
-		<option value="${team.team_ID} }">${team.teamName }</option>
+		<option value="${team.team_ID}">${team.teamName }</option>
 	</c:forEach>
 </select>
 <br/>

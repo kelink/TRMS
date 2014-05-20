@@ -1,6 +1,6 @@
 package com.dummy.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,6 +36,9 @@ public class Reservation {
 	@Column(length = 255)
 	private String email;
 
+	@Column(length = 255)
+	private String tele;
+
 	private Date Applied_Start_Date;
 	private Date Applied_End_Date;
 	private Date order_Time;
@@ -62,6 +65,14 @@ public class Reservation {
 
 	public void setTeam_ID(int team_ID) {
 		this.team_ID = team_ID;
+	}
+
+	public String getTele() {
+		return tele;
+	}
+
+	public void setTele(String tele) {
+		this.tele = tele;
 	}
 
 	public int getRoom_ID() {
@@ -118,6 +129,16 @@ public class Reservation {
 
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
+	}
+
+	@Override
+	public String toString() {
+		return "Reservation [reservation_ID=" + reservation_ID + ", team_ID="
+				+ team_ID + ", room_ID=" + room_ID + ", user_ID=" + user_ID
+				+ ", purpose=" + purpose + ", status=" + status + ", email="
+				+ email + ", Applied_Start_Date=" + Applied_Start_Date
+				+ ", Applied_End_Date=" + Applied_End_Date + ", order_Time="
+				+ order_Time + "]";
 	}
 
 }

@@ -13,6 +13,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.type.StandardBasicTypes;
 import org.springframework.stereotype.Repository;
 
+import com.dummy.common.C;
 import com.dummy.dao.ReservationDao;
 import com.dummy.domain.CalanderDataDomain;
 import com.dummy.domain.Reservation;
@@ -74,7 +75,7 @@ public class ReservationDaoImpl implements ReservationDao {
 				+ "and applied_end_date<=? " + "and reservation.room_ID=? "
 				+ "and Dbuser.user_ID=reservation.user_ID;";
 		SQLQuery query = sessionFactory.openSession().createSQLQuery(sqlStr);
-		query.setInteger(0, 1);
+		query.setInteger(0, C.DB.DEFAULT_RESERVATION_ACCEPT);
 		query.setString(1, CalanderUtil.getFirstDay());
 		query.setString(2, CalanderUtil.getLastDay());
 		query.setInteger(3, room_ID);

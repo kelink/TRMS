@@ -1,5 +1,9 @@
 package com.dummy.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,19 +15,25 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dummy.common.C;
+import com.dummy.domain.DBUser;
 import com.dummy.domain.Reservation;
 import com.dummy.domain.Room;
 import com.dummy.domain.Team;
 import com.dummy.service.ReservationService;
 import com.dummy.service.RoomService;
 import com.dummy.service.TeamService;
+import com.dummy.service.UserService;
 
 @Controller
+@SessionAttributes({ "currentUser" })
 @RequestMapping(value = { "/room" })
 public class RoomController {
 
@@ -38,6 +48,9 @@ public class RoomController {
 
 	@Resource(name = "roomService")
 	private RoomService roomService;
+
+	@Resource(name = "userService")
+	private UserService userService;
 
 	// Room 管理主界面
 	@RequestMapping(value = { "/index", "" })
@@ -88,7 +101,42 @@ public class RoomController {
 	}
 
 	// 订房逻辑
-	public ModelAndView bookRoom() {
+	@RequestMapping(value = "/bookRoom")
+	public ModelAndView bookRoom(HttpServletRequest request,
+			@ModelAttribute("currentUser") DBUser currentUser) {
+		// 1.当前时间到月尾内 空闲的房间可以预定
+		int room_ID = Integer.parseInt(request.getParameter("room"));
+		String begin_time = request.getParameter("begin_time");
+		String end_time = request.getParameter("end_time");
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		String email = request.getParameter("email");
+		String tele = request.getParameter("userTelLine");
+		String purpose = request.getParameter("purpose");
+		int team_ID = Integer.parseInt(request.getParameter("team"));
+		Date beginDate = null;
+		Date endDate = null;
+		Date nowDate = null;
+		try {
+			beginDate = (Date) format1.parse(begin_time);
+			endDate = (Date) format1.parse(end_time);
+			String now = format1.format(new java.util.Date());
+			nowDate = (Date) format1.parse(now);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Reservation reservation = new Reservation();
+		reservation.setApplied_End_Date(endDate);
+		reservation.setApplied_Start_Date(beginDate);
+		reservation.setEmail(email);
+		reservation.setOrder_Time(nowDate);
+		reservation.setPurpose(purpose);
+		reservation.setRoom_ID(room_ID);
+		reservation.setStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
+		reservation.setTeam_ID(team_ID);
+		reservation.setUser_ID(currentUser.getUser_ID());
+		reservation.setTele(tele);
+		System.out.println(reservation);
+		reservationService.addReservation(reservation);
 		return new ModelAndView("room/success");
 	}
 

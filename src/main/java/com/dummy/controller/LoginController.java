@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dummy.domain.DBUser;
@@ -21,11 +23,14 @@ import com.dummy.service.UserService;
 
 @Controller
 @RequestMapping(value = "/login")
+@SessionAttributes("currentUser")
 public class LoginController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
 	@Resource(name = "userService")
 	private UserService userService;
+
+	private HttpSession session;
 
 	@RequestMapping(value = { "/index", "", "/" })
 	public String index() {
@@ -53,6 +58,7 @@ public class LoginController {
 		logger.info(currentUser + "---login success-----");
 		if (role.equals("ROLE_LC")) {
 			modelMap.addAttribute("currentUser", currentUser);
+			modelMap.put("currentUser", currentUser);
 			return new ModelAndView("redirect:/user/index", modelMap);
 		}
 		if (role.equals("ROLE_TA")) {

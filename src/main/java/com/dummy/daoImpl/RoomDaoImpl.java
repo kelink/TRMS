@@ -80,5 +80,4 @@ public class RoomDaoImpl implements RoomDao {
 		query.setInteger(0, status);
 		return query.list();
 	}
-
 }
