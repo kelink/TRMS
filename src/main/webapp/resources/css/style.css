@@ -3,9 +3,13 @@ BODY {
 	color : #000000;
 	font-family : Arial, Tahoma, Helvetica, sans-serif;
 	margin:0px;
+	box-sizing:border-box;
 }
 
-
+.wrapper
+{
+	position:relative;
+}
 h2
 {
 color:rgb(218, 216, 216);
@@ -16,14 +20,27 @@ font-size:26px;
 }
 #header
 {
+position: absolute;
+z-index: 3000;
+float: left;
+margin-left: 120px;
 height:74px;
-background-color:#34302d;
-border-top:4px solid #db0011;
-box-shadow: 0px 0px 10px;
-position:relative;
+
+//border-top:4px solid #db0011;
+/* -moz-box-shadow:0 0 10px #34302d; */
+/* -webkit-box-shadow:0 0 10px #34302d; */
+/* box-shadow: 0 0 10px #34302d; */
+
+}
+
+#space
+{
+	margin-top:100px;
+	overflow:hidden;
 }
 #viewport
 {
+position:relative;
 background-image:url(../images/homepage-bg.jpg);
 height:650px;
 min-width:1140px;
@@ -48,14 +65,28 @@ margin:0 auto;
 padding-left:20px;
 padding-right:20px;
 }
+#leftPanel
+{
+width: 400px;
+height: 300px;
+background-image:url(../images/topic.png);
+float:left;
+margin-top: 40px;
+margin-left: 130px;
+background-repeat:no-repeat;
+background-size:cover;
+
+}
 #loginPanel
 {
 float:right;
 margin-right:100px;
-margin-top:90px;
+
 width:400px;
 height:420px;
 background:rgba(0, 0, 0, .4);
+border-top-right-radius: 70px;
+border-bottom-left-radius: 70px;
 }
 #label1
 {
@@ -101,11 +132,13 @@ margin-top:10px;
 }
 .textLine
 {
+
 font-family: Verdana,Tahoma,Arial;
 font-size:16px;
-line-height:24px;
-padding:7px 5px 6px 5px;
-width:200px;
+height:35px;
+/* line-height:26px; */
+/* padding:7px 5px 6px 5px; */
+width:210px;
 margin-top:0px;
 float:left;
 }
@@ -151,9 +184,9 @@ background-color:#34302d;
 color:#eee;
 box-shadow: 0px 0px 20px;
 }
-#footerContainer
+.Fcontainer
 {
-
+position:relative;
 max-width:1024px;
 margin:0 auto;
 padding-left:20px;
@@ -170,15 +203,45 @@ float: left;
 margin-top: 30px;
 }
 
-#leftPanel
-{
-width: 400px;
-height: 300px;
-background-image:url(../images/topic.png);
-float:left;
-margin-top: 30px;
-margin-left: 130px;
-background-repeat:no-repeat;
-background-size:cover;
 
+
+.Finfo{
+	width:960px; font-family:tahoma,arial; 
+	line-height:46px; 
+	color:#bbbdc0; 
+
+	background-color: rgba(0, 0, 0, 0.22);
+	height:46px; 
+	margin:10px auto 0; 
+	border-radius:5px 6px 0 0; 
+	padding:0 20px;
+	position:absolute;
+	bottom:1px;
+	left:50%;
+	margin-left:-500px;
+	}
+.Finfo a
+{
+	color:#2fb3cf;text-decoration:none;
+	}
+.copyright
+{
+	float:left
+	}
+#viewportContainer
+{
+	max-width: 1150px;
+margin: 0 auto;
+overflow: hidden;
 }
+#loginInfo
+{overflow:hidden;
+color:red;
+	margin-top: 10px;
+font-size: 19px;
+white-space:normal;
+ word-break:break-all;
+width: 258px;
+margin-left: 62px;	
+}
+
