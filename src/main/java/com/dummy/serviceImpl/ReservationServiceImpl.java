@@ -88,6 +88,13 @@ public class ReservationServiceImpl implements ReservationService {
 			map.put("year", String.valueOf(dateInfo[0]));
 			map.put("month", String.valueOf(dateInfo[1]));
 			map.put("day", String.valueOf(dateInfo[2]));
+			map.put("email", calanderDataDomain.getEmail());
+			map.put("tele", calanderDataDomain.getTele());
+			map.put("approveBy",
+					userDao.getUser(calanderDataDomain.getUser_ID())
+							.getAccount());
+			map.put("applicant_Team", calanderDataDomain.getTeamName());
+
 			JSONObject jsonObject = new JSONObject(map);
 			result.add(jsonObject);
 		} else {
@@ -99,6 +106,13 @@ public class ReservationServiceImpl implements ReservationService {
 				map.put("year", String.valueOf(dateInfo[0]));
 				map.put("month", String.valueOf(dateInfo[1]));
 				map.put("day", String.valueOf(dateInfo[2]));
+				map.put("email", calanderDataDomain.getEmail());
+				map.put("tele", calanderDataDomain.getTele());
+				map.put("approveBy",
+						userDao.getUser(calanderDataDomain.getUser_ID())
+								.getAccount());
+				map.put("applicant_Team", calanderDataDomain.getTeamName());
+
 				JSONObject jsonObject = new JSONObject(map);
 				result.add(jsonObject);
 				start += onDay;
@@ -109,6 +123,13 @@ public class ReservationServiceImpl implements ReservationService {
 					temp.put("year", String.valueOf(tempDate[0]));
 					temp.put("month", String.valueOf(tempDate[1]));
 					temp.put("day", String.valueOf(tempDate[2]));
+					temp.put("email", calanderDataDomain.getEmail());
+					temp.put("tele", calanderDataDomain.getTele());
+					temp.put("approveBy",
+							userDao.getUser(calanderDataDomain.getUser_ID())
+									.getAccount());
+					temp.put("applicant_Team", calanderDataDomain.getTeamName());
+
 					JSONObject last = new JSONObject(temp);
 					result.add(last);
 				} else {
