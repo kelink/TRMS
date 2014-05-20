@@ -53,14 +53,22 @@ public class RoomController {
 	private UserService userService;
 
 	// Room 管理主界面
-	@RequestMapping(value = { "/index", "" })
-	public ModelAndView index() {
-		List<Room> freeRooms = roomService.getFreeRooms();
+	@RequestMapping(value = { "/check", "" })
+	public ModelAndView check(HttpServletRequest request) {
+		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
+		int year = Integer.parseInt(request.getParameter("year"));
+		int month = Integer.parseInt(request.getParameter("month"));
+		int day = Integer.parseInt(request.getParameter("day"));
+		Date date = new Date(year, month, day);
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		String bookDate = format1.format(date);
+		Room room = roomService.getRoom(room_ID);
 		List<Team> teams = teamService.getAllTeam();
 		ModelMap map = new ModelMap();
-		map.addAttribute("freeRooms", freeRooms);
+		map.addAttribute("room", room);
 		map.addAttribute("teams", teams);
-		return new ModelAndView("room/index", map);
+		map.addAttribute("bookDate", bookDate);
+		return new ModelAndView("room/check", map);
 	}
 
 	// 分页list 所有的房间
@@ -96,6 +104,7 @@ public class RoomController {
 		String calendarData = reservationService.getCalanderData(room_ID);
 		ModelMap map = new ModelMap();
 		map.addAttribute("calendarData", calendarData);
+		map.addAttribute("room_ID", room_ID);
 		System.out.println(calendarData);
 		return new ModelAndView("room/calendar", map);
 	}

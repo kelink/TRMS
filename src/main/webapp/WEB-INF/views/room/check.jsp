@@ -15,14 +15,12 @@
 <h1><a href="<%=request.getContextPath()%>/user/index">BACK</a></h1>
 <form action="<%=request.getContextPath()%>/room/bookRoom" method="post" name="bookForm">
 Free Room:
-<select name="room">
-	<c:forEach items="${freeRooms}" var="room"> 
+<select name="room"> 
 		<option value="${room.room_ID }">${room.item }</option>
-	</c:forEach>
 </select>
 <br/>
-Start_Time<input type="date"  name="begin_time"/><br/>
-End_Time:<input type="date" name="end_time"/><br/>
+Start_Time<input type="text"  name="begin_time" value="${bookDate}"readonly="readonly"/><br/>
+End_Time:<input type="text" name="end_time" value="${bookDate}"readonly="readonly"/><br/>
 Email<input type="text" name="email"/><br/>
 Team
 <select name="team">

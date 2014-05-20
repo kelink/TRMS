@@ -82,11 +82,30 @@ public class ReservationServiceImpl implements ReservationService {
 		builder.append("year:" + data[0] + ",");
 		builder.append("month:" + data[1] + ",");
 		builder.append("day:" + data[2] + ",");
-		builder.append("department:" + "\"" + calanderDataDomain.getTeamName()+ "\",");
+		builder.append("department:" + "\"" + calanderDataDomain.getTeamName()
+				+ "\",");
 		builder.append("lc:" + "\"" + calanderDataDomain.getAccount() + "\",");
-		builder.append("usage:" + "\"" + calanderDataDomain.getPurpose()+ "\",");
-		builder.append("usertele:" + "\"" + calanderDataDomain.getUser_Tele()+ "\"");
+		builder.append("usage:" + "\"" + calanderDataDomain.getPurpose()
+				+ "\",");
+		builder.append("usertele:" + "\"" + calanderDataDomain.getUser_Tele()
+				+ "\"");
 		builder.append("}");
 		return builder.toString();
 	}
+
+	// private JSONObject createCalendarJsonObject(
+	// CalanderDataDomain calanderDataDomain) {
+	// Date start = calanderDataDomain.getApplied_Start_Date();
+	// Date end = calanderDataDomain.getApplied_END_Date();
+	// long day = (Math.abs(end.getTime() - start.getTime()) / (24 * 60 * 60 *
+	// 1000)) + 1;
+	// for (int i = 0; i < day; i++) {
+	//
+	// HashMap<String, Object> map = new HashMap<String, Object>();
+	// String[] data = start.split("-");
+	// map.put(key, value);
+	// }
+	// JSONObject jsonObject = JSONObject.fromObject(map);
+	// return null;
+	// }
 }

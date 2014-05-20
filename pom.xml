@@ -231,11 +231,22 @@
 		</dependency>
 	    <!-- Maven Jquery -->
         <dependency>
-	<groupId>com.efsavage.jquery</groupId>
-		<artifactId>jquery-maven</artifactId>
-		<version>1.7.2</version>
-	</dependency>
-            
+			<groupId>com.efsavage.jquery</groupId>
+			<artifactId>jquery-maven</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+		<!-- JavaMail -->
+      	<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<!-- JSON -->
+         <dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+		</dependency>
 	     
 	</dependencies>
     <build>
