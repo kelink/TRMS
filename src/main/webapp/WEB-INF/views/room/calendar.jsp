@@ -46,11 +46,6 @@ var path="<%=request.getContextPath()%>"
     <div id="DayAll"></div>
 </div>
 </body>
-
-
-
-
-
 </html>
 
 

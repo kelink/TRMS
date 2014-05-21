@@ -108,4 +108,12 @@ public class ReservationDaoImpl implements ReservationDao {
 		}
 		return list;
 	}
+
+	// 模糊高级查询
+	public List<Reservation> getReservationByOption(String sql) {
+		String hql = "from Reservation where " + sql;
+		System.out.println(hql);
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
+	}
 }

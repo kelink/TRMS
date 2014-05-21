@@ -31,6 +31,7 @@ import com.dummy.service.ReservationService;
 import com.dummy.service.RoomService;
 import com.dummy.service.TeamService;
 import com.dummy.service.UserService;
+import com.dummy.util.ReservationUtil;
 
 @Controller
 @SessionAttributes({ "currentUser" })
@@ -123,6 +124,7 @@ public class RoomController {
 		String end_time = request.getParameter("end_time");
 
 		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+
 		String email = request.getParameter("email");
 		String tele = request.getParameter("userTelLine");
 		String purpose = request.getParameter("purpose");
@@ -149,7 +151,10 @@ public class RoomController {
 		reservation.setTeam_ID(team_ID);
 		reservation.setUser_ID(currentUser.getUser_ID());
 		reservation.setTele(tele);
+		reservation.setReservation_Num(ReservationUtil.getUniqueSequence());
+		reservation.setApprove_by(C.DB.DEFAULT_APPROVE_BY);
 		System.out.println(reservation);
+		// 发送email，后面再添加
 		reservationService.addReservation(reservation);
 		return new ModelAndView("room/success");
 	}

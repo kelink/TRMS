@@ -17,4 +17,6 @@ public interface ReservationDao {
 	public boolean updateReservationById(int id, Reservation reservation);
 
 	public List<CalanderDataDomain> getAllReservationInfo(int room_ID);
+
+	public List<Reservation> getReservationByOption(String sql);
 }
