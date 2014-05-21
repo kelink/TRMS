@@ -1,0 +1,94 @@
+#profileHeader
+{
+	height:50px;
+}
+#profileTopic
+{
+	float:left;
+	line-height: 40px;
+font-size: 16px;
+font-weight: bold;
+color: rgb(94, 92, 92);
+}
+
+#profileLine
+{
+	float:left;
+	height:20px;
+	margin-left:15px;
+	width:650px;
+	border-bottom:1px solid #cccccc;
+}
+#profileBtn
+{
+	padding-left: 8px;
+	cursor:pointer;
+	height: 30px;
+	width:50px;
+margin-top: 6px;
+	float:left;
+	line-height: 30px;
+font-size: 16px;
+font-weight: bold;
+color: rgb(94, 92, 92);
+margin-left:15px;
+border-radius:5px;
+border:1px solid #cccccc;
+background-color: #eeeeee;
+background-image: -moz-linear-gradient(#fcfcfc, #eee);
+background-image: -webkit-linear-gradient(#fcfcfc, #eee);
+background-image: linear-gradient(#fcfcfc, #eee);
+background-repeat: repeat-x;
+}
+#profileContent
+{
+	height:500px;
+	margin-top: 20px;
+}
+#profileContentLeft
+{
+	float:left;
+	height:400px;
+	width:160px;
+}
+#profileContentRight
+{
+	float:left;
+	margin-left: 40px;
+width: 600px;
+}
+#picture
+{
+	border: 1px solid #cccccc;
+    padding: 5px;
+    box-shadow: 0 0 8px gray;
+}
+
+.label
+{
+	display:table-cell;
+	font-size: 18px;
+font-weight: bold;
+color: rgb(94, 92, 92);
+}
+.userInfo
+{
+	display:table-cell;
+	font-size: 18px;
+color: rgb(78, 78, 78);
+}
+
+.infoWrapper
+{
+	display:table;
+}
+.infoRow
+{
+	display:table-row;
+}
+#chPassword
+{
+	color:blue;
+}
+
+
