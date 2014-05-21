@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: trms1
 Target Host: localhost
 Target Database: trms1
-Date: 2014/5/19 20:50:07
+Date: 2014/5/21 23:15:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -45,17 +45,20 @@ CREATE TABLE `department` (
 -- ----------------------------
 CREATE TABLE `reservation` (
   `reservation_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Applied_End_Date` date DEFAULT NULL,
+  `reservation_Num` varchar(100) DEFAULT NULL,
   `Applied_Start_Date` date DEFAULT NULL,
+  `Applied_End_Date` date DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
+  `tele` varchar(255) DEFAULT NULL,
   `order_Time` date DEFAULT NULL,
   `purpose` varchar(255) DEFAULT NULL,
   `room_ID` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `team_ID` int(11) DEFAULT NULL,
+  `approve_by` int(11) DEFAULT NULL,
   `user_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`reservation_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for role
@@ -102,8 +105,14 @@ INSERT INTO `department` VALUES ('1', 'Training');
 INSERT INTO `department` VALUES ('2', 'Financial');
 INSERT INTO `department` VALUES ('3', 'HR');
 INSERT INTO `department` VALUES ('4', 'GLTC');
-INSERT INTO `reservation` VALUES ('1', '2014-05-03', '2014-05-03', '103004109@qq.com', '2014-05-01', 'test', '1', '1', '1', '1');
-INSERT INTO `reservation` VALUES ('2', '2014-05-13', '2014-05-13', '106584488@qq.com', '2014-05-11', 'test', '1', '1', '2', '2');
+INSERT INTO `reservation` VALUES ('1', null, '2014-05-03', '2014-05-03', '103004109@qq.com', '18846584874', '2014-05-01', 'test', '1', '1', '1', '1', '1');
+INSERT INTO `reservation` VALUES ('2', null, '2014-05-13', '2014-05-13', '106584488@qq.com', '18846584845', '2014-05-11', 'test', '1', '1', '2', '1', '2');
+INSERT INTO `reservation` VALUES ('3', null, '2014-05-16', '2014-05-19', '46565@gail.com', '19888465848', '2014-05-20', 'test', '1', '1', '1', '1', '1');
+INSERT INTO `reservation` VALUES ('5', null, '2014-05-21', '2014-05-21', '10300555@qq.com', '188546254', '2014-05-20', 'Test', '1', '-1', '1', '1', '1');
+INSERT INTO `reservation` VALUES ('7', null, '2014-05-22', '2014-05-23', 'link@gmail.com', '1845987455', '2014-05-20', 'Test', '1', '-1', '1', '1', '1');
+INSERT INTO `reservation` VALUES ('9', '1400663460973-8c3e08c2-64ad-438b-beaf-760ee00eec25', '2014-05-21', '2014-05-21', 'dsad@qq.com', '18854658498', '2014-05-21', 'test', '1', '-1', '1', '1', '1');
+INSERT INTO `reservation` VALUES ('10', '1400663561529-9f1dcd61-f547-4530-a288-6fd8eaa65eae', '2014-05-21', '2014-05-24', 'sdsdasda@qq.com', '1874546854655', '2014-05-21', 'test', '1', '1', '1', '1', '1');
+INSERT INTO `reservation` VALUES ('11', '6521fc64-334c-46c8-807c-2b1ee8db0d8a', '2014-05-22', '2014-05-23', '1030041097@qq.com', '18845465845', '2014-05-21', 'Test', '8', '1', '1', '0', '1');
 INSERT INTO `role` VALUES ('1', 'ROLE_LC');
 INSERT INTO `role` VALUES ('2', 'ROLE_TA');
 INSERT INTO `room` VALUES ('1', 'TKH OT2 22.5', '2014-05-14', '1', '2');
