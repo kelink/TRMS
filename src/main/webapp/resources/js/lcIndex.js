@@ -27,7 +27,7 @@ function displayCal(id) {
 }
 
 function logout(url){
-	$("#logoutBtn").attr("class","btn btnSelected");
+	$("#logoutBtn").attr("class","btnLogout btnSelected");
 	window.location.href=url;
 }
 function turnback(id)
@@ -42,13 +42,15 @@ function turnback(id)
 window.onload=function(){
 
 	$("#logoutBtn").mouseover(function(){
-		$(this).attr("class","btn btnHover");
+		$(this).attr("class","btnLogout btnHover");
 		
 	});
 	$("#logoutBtn").mouseout(function(){
-		$(this).attr("class","btn");
+		$(this).attr("class","btnLogout");
 	});
-	
+	$("#logoutBtn").mousedown(function(){
+		$(this).attr("class","btnLogout btnLogoutSelected");
+	});
 
 
 	
