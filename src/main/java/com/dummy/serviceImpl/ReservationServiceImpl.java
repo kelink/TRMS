@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.dummy.dao.ReservationDao;
@@ -20,6 +23,8 @@ import com.dummy.service.ReservationService;
 
 @Service(value = "reservationService")
 public class ReservationServiceImpl implements ReservationService {
+	private static final Logger logger = LoggerFactory
+			.getLogger(ReservationServiceImpl.class);
 	@Resource(name = "reservationDao")
 	private ReservationDao reservationDao;
 
@@ -90,7 +95,7 @@ public class ReservationServiceImpl implements ReservationService {
 			map.put("day", String.valueOf(dateInfo[2]));
 			map.put("email", calanderDataDomain.getEmail());
 			map.put("tele", calanderDataDomain.getTele());
-			map.put("approveBy",
+			map.put("applicant",
 					userDao.getUser(calanderDataDomain.getUser_ID())
 							.getAccount());
 			map.put("applicant_Team", calanderDataDomain.getTeamName());
@@ -108,7 +113,7 @@ public class ReservationServiceImpl implements ReservationService {
 				map.put("day", String.valueOf(dateInfo[2]));
 				map.put("email", calanderDataDomain.getEmail());
 				map.put("tele", calanderDataDomain.getTele());
-				map.put("approveBy",
+				map.put("applicant",
 						userDao.getUser(calanderDataDomain.getUser_ID())
 								.getAccount());
 				map.put("applicant_Team", calanderDataDomain.getTeamName());
@@ -125,7 +130,7 @@ public class ReservationServiceImpl implements ReservationService {
 					temp.put("day", String.valueOf(tempDate[2]));
 					temp.put("email", calanderDataDomain.getEmail());
 					temp.put("tele", calanderDataDomain.getTele());
-					temp.put("approveBy",
+					temp.put("applicant",
 							userDao.getUser(calanderDataDomain.getUser_ID())
 									.getAccount());
 					temp.put("applicant_Team", calanderDataDomain.getTeamName());
@@ -154,5 +159,38 @@ public class ReservationServiceImpl implements ReservationService {
 			result[2] = Integer.parseInt(temp[2]);
 		}
 		return result;
+	}
+
+	@Override
+	public List<Reservation> getReservationByOption(
+			HashMap<String, String> queryKeys) {
+		StringBuilder builder = new StringBuilder();
+		Set<String> keys = queryKeys.keySet();
+		int i = 0;
+		for (String key : keys) {
+			if (key.equals("team_ID") || key.equals("room_ID")
+					|| key.equals("user_ID") || key.equals("status")) {
+				builder.append(key + "=" + queryKeys.get(key).trim());
+			} else if (key.equals("purpose") || key.equals("reservation_Num")
+					|| key.equals("email") || key.equals("tele")) {
+				builder.append(key + " like " + "'%"
+						+ queryKeys.get(key).toString().trim() + "%'");
+			} else if (key.equals("Applied_Start_Date")) {
+				builder.append(key + ">='" + queryKeys.get(key).trim() + "'");
+			} else if (key.equals("Applied_End_Date")) {
+				builder.append(key + "<='" + queryKeys.get(key).trim() + "'");
+			} else if (key.equals("order_Time")) {
+				builder.append(key + "='" + queryKeys.get(key).trim() + "'");
+			}
+
+			if ((i + 1) != keys.size()) {
+				builder.append(" and ");
+			}
+			++i;
+		}
+		logger.info("sqlÓï¾ä---->" + builder.toString());
+		List<Reservation> reservations = reservationDao
+				.getReservationByOption(builder.toString());
+		return reservations;
 	}
 }

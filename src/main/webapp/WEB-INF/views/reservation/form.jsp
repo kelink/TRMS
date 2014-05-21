@@ -12,12 +12,11 @@
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
 </head>
 <body>
-	LC 主界面 <security:authentication property="principal.username"></security:authentication> 
-	<c:url value="/j_spring_security_logout" var="logoutUrl"/>  
-	<li><a href="${logoutUrl}">Log Out</a></li> 
-	<a href="<%=request.getContextPath()%>/room/list">Check Room</a>
+	<h1>Reservation addForm</h1>
+	
+	<div>
+	
+	</div>
 </body>
 </body>
 </html>
-
-

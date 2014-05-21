@@ -186,7 +186,7 @@ function bookInfo(a)
 			+"or emails to this Address:"
 			+bookedDate[a].email
 			+"or contact LC:"
-			+bookedDate[a].approveBy);
+			+bookedDate[a].applicant);
     //alert("dept:"+bookedDate[a].department+"lc:"+bookedDate[a].lc+"tele:"+bookedDate[a].usertele);
 }
 function setDate(year,month,day)

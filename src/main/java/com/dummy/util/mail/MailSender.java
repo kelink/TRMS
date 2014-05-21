@@ -15,10 +15,27 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import com.dummy.common.C;
+
 /**
  * 简单邮件（不带附件的邮件）发送器
  */
-public class SimpleMailSender {
+public class MailSender {
+
+	// 需要注意security安全验证，初略版的email邮箱
+	// 配置邮件发送基本配置将来使用配置文件配置
+	public static void main(String[] args) {
+		// 这个类主要是设置邮件
+		MailSenderInfo mailInfo = new MailSenderInfo();
+		mailInfo.setPropertiesByFile(C.Util.CONFIG_EMAIL_PATH);
+		mailInfo.setEmailContent("设置邮箱标题", "设置邮箱内容", "1030041097@qq.com");
+		MailSender sms = new MailSender();
+		// 发送文体格式
+		sms.sendTextMail(mailInfo);
+		// 发送html格式
+		// sms.sendHtmlMail(mailInfo);
+	}
+
 	/**
 	 * 以文本格式发送邮件
 	 * 

@@ -109,7 +109,6 @@
  </script>
 </head>
 <body>
-<security:authentication property="principal.username"/> 
 <c:url value="/j_spring_security_logout" var="logoutUrl"/>  
 
 <div id="cover">
@@ -122,6 +121,7 @@
 	 </div>
 	 
 	 <div class="status">
+	 <security:authentication property="principal.username"/> 
 	     <div class="statusContainer">
 	         <button id="logoutBtn" class="btn" onclick="logout('${logoutUrl}');">Log Out</button>
 	      
