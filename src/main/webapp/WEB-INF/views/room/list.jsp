@@ -51,7 +51,7 @@
  						html+=" </button>";
 	
  						html+=" <div id='calArea"+room_ID+"' class='calArea'>";
- 						html+= "<iframe id='iframe"+room_ID+"' name='calendar' width='100%' height='100%' frameborder='0' style='overflow:auto;'scrolling='no'></iframe>";
+ 						html+= "<iframe class='iframe' id='iframe"+room_ID+"' name='calendar' width='100%' height='100%' frameborder='0' style='overflow:auto;'scrolling='no'></iframe>";
  						html+="</div>";
  						html+=" </li>";         
 					
@@ -109,6 +109,10 @@
  </script>
 </head>
 <body>
+<<<<<<< HEAD
+=======
+<%-- <security:authentication property="principal.username"/>  --%>
+>>>>>>> a74af97f809dfb05f39793214829c73a0243423b
 <c:url value="/j_spring_security_logout" var="logoutUrl"/>  
 
 <div id="cover">
@@ -123,7 +127,17 @@
 	 <div class="status">
 	 <security:authentication property="principal.username"/> 
 	     <div class="statusContainer">
-	         <button id="logoutBtn" class="btn" onclick="logout('${logoutUrl}');">Log Out</button>
+	         <div id="userInfo">
+	         <img id="userCard" width="35px" height="35px" src="<%=request.getContextPath()%>/resources/images/card.png"/>
+	         <div id="userName">
+	         <span>Welcome! <security:authentication property="principal.username"/></span>
+	         </div>
+	         </div>
+	         <button id="logoutBtn" class="btnLogout" onclick="logout('${logoutUrl}');">
+	         <span id="logoutImage"><img id="logoutIcon" width="20px"height="20px" src="<%=request.getContextPath()%>/resources/images/logout.png"/>
+	         </span>
+	         <span>LogOut</span>
+	         </button>
 	      
 	     </div>
 	 </div>
@@ -165,7 +179,8 @@
 					<!-- 显示room的信息 -->
 					
 				 <ul>			 
-				    <div id="roomInfo"></div>				
+				    <div id="roomInfo">
+				    </div>				
 				 </ul>
 				 <div>
 					 Total Page:<span id='count'>${pageCount}</span>
@@ -187,6 +202,44 @@
 		 </div>
 	 </div>
  </div>
+ 
+ 
+ 
+ 
+ <!--Footer -->
+<div id="footer">
+  <div id="footer-inner">
+    <div class="client-say">
+      <h3>Training Room Service</h3>
+      <img src="<%=request.getContextPath()%>/resources/images/client.jpg" alt="" class="flleft grayborR" />
+      <font size="2" color="">
+	  <br>
+	  <p>敬请期待更多翻译系统服务</p>
+	  <p>我们的服务，你值得拥有！</p>
+	  </font>
+    </div>
+    <div class="footer-details">
+      <h3>Contact Us</h3>
+	  <br>
+      <div class="address"><img alt="" src="<%=request.getContextPath()%>/resources/images/address.png"> <strong>Address:</strong> GDUFS</div>
+      <div class="address"><img height="18" width="14" alt="" src="<%=request.getContextPath()%>/resources/images/phone.png"> <strong>Phone:</strong> 110</div>
+      <div class="address"><img height="12" width="15" alt="" src="<%=request.getContextPath()%>/resources/images/mail.png"> <strong>Email:</strong> <a href="#">gdufs@163.com</a></div>
+    </div>
+    <div class="footer-details no-margin">
+      <h3>Link</h3>
+	 
+      <p> <a href="http://www.baidu.com"><font size="2" color="white">Baidu</font></a></p>
+	  <br>
+	  <p> <a href="http://www.google.com"><font size="2" color="white">Google</font></a></p>
+	  <br>
+	  <p> <a href="#"><font size="2" color="white">HSBC</font></a></p>
+    </div>
+  </div>
+  <!--Footer Info-->
+  <div class="Finfo">
+    <div class="copyright"> &copy; Copyright 2013 by <a href="#">gdufs.com</a></div>
+  </div>
+</div>
  
 </body>
 </html>

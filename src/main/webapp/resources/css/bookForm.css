@@ -1,0 +1,28 @@
+body
+{
+background-color:white;
+margin:0px;
+font: 13px Helvetica, arial, freesans, clean, sans-serif;
+}
+
+.panelHeader {
+padding: 8px 10px;
+background-color: #eeeeee;
+background-image: -moz-linear-gradient(#fafafa, #eee);
+background-image: -webkit-linear-gradient(#fafafa, #eee);
+background-image: linear-gradient(#fafafa, #eee);
+background-repeat: repeat-x;
+border-bottom: 1px solid #ddd;
+font-size: 14px;
+}
+
+#close {
+	cursor:pointer;
+float:right;
+}
+#headerText
+{
+	font-weight: bold;
+color: #333;
+text-shadow: 0 1px 0 #fff;
+}

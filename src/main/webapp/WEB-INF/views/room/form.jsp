@@ -6,13 +6,19 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+<head >
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="<%=request.getContextPath()%>/resources/css/bookForm.css" rel="stylesheet" type="text/css" >
+ <script src="<%=request.getContextPath()%>/resources/js/bookForm.js" type="text/javascript"></script>
+ <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 </head>
 <body>
+<div class="panelHeader">
+<span id="headerText">Fill in the form</span>
+<span id="close"onclick="back(${room.room_ID});"><img id="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
 
-<h1>订房界面</h1>
+</div>
 
 <form action="<%=request.getContextPath()%>/room/bookRoom" method="post" name="bookForm">
 Free Room:
