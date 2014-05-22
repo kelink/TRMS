@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.dummy.domain.Reservation;
+import com.dummy.domain.ReservationDetial;
 
 public interface ReservationService {
 	public Reservation getReservation(int id);
@@ -18,6 +19,6 @@ public interface ReservationService {
 
 	public String getCalanderData(int room_ID);
 
-	public List<Reservation> getReservationByOption(
+	public List<ReservationDetial> getReservationByOption(
 			HashMap<String, String> hashMap);
 }

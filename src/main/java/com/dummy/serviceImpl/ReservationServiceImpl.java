@@ -19,6 +19,7 @@ import com.dummy.dao.TeamDao;
 import com.dummy.dao.UserDao;
 import com.dummy.domain.CalanderDataDomain;
 import com.dummy.domain.Reservation;
+import com.dummy.domain.ReservationDetial;
 import com.dummy.service.ReservationService;
 
 @Service(value = "reservationService")
@@ -59,7 +60,7 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationDao.updateReservationById(id, reservation);
 	}
 
-	// »ñÈ¡ÈÕÀúÐèÒªµÄÐÅÏ¢
+	// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ï¢
 	@Override
 	public String getCalanderData(int room_ID) {
 		List<CalanderDataDomain> list = reservationDao
@@ -78,7 +79,7 @@ public class ReservationServiceImpl implements ReservationService {
 		return calanderData.toString();
 	}
 
-	// ½âÎö²¢ÇÒ·â×°Îª¶à¸öJSON¶ÔÏó£¬±ãÓÚÈÕÀúÏÔÊ¾
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò·ï¿½×°Îªï¿½ï¿½ï¿½JSONï¿½ï¿½ï¿½ó£¬±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 	private ArrayList<JSONObject> createCalendarJsonObject(
 			CalanderDataDomain calanderDataDomain) {
 		long onDay = 24 * 60 * 60 * 1000;
@@ -89,7 +90,7 @@ public class ReservationServiceImpl implements ReservationService {
 		if (start == end) {
 			HashMap<String, String> map = new HashMap<String, String>();
 			int[] dateInfo = ChangeDate(start);
-			// ´Ë´¦Ìí¼Ó×Ö¶Î
+			// ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
 			map.put("year", String.valueOf(dateInfo[0]));
 			map.put("month", String.valueOf(dateInfo[1]));
 			map.put("day", String.valueOf(dateInfo[2]));
@@ -104,10 +105,10 @@ public class ReservationServiceImpl implements ReservationService {
 			result.add(jsonObject);
 		} else {
 			while (start < end) {
-				// ´´½¨JSON¶ÔÏó
+				// ï¿½ï¿½ï¿½ï¿½JSONï¿½ï¿½ï¿½ï¿½
 				HashMap<String, String> map = new HashMap<String, String>();
 				int[] dateInfo = ChangeDate(start);
-				// ´Ë´¦Ìí¼Ó×Ö¶Î
+				// ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
 				map.put("year", String.valueOf(dateInfo[0]));
 				map.put("month", String.valueOf(dateInfo[1]));
 				map.put("day", String.valueOf(dateInfo[2]));
@@ -124,7 +125,7 @@ public class ReservationServiceImpl implements ReservationService {
 				if (start == end) {
 					HashMap<String, String> temp = new HashMap<String, String>();
 					int[] tempDate = ChangeDate(start);
-					// ´Ë´¦Ìí¼Ó×Ö¶Î
+					// ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
 					temp.put("year", String.valueOf(tempDate[0]));
 					temp.put("month", String.valueOf(tempDate[1]));
 					temp.put("day", String.valueOf(tempDate[2]));
@@ -146,7 +147,7 @@ public class ReservationServiceImpl implements ReservationService {
 		return result;
 	}
 
-	// 0±íÊ¾Äê£¬1±íÊ¾ÔÂ,2±íÊ¾ÈÕ
+	// 0ï¿½ï¿½Ê¾ï¿½ê£¬1ï¿½ï¿½Ê¾ï¿½ï¿½,2ï¿½ï¿½Ê¾ï¿½ï¿½
 	private int[] ChangeDate(long dayTime) {
 		Date date = new Date(dayTime);
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
@@ -162,7 +163,7 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<Reservation> getReservationByOption(
+	public List<ReservationDetial> getReservationByOption(
 			HashMap<String, String> queryKeys) {
 		StringBuilder builder = new StringBuilder();
 		Set<String> keys = queryKeys.keySet();
@@ -170,17 +171,21 @@ public class ReservationServiceImpl implements ReservationService {
 		for (String key : keys) {
 			if (key.equals("team_ID") || key.equals("room_ID")
 					|| key.equals("user_ID") || key.equals("status")) {
-				builder.append(key + "=" + queryKeys.get(key).trim());
+				builder.append("Reservation." + key + "="
+						+ queryKeys.get(key).trim());
 			} else if (key.equals("purpose") || key.equals("reservation_Num")
 					|| key.equals("email") || key.equals("tele")) {
-				builder.append(key + " like " + "'%"
+				builder.append("Reservation." + key + " like " + "'%"
 						+ queryKeys.get(key).toString().trim() + "%'");
 			} else if (key.equals("Applied_Start_Date")) {
-				builder.append(key + ">='" + queryKeys.get(key).trim() + "'");
+				builder.append("Reservation." + key + ">='"
+						+ queryKeys.get(key).trim() + "'");
 			} else if (key.equals("Applied_End_Date")) {
-				builder.append(key + "<='" + queryKeys.get(key).trim() + "'");
+				builder.append("Reservation." + key + "<='"
+						+ queryKeys.get(key).trim() + "'");
 			} else if (key.equals("order_Time")) {
-				builder.append(key + "='" + queryKeys.get(key).trim() + "'");
+				builder.append("Reservation." + key + "='"
+						+ queryKeys.get(key).trim() + "'");
 			}
 
 			if ((i + 1) != keys.size()) {
@@ -188,8 +193,8 @@ public class ReservationServiceImpl implements ReservationService {
 			}
 			++i;
 		}
-		logger.info("sqlÓï¾ä---->" + builder.toString());
-		List<Reservation> reservations = reservationDao
+		logger.info("sql æ¡ä»¶--->" + builder.toString());
+		List<ReservationDetial> reservations = reservationDao
 				.getReservationByOption(builder.toString());
 		return reservations;
 	}

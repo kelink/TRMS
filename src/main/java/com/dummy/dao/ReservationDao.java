@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dummy.domain.CalanderDataDomain;
 import com.dummy.domain.Reservation;
+import com.dummy.domain.ReservationDetial;
 
 public interface ReservationDao {
 	public Reservation getReservation(int id);
@@ -18,5 +19,5 @@ public interface ReservationDao {
 
 	public List<CalanderDataDomain> getAllReservationInfo(int room_ID);
 
-	public List<Reservation> getReservationByOption(String sql);
+	public List<ReservationDetial> getReservationByOption(String sql);
 }

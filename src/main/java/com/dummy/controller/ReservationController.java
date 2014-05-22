@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dummy.domain.DBUser;
-import com.dummy.domain.Reservation;
+import com.dummy.domain.ReservationDetial;
 import com.dummy.domain.Room;
 import com.dummy.domain.Team;
 import com.dummy.service.ReservationService;
@@ -35,7 +35,7 @@ public class ReservationController {
 	@Resource(name = "reservationService")
 	private ReservationService reservationService;
 
-	// ∂©µ•≤È—Ø
+	// Ê£ÄÁ¥¢‰∏ªÁïåÈù¢
 	@RequestMapping(value = { "/checkIndex", "", "/index" })
 	public ModelAndView checkIndex() {
 		List<Room> rooms = roomService.getAllRoom();
@@ -47,7 +47,7 @@ public class ReservationController {
 		return new ModelAndView("reservation/check", map);
 	}
 
-	//  π”√StringBuilder ππ‘Ï∂‡œÓ≤È—Ø
+	// ÊåâÊù°‰ª∂Ê£ÄÁ¥¢
 	@RequestMapping(value = { "/checkReservations" })
 	public ModelAndView checkReservations(HttpServletRequest request,
 			@ModelAttribute("currentUser") DBUser currentUser) {
@@ -103,10 +103,10 @@ public class ReservationController {
 		}
 
 		System.out.println("hashMap--------->" + hashMap);
-		List<Reservation> checkResult = reservationService
+		List<ReservationDetial> reservationDetials = reservationService
 				.getReservationByOption(hashMap);
 		ModelMap modelMap = new ModelMap();
-		modelMap.addAttribute("checkResult", checkResult);
+		modelMap.addAttribute("reservationDetials", reservationDetials);
 		return new ModelAndView("reservation/list", modelMap);
 	}
 }

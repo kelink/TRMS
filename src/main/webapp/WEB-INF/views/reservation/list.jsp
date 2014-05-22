@@ -13,21 +13,23 @@
 </head>
 <body>
 	<h1>显示reservation</h1>
-	<c:forEach var="reservation" items="${checkResult}">	
+	<c:forEach var="reservationDetial" items="${reservationDetials}">	
 		<hr/>
-		${reservation.reservation_ID }<br/>
-		${reservation.reservation_Num }<br/>
-		${reservation.team_ID }<br/>
-		${reservation.room_ID }<br/>
-		${reservation.user_ID }<br/>
-		${reservation.purpose }<br/>
-		${reservation.status }<br/>
-		${reservation.email }<br/>
-		${reservation.tele }<br/>
-		${reservation.approve_by}<br/>
-		${reservation.getApplied_Start_DateByString()}<br/>
-		${reservation.getApplied_End_DateByString() }<br/>
-		${reservation.getOrder_DateByString() }<br/>
+		${reservationDetial.reservation.reservation_ID }<br/>
+		${reservationDetial.reservation.reservation_Num }<br/>
+		${reservationDetial.reservation.team_ID }<br/>
+		${reservationDetial.reservation.room_ID }<br/>
+		${reservationDetial.reservation.user_ID }<br/>
+		${reservationDetial.reservation.purpose }<br/>
+		${reservationDetial.reservation.status }<br/>
+		${reservationDetial.reservation.email }<br/>
+		${reservationDetial.reservation.tele }<br/>
+		${reservationDetial.reservation.approve_by}<br/>
+		${reservationDetial.reservation.getApplied_Start_DateByString()}<br/>
+		${reservationDetial.reservation.getApplied_End_DateByString() }<br/>
+		${reservationDetial.reservation.getOrder_DateByString() }<br/>
+		
+		${reservationDetial.team.teamName}
 		<hr/>
 	</c:forEach>
 </body>

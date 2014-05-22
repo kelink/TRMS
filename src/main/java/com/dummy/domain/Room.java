@@ -25,6 +25,16 @@ public class Room {
 
 	private Date last_Used_Date;
 
+	private int department_ID;
+
+	public int getDepartment_ID() {
+		return department_ID;
+	}
+
+	public void setDepartment_ID(int department_ID) {
+		this.department_ID = department_ID;
+	}
+
 	public int getRoom_ID() {
 		return room_ID;
 	}

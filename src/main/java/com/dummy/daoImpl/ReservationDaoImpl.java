@@ -16,13 +16,17 @@ import org.springframework.stereotype.Repository;
 import com.dummy.common.C;
 import com.dummy.dao.ReservationDao;
 import com.dummy.domain.CalanderDataDomain;
+import com.dummy.domain.DBUser;
 import com.dummy.domain.Reservation;
+import com.dummy.domain.ReservationDetial;
+import com.dummy.domain.Room;
+import com.dummy.domain.Team;
 import com.dummy.util.CalanderUtil;
 
 @Repository(value = "reservationDao")
 public class ReservationDaoImpl implements ReservationDao {
 
-	// 获取session
+	// inject session
 	@Resource(name = "sessionFactory")
 	private SessionFactory sessionFactory;
 
@@ -63,18 +67,22 @@ public class ReservationDaoImpl implements ReservationDao {
 		return false;
 	}
 
-	// 后续需要添加Exception处理
+	// get all reservation Info
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CalanderDataDomain> getAllReservationInfo(int room_ID) {
-		String sqlStr = "select "
+		String hql = "select "
 				+ "Applied_END_Date,Applied_Start_Date,email,order_Time,purpose,Team.teamName,DBUser.user_ID,DBUser.account,Reservation.room_ID,Reservation.tele "
-				+ "from Reservation,Team,DBUser "
-				+ "where Reservation.team_ID=Team.team_ID "
-				+ "and Reservation.status=? " + "and applied_start_date>=? "
-				+ "and applied_end_date<=? " + "and reservation.room_ID=? "
+				+ "from Reservation "
+				+ "left join Room on Reservation.room_ID=Room.room_ID "
+				+ "left join DBUser on Reservation.user_ID=DBUser.user_ID "
+				+ "left join Team on  Reservation.team_ID=Team.team_ID "
+				+ "where " + "Reservation.status=? "
+				+ "and applied_start_date>=? " + "and applied_end_date<=? "
+				+ "and reservation.room_ID=? "
 				+ "and Dbuser.user_ID=reservation.user_ID;";
-		SQLQuery query = sessionFactory.openSession().createSQLQuery(sqlStr);
+
+		SQLQuery query = sessionFactory.openSession().createSQLQuery(hql);
 		query.setInteger(0, C.DB.DEFAULT_RESERVATION_ACCEPT);
 		query.setString(1, CalanderUtil.getFirstDay());
 		query.setString(2, CalanderUtil.getLastDay());
@@ -109,11 +117,146 @@ public class ReservationDaoImpl implements ReservationDao {
 		return list;
 	}
 
-	// 模糊高级查询
-	public List<Reservation> getReservationByOption(String sql) {
-		String hql = "from Reservation where " + sql;
+	// option to get ReservationInfo
+//	public List<Reservation> getReservationByOption(String sql) {
+//		String hql = "from Reservation where " + sql;
+//		System.out.println(hql);
+//		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+//		return query.list();	
+//	}
+
+	//get Reservation detial
+	public List<ReservationDetial> getReservationByOption(
+			String optionSql) {
+		List<ReservationDetial> result=new ArrayList<ReservationDetial>();
+		String hql = "select "
+				+ "reservation.reservation_ID,"
+				+ "reservation.reservation_Num,"
+				+ "reservation.Applied_Start_Date,"
+				+ "reservation.Applied_End_Date,"
+				+ "reservation.email,"
+				+ "reservation.tele,"
+				+ "reservation.order_Time,"
+				+ "reservation.purpose,"
+				+ "reservation.room_ID,"
+				+ "reservation.status,"
+				+ "reservation.team_ID,"
+				+ "reservation.handle_by,"
+				+ "reservation.user_ID,"
+				+ "room.room_ID,"
+				+ "room.item,"
+				+ "room.last_Used_Date,"
+				+ "room.room_Status,"
+				+ "room.department_ID,"
+				+ "dbuser.user_ID,"
+				+ "dbuser.Tele,"
+				+ "dbuser.access,"
+				+ "dbuser.account,"
+				+ "dbuser.gender,"
+				+ "dbuser.password,"
+				+ "team.team_ID,"
+				+ "team.department_ID,"
+				+ "team.teamName,"
+				+ "team.user_ID "
+				+ "from Reservation "
+				+ "left join Room on Reservation.room_ID=Room.room_ID "
+				+ "left join DBUser on Reservation.user_ID=DBUser.user_ID "
+				+ "left join Team on  Reservation.team_ID=Team.team_ID "
+				+ "where " + optionSql+" order by reservation.order_Time desc";
+
+		
 		System.out.println(hql);
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		return query.list();
+		SQLQuery query = sessionFactory.openSession().createSQLQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Object[]> stus = query
+	
+				.addScalar("reservation.reservation_ID", StandardBasicTypes.INTEGER)
+				.addScalar("reservation.reservation_Num", StandardBasicTypes.STRING)
+				.addScalar("reservation.Applied_Start_Date", StandardBasicTypes.DATE)
+				.addScalar("reservation.Applied_End_Date", StandardBasicTypes.DATE)
+				.addScalar("reservation.email", StandardBasicTypes.STRING)
+				.addScalar("reservation.tele", StandardBasicTypes.STRING)
+				.addScalar("reservation.order_Time", StandardBasicTypes.DATE)
+				.addScalar("reservation.purpose", StandardBasicTypes.STRING)
+				.addScalar("reservation.room_ID", StandardBasicTypes.INTEGER)
+				.addScalar("reservation.status", StandardBasicTypes.INTEGER)
+				.addScalar("reservation.team_ID", StandardBasicTypes.INTEGER)
+				.addScalar("reservation.handle_by", StandardBasicTypes.INTEGER)
+				.addScalar("reservation.user_ID", StandardBasicTypes.INTEGER)
+				
+			
+				.addScalar("room.room_ID", StandardBasicTypes.INTEGER)
+				.addScalar("room.item", StandardBasicTypes.STRING)
+				.addScalar("room.last_Used_Date", StandardBasicTypes.DATE)
+				.addScalar("room.room_Status", StandardBasicTypes.INTEGER)
+				.addScalar("room.department_ID", StandardBasicTypes.INTEGER)
+				
+				
+				
+				.addScalar("dbuser.user_ID", StandardBasicTypes.INTEGER)
+				.addScalar("dbuser.Tele", StandardBasicTypes.STRING)
+				.addScalar("dbuser.access", StandardBasicTypes.INTEGER)
+				.addScalar("dbuser.account", StandardBasicTypes.STRING)
+				.addScalar("dbuser.gender", StandardBasicTypes.INTEGER)
+				.addScalar("dbuser.password", StandardBasicTypes.STRING)
+				
+		
+				.addScalar("team.team_ID", StandardBasicTypes.INTEGER)
+				.addScalar("team.department_ID", StandardBasicTypes.INTEGER)
+				.addScalar("team.teamName", StandardBasicTypes.STRING)
+				.addScalar("team.user_ID", StandardBasicTypes.INTEGER)
+				
+			.list();
+
+		for (Iterator<Object[]> iterator = stus.iterator(); iterator.hasNext();) {
+			
+			Reservation reservation=new Reservation();
+			
+			Object[] rows = (Object[]) iterator.next();
+			reservation.setReservation_ID((Integer)rows[0]);
+			reservation.setReservation_Num((String)rows[1]);
+			reservation.setApplied_Start_Date((Date)rows[2]);
+			reservation.setApplied_End_Date((Date)rows[3]);
+			reservation.setEmail((String)rows[4]);
+			reservation.setTele((String)rows[5]);
+			reservation.setOrder_Time((Date)rows[6]);
+			reservation.setPurpose((String)rows[7]);
+			reservation.setRoom_ID((Integer)rows[8]);
+			reservation.setStatus((Integer)rows[9]);
+			reservation.setTeam_ID((Integer)rows[10]);
+			reservation.setHandle_by((Integer)rows[11]);
+			reservation.setUser_ID((Integer)rows[12]);
+			
+			Room room=new Room();
+			room.setRoom_ID((Integer)rows[13]);
+			room.setItem((String)rows[14]);
+			room.setLast_Used_Date((Date)rows[15]);
+		    room.setRoom_Status((Integer)rows[16]);
+			room.setDepartment_ID((Integer)rows[17]);
+	
+			
+			DBUser dbUser=new DBUser();
+			dbUser.setUser_ID((Integer)rows[18]);
+			dbUser.setTele((String)rows[19]);
+			dbUser.setAccess((Integer)rows[20]);
+			dbUser.setAccount((String)rows[21]);
+			dbUser.setGender((Integer)rows[22]);
+			dbUser.setPassword((String)rows[23]);
+			
+			Team team=new Team();
+			team.setTeam_ID((Integer)rows[24]);
+			team.setDepartment_ID((Integer)rows[25]);
+			team.setTeamName((String)rows[26]);
+			team.setUser_ID((Integer)rows[27]);
+		
+			ReservationDetial data = new ReservationDetial();
+			data.setReservation(reservation);
+			data.setRoom(room);
+			data.setTeam(team);
+			data.setUser(dbUser);
+			result.add(data);
+		}
+		System.out.println(result);
+		return result;
 	}
 }
