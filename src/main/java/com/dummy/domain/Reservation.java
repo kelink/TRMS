@@ -44,7 +44,7 @@ public class Reservation {
 	@Column(length = 255)
 	private String tele;
 	@Column(length = 11)
-	private int approve_by;
+	private int handle_by;
 
 	private Date Applied_Start_Date;
 	private Date Applied_End_Date;
@@ -123,11 +123,11 @@ public class Reservation {
 	}
 
 	public int getApprove_by() {
-		return approve_by;
+		return handle_by;
 	}
 
 	public void setApprove_by(int approve_by) {
-		this.approve_by = approve_by;
+		this.handle_by = approve_by;
 	}
 
 	public Date getApplied_Start_Date() {
@@ -154,7 +154,15 @@ public class Reservation {
 		this.order_Time = order_Time;
 	}
 
-	// format 获取时间
+	public int getHandle_by() {
+		return handle_by;
+	}
+
+	public void setHandle_by(int handle_by) {
+		this.handle_by = handle_by;
+	}
+
+	// format datetime
 	public String getApplied_End_DateByString() {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		return format.format(Applied_End_Date);
@@ -170,7 +178,7 @@ public class Reservation {
 		return format.format(order_Time);
 	}
 
-	// format 解析时间
+	// format datetime
 	public void setApplied_End_DateByString(String dateStr)
 			throws ParseException {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -194,7 +202,7 @@ public class Reservation {
 				+ ", reservation_Num=" + reservation_Num + ", team_ID="
 				+ team_ID + ", room_ID=" + room_ID + ", user_ID=" + user_ID
 				+ ", purpose=" + purpose + ", status=" + status + ", email="
-				+ email + ", tele=" + tele + ", approve_by=" + approve_by
+				+ email + ", tele=" + tele + ", handle_by=" + handle_by
 				+ ", Applied_Start_Date=" + Applied_Start_Date
 				+ ", Applied_End_Date=" + Applied_End_Date + ", order_Time="
 				+ order_Time + "]";
