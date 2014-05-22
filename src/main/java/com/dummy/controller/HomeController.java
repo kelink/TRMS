@@ -31,6 +31,6 @@ public class HomeController {
 				DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate);
-		return "home/home";
+		return "login/loginPage";
 	}
 }

@@ -38,7 +38,7 @@ public class UserController {
 	// 进入LC主界面
 	@RequestMapping(value = "/index")
 	public ModelAndView index(@ModelAttribute("currentUser") DBUser currentUser) {
-		return new ModelAndView("user/index");
+		return new ModelAndView("room/list");
 	}
 
 	// 获取所有LC用户
