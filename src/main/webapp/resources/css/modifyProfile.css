@@ -55,7 +55,7 @@ background-repeat: repeat-x;
 {
 	float:left;
 	margin-left: 40px;
-width: 600px;
+width: 650px;
 }
 #picture
 {
@@ -66,29 +66,108 @@ width: 600px;
 
 .label
 {
-	display:table-cell;
+float:left;
 	font-size: 18px;
 font-weight: bold;
 color: rgb(94, 92, 92);
+width: 130px;
+text-align: right;
+
 }
 .userInfo
 {
-	display:table-cell;
+float:left;
 	font-size: 18px;
 color: rgb(78, 78, 78);
+width: 370px;
+word-break: break-all;
+margin-left:30px;
 }
 
 .infoWrapper
 {
-	display:table;
+margin-top: -20px;
 }
 .infoRow
 {
-	display:table-row;
+	overflow:hidden;
+height: 60px;
+line-height:60px;
 }
 #chPassword
 {
-	color:blue;
+
+
 }
 
+#chPwd a
+{
+	text-decoration:none;
+}
 
+#chPwd
+{
+	margin-top: 30px;
+margin-left: 10px;
+
+}
+.panelHeader {
+padding: 8px 10px;
+background-color: #eeeeee;
+background-image: -moz-linear-gradient(#fafafa, #eee);
+background-image: -webkit-linear-gradient(#fafafa, #eee);
+background-image: linear-gradient(#fafafa, #eee);
+background-repeat: repeat-x;
+border-bottom: 1px solid #ddd;
+font-size: 14px;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+}
+
+#close {
+	cursor:pointer;
+float:right;
+}
+#headerText
+{
+	font-weight: bold;
+color: rgb(102, 102, 102);
+text-shadow: 0 1px 0 #fff;
+}
+#chPwdPanel
+{
+	background-color:white;
+	border-radius: 5px;
+border: 1px solid #cccccc;
+box-shadow: 0 0 5px gray;
+	position:fixed;
+	top:300px;
+	left:50%;
+	margin-left:-270px;
+	z-index:1000;
+	width: 450px;
+height: 310px;
+	display:none;
+}
+.chPwdLabel
+{
+	padding-top: 15px;
+padding-bottom: 5px;
+font-size: 15px;
+font-weight: bold;
+color: rgb(116, 116, 116);
+margin-left: 10px;
+}
+.chPwdInput
+{
+	margin-left:10px;
+	width: 350px;
+border-radius: 3px;
+border: 1px solid #cccccc;
+line-height: 24px;
+}
+#chPwdSubmit
+{
+	margin-left:10px;
+	margin-top:20px;
+}
