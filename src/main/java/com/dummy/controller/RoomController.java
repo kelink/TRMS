@@ -53,7 +53,7 @@ public class RoomController {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	// Room ¹ÜÀíÖ÷½çÃæ
+	// getRoom
 	@RequestMapping(value = { "/getForm", "" })
 	public ModelAndView getForm(HttpServletRequest request) {
 		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
@@ -76,7 +76,7 @@ public class RoomController {
 		return new ModelAndView("room/form", map);
 	}
 
-	// ·ÖÒ³list ËùÓÐµÄ·¿¼ä
+	// ï¿½ï¿½Ò³list ï¿½ï¿½ï¿½ÐµÄ·ï¿½ï¿½ï¿½
 	@RequestMapping("/list")
 	public ModelAndView list(
 			Model model,
@@ -92,7 +92,7 @@ public class RoomController {
 		return new ModelAndView("room/list", map);
 	}
 
-	// ÓÃÓÚAJAX»ñÈ¡·¿¼äÐÅÏ¢
+	// AJAX get the roomInfo
 	@RequestMapping("/listPageRoom")
 	public @ResponseBody List<Room> listPageRoom(
 			Model model,
@@ -102,7 +102,7 @@ public class RoomController {
 		return roomPageList;
 	}
 
-	// ÏÔÊ¾ÈÕÀú
+	// request calander
 	@RequestMapping(value = "/calendar")
 	public ModelAndView calendar(HttpServletRequest request) {
 		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
@@ -114,11 +114,11 @@ public class RoomController {
 		return new ModelAndView("room/calendar", map);
 	}
 
-	// ¶©·¿Âß¼­
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
 	@RequestMapping(value = "/bookRoom")
 	public ModelAndView bookRoom(HttpServletRequest request,
 			@ModelAttribute("currentUser") DBUser currentUser) {
-		// 1.µ±Ç°Ê±¼äµ½ÔÂÎ²ÄÚ ¿ÕÏÐµÄ·¿¼ä¿ÉÒÔÔ¤¶¨
+		// 1.ï¿½ï¿½Ç°Ê±ï¿½äµ½ï¿½ï¿½Î²ï¿½ï¿½ ï¿½ï¿½ï¿½ÐµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½
 		int room_ID = Integer.parseInt(request.getParameter("room"));
 		String begin_time = request.getParameter("begin_time");
 		String end_time = request.getParameter("end_time");
@@ -154,12 +154,12 @@ public class RoomController {
 		reservation.setReservation_Num(ReservationUtil.getUniqueSequence());
 		reservation.setApprove_by(C.DB.DEFAULT_APPROVE_BY);
 		System.out.println(reservation);
-		// ·¢ËÍemail£¬ºóÃæÔÙÌí¼Ó
+		// ï¿½ï¿½ï¿½ï¿½emailï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		reservationService.addReservation(reservation);
 		return new ModelAndView("room/success");
 	}
 
-	// »ñµÃËùÓÐ¶©µ¥ÐÅÏ¢
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	@RequestMapping("/getAllReservation")
 	public List<Reservation> getAllReservation(HttpServletResponse response) {
 		return reservationService.getAllReservation();

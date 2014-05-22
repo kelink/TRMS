@@ -157,10 +157,10 @@
 				     <a href="<%=request.getContextPath()%>/room/list" class="navItem selected">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="lcRoomCheck.html"class="navItem">Check My Reservation</a>
+				     <a href="<%=request.getContextPath()%>/reservation/index" class="navItem">Check My Reservation</a>
 				 </li>
 				 <li>
-				     <a href="lcRoomBook.html" class="navItem">Delete My Reservation</a>
+				     <a href="<%=request.getContextPath()%>/reservation/edit" class="navItem">Delete My Reservation</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
