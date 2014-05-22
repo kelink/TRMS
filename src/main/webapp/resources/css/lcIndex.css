@@ -299,14 +299,14 @@ font-weight: bold;
 white-space: nowrap;
 	color: #fff;
 text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
-background-color: #60b044;
+background-color: rgb(94, 151, 189);
 background-image: -moz-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
 background-image: -webkit-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
 background-image: linear-gradient(rgb(155, 207, 255), rgb(94, 151, 189));
 background-repeat: repeat-x;
 
 border-radius: 3px;
-border: 1px solid #5ca941;
+border: 1px solid rgb(152, 207, 243);
 vertical-align: middle;
 cursor: pointer;
 -webkit-touch-callout: none;

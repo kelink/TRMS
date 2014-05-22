@@ -99,6 +99,36 @@
 			  	             <img height="150px" width="150px" src="<%=request.getContextPath()%>/resources/images/person.jpg"/>
 			  	         </div>
 			  	         <div id="chPwd"><a id="chPassword"class="btnChPwd" href="#" >Change Password</a></div>
+			  	        
+			  	         <div id="chPwdPanel">
+			  	             <div class="panelHeader">
+                                 <span id="headerText">Change Password</span>
+                                 <span id="close"><img id="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
+                             </div>
+                             
+                             <div>
+                                 <form action="" method="post">
+                                     <div>
+                                         Old password
+                                     </div>
+                                     <input type="password" >
+                                     <div>
+                                         New password
+                                     </div>
+                                     <input type="password">
+                                     <div>
+                                         Confirm new password
+                                     </div type="password">
+                                     <input type="password">
+                                     
+                                     <div>
+                                         <input type="submit" value="Update">
+                                     </div>
+                                     
+                                 </form>
+                             </div>
+                         </div>
+                         
 			  	     </div>
 			  	     
 			  	     <div id="profileContentRight">

@@ -1,5 +1,14 @@
 window.onload=function(){
 	$("#chPassword").click(function(){
-		alert('fdsa');
+		$("#chPwdPanel").css("display","block");
+	});
+	$("#close").mouseover(function(){
+		$("#closeIcon").attr("src","/trms/resources/images/closeDeep.png");
+	});
+	$("#close").mouseout(function(){
+		$("#closeIcon").attr("src","/trms/resources/images/closeShallow.png");
+	});
+	$("#close").click(function(){
+		$("#chPwdPanel").css("display","none");
 	});
 };
