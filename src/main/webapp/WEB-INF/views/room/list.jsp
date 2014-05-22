@@ -59,6 +59,8 @@
  					}
  					$('#roomInfo').html("");
  	                $('#roomInfo').html(html); 
+ 	                $('#pageIndex').html("");
+ 	               $('#pageIndex').html(pageIndex);
  	                },
  				error : function(XMLHttpRequest, textStatus, errorThrown) {
  					alert(XMLHttpRequest);
@@ -183,18 +185,26 @@
 				    <div id="roomInfo">
 				    </div>				
 				 </ul>
-				 <div>
-					 Total Page:<span id='count'>${pageCount}</span>
-					Total Records:<span id='recordCount'>${recordCount}</span>
-				</div>
-				 <div>
-					 <a href='javascript:void' onclick='GoToFirstPage()' id='FirstPage' >FirstPage</a>
-					 <a href='javascript:void' onclick='GoToPrePage()' id='PrePage' >PrePage</a>
-					 <a href='javascript:void' onclick='GoToNextPage()' id='NextPage' >NextPage</a>
-					 <a href='javascript:void' onclick='GoToEndPage()' id='EndPage' >EndPage</a>
-					 <input type='text' size='4' name='page' />
-					 <input type='button' value='Jump' onclick='GoToAppointPage(this)' />
+				 <div id="listInfoWrapper">
+				     <div id="listInfo">
+					    Total Page:<span id='count'>${pageCount}</span>
+					    Total Records:<span id='recordCount'>${recordCount}</span>
+				    </div>
+				    
+				    <div id="jump">
+					     <a href='javascript:void' onclick='GoToFirstPage()' id='FirstPage' ><img class="pageIcon"alt="Go to first page" src="<%=request.getContextPath()%>/resources/images/first.png"></a>
+					     <a href='javascript:void' onclick='GoToPrePage()' id='PrePage' ><img class="pageIcon"alt="Go to previous page" src="<%=request.getContextPath()%>/resources/images/prepage.png"></a>
+					     <span id="pageIndex"></span>
+					     <a href='javascript:void' onclick='GoToNextPage()' id='NextPage' ><img class="pageIcon"alt="Go to next page" src="<%=request.getContextPath()%>/resources/images/nextpage.png"></a>
+					     <a href='javascript:void' onclick='GoToEndPage()' id='EndPage' ><img class="pageIcon" alt="Go to last page"src="<%=request.getContextPath()%>/resources/images/end.png"></a>
+					     <input type='text' size='4' name='page' />
+					     <input class="btnJump" type='button' value='Jump' onclick='GoToAppointPage(this)' />
+				     </div>
 				 </div>
+				 
+				 
+				     
+				 
 		 </div>
 		 </div>
 	 </div>
