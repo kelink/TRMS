@@ -60,7 +60,7 @@
 	     <div class="navContainer">
 		     <ul class="navi">
 			     <li>
-				     <a href="<%=request.getContextPath()%>/room/list" class="navItem selected">Book Room</a>
+				     <a href="<%=request.getContextPath()%>/room/list" class="navItem">Book Room</a>
 				 </li>
 				 <li>
 				     <a href="lcRoomCheck.html"class="navItem">Check My Reservation</a>
@@ -69,7 +69,7 @@
 				     <a href="lcRoomBook.html" class="navItem">Delete My Reservation</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
+				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem selected">Manage My Profile</a>
 				 </li>
 			 </ul>
 		 </div>

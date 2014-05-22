@@ -2,7 +2,7 @@
 .day ul,.day li{margin:0;padding:0;}
 .day li{list-style:none;}
 
-.day{width:350px;margin:10px auto;}
+.day{width:850px;margin:10px auto;}
 .day table{width:100%;text-align:center;border-collapse:collapse;border-spacing:0;line-height:30px;}
 .day table th{background:#F5F5F5;font-weight:normal;line-height:30px;font-size:14px;}
 .day table td,.day th{border:1px solid #EEE;}
@@ -25,8 +25,8 @@
 .select:hover .stop:before{transform:rotate(225deg);margin-top:10px;transition:transform .2s linear}
 .select:hover .sbox{max-height:200px;border:1px solid #EEE;border-top-color:#FFF;;transition:max-height .2s ease-in-out;}
 
-#cy:after{content:" 年";}
-#cm:after{content:" 月";}
+#cy:after{content:" Year;}
+#cm:after{content:" Month;}
 #sm{width:70px;}
 #mm{width:68px;}
 
