@@ -13,6 +13,7 @@
 
   <title> LC Page </title>
  <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
+  <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
  <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
  <script type="text/javascript" >
@@ -202,44 +203,19 @@
 		 </div>
 	 </div>
  </div>
- 
+ <%@ include file="footer.jsp"%>
  
  
  
 
-<!-- <div id="footer"> -->
-<!--   <div id="footer-inner"> -->
-<!--     <div class="client-say"> -->
-<!--       <h3>Training Room Service</h3> -->
-<%--       <img src="<%=request.getContextPath()%>/resources/images/client.jpg" alt="" class="flleft grayborR" /> --%>
-<!--       <font size="2" color=""> -->
-<!-- 	  <br> -->
-<!-- 	  <p>敬请期待更多翻译系统服务</p> -->
-<!-- 	  <p>我们的服务，你值得拥有！</p> -->
-<!-- 	  </font> -->
-<!--     </div> -->
-<!--     <div class="footer-details"> -->
-<!--       <h3>Contact Us</h3> -->
-<!-- 	  <br> -->
-<%--       <div class="address"><img alt="" src="<%=request.getContextPath()%>/resources/images/address.png"> <strong>Address:</strong> GDUFS</div> --%>
-<%--       <div class="address"><img height="18" width="14" alt="" src="<%=request.getContextPath()%>/resources/images/phone.png"> <strong>Phone:</strong> 110</div> --%>
-<%--       <div class="address"><img height="12" width="15" alt="" src="<%=request.getContextPath()%>/resources/images/mail.png"> <strong>Email:</strong> <a href="#">gdufs@163.com</a></div> --%>
-<!--     </div> -->
-<!--     <div class="footer-details no-margin"> -->
-<!--       <h3>Link</h3> -->
-	 
-<!--       <p> <a href="http://www.baidu.com"><font size="2" color="white">Baidu</font></a></p> -->
-<!-- 	  <br> -->
-<!-- 	  <p> <a href="http://www.google.com"><font size="2" color="white">Google</font></a></p> -->
-<!-- 	  <br> -->
-<!-- 	  <p> <a href="#"><font size="2" color="white">HSBC</font></a></p> -->
-<!--     </div> -->
-<!--   </div> -->
+<!--  <div id="footerContainer"> -->
+<!--       <div id="footer"> -->
+<!--           <span id="copyright"> &copy; Copyright 2014 by <a href="#">Lin Jiajian</a>&<a href="#">Luo Kelin</a></span> -->
+<%--           <span><img id="hsbcIconFooter" width="30px"height="15px" src="<%=request.getContextPath() %>/resources/images/hsbcFooter.png"/></span> --%>
+<!--           <span id="footerWord"><a href="#">Team</a> <a href="#">Telephone</a><a href="#">Email</a><a href="#">about</a></span> -->
+<!--       </div> -->
+  
+ </div>
 
-<!--   <div class="Finfo"> -->
-<!--     <div class="copyright"> &copy; Copyright 2013 by <a href="#">gdufs.com</a></div> -->
-<!--   </div> -->
-<!-- </div> -->
- 
 </body>
 </html>

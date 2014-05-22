@@ -1,0 +1,54 @@
+#footer
+{
+	position:relative;
+	margin-top:60px;
+	padding-top:40px;
+	padding-bottom:52px;
+	font-size: 12px;
+line-height: 1.5;
+color: #777;
+border-top: 1px solid rgb(224, 224, 224);
+}
+#footerContainer
+{
+	width:980px;
+	margin-left: auto;
+	margin-right:auto;
+}
+#copyright
+{
+	float:left;
+}
+#copyright a
+{
+	color: #4183c4;
+    text-decoration: none;
+    margin-left:10px;
+    margin-right:10px;
+}
+#copyright a:hover
+{
+	text-decoration:underline;
+}
+#footerWord a
+{
+	color: #4183c4;
+    text-decoration: none;
+    margin-left:10px;
+    margin-right:10px;
+}
+#footerWord a:hover
+{
+	text-decoration:underline;
+}
+#hsbcIconFooter
+{
+	position: absolute;
+top: 40px;
+left: 50%;
+margin-left: -15px;
+}
+#footerWord
+{
+	float:right;
+}

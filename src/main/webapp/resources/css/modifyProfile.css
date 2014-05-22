@@ -55,7 +55,7 @@ background-repeat: repeat-x;
 {
 	float:left;
 	margin-left: 40px;
-width: 600px;
+width: 650px;
 }
 #picture
 {
@@ -66,29 +66,48 @@ width: 600px;
 
 .label
 {
-	display:table-cell;
+float:left;
 	font-size: 18px;
 font-weight: bold;
 color: rgb(94, 92, 92);
+width: 130px;
+text-align: right;
+
 }
 .userInfo
 {
-	display:table-cell;
+float:left;
 	font-size: 18px;
 color: rgb(78, 78, 78);
+width: 370px;
+word-break: break-all;
+margin-left:30px;
 }
 
 .infoWrapper
 {
-	display:table;
+margin-top: -20px;
 }
 .infoRow
 {
-	display:table-row;
+	overflow:hidden;
+height: 60px;
+line-height:60px;
 }
 #chPassword
 {
-	color:blue;
+
+
 }
 
+#chPwd a
+{
+	text-decoration:none;
+}
 
+#chPwd
+{
+	margin-top: 30px;
+margin-left: 10px;
+
+}
