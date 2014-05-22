@@ -143,9 +143,31 @@ box-shadow: 0 0 5px gray;
 	position:fixed;
 	top:300px;
 	left:50%;
-	margin-left:-225px;
+	margin-left:-270px;
 	z-index:1000;
 	width: 450px;
-height: 270px;
+height: 310px;
 	display:none;
+}
+.chPwdLabel
+{
+	padding-top: 15px;
+padding-bottom: 5px;
+font-size: 15px;
+font-weight: bold;
+color: rgb(116, 116, 116);
+margin-left: 10px;
+}
+.chPwdInput
+{
+	margin-left:10px;
+	width: 350px;
+border-radius: 3px;
+border: 1px solid #cccccc;
+line-height: 24px;
+}
+#chPwdSubmit
+{
+	margin-left:10px;
+	margin-top:20px;
 }

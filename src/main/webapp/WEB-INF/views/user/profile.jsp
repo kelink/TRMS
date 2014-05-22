@@ -108,21 +108,21 @@
                              
                              <div>
                                  <form action="" method="post">
-                                     <div>
+                                     <div class="chPwdLabel">
                                          Old password
                                      </div>
-                                     <input type="password" >
-                                     <div>
+                                     <input class="chPwdInput" type="password" >
+                                     <div class="chPwdLabel">
                                          New password
                                      </div>
-                                     <input type="password">
-                                     <div>
+                                     <input class="chPwdInput"type="password">
+                                     <div class="chPwdLabel">
                                          Confirm new password
                                      </div type="password">
-                                     <input type="password">
+                                     <input class="chPwdInput"type="password">
                                      
                                      <div>
-                                         <input type="submit" value="Update">
+                                         <input id="chPwdSubmit" type="submit" value="Update"class="btnLogout">
                                      </div>
                                      
                                  </form>
