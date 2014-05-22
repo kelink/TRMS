@@ -109,10 +109,10 @@
  </script>
 </head>
 <body>
-<<<<<<< HEAD
-=======
-<%-- <security:authentication property="principal.username"/>  --%>
->>>>>>> a74af97f809dfb05f39793214829c73a0243423b
+
+
+
+
 <c:url value="/j_spring_security_logout" var="logoutUrl"/>  
 
 <div id="cover">
@@ -125,7 +125,7 @@
 	 </div>
 	 
 	 <div class="status">
-	 <security:authentication property="principal.username"/> 
+
 	     <div class="statusContainer">
 	         <div id="userInfo">
 	         <img id="userCard" width="35px" height="35px" src="<%=request.getContextPath()%>/resources/images/card.png"/>
