@@ -11,9 +11,6 @@ import javax.persistence.Table;
 @Table(name = "DBUser")
 public class DBUser {
 
-	/**
-	 * ÓÃ‘ô±í
-	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(length = 11)
