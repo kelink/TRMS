@@ -108,5 +108,7 @@ public class ReservationController {
 		ModelMap modelMap = new ModelMap();
 		modelMap.addAttribute("reservationDetials", reservationDetials);
 		return new ModelAndView("reservation/list", modelMap);
+		// System.out.println("test-----------");
+		// return null;
 	}
 }
