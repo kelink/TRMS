@@ -18,6 +18,37 @@
  <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
   <script src="<%=request.getContextPath()%>/resources/js/modifyProfile.js" type="text/javascript"></script>
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+ <script type="text/javascript">
+ //判断旧密码
+ function checkOldPassword(){
+	 var oldPassword=$("#oldPassword").attr("value");
+		 	$.ajax({
+		 			url : "<%=request.getContextPath()%>/profile/checkOldPwd",
+		 			type : "Get",
+		 			data : "oldPassword="+oldPassword,
+		 			dataType : "html",
+		 			success : function(html) {
+						alert(html);
+		 	       },
+		 			error : function(XMLHttpRequest, textStatus, errorThrown) {
+		 				alert(XMLHttpRequest);
+		 				alert(textStatus);
+		 				alert(errorThrown);
+		 			}
+		 		});
+ }
+
+ //判断重复密码
+ function checkTwicePassword(){
+	 var newPassword=$("#newPassword").attr("value");
+	 var newPassword2=$("#newPassword2").attr("value");
+	 if(newPassword!=newPassword2){
+		 alert("twice password you enter not match");
+	 }
+ }
+ 
+ 
+ </script>
  
 </head>
 
@@ -63,7 +94,7 @@
 				     <a href="<%=request.getContextPath()%>/room/list" class="navItem">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="lcRoomCheck.html"class="navItem">Check My Reservation</a>
+				     <a href="<%=request.getContextPath()%>/reservation/index"class="navItem">Check My Reservation</a>
 				 </li>
 				 <li>
 				     <a href="lcRoomBook.html" class="navItem">Delete My Reservation</a>
@@ -77,7 +108,7 @@
 	 
 	 <div class="middle">
 	     <div class="middleContainer">
-		     <h1 class="roomList">Room List</h1>
+		     <h1 class="roomList">Information List</h1>
 			 <div class="roomListBody">
 			  	 <div id="profileHeader">
 			  	     <div id="profileTopic">
@@ -107,19 +138,19 @@
                              </div>
                              
                              <div>
-                                 <form action="" method="post">
+                                 <form action="<%=request.getContextPath()%>/profile/changepwd" method="post">
                                      <div class="chPwdLabel">
                                          Old password
                                      </div>
-                                     <input class="chPwdInput" type="password" >
+                                     <input class="chPwdInput" type="password" name="oldPassword" id="oldPassword" onBlur="checkOldPassword()" >
                                      <div class="chPwdLabel">
                                          New password
                                      </div>
-                                     <input class="chPwdInput"type="password">
+                                     <input class="chPwdInput"type="password" name="newPassword" id="newPassword">
                                      <div class="chPwdLabel">
                                          Confirm new password
                                      </div type="password">
-                                     <input class="chPwdInput"type="password">
+                                     <input class="chPwdInput"type="password" name="newPassword2" id="newPassword2" onBlur="checkTwicePassword()">
                                      
                                      <div>
                                          <input id="chPwdSubmit" type="submit" value="Update"class="btnLogout">
@@ -148,12 +179,13 @@
 			  	     </div>
 			  	     
 			  	     <div class="infoRow">
-			  	     <div class="label">Gender:</div>
+			  	     <div class="label">Gender:FEMALE
+			  	      </div>
 			  	     <div class="userInfo"></div>
 			  	     </div>
 			  	     
 			  	     <div class="infoRow">
-			  	     <div class="label">Team:</div>
+			  	     <div class="label">Team:${user_Team.getTeamName() }</div>
 			  	     <div class="userInfo"></div>
 			  	     </div>
 			  	     
@@ -163,7 +195,7 @@
 			  	     </div>
 			  	     
 			  	     <div class="infoRow">
-			  	     <div class="label">Telephone:</div>
+			  	     <div class="label">Telephone:${currentUser.getTele()}</div>
 			  	     <div class="userInfo"></div>
 			  	     </div>
 			  	     

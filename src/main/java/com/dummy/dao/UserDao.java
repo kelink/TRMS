@@ -18,4 +18,5 @@ public interface UserDao {
 	public DBUser getUserByAccount(String account);
 
 	public DBUser getAuthUser(String account, String password);
+
 }

@@ -31,6 +31,16 @@ public class DBUser {
 	@Column(length = 50, nullable = false)
 	private String Tele;
 
+	private int team_ID;
+
+	public int getTeam_ID() {
+		return team_ID;
+	}
+
+	public void setTeam_ID(int team_ID) {
+		this.team_ID = team_ID;
+	}
+
 	public int getUser_ID() {
 		return user_ID;
 	}

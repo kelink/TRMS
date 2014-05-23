@@ -56,7 +56,15 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean updateUser(DBUser user) {
-		return false;
+		String hql = "update DBUser set password=" + user.getPassword()
+				+ " where user_ID=" + user.getUser_ID();
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		int n = query.executeUpdate();
+		if (n == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override

@@ -7,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dummy.domain.DBUser;
+import com.dummy.domain.Team;
+import com.dummy.service.TeamService;
 import com.dummy.service.UserService;
 
 @SessionAttributes({ "currentUser" })
@@ -21,22 +24,41 @@ public class profileController {
 	@Resource(name = "userService")
 	private UserService userService;
 
+	@Resource(name = "teamService")
+	private TeamService teamService;
+
 	@RequestMapping(value = "/modify")
 	public ModelAndView modify(HttpServletRequest request,
 			@ModelAttribute("currentUser") DBUser currentUser) {
 		ModelMap map = new ModelMap();
+		// 获得当前用户的team信息
+		Team user_Team = teamService.getTeam(currentUser.getTeam_ID());
 		map.addAttribute("currentUser", currentUser);
+		map.addAttribute("user_Team", user_Team);
 		return new ModelAndView("user/profile", map);
 	}
 
-	// Edit your password
-	// @RequestMapping(value = "/changeInfo")
-	// public ModelAndView changepwd(HttpServletRequest request,
-	// @ModelAttribute("currentUser") DBUser currentUser) {
-	// String password = request.getParameter("new_password").trim();
-	// currentUser.setPassword(password);
-	// // 注销当前账号，跳转到登陆界面
-	//
-	// }
+	// check old password
+	@RequestMapping(value = "/checkOldPwd")
+	public @ResponseBody String checkOldPwd(HttpServletRequest request,
+			@ModelAttribute("currentUser") DBUser currentUser) {
+		String oldpassword = request.getParameter("oldPassword").trim();
+		if (oldpassword.equals(currentUser.getPassword())) {
+			return "old password auth";
+		} else {
+			return "old password fail to auth";
+		}
+	}
 
+	// Edit your password
+	@RequestMapping(value = "/changepwd")
+	public ModelAndView changepwd(HttpServletRequest request,
+			@ModelAttribute("currentUser") DBUser currentUser) {
+		String newPassword = request.getParameter("newPassword").trim();
+		currentUser.setPassword(newPassword);
+		userService.updateUser(currentUser);
+		// 使得当前会话失效，重新登录(后面新增)
+		return new ModelAndView("redirect:/login/index");
+
+	}
 }
