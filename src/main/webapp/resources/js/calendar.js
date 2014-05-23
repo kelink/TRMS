@@ -1,6 +1,9 @@
 
 //var bookedDate=[{year:2014,month:1,day:20,department:"USER_EXPERIENCE",lc:"xx",usage:"xx",usertele:"xx"},{year:2014,month:1,day:23,department:"xx",lc:"xx",usage:"xx",usertele:"xx"}];//�����Ǵ���һ����ż�ֵ�ԵĶ�������飬˵����Щ�챻���ˡ�Key��year,month,day��department,lc,usage,usertele����ʽ�����������ӡ�
 var book=false;
+var future=false;
+var buffer=false;
+var bufferNum=2;
 
 var SY,SM,SD,cy,cm
 SY = new Date().getFullYear();
@@ -94,17 +97,52 @@ function getDynamicTable(Y,M){//���մ�������´�����
 				{book=true;l=k;}
 			}
 		  		}
-			if(book==true)
-			{
-				Temp +=  "<td class='booked'onclick='bookInfo("+l+")'>" + j +"</td>"
-				book=false;
-			}
-			else
-			{
-			    Temp += (SY == Y && SM == M && SD == j ? "<td class='now'onclick='setDate("+Y+","+M+","+j+")'>" : "<td class='idle'onclick='setDate("+Y+","+M+","+j+")'>") + j +"</td>"
+		  	if(SY == Y && SM == M && SD == j){
+		  		future=true;
+		  		buffer=true;
+		  		
+		  		}
+		  	if(buffer==true)
+		  	{
+  
+			    Temp += (SY == Y && SM == M && SD == j ? "<td class='now'onclick=\"alert('The date is unavailable to book')\">" : "<td class='idle'onclick=\"alert('The date is unavailable to book')\">") + j +"</td>"
+	
+		 	    if(bufferNum==1)
+ 		    	{
+		 	    	buffer=false;
+		  		    
+		  		}
+		 	   bufferNum--;
+		  	}
+		  	else{
+		  	
+			    if(book==true)
+			    {
+				    if(future==true)
+					{
+					    Temp +=  "<td class='booked'onclick='bookInfo("+l+")'>" + j +"</td>";
+					    book=false;
+					}
+				    else{
+					    Temp +=  "<td class='booked pass'onclick='bookInfo("+l+")'>" + j +"</td>";
+					    book=false;
+				    }
 				
+			    }
+			    else
+			    {
 				
-			}
+				    if(future==true)
+					{
+					    Temp += (SY == Y && SM == M && SD == j ? "<td class='now'onclick='setDate("+Y+","+M+","+j+")'>" : "<td class='idle'onclick='setDate("+Y+","+M+","+j+")'>") + j +"</td>"
+					}
+				    else if(future==false)
+				    {
+					    Temp +=  "<td class='idle pass' onclick='alert(\"The date has passed\")'>" + j +"</td>"
+				    }
+			    }
+		  	}
+		
 	      		  
 	   		j = j + 1
 		}

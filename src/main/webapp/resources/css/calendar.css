@@ -4,8 +4,8 @@
 
 .day{width:850px;margin:10px auto;}
 .day table{width:100%;text-align:center;border-collapse:collapse;border-spacing:0;line-height:30px;}
-.day table th{background:#F5F5F5;font-weight:normal;line-height:30px;font-size:14px;}
-.day table td,.day th{border:1px solid #EEE;}
+.day table th{background:rgb(236, 236, 236);font-weight:normal;line-height:40px;font-size:14px;}
+.day table td,.day th{border:1px solid #EEE;line-height:40px;}
 .day table td:hover{background:#4092CC;color:#FFF;}
 .day table td:nth-child(1),table td:nth-child(7),table th:nth-child(1),table th:nth-child(7){color:#C00}
 .day table td.now{background:#4092CC;color:#FFF;cursor:pointer;}
@@ -29,7 +29,10 @@
 #cm:after{content:" Month;}
 #sm{width:70px;}
 #mm{width:68px;}
-
+.pass
+{
+	background-color:rgb(236, 252, 255);
+}
 .booked
 {
 background-color:rgb(252, 237, 178);
