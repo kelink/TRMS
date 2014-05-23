@@ -104,8 +104,15 @@ function getDynamicTable(Y,M){//���մ�������´�����
 		  		}
 		  	if(buffer==true)
 		  	{
-  
-			    Temp += (SY == Y && SM == M && SD == j ? "<td class='now'onclick=\"alert('The date is unavailable to book')\">" : "<td class='idle'onclick=\"alert('The date is unavailable to book')\">") + j +"</td>"
+                
+		  		if(book==true)
+		  		{
+		  			 Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle'onclick=\"alert('The date is unavailable to book')\"><div class=\"bookedDiv\"></div>" : "<td class='idle'onclick=\"alert('The date is unavailable to book')\"><div class=\"bookedDiv\"></div>") + j +"</td>"
+		  		}
+		  		else
+		  		{
+		  			 Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle'onclick=\"alert('The date is unavailable to book')\">" : "<td class='idle'onclick=\"alert('The date is unavailable to book')\">") + j +"</td>"
+		  		}
 	
 		 	    if(bufferNum==1)
  		    	{
@@ -120,11 +127,11 @@ function getDynamicTable(Y,M){//���մ�������´�����
 			    {
 				    if(future==true)
 					{
-					    Temp +=  "<td class='booked'onclick='bookInfo("+l+")'>" + j +"</td>";
+					    Temp +=  "<td onclick='bookInfo("+l+")'><div class=\"bookedDiv\"></div>" + j +"</td>";
 					    book=false;
 					}
 				    else{
-					    Temp +=  "<td class='booked pass'onclick='bookInfo("+l+")'>" + j +"</td>";
+					    Temp +=  "<td class='pass idle'onclick='bookInfo("+l+")'><div class=\"bookedDiv\"></div>" + j +"</td>";
 					    book=false;
 				    }
 				
