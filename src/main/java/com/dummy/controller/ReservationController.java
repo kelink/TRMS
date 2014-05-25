@@ -62,6 +62,8 @@ public class ReservationController {
 			// 默认搜索的是全部
 			if (advOption.length() > 0) {
 				optionStr = "where " + advOption;
+			} else {
+				optionStr = "";
 			}
 		}
 		if (session.getAttribute("currentRole").equals("ROLE_LC")) {

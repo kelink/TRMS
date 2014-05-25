@@ -34,14 +34,14 @@ public class BlackListDaoImpl implements BlackListDao {
 	}
 
 	@Override
-	public List<BlackListDao> getAllBlackList() {
+	public List<BlackList> getAllBlackList() {
 		String hql = "from BlackList";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
 
 	@Override
-	public void addBlackList(BlackListDao blackList) {
+	public void addBlackList(BlackList blackList) {
 		sessionFactory.getCurrentSession().save(blackList);
 	}
 
@@ -54,8 +54,16 @@ public class BlackListDaoImpl implements BlackListDao {
 	}
 
 	@Override
-	public boolean updateBlackList(BlackListDao blackList) {
+	public boolean updateBlackList(BlackList blackList) {
 		return false;
+	}
+
+	@Override
+	public BlackList getBlackListByTeam(int team_ID) {
+		String hql = "from BlackList b where b.team_ID=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, team_ID);
+		return (BlackList) query.uniqueResult();
 	}
 
 }

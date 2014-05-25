@@ -1,9 +1,11 @@
 package com.dummy.serviceImpl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -26,12 +28,12 @@ public class BlackListServiceImpl implements BlackListService {
 	}
 
 	@Override
-	public List<BlackListDao> getAllBlackList() {
+	public List<BlackList> getAllBlackList() {
 		return blackListDao.getAllBlackList();
 	}
 
 	@Override
-	public void addBlackList(BlackListDao blackList) {
+	public void addBlackList(BlackList blackList) {
 		blackListDao.addBlackList(blackList);
 	}
 
@@ -41,8 +43,20 @@ public class BlackListServiceImpl implements BlackListService {
 	}
 
 	@Override
-	public boolean updateBlackList(BlackListDao blackList) {
-		return blackList.updateBlackList(blackList);
+	public boolean updateBlackList(BlackList blackList) {
+		return blackListDao.updateBlackList(blackList);
 	}
 
+	@Override
+	public JSONObject getBlackListByTeam(int team_ID) {
+		BlackList blackList = blackListDao.getBlackListByTeam(team_ID);
+		if (blackList == null) {
+			return null;
+		}
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("bl_ID", String.valueOf(blackList.getBl_ID()));
+		map.put("reason", blackList.getReason());
+		map.put("team_ID", String.valueOf(blackList.getTeam_ID()));
+		return new JSONObject(map);
+	}
 }

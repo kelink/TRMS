@@ -14,4 +14,6 @@ public interface TeamDao {
 	public boolean delTeam(int id);
 
 	public boolean updateTeam(Team team);
+
+	public List<Team> getTeamsByDepartment(int department_ID);
 }

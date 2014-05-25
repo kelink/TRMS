@@ -179,5 +179,22 @@ public class RoomController {
 	public List<Reservation> getAllReservation(HttpServletResponse response) {
 		return reservationService.getAllReservation();
 	}
+	// for admin to manager the room
+	@RequestMapping("/roommanager")
+	public ModelAndView roomManager() {
+		return new ModelAndView("room/roomManager");
+	}
+	@RequestMapping("/add")
+	public ModelAndView add() {
+		return null;
+	}
+	@RequestMapping("/delete")
+	public ModelAndView delete() {
+		return null;
+	}
+	@RequestMapping("/check")
+	public ModelAndView check() {
+		return null;
+	}
 
 }

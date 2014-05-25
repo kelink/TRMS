@@ -13,7 +13,7 @@ import com.dummy.domain.Team;
 
 @Repository(value = "teamDao")
 public class TeamDaoImpl implements TeamDao {
-	// »ñÈ¡session
+	// ï¿½ï¿½È¡session
 	@Resource(name = "sessionFactory")
 	private SessionFactory sessionFactory;
 
@@ -55,4 +55,11 @@ public class TeamDaoImpl implements TeamDao {
 		return false;
 	}
 
+	@Override
+	public List<Team> getTeamsByDepartment(int department_ID) {
+		String hql = "from Team t where t.department_ID=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, department_ID);
+		return query.list();
+	}
 }

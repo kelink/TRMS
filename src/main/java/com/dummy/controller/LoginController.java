@@ -60,6 +60,8 @@ public class LoginController {
 		}
 		if (currentRole.equals("ROLE_TA")) {
 			modelMap.addAttribute("currentUser", currentUser);
+			session.setAttribute("currentUser", currentUser);
+			session.setAttribute("currentRole", currentRole);
 			return new ModelAndView("redirect:/admin/index", modelMap);
 		} else {
 			return null;

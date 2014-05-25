@@ -7,12 +7,13 @@ import com.dummy.domain.BlackList;
 public interface BlackListDao {
 	public BlackList getBlackList(int id);
 
-	public List<BlackListDao> getAllBlackList();
+	public List<BlackList> getAllBlackList();
 
-	public void addBlackList(BlackListDao blackList);
+	public void addBlackList(BlackList blackList);
 
 	public boolean delBlackList(int id);
 
-	public boolean updateBlackList(BlackListDao blackList);
+	public boolean updateBlackList(BlackList blackList);
 
+	public BlackList getBlackListByTeam(int team_ID);
 }

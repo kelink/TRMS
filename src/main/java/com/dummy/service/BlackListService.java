@@ -2,18 +2,20 @@ package com.dummy.service;
 
 import java.util.List;
 
-import com.dummy.dao.BlackListDao;
+import org.json.JSONObject;
+
 import com.dummy.domain.BlackList;
 
 public interface BlackListService {
 	public BlackList getBlackList(int id);
 
-	public List<BlackListDao> getAllBlackList();
+	public List<BlackList> getAllBlackList();
 
-	public void addBlackList(BlackListDao blackList);
+	public void addBlackList(BlackList blackList);
 
 	public boolean delBlackList(int id);
 
-	public boolean updateBlackList(BlackListDao blackList);
+	public boolean updateBlackList(BlackList blackList);
 
+	public JSONObject getBlackListByTeam(int team_ID);
 }
