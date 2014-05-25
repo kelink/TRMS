@@ -22,7 +22,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
 	@Override
 	public Department getDepartment(int id) {
-		String hql = "from Department d where d.deptment_ID=?";
+		String hql = "from Department d where d.department_ID=?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, id);
 		return (Department) query.uniqueResult();

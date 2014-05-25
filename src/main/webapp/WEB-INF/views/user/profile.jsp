@@ -174,23 +174,23 @@
 			  	     </div>
 			  	     
 			  	     <div class="infoRow">
-			  	     <div class="label">Role:</div>
+			  	     <div class="label">Role:${role.authority }</div>
 			  	     <div class="userInfo"></div>
 			  	     </div>
 			  	     
 			  	     <div class="infoRow">
-			  	     <div class="label">Gender:FEMALE
+			  	     <div class="label">Gender:${gender}
 			  	      </div>
 			  	     <div class="userInfo"></div>
 			  	     </div>
 			  	     
 			  	     <div class="infoRow">
-			  	     <div class="label">Team:${user_Team.getTeamName() }</div>
+			  	     <div class="label">Department:${department.departmentName }</div>
 			  	     <div class="userInfo"></div>
 			  	     </div>
 			  	     
 			  	     <div class="infoRow">
-			  	     <div class="label">Email:</div>
+			  	     <div class="label">Email:${currentUser.account}</div>
 			  	     <div class="userInfo"></div>
 			  	     </div>
 			  	     

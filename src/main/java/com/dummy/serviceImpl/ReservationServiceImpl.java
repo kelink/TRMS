@@ -59,7 +59,7 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationDao.updateReservation(reservation);
 	}
 
-	// ��ȡ������Ҫ����Ϣ
+	// get calander info
 	@Override
 	public String getCalanderData(int room_ID) {
 		List<CalanderDataDomain> list = reservationDao
@@ -171,5 +171,20 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public List<ReservationDetial> getReservationByOption(String sql) {
 		return reservationDao.getReservationByOption(sql);
+	}
+
+	@Override
+	public boolean delReservationByNum(String num) {
+		return reservationDao.delReservationByNum(num);
+	}
+
+	@Override
+	public Reservation getReservationByNum(String num) {
+		return reservationDao.getReservationByNum(num);
+	}
+	// get reservation detial by num
+	public List<ReservationDetial> getReservationDetialByNum(String num) {
+		String optionStr = "where reservation.reservation_Num=" + num;
+		return reservationDao.getReservationByOption(optionStr);
 	}
 }

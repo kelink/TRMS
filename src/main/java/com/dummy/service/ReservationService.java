@@ -22,4 +22,8 @@ public interface ReservationService {
 
 	public List<ReservationDetial> getReservationDetialOnPage(int pageNum,
 			int pageSize, String optionSql);
+
+	public boolean delReservationByNum(String num);
+
+	public Reservation getReservationByNum(String num);
 }

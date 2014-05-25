@@ -391,4 +391,20 @@ public class ReservationDaoImpl implements ReservationDao {
 		System.out.println(result);
 		return result;
 	}
+
+	@Override
+	public boolean delReservationByNum(String num) {
+		String hql = "delete Reservation r where r.reservation_Num = ?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setString(0, num);
+		return (query.executeUpdate() > 0);
+	}
+
+	@Override
+	public Reservation getReservationByNum(String num) {
+		String hql = "from Reservation r where r.reservation_Num=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setString(0, num);
+		return (Reservation) query.uniqueResult();
+	}
 }

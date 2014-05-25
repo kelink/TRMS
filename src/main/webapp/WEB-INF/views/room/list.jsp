@@ -160,7 +160,7 @@
 				     <a href="<%=request.getContextPath()%>/reservation/list" class="navItem">Check My Reservation</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/edit" class="navItem">Delete My Reservation</a>
+				     <a href="<%=request.getContextPath()%>/reservation/delete" class="navItem">Delete My Reservation</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>

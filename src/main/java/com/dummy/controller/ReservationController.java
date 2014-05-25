@@ -170,15 +170,30 @@ public class ReservationController {
 		}
 		return null;
 	}
-
-	// reservation Delete
 	@RequestMapping(value = {"/delete"})
 	public ModelAndView delete(HttpServletRequest request) {
+		return new ModelAndView("reservation/delete");
+	}
+
+	// reservation Delete by reservation_id
+	@RequestMapping(value = {"/deleteByID"})
+	public ModelAndView deleteByID(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("reservation_ID"));
 		if (reservationService.delReservation(id) == true) {
 			return new ModelAndView("redirect:/reservation/list");
 		}
 		return new ModelAndView("redirect:/reservation/list");
 	}
+
+	// reservation Delete by reservation_num
+	@RequestMapping(value = {"/deleteByNum"})
+	public ModelAndView deleteByNum(HttpServletRequest request) {
+		String num = request.getParameter("reservation_Num");
+		if (reservationService.delReservationByNum(num) == true) {
+			return new ModelAndView("redirect:/reservation/list");
+		}
+		return new ModelAndView("redirect:/reservation/list");
+	}
+	// get reservationDetial by reservation_num
 
 }
