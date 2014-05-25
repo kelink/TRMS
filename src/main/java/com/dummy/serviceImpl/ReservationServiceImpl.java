@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -56,8 +55,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public boolean updateReservationById(int id, Reservation reservation) {
-		return reservationDao.updateReservationById(id, reservation);
+	public boolean updateReservation(Reservation reservation) {
+		return reservationDao.updateReservation(reservation);
 	}
 
 	// ��ȡ������Ҫ����Ϣ
@@ -143,11 +142,10 @@ public class ReservationServiceImpl implements ReservationService {
 				}
 			}
 		}
-
 		return result;
 	}
 
-	// 0��ʾ�꣬1��ʾ��,2��ʾ��
+	// 0--year,1---month,2---day
 	private int[] ChangeDate(long dayTime) {
 		Date date = new Date(dayTime);
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
@@ -162,40 +160,16 @@ public class ReservationServiceImpl implements ReservationService {
 		return result;
 	}
 
+	// get page of Reservations
 	@Override
-	public List<ReservationDetial> getReservationByOption(
-			HashMap<String, String> queryKeys) {
-		StringBuilder builder = new StringBuilder();
-		Set<String> keys = queryKeys.keySet();
-		int i = 0;
-		for (String key : keys) {
-			if (key.equals("team_ID") || key.equals("room_ID")
-					|| key.equals("user_ID") || key.equals("status")) {
-				builder.append("Reservation." + key + "="
-						+ queryKeys.get(key).trim());
-			} else if (key.equals("purpose") || key.equals("reservation_Num")
-					|| key.equals("email") || key.equals("tele")) {
-				builder.append("Reservation." + key + " like " + "'%"
-						+ queryKeys.get(key).toString().trim() + "%'");
-			} else if (key.equals("Applied_Start_Date")) {
-				builder.append("Reservation." + key + ">='"
-						+ queryKeys.get(key).trim() + "'");
-			} else if (key.equals("Applied_End_Date")) {
-				builder.append("Reservation." + key + "<='"
-						+ queryKeys.get(key).trim() + "'");
-			} else if (key.equals("order_Time")) {
-				builder.append("Reservation." + key + "='"
-						+ queryKeys.get(key).trim() + "'");
-			}
+	public List<ReservationDetial> getReservationDetialOnPage(int pageNum,
+			int pageSize, String optionSql) {
+		return reservationDao.getReservationDetialOnPage(pageNum, pageSize,
+				optionSql);
+	}
 
-			if ((i + 1) != keys.size()) {
-				builder.append(" and ");
-			}
-			++i;
-		}
-		logger.info("sql 条件--->" + builder.toString());
-		List<ReservationDetial> reservations = reservationDao
-				.getReservationByOption(builder.toString());
-		return reservations;
+	@Override
+	public List<ReservationDetial> getReservationByOption(String sql) {
+		return reservationDao.getReservationByOption(sql);
 	}
 }

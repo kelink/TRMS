@@ -9,16 +9,19 @@ public class C {
 		public static final String CONFIG_EMAIL_PATH = "E:\\spring too suit\\workplace\\Dummy\\TRMS\\src\\main\\resources\\email.properties";
 	}
 
-	// ÏÂÃæÊÇÊý¾Ý¿âÄ¬ÈÏÖµµÄ³£Á¿Öµ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½Ä¬ï¿½ï¿½Öµï¿½Ä³ï¿½ï¿½ï¿½Öµ
 	public static final class DB {
 		// DBUser
 		public static final int DEFAULT_ROLE_LC = 1;
 		public static final int DEFAULT_ROLE_TA = 2;
+		// Role
+		public static final String DEFAULT_ROLE_ADMIN = "ROLE_TA";
+		public static final String DEFAULT_ROLE_USER = "ROLE_LC";
 		// Room ×´Ì¬
 		public static final int DEFAULT_FREE_ROOM = 0;
 		public static final int DEFAULT_UNFREE_ROOM = 1;
 
-		// Reservation ´¦Àí×´Ì¬
+		// Reservation×´Ì¬
 		public static final int DEFAULT_RESERVATION_ACCEPT = 1;
 		public static final int DEFAULT_RESERVATION_REFUSE = 0;
 		public static final int DEFAULT_RESERVATION_UNHANDLE = -1;

@@ -23,10 +23,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dummy.common.C;
+import com.dummy.domain.BlackList;
 import com.dummy.domain.DBUser;
 import com.dummy.domain.Reservation;
 import com.dummy.domain.Room;
 import com.dummy.domain.Team;
+import com.dummy.service.BlackListService;
 import com.dummy.service.ReservationService;
 import com.dummy.service.RoomService;
 import com.dummy.service.TeamService;
@@ -34,8 +36,8 @@ import com.dummy.service.UserService;
 import com.dummy.util.ReservationUtil;
 
 @Controller
-@SessionAttributes({ "currentUser" })
-@RequestMapping(value = { "/room" })
+@SessionAttributes({"currentUser"})
+@RequestMapping(value = {"/room"})
 public class RoomController {
 
 	private static final Logger logger = LoggerFactory
@@ -53,8 +55,11 @@ public class RoomController {
 	@Resource(name = "userService")
 	private UserService userService;
 
+	@Resource(name = "blackListService")
+	private BlackListService blackListService;
+
 	// getRoom
-	@RequestMapping(value = { "/getForm", "" })
+	@RequestMapping(value = {"/getForm", ""})
 	public ModelAndView getForm(HttpServletRequest request) {
 		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
 		String year = request.getParameter("year");
@@ -76,7 +81,7 @@ public class RoomController {
 		return new ModelAndView("room/form", map);
 	}
 
-	// ��ҳlist ���еķ���
+	// Room list
 	@RequestMapping("/list")
 	public ModelAndView list(
 			Model model,
@@ -102,7 +107,7 @@ public class RoomController {
 		return roomPageList;
 	}
 
-	// request calander
+	// request calendar
 	@RequestMapping(value = "/calendar")
 	public ModelAndView calendar(HttpServletRequest request) {
 		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
@@ -114,54 +119,65 @@ public class RoomController {
 		return new ModelAndView("room/calendar", map);
 	}
 
-	// �����߼�
+	// book room
 	@RequestMapping(value = "/bookRoom")
-	public ModelAndView bookRoom(HttpServletRequest request,
+	public ModelAndView bookRoom(
+			HttpServletRequest request,
+			Model model,
+			@RequestParam(value = "team_ID", required = true) int team_ID,
+			@RequestParam(value = "room_ID", required = true) int room_ID,
+			@RequestParam(value = "begin_time", required = true) String begin_time,
+			@RequestParam(value = "end_time", required = true) String end_time,
+			@RequestParam(value = "email", required = true) String email,
+			@RequestParam(value = "tele", required = true) String tele,
+			@RequestParam(value = "purpose", required = true) String purpose,
 			@ModelAttribute("currentUser") DBUser currentUser) {
-		// 1.��ǰʱ�䵽��β�� ���еķ������Ԥ��
-		int room_ID = Integer.parseInt(request.getParameter("room"));
-		String begin_time = request.getParameter("begin_time");
-		String end_time = request.getParameter("end_time");
+		ModelMap map = new ModelMap();
+		// 1.whether is in the blacklist
+		BlackList blacklist = blackListService.getBlackList(team_ID);
+		if (blacklist != null) {
+			map.addAttribute("blacklist", blacklist);
+			return new ModelAndView("room/fail", map);
+		} else {
+			DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 
-		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+			Date beginDate = null;
+			Date endDate = null;
+			Date nowDate = null;
+			try {
+				beginDate = (Date) format1.parse(begin_time);
+				endDate = (Date) format1.parse(end_time);
+				String now = format1.format(new java.util.Date());
+				nowDate = (Date) format1.parse(now);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			// 2. create a reservation
+			Reservation reservation = new Reservation();
+			reservation.setApplied_End_Date(endDate);
+			reservation.setApplied_Start_Date(beginDate);
+			reservation.setEmail(email);
+			reservation.setOrder_Time(nowDate);
+			reservation.setPurpose(purpose);
+			reservation.setRoom_ID(room_ID);
+			reservation.setStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
+			reservation.setTeam_ID(team_ID);
+			reservation.setUser_ID(currentUser.getUser_ID());
+			reservation.setTele(tele);
+			reservation.setReservation_Num(ReservationUtil.getUniqueSequence());
+			reservation.setApprove_by(C.DB.DEFAULT_APPROVE_BY);
+			System.out.println(reservation);
+			// 3.Send Email
 
-		String email = request.getParameter("email");
-		String tele = request.getParameter("userTelLine");
-		String purpose = request.getParameter("purpose");
-		int team_ID = Integer.parseInt(request.getParameter("team"));
-		Date beginDate = null;
-		Date endDate = null;
-		Date nowDate = null;
-		try {
-			beginDate = (Date) format1.parse(begin_time);
-			endDate = (Date) format1.parse(end_time);
-			String now = format1.format(new java.util.Date());
-			nowDate = (Date) format1.parse(now);
-		} catch (ParseException e) {
-			e.printStackTrace();
+			reservationService.addReservation(reservation);
+			return new ModelAndView("room/success");
 		}
-		Reservation reservation = new Reservation();
-		reservation.setApplied_End_Date(endDate);
-		reservation.setApplied_Start_Date(beginDate);
-		reservation.setEmail(email);
-		reservation.setOrder_Time(nowDate);
-		reservation.setPurpose(purpose);
-		reservation.setRoom_ID(room_ID);
-		reservation.setStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
-		reservation.setTeam_ID(team_ID);
-		reservation.setUser_ID(currentUser.getUser_ID());
-		reservation.setTele(tele);
-		reservation.setReservation_Num(ReservationUtil.getUniqueSequence());
-		reservation.setApprove_by(C.DB.DEFAULT_APPROVE_BY);
-		System.out.println(reservation);
-		// ����email�����������
-		reservationService.addReservation(reservation);
-		return new ModelAndView("room/success");
-	}
 
-	// ������ж�����Ϣ
+	}
+	// get add reservation
 	@RequestMapping("/getAllReservation")
 	public List<Reservation> getAllReservation(HttpServletResponse response) {
 		return reservationService.getAllReservation();
 	}
+
 }

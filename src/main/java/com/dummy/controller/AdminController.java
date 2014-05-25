@@ -20,7 +20,7 @@ public class AdminController {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	// 进入TA主界面
+	// index page
 	@RequestMapping(value = "/index")
 	public ModelAndView index(@ModelAttribute("currentUser") DBUser currentUser) {
 		return new ModelAndView("admin/index");

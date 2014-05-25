@@ -157,7 +157,7 @@
 				     <a href="<%=request.getContextPath()%>/room/list" class="navItem selected">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/index" class="navItem">Check My Reservation</a>
+				     <a href="<%=request.getContextPath()%>/reservation/list" class="navItem">Check My Reservation</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/reservation/edit" class="navItem">Delete My Reservation</a>

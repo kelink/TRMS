@@ -22,7 +22,7 @@
 
 <form action="<%=request.getContextPath()%>/room/bookRoom" method="post" name="bookForm">
 Free Room:
-<select name="room"> 
+<select name="room_ID"> 
 		<option value="${room.room_ID }">${room.item }</option>
 </select>
 <br/>
@@ -30,13 +30,13 @@ Start_Time<input type="date" name="begin_time" value="${select_date}"/><br/>
 End_Time:<input type="date" name="end_time" value="${select_date}""/><br/>
 Email<input type="text" name="email"/><br/>
 Team
-<select name="team">
+<select name="team_ID">
 	<c:forEach items="${teams}" var="team"> 
 		<option value="${team.team_ID}">${team.teamName }</option>
 	</c:forEach>
 </select>
 <br/>
-TelLine<input type="text" name="userTelLine"><br/>
+TelLine<input type="text" name="tele"><br/>
 Purpose:<input type="text" name="purpose"><br/>
 <input type="submit" name="submit" value="Submit"/>
 </form>

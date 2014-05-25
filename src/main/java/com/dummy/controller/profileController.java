@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,11 +11,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dummy.domain.DBUser;
-import com.dummy.domain.Team;
-import com.dummy.service.TeamService;
 import com.dummy.service.UserService;
 
-@SessionAttributes({ "currentUser" })
+@SessionAttributes({"currentUser"})
 @Controller
 @RequestMapping("/profile")
 public class profileController {
@@ -24,19 +21,16 @@ public class profileController {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	@Resource(name = "teamService")
-	private TeamService teamService;
-
-	@RequestMapping(value = "/modify")
-	public ModelAndView modify(HttpServletRequest request,
-			@ModelAttribute("currentUser") DBUser currentUser) {
-		ModelMap map = new ModelMap();
-		// 获得当前用户的team信息
-		Team user_Team = teamService.getTeam(currentUser.getTeam_ID());
-		map.addAttribute("currentUser", currentUser);
-		map.addAttribute("user_Team", user_Team);
-		return new ModelAndView("user/profile", map);
-	}
+	// @RequestMapping(value = "/modify")
+	// public ModelAndView modify(HttpServletRequest request,
+	// @ModelAttribute("currentUser") DBUser currentUser) {
+	// ModelMap map = new ModelMap();
+	// // 获得当前用户的team信息
+	// // Team user_Team = departmentService.get(currentUser.getDept_ID());
+	// // map.addAttribute("currentUser", currentUser);
+	// // map.addAttribute("user_Team", user_Team);
+	// // return new ModelAndView("user/profile", map);
+	// }
 
 	// check old password
 	@RequestMapping(value = "/checkOldPwd")

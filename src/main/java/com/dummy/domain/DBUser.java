@@ -31,14 +31,14 @@ public class DBUser {
 	@Column(length = 50, nullable = false)
 	private String Tele;
 
-	private int team_ID;
+	private int dept_ID;
 
-	public int getTeam_ID() {
-		return team_ID;
+	public int getDept_ID() {
+		return dept_ID;
 	}
 
-	public void setTeam_ID(int team_ID) {
-		this.team_ID = team_ID;
+	public void setDept_ID(int dept_ID) {
+		this.dept_ID = dept_ID;
 	}
 
 	public int getUser_ID() {

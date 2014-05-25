@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>订房界面</h1>
-book Room Success!
-Please wait the TA to approve your reservation!
+book Room fail!
+${blacklist.reason}
 </body>
 </html>

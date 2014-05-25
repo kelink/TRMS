@@ -1,11 +1,10 @@
-package com.dummy.service;
+package com.dummy.dao;
 
 import java.util.List;
 
-import com.dummy.dao.BlackListDao;
 import com.dummy.domain.BlackList;
 
-public interface BlackListService {
+public interface BlackListDao {
 	public BlackList getBlackList(int id);
 
 	public List<BlackListDao> getAllBlackList();

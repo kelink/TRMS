@@ -18,7 +18,6 @@ import com.dummy.domain.Room;
 public class RoomDaoImpl implements RoomDao {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
-	// 获取session
 	@Resource(name = "sessionFactory")
 	private SessionFactory sessionFactory;
 
@@ -60,15 +59,16 @@ public class RoomDaoImpl implements RoomDao {
 		return false;
 	}
 
-	// 分页获取对象
+	// get room by page
 	@SuppressWarnings("unchecked")
 	public List<Room> getRoomOnPage(int pageNum, int pageSize) {
 		String hql = "from Room r order by r.last_Used_Date desc";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		int offSet = (pageNum - 1) * pageSize >= 0 ? (pageNum - 1) * pageSize
+		int offSet = (pageNum - 1) * pageSize >= 0
+				? (pageNum - 1) * pageSize
 				: 0;
-		query.setFirstResult(offSet);// 从第几条开始
-		query.setMaxResults(pageSize);// 取多少条
+		query.setFirstResult(offSet);
+		query.setMaxResults(pageSize);
 		return query.list();
 	}
 

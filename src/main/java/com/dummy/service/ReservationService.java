@@ -1,6 +1,5 @@
 package com.dummy.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.dummy.domain.Reservation;
@@ -15,10 +14,12 @@ public interface ReservationService {
 
 	public boolean delReservation(int id);
 
-	public boolean updateReservationById(int id, Reservation reservation);
+	public boolean updateReservation(Reservation reservation);
 
 	public String getCalanderData(int room_ID);
 
-	public List<ReservationDetial> getReservationByOption(
-			HashMap<String, String> hashMap);
+	public List<ReservationDetial> getReservationByOption(String sql);
+
+	public List<ReservationDetial> getReservationDetialOnPage(int pageNum,
+			int pageSize, String optionSql);
 }

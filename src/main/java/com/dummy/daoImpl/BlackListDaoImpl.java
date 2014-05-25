@@ -11,13 +11,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.dummy.controller.LoginController;
-import com.dummy.dao.BlackList;
+import com.dummy.dao.BlackListDao;
+import com.dummy.domain.BlackList;
 
-@Repository("blackList")
-public class BlackListImpl implements BlackList {
+@Repository("blackListDao")
+public class BlackListDaoImpl implements BlackListDao {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
-	// ªÒ»°session
 	@Resource(name = "sessionFactory")
 	private SessionFactory sessionFactory;
 
@@ -34,16 +34,15 @@ public class BlackListImpl implements BlackList {
 	}
 
 	@Override
-	public List<BlackList> getAllBlackList() {
+	public List<BlackListDao> getAllBlackList() {
 		String hql = "from BlackList";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
 
 	@Override
-	public void addBlackList(BlackList blackList) {
+	public void addBlackList(BlackListDao blackList) {
 		sessionFactory.getCurrentSession().save(blackList);
-
 	}
 
 	@Override
@@ -55,7 +54,7 @@ public class BlackListImpl implements BlackList {
 	}
 
 	@Override
-	public boolean updateBlackList(BlackList blackList) {
+	public boolean updateBlackList(BlackListDao blackList) {
 		return false;
 	}
 

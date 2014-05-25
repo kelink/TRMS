@@ -13,7 +13,6 @@ import com.dummy.domain.Department;
 
 @Repository(value = "departmentDao")
 public class DepartmentDaoImpl implements DepartmentDao {
-	// ªÒ»°session
 	@Resource(name = "sessionFactory")
 	private SessionFactory sessionFactory;
 

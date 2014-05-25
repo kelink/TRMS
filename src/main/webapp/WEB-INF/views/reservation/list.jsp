@@ -10,28 +10,195 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
+<link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
+  <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
+ <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+ <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+var pageIndex = 0;
+var pageSize = 5;
+$(function() {
+	pageIndex = 1;
+	AjaxGetData(pageIndex, pageSize);
+});
+
+function AjaxGetData(index, size) {
+	$.ajax({
+				url : "<%=request.getContextPath()%>/reservation/listPageReservation",
+				type : "Get",
+				data : "pageNum=" + index + "&pageSize=" + size+"&optionStr="+"${optionStr}",
+				dataType : "json",
+				success : function(json) {
+					var html="";
+					for (position in json) {	
+									
+						var reservation_ID=json[position].reservation.reservation_ID;
+						var reservation_start_Daty=json[position].reservation.applied_Start_Date;
+						var reservation_end_Daty=json[position].reservation.applied_End_Date;
+						var reservation_Num=json[position].reservation.reservation_Num;
+						var purpose=json[position].reservation.purpose;
+						var email=json[position].reservation.email;
+						var tele=json[position].reservation.tele;
+						var Order_Date=json[position].reservation.order_Time;
+						var handler_by=json[position].reservation.handle_by;
+						
+						var team_ID=json[position].team.team_ID;
+						var order_Team=json[position].team.teamName;
+						
+						var room_ID=json[position].room.room_ID;
+						var room_item=json[position].room.item;
+						
+						var applicant_ID=json[position].user.user_ID;
+						var applicant_account=json[position].user.account;
+																	
+						html+=("reservation_ID:"+reservation_ID+"<br/>");
+						html+=("reservation_start_Daty:"+reservation_start_Daty+"<br/>");
+						html+=("reservation_end_Daty:"+reservation_end_Daty+"<br/>");
+						html+=("reservation_Num:"+reservation_Num+"<br/>");
+						html+=("purpose:"+purpose+"<br/>");
+						html+=("email:"+email+"<br/>");
+						html+=("tele:"+tele+"<br/>");
+						html+=("Order_Date:"+Order_Date+"<br/>");
+				
+						html+=("team_ID:"+team_ID+"<br/>");	
+						html+=("order_Team:"+order_Team+"<br/>");	
+						
+						html+=("room_ID:"+room_ID+"<br/>");	
+						html+=("room_item:"+room_item+"<br/>");
+				
+						html+=("applicant_ID:"+applicant_ID+"<br/>");	
+						html+=("applicant_account:"+applicant_account+"<br/>");
+						
+						html+=("handler_by:"+handler_by+"<br/>");
+						html+=("Click <a href='<%=request.getContextPath()%>/reservation/edit?"
+								+"reservation_ID="+reservation_ID
+								+"&room_ID="+room_ID
+								+"&team_ID="+team_ID
+								+"&applicant_ID="+applicant_ID
+								+"&handler_by="+handler_by
+								+"'> Here </a> to get more Information<br/>");
+						
+					html+=("<hr/>");
+					}					
+					
+					$('#reservationInfo').html("");
+	                $('#reservationInfo').html(html); 
+	                $('#pageIndex').html("");
+	               $('#pageIndex').html(pageIndex);
+	                },
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert(XMLHttpRequest);
+					alert(textStatus);
+					alert(errorThrown);
+				}
+			});
+}
+
+function GoToFirstPage() {
+	pageIndex = 1;
+	AjaxGetData(pageIndex, pageSize);
+}
+
+function GoToPrePage() {
+	pageIndex -= 1;
+	pageIndex = pageIndex >= 1 ? pageIndex : 1;
+	AjaxGetData(pageIndex, pageSize);
+}
+
+function GoToNextPage() {
+	if (pageIndex < parseInt($("#count").text())) {
+		pageIndex += 1;
+		AjaxGetData(pageIndex, pageSize);
+	}	
+}
+
+function GoToEndPage() {
+	pageIndex = parseInt($("#count").text());
+	AjaxGetData(pageIndex, pageSize);
+}
+
+function GoToAppointPage(e) {
+	var page = $(e).prev().val();
+	if (isNaN(page)) {
+		alert("Page should be a valid number");
+	} else {
+		var tempPageIndex = pageIndex;
+		pageIndex = parseInt($(e).prev().val());
+		if (pageIndex <= 0 || pageIndex > parseInt($("#count").text())) {
+			pageIndex = tempPageIndex;
+			alert("Please input valid page scope!");
+		} else {
+			AjaxGetData(pageIndex, pageSize);
+		}
+	}
+}
+
+</script>
+
 </head>
 <body>
-	<h1>显示reservation</h1>
-	<c:forEach var="reservationDetial" items="${reservationDetials}">	
+	<a href="<%=request.getContextPath()%>/room/list">Back </a>
+	<h1>高级查询</h1>		
+	<form action="<%=request.getContextPath()%>/reservation/list" method="get">
+		Reservation Number:
+		<input type="text" name="reservation_Num"/><br/>
+		Booked Time:
+		<input type="date" name="order_Time"/><br/>
+		Ticket Status:
+		<select name="status">
+			<option></option>
+			<option value="1">accept</option>
+			<option value="-1">refuse</option>
+			<option value="0">unhandle</option>
+		</select>
+		Room：
+		<select name="room_ID">
+		<option></option>
+			<c:forEach var="room" items="${rooms}">	
+				<option value='${room.room_ID}'>${room.item}</option>
+			</c:forEach>		
+		</select><br/>
+		Planned Use Start Time：
+		<input type="date" name="Applied_Start_Date"/><br/>
+		Planned Use End Time：
+		<input type="date" name="Applied_End_Date"/><br/>
+		User LN:
+		<input type="text" name="email"/><br/>
+		User Team:
+		<select name="team_ID">
+			<option></option>
+			<c:forEach var="team" items="${teams}">	
+				<option value='${team.team_ID}'>${team.teamName}</option>
+			</c:forEach>
+		</select><br/>
+		User TelLine:
+		<input type="text" name="tele"/><br/>
+		Use Resaon:
+		<input type="text" name="purpose"/>
+		<input type="submit"name="submit" value="submit"/>
 		<hr/>
-		${reservationDetial.reservation.reservation_ID }<br/>
-		${reservationDetial.reservation.reservation_Num }<br/>
-		${reservationDetial.reservation.team_ID }<br/>
-		${reservationDetial.reservation.room_ID }<br/>
-		${reservationDetial.reservation.user_ID }<br/>
-		${reservationDetial.reservation.purpose }<br/>
-		${reservationDetial.reservation.status }<br/>
-		${reservationDetial.reservation.email }<br/>
-		${reservationDetial.reservation.tele }<br/>
-		${reservationDetial.reservation.approve_by}<br/>
-		${reservationDetial.reservation.getApplied_Start_DateByString()}<br/>
-		${reservationDetial.reservation.getApplied_End_DateByString() }<br/>
-		${reservationDetial.reservation.getOrder_DateByString() }<br/>
-		
-		${reservationDetial.team.teamName}
-		<hr/>
-	</c:forEach>
+		</form>
+			<h1> 显示查询结果</h1> 
+		 	<ul>			 
+				 <div id="reservationInfo">
+				    </div>				
+				 </ul>
+				 <div id="listInfoWrapper">
+				     <div id="listInfo">
+					    Total Page:<span id='count'>${pageCount}</span>
+					    Total Records:<span id='recordCount'>${recordCount}</span>
+				    </div>
+				    
+				    <div id="jump">
+					     <a href='javascript:void' onclick='GoToFirstPage()' id='FirstPage' ><img class="pageIcon"alt="Go to first page" src="<%=request.getContextPath()%>/resources/images/first.png"></a>
+					     <a href='javascript:void' onclick='GoToPrePage()' id='PrePage' ><img class="pageIcon"alt="Go to previous page" src="<%=request.getContextPath()%>/resources/images/prepage.png"></a>
+					     <span id="pageIndex"></span>
+					     <a href='javascript:void' onclick='GoToNextPage()' id='NextPage' ><img class="pageIcon"alt="Go to next page" src="<%=request.getContextPath()%>/resources/images/nextpage.png"></a>
+					     <a href='javascript:void' onclick='GoToEndPage()' id='EndPage' ><img class="pageIcon" alt="Go to last page"src="<%=request.getContextPath()%>/resources/images/end.png"></a>
+					     <input type='text' size='4' name='page' />
+					     <input class="btnJump" type='button' value='Jump' onclick='GoToAppointPage(this)' />
+				     </div>
+				 </div>
 </body>
 </body>
 </html>
