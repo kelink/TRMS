@@ -1,6 +1,6 @@
 
 //var bookedDate=[{year:2014,month:1,day:20,department:"USER_EXPERIENCE",lc:"xx",usage:"xx",usertele:"xx"},{year:2014,month:1,day:23,department:"xx",lc:"xx",usage:"xx",usertele:"xx"}];//�����Ǵ���һ����ż�ֵ�ԵĶ�������飬˵����Щ�챻���ˡ�Key��year,month,day��department,lc,usage,usertele����ʽ�����������ӡ�
-var book=false;
+
 
 var SY,SM,SD,cy,cm
 SY = new Date().getFullYear();
@@ -10,60 +10,77 @@ cy = document.getElementById("cy");
 cm = document.getElementById("cm");
 window.onload = function(){
 	getDynamicTable(SY,SM)
-	document.getElementById("YearAll").innerHTML = YearAll(SY)//���������б������
-	document.getElementById("DateAll").innerHTML = DateAll(SY,SM)
+	document.getElementById("cy").innerHTML =parseInt(SY)
+    document.getElementById("cm").innerHTML =parseInt(SM)
+//	document.getElementById("YearAll").innerHTML = YearAll(SY)
+//	document.getElementById("DateAll").innerHTML = DateAll(SY,SM)
 };
-function YearAll(Y){//�����б�ֻ��ʾ����
-	var Ystr = ""
+//function YearAll(Y){
+//	var Ystr = ""
+//	
+//		Ystr += "<li onclick='getym(this,\"cy\")'>"+ Y +"</li>"
+//	
+//	return Ystr
+//}
+//function DateAll(Y,M){
+//	var Mstr = "",Mnum = GetDaysInMonth(Y,M)
+//	for (var m = M; m <= M+1; m++) {
+//		Mstr += "<li onclick='getym(this,\"cm\")'>"+ (m < 10 ? "0" + m : m) +"</li>"
+//	}
+//	return Mstr
+//}
+//function getym(o,s){
+//	document.getElementById(s).innerHTML = parseInt(o.innerHTML)
+//	getDynamicTable(parseInt(cy.innerHTML),parseInt(cm.innerHTML))
+//}
+function Month(s){
 	
-		Ystr += "<li onclick='getym(this,\"cy\")'>"+ Y +"</li>"
+	var m=parseInt($("#cm").html())
+	var sm1=parseInt(SM)
 	
-	return Ystr
-}
-function DateAll(Y,M){//ֻ��ʾ���º�����
-	var Mstr = "",Mnum = GetDaysInMonth(Y,M)
-	for (var m = M; m <= M+1; m++) {
-		Mstr += "<li onclick='getym(this,\"cm\")'>"+ (m < 10 ? "0" + m : m) +"</li>"
-	}
-	return Mstr
-}
-function getym(o,s){
-	document.getElementById(s).innerHTML = parseInt(o.innerHTML)
-	getDynamicTable(parseInt(cy.innerHTML),parseInt(cm.innerHTML))
-}
-function Month(s){//������ѡ���£����������
-	var y = parseInt(cy.innerHTML),m = parseInt(cm.innerHTML)
 	if (s == "l") {
-		if (m <= 1) {
-			m = 12
-			y --
-		} else {
-			m --
-		}
-	} else {
-		if (m >= 12) {
-			m = 1
-			y ++
-		} else {
-			m ++
-		}
+       if(m==sm1)
+       {
+    	    
+       }
+       else
+       {
+    	  m--;
+       }
+	} 
+	else 
+	{
+		 if(m==(sm1+1))
+	       {
+			 
+	    	     
+	       }
+	       else
+	       {
+	    	  m++;
+	       }
 	}
-	cy.innerHTML = y
-	cm.innerHTML = m
-	getDynamicTable(y,m)
+
+	$("#cm").html(m)
+    getDynamicTable(SY,m)
 }
-function now(){//���յ�ǰ�������������
+function now(){/////////////////////////////////////////////////////////////
 	getDynamicTable(SY,SM)
 	cy.innerHTML = SY
 	cm.innerHTML = SM
 }
-function getDynamicTable(Y,M){//���մ�������´��������
+function getDynamicTable(Y,M){
+	var book=false;
+	var future=false;
+	var buffer=false;
+	var bufferNum=2;
+	
 	var Temp,i,j,k,l
 	
-	var FirstDate,MonthDate,CirNum,ErtNum // '���µ�һ��Ϊ���ڼ�,���µ�������,���ĵ�Ԫ����ѭ����,����һ�ſո����뵱������֮��
-	FirstDate = GetWeekdayMonthStartsOn(Y,M)// '�õ����µĵ�һ�������ڼ�  0-6
-	MonthDate = GetDaysInMonth(Y,M)// '�õ����µ������� 30
-	ErtNum = FirstDate + MonthDate// -1 
+	var FirstDate,MonthDate,CirNum,ErtNum 
+	FirstDate = GetWeekdayMonthStartsOn(Y,M)
+	MonthDate = GetDaysInMonth(Y,M)
+	ErtNum = FirstDate + MonthDate
 	
 	Temp = ""
 	TDstyle = " "   
@@ -94,17 +111,63 @@ function getDynamicTable(Y,M){//���մ�������´�����
 				{book=true;l=k;}
 			}
 		  		}
-			if(book==true)
-			{
-				Temp +=  "<td class='booked'onclick='bookInfo("+l+")'>" + j +"</td>"
-				book=false;
-			}
-			else
-			{
-			    Temp += (SY == Y && SM == M && SD == j ? "<td class='now'onclick='setDate("+Y+","+M+","+j+")'>" : "<td class='idle'onclick='setDate("+Y+","+M+","+j+")'>") + j +"</td>"
+		  	if(SY <= Y && SM <= M && SD <= j||SY <= Y && SM < M)
+		  		{
+		  		    future=true;
+		  		}
+		  	if(SY == Y && SM == M && SD == j){
+		  		
+		  		buffer=true;
+		  		
+		  		}
+		  	if(buffer==true)
+		  	{
+                
+		  		if(book==true)
+		  		{
+		  			 Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle'onclick=\"alert('The date is unavailable to book')\"><div class=\"bookedDiv\"></div>" : "<td class='idle'onclick=\"alert('The date is unavailable to book')\"><div class=\"bookedDiv\"></div>") + j +"</td>"
+		  		}
+		  		else
+		  		{
+		  			 Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle'onclick=\"alert('The date is unavailable to book')\">" : "<td class='idle'onclick=\"alert('The date is unavailable to book')\">") + j +"</td>"
+		  		}
+	
+		 	    if(bufferNum==1)
+ 		    	{
+		 	    	buffer=false;
+		  		    
+		  		}
+		 	   bufferNum--;
+		  	}
+		  	else{
+		  	
+			    if(book==true)
+			    {
+				    if(future==true)
+					{
+					    Temp +=  "<td onclick='bookInfo("+l+")'><div class=\"bookedDiv\"></div>" + j +"</td>";
+					    book=false;
+					}
+				    else{
+					    Temp +=  "<td class='pass idle'onclick='bookInfo("+l+")'><div class=\"bookedDiv\"></div>" + j +"</td>";
+					    book=false;
+				    }
 				
+			    }
+			    else
+			    {
 				
-			}
+				    if(future==true)
+					{
+					    Temp += (SY == Y && SM == M && SD == j ? "<td class='now'onclick='setDate("+Y+","+M+","+j+")'>" : "<td class='idle'onclick='setDate("+Y+","+M+","+j+")'>") + j +"</td>"
+					}
+				    else if(future==false)
+				    {
+					    Temp +=  "<td class='idle pass' onclick='alert(\"The date has passed\")'>" + j +"</td>"
+				    }
+			    }
+		  	}
+		
 	      		  
 	   		j = j + 1
 		}

@@ -17,33 +17,37 @@ var path="<%=request.getContextPath()%>"
 <link href="<%=request.getContextPath()%>/resources/css/calendar.css" rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
 <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/calendar.js" type="text/javascript"charset=”utf-8″></script>
 
 </head>
 <body class="calBody">
 <div class="day">
     <div class="DaySelect">
-		<i class="lr" onclick="Month('l')" title="上一月"><</i>
+		<i class="lr" onclick="Month('l')" title="Last Month"><</i>
         <div class="select">
-            <div class="stop" id="cy">2014</div>
-            <div class="sbox">
-                <ul id="YearAll">
-                    
-                </ul>
-            </div>
+            <div class="stop" id="cy"></div>
+        
         </div>
         <div class="select" id="sm">
-            <div class="stop" id="cm">05</div>
+            <div class="stop" id="cm"></div>
             <div class="sbox" id="mm">
-                <ul id="DateAll">
-                    <li>01</li>
-                </ul>
+<!--                 <ul id="DateAll"> -->
+<!--                     <li>01</li> -->
+<!--                 </ul> -->
             </div>
         </div>
-        <i class="lr" onclick="Month('r')" title="下一月">></i>
-        <i onclick="now()">今天</i>
+        <i class="lr" onclick="Month('r')" title="Next Month">></i>
+        <i onclick="now()">Today</i>
     </div>
     <div id="DayAll"></div>
+</div>
+<div id="bottomWrapper">
+    <div id="bookedWord1">
+    Booked.
+    </div>
+    <div id="bookedDiv1">
+    </div>
 </div>
 </body>
 </html>
