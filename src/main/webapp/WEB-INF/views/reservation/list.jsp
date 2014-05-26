@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
+<link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
   <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
  <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
@@ -137,8 +137,71 @@ function GoToAppointPage(e) {
 
 </head>
 <body>
-	<a href="<%=request.getContextPath()%>/room/list">Back </a>
-	<h1>高级查询</h1>		
+
+
+
+
+<c:url value="/j_spring_security_logout" var="logoutUrl"/>  
+
+<div id="cover">
+ </div>
+ <div class="wrapper">
+     <div class="header">
+	     <div class="headerContainer">
+		 <span id="logo"><img src="<%=request.getContextPath()%>/resources/images/hsbcLogo.png"/></span>
+		 </div>
+	 </div>
+	 
+	 <div class="status">
+
+	     <div class="statusContainer">
+	         <div id="userInfo">
+	         <img id="userCard" width="35px" height="35px" src="<%=request.getContextPath()%>/resources/images/card.png"/>
+	         <div id="userName">
+	         <span>Welcome! <security:authentication property="principal.username"/></span>
+	         </div>
+	         </div>
+	         <button id="logoutBtn" class="btnLogout" onclick="logout('${logoutUrl}');">
+	         <span id="logoutImage"><img id="logoutIcon" width="20px"height="20px" src="<%=request.getContextPath()%>/resources/images/logout.png"/>
+	         </span>
+	         <span>LogOut</span>
+	         </button>
+	      
+	     </div>
+	 </div>
+	 
+	 <div>
+	     <div class="seperateLine">
+		 </div>
+	 </div>
+	
+	 <div class="navigator">
+	     <div class="navContainer">
+		     <ul class="navi">
+			     <li>
+				     <a href="<%=request.getContextPath()%>/room/list" class="navItem">Book Room</a>
+				 </li>
+				 <li>
+				     <a href="<%=request.getContextPath()%>/reservation/list" class="navItem selected">Check My Reservation</a>
+				 </li>
+				 <li>
+				     <a href="<%=request.getContextPath()%>/reservation/delete" class="navItem">Delete My Reservation</a>
+				 </li>
+				 <li>
+				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
+				 </li>
+			 </ul>
+		 </div>
+	 </div>
+	 
+	 <div class="middle">
+	     <div class="middleContainer">
+		     <h1 class="roomList">Room List</h1>
+			 <div class="roomListBody">
+
+<!-- --------------------------------------- -->
+
+                                               	<h1>高级查询</h1>		
 	<form action="<%=request.getContextPath()%>/reservation/list" method="get">
 		Reservation Number:
 		<input type="text" name="reservation_Num"/><br/>
@@ -179,9 +242,9 @@ function GoToAppointPage(e) {
 		<hr/>
 		</form>
 			<h1> 显示查询结果</h1> 
-		 	<ul>			 
-				 <div id="reservationInfo">
-				    </div>				
+		 	     <ul>			 
+				     <div id="reservationInfo">
+				     </div>				
 				 </ul>
 				 <div id="listInfoWrapper">
 				     <div id="listInfo">
@@ -199,6 +262,29 @@ function GoToAppointPage(e) {
 					     <input class="btnJump" type='button' value='Jump' onclick='GoToAppointPage(this)' />
 				     </div>
 				 </div>
+
+<!-- --------------------------------------- -->
+			 
+			 
+			 </div>
+		 </div>
+	 </div>
+
+ </div>
+
+ 
+ 
+ 
+
+ <div id="footerContainer">
+      <div id="footer">
+          <span id="copyright"> &copy; Copyright 2014 by <a href="#">Lin Jiajian</a>&<a href="#">Luo Kelin</a></span>
+          <span><img id="hsbcIconFooter" width="30px"height="15px" src="<%=request.getContextPath() %>/resources/images/hsbcFooter.png"/></span>
+          <span id="footerWord"><a href="#">Team</a> <a href="#">Telephone</a><a href="#">Email</a><a href="#">about</a></span>
+      </div>
+ </div>
+
+
 </body>
-</body>
+
 </html>

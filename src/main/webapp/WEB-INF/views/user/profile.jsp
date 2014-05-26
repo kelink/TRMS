@@ -94,10 +94,10 @@
 				     <a href="<%=request.getContextPath()%>/room/list" class="navItem">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/index"class="navItem">Check My Reservation</a>
+				     <a href="<%=request.getContextPath()%>/reservation/list" class="navItem">Check My Reservation</a>
 				 </li>
 				 <li>
-				     <a href="lcRoomBook.html" class="navItem">Delete My Reservation</a>
+				     <a href="<%=request.getContextPath()%>/reservation/delete" class="navItem">Delete My Reservation</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem selected">Manage My Profile</a>
@@ -174,29 +174,30 @@
 			  	     </div>
 			  	     
 			  	     <div class="infoRow">
-			  	     <div class="label">Role:${role.authority }</div>
-			  	     <div class="userInfo"></div>
+			  	     <div class="label">Role:</div>
+			  	     <div class="userInfo">${role.authority }</div>
 			  	     </div>
 			  	     
 			  	     <div class="infoRow">
-			  	     <div class="label">Gender:${gender}
+			  	     <div class="label">
+			  	     Gender:
 			  	      </div>
-			  	     <div class="userInfo"></div>
+			  	     <div class="userInfo">${gender}</div>
 			  	     </div>
 			  	     
 			  	     <div class="infoRow">
-			  	     <div class="label">Department:${department.departmentName }</div>
-			  	     <div class="userInfo"></div>
+			  	     <div class="label">Department:</div>
+			  	     <div class="userInfo">${department.departmentName }</div>
 			  	     </div>
 			  	     
 			  	     <div class="infoRow">
-			  	     <div class="label">Email:${currentUser.account}</div>
-			  	     <div class="userInfo"></div>
+			  	     <div class="label">Email:</div>
+			  	     <div class="userInfo">${currentUser.account}</div>
 			  	     </div>
 			  	     
 			  	     <div class="infoRow">
-			  	     <div class="label">Telephone:${currentUser.getTele()}</div>
-			  	     <div class="userInfo"></div>
+			  	     <div class="label">Telephone:</div>
+			  	     <div class="userInfo">${currentUser.getTele()}</div>
 			  	     </div>
 			  	     
 			  	     </div>
