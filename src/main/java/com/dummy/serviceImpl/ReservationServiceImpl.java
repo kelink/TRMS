@@ -14,11 +14,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.dummy.dao.ReservationDao;
+import com.dummy.dao.RoomDao;
 import com.dummy.dao.TeamDao;
 import com.dummy.dao.UserDao;
 import com.dummy.domain.CalanderDataDomain;
 import com.dummy.domain.Reservation;
 import com.dummy.domain.ReservationDetial;
+import com.dummy.domain.Room;
 import com.dummy.service.ReservationService;
 
 @Service(value = "reservationService")
@@ -33,6 +35,9 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Resource(name = "teamDao")
 	private TeamDao teamDao;
+
+	@Resource(name = "roomDao")
+	private RoomDao roomDao;
 
 	@Override
 	public Reservation getReservation(int id) {
@@ -186,5 +191,12 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<ReservationDetial> getReservationDetialByNum(String num) {
 		String optionStr = "where reservation.reservation_Num=" + num;
 		return reservationDao.getReservationByOption(optionStr);
+	}
+
+	@Override
+	public boolean approveOrReject(Reservation reservation, Room room) {
+		boolean isOK = reservationDao.updateReservation(reservation);
+		isOK = roomDao.updateRoom(room);
+		return isOK;
 	}
 }

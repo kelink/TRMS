@@ -27,4 +27,5 @@ public interface ReservationDao {
 	public boolean delReservationByNum(String num);
 
 	public Reservation getReservationByNum(String num);
+
 }

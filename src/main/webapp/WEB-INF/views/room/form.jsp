@@ -12,6 +12,9 @@
 <link href="<%=request.getContextPath()%>/resources/css/bookForm.css" rel="stylesheet" type="text/css" >
  <script src="<%=request.getContextPath()%>/resources/js/bookForm.js" type="text/javascript"></script>
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+	//判断日期超过本月31日，保证start day 会小于end day ，同时不跨月
+</script>
 </head>
 <body>
 <div class="panelHeader">

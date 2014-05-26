@@ -122,14 +122,6 @@ public class Reservation {
 		this.tele = tele;
 	}
 
-	public int getApprove_by() {
-		return handle_by;
-	}
-
-	public void setApprove_by(int approve_by) {
-		this.handle_by = approve_by;
-	}
-
 	public Date getApplied_Start_Date() {
 		return Applied_Start_Date;
 	}

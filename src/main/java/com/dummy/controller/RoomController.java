@@ -154,6 +154,7 @@ public class RoomController {
 			}
 			// 2. create a reservation
 			Reservation reservation = new Reservation();
+			String reservation_Num = ReservationUtil.getUniqueSequence();
 			reservation.setApplied_End_Date(endDate);
 			reservation.setApplied_Start_Date(beginDate);
 			reservation.setEmail(email);
@@ -164,13 +165,14 @@ public class RoomController {
 			reservation.setTeam_ID(team_ID);
 			reservation.setUser_ID(currentUser.getUser_ID());
 			reservation.setTele(tele);
-			reservation.setReservation_Num(ReservationUtil.getUniqueSequence());
-			reservation.setApprove_by(C.DB.DEFAULT_APPROVE_BY);
+			reservation.setReservation_Num(reservation_Num);
+			reservation.setHandle_by(C.DB.DEFAULT_APPROVE_BY);
 			System.out.println(reservation);
+			map.addAttribute("reservation_Num", reservation_Num);
 			// 3.Send Email
 
 			reservationService.addReservation(reservation);
-			return new ModelAndView("room/success");
+			return new ModelAndView("room/success", map);
 		}
 
 	}

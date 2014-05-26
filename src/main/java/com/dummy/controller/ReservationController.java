@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dummy.common.C;
 import com.dummy.domain.DBUser;
 import com.dummy.domain.Reservation;
 import com.dummy.domain.ReservationDetial;
@@ -55,6 +56,7 @@ public class ReservationController {
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
 			HttpSession session) {
 
+		// get the query
 		String advOption = ReservationUtil.generateQueryOption(request);
 		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
 		String optionStr = null;
@@ -89,6 +91,7 @@ public class ReservationController {
 		map.addAttribute("rooms", rooms);
 		map.addAttribute("teams", teams);
 		map.addAttribute("optionStr", optionStr);
+		session.setAttribute("optionStr", optionStr);
 		System.out.println("进入方法list       optionStr--------------->>>"
 				+ optionStr);
 		return new ModelAndView("reservation/list", map);
@@ -102,8 +105,8 @@ public class ReservationController {
 			Model model,
 			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
-			@RequestParam(value = "optionStr", required = false, defaultValue = "") String optionStr,
 			HttpSession session) {
+		String optionStr = (String) session.getAttribute("optionStr");
 		System.out.println("接收到的optionStr---" + optionStr);
 		List<ReservationDetial> recorderPageList = reservationService
 				.getReservationDetialOnPage(pageNum, pageSize, optionStr);
@@ -196,6 +199,63 @@ public class ReservationController {
 		}
 		return new ModelAndView("redirect:/reservation/list");
 	}
-	// get reservationDetial by reservation_num
+	// approve reservationDetial
+	@RequestMapping(value = "/approve")
+	public @ResponseBody String approve(
+			@RequestParam(value = "reservation_ID", required = true) int reservation_ID,
+			@RequestParam(value = "room_ID", required = true) int room_ID,
+			HttpSession session) {
+		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
+		Room room = roomService.getRoom(room_ID);
+		Reservation reservation = reservationService
+				.getReservation(reservation_ID);
+		// whether current room is free and reservation haven't been handler
+		if (room.getRoom_Status() == C.DB.DEFAULT_UNFREE_ROOM) {
+			return "The room have assign to others,Please reflash to check";
+		}
+		if (reservation.getStatus() != C.DB.DEFAULT_RESERVATION_UNHANDLE) {
+			return "The reservation have been handlered by other admin";
+		}
+
+		reservation.setHandle_by(currentUser.getUser_ID());
+		reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
+		room.setRoom_Status(C.DB.DEFAULT_UNFREE_ROOM);
+		boolean isOK = reservationService.approveOrReject(reservation, room);
+		if (isOK == true) {
+			return "reservation approved,email have already sent";
+		} else {
+			return "reservation approved fail,try again or reflash to solve problem";
+		}
+	}
+
+	// reject reservation
+	@RequestMapping(value = "/reject")
+	public @ResponseBody String reject(
+			@RequestParam(value = "reservation_ID", required = true) int reservation_ID,
+			@RequestParam(value = "room_ID", required = true) int room_ID,
+			HttpSession session) {
+		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
+		Room room = roomService.getRoom(room_ID);
+		Reservation reservation = reservationService
+				.getReservation(reservation_ID);
+
+		// whether current room is free and reservation haven't been handler
+		if (room.getRoom_Status() == C.DB.DEFAULT_UNFREE_ROOM) {
+			return "The room have assign to others,Please reflash to check";
+		}
+		if (reservation.getStatus() != C.DB.DEFAULT_RESERVATION_UNHANDLE) {
+			return "The reservation have been handlered by other admin";
+		}
+
+		reservation.setHandle_by(currentUser.getUser_ID());
+		reservation.setStatus(C.DB.DEFAULT_RESERVATION_REFUSE);
+		room.setRoom_Status(C.DB.DEFAULT_FREE_ROOM);
+		boolean isOK = reservationService.approveOrReject(reservation, room);
+		if (isOK == true) {
+			return "reservation rejected,email have already sent";
+		} else {
+			return "reservation rejected fail,try again or reflash to solve problem";
+		}
+	}
 
 }

@@ -52,10 +52,6 @@ public class ReservationUtil {
 		if (Applied_End_Date != null && Applied_End_Date.length() > 0) {
 			optionMapMap.put("Applied_End_Date", Applied_End_Date);
 		}
-		if (Applied_End_Date != null && Applied_End_Date != null
-				&& Applied_End_Date.length() > 0) {
-			optionMapMap.put("Applied_End_Date", Applied_End_Date);
-		}
 		if (order_Time != null && order_Time.length() > 0) {
 			optionMapMap.put("order_Time", order_Time);
 		}

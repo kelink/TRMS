@@ -407,4 +407,5 @@ public class ReservationDaoImpl implements ReservationDao {
 		query.setString(0, num);
 		return (Reservation) query.uniqueResult();
 	}
+
 }
