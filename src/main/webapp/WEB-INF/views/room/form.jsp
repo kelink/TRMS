@@ -9,6 +9,10 @@
 <head >
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+
+
+
 <link href="<%=request.getContextPath()%>/resources/css/bookForm.css" rel="stylesheet" type="text/css" >
  <script src="<%=request.getContextPath()%>/resources/js/bookForm.js" type="text/javascript"></script>
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
@@ -23,25 +27,33 @@
 
 </div>
 
-<form action="<%=request.getContextPath()%>/room/bookRoom" method="post" name="bookForm">
-Free Room:
-<select name="room_ID"> 
+<form class="bookForm" action="<%=request.getContextPath()%>/room/bookRoom" method="post" name="bookForm">
+
+    <div class="bookFormLabel">Free Room</div>
+    <select class="bookFormInput" name="room_ID"> 
 		<option value="${room.room_ID }">${room.item }</option>
-</select>
-<br/>
-Start_Time<input type="date" name="begin_time" value="${select_date}"/><br/>
-End_Time:<input type="date" name="end_time" value="${select_date}""/><br/>
-Email<input type="text" name="email"/><br/>
-Team
-<select name="team_ID">
-	<c:forEach items="${teams}" var="team"> 
-		<option value="${team.team_ID}">${team.teamName }</option>
-	</c:forEach>
-</select>
-<br/>
-TelLine<input type="text" name="tele"><br/>
-Purpose:<input type="text" name="purpose"><br/>
-<input type="submit" name="submit" value="Submit"/>
+    </select>
+     <div class="bookFormLabel">Team</div>
+    <select class="bookFormInput" name="team_ID">
+	    <c:forEach items="${teams}" var="team"> 
+		    <option value="${team.team_ID}">${team.teamName }</option>
+	    </c:forEach>
+    </select>
+    
+    <div class="bookFormLabel">Start_Time</div>
+    <input class="bookFormInput" type="date" name="begin_time" value="${select_date}"/>
+    <div class="bookFormLabel">End_Time</div>
+    <input class="bookFormInput" type="date" name="end_time" value="${select_date}""/>
+    <div class="bookFormLabel">Email</div>
+    <input class="bookFormInput" type="text" name="email"/>
+   
+    
+    <div class="bookFormLabel">TelLine</div>
+    <input class="bookFormInput" type="text" name="tele">
+    <div class="bookFormLabel">Purpose</div>
+    <input class="bookFormInput" type="text" name="purpose">
+    <br />
+    <input class="btnBook" type="submit" name="submit" value="Submit"/>
 </form>
  
 </body>
