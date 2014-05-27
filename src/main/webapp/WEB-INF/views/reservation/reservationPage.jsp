@@ -218,7 +218,7 @@ function GoToAppointPage(e) {
 			         <form action="<%=request.getContextPath()%>/reservation/list" method="get"target="checkRightInner">
 			         <div id="searchDivWrapper">
 			             <div class="searchDiv">
-			             <label class="searchLabel">Reservation ID...</label>
+			             <label class="searchLabel">Reservation Num...</label>
 			             <input type="text" class="searchInput" id="searchInput1"name="reservation_Num"></input>
 			             </div>
 			         
@@ -238,7 +238,7 @@ function GoToAppointPage(e) {
 			         
 			             <!--模糊查询额外部分-->
 			         </div>
-			         <input type="submit" class="btnSearch"id="submitSearch"value="Search">
+			         <input type="submit" name="submit"class="btnSearch"id="submitSearch"value="Search">
 			             
 			         </input>
 			         </form>

@@ -11,9 +11,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
-<link href="<%=request.getContextPath()%>/resources/css/checkReservation.css" rel="stylesheet" >
-  <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
- <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+
+
+    <link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
+
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
   <script src="<%=request.getContextPath()%>/resources/js/checkReservation.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -54,38 +55,46 @@ function AjaxGetData(index, size) {
 						var applicant_ID=json[position].user.user_ID;
 						var applicant_account=json[position].user.account;
 																	
-						html+=("reservation_ID:"+reservation_ID+"<br/>");
-						html+=("reservation_start_Daty:"+reservation_start_Daty+"<br/>");
-						html+=("reservation_end_Daty:"+reservation_end_Daty+"<br/>");
-						html+=("reservation_Num:"+reservation_Num+"<br/>");
-						html+=("purpose:"+purpose+"<br/>");
-						html+=("email:"+email+"<br/>");
-						html+=("tele:"+tele+"<br/>");
-						html+=("Order_Date:"+Order_Date+"<br/>");
+// 						html+=("reservation_ID:"+reservation_ID+"<br/>");
+// 						html+=("reservation_start_Daty:"+reservation_start_Daty+"<br/>");
+// 						html+=("reservation_end_Daty:"+reservation_end_Daty+"<br/>");
+// 						html+=("reservation_Num:"+reservation_Num+"<br/>");
+// 						html+=("purpose:"+purpose+"<br/>");
+// 						html+=("email:"+email+"<br/>");
+// 						html+=("tele:"+tele+"<br/>");
+// 						html+=("Order_Date:"+Order_Date+"<br/>");
 				
-						html+=("team_ID:"+team_ID+"<br/>");	
-						html+=("order_Team:"+order_Team+"<br/>");	
+// 						html+=("team_ID:"+team_ID+"<br/>");	
+// 						html+=("order_Team:"+order_Team+"<br/>");	
 						
-						html+=("room_ID:"+room_ID+"<br/>");	
-						html+=("room_item:"+room_item+"<br/>");
+// 						html+=("room_ID:"+room_ID+"<br/>");	
+// 						html+=("room_item:"+room_item+"<br/>");
 				
-						html+=("applicant_ID:"+applicant_ID+"<br/>");	
-						html+=("applicant_account:"+applicant_account+"<br/>");
+// 						html+=("applicant_ID:"+applicant_ID+"<br/>");	
+// 						html+=("applicant_account:"+applicant_account+"<br/>");
 						
-						html+=("handler_by:"+handler_by+"<br/>");
-						html+=("Click <a href='<%=request.getContextPath()%>/reservation/edit?"
-								+"reservation_ID="+reservation_ID
-								+"&room_ID="+room_ID
-								+"&team_ID="+team_ID
-								+"&applicant_ID="+applicant_ID
-								+"&handler_by="+handler_by
-								+"'> Here </a> to get more Information<br/>");
+// 						html+=("handler_by:"+handler_by+"<br/>");
+<%-- 						html+=("Click <a href='<%=request.getContextPath()%>/reservation/edit?" --%>
+// 								+"reservation_ID="+reservation_ID
+// 								+"&room_ID="+room_ID
+// 								+"&team_ID="+team_ID
+// 								+"&applicant_ID="+applicant_ID
+// 								+"&handler_by="+handler_by
+// 								+"'> Here </a> to get more Information<br/>");
 						
-					html+=("<hr/>");
+// 					html+=("<hr/>");
+
+                      html+=("<div class=\"listItem\"><span class=\"listContent1\">"+reservation_Num+"</span><span class=\"listContent2\">"+purpose+"</span><span class=\"listContent3\">"+Order_Date+"</span></div>");
+                      
+
+
+
+
 					}					
-					
-					$('#reservationInfo').html("");
-	                $('#reservationInfo').html(html); 
+					$('#listBody').html("");
+		            $('#listBody').html(html); 
+					//$('#reservationInfo').html("");
+	               // $('#reservationInfo').html(html); 
 	                $('#pageIndex').html("");
 	               $('#pageIndex').html(pageIndex);
 	                },
@@ -139,8 +148,9 @@ function GoToAppointPage(e) {
 </script>
 
 </head>
-<body>
+<body id="listBody">
 
+<div class="listItem"><span class="listContent1">fjdfdsafdsafdsafsdafasask</span><span class="listContent2">asl;fj</span><span class="listContent3">kasl;jk</span></div>
 
 
 <!-- --------------------------------------- -->
@@ -185,27 +195,27 @@ function GoToAppointPage(e) {
 <!-- 		<input type="submit"name="submit" value="submit"/> -->
 <!-- 		<hr/> -->
 <%-- 		</form> --%>
-			<h1> 显示查询结果</h1> 
-		 	     <ul>			 
-				     <div id="reservationInfo">
-				     </div>				
-				 </ul>
-				 <div id="listInfoWrapper">
-				     <div id="listInfo">
-					    Total Page:<span id='count'>${pageCount}</span>
-					    Total Records:<span id='recordCount'>${recordCount}</span>
-				    </div>
+<!-- 			<h1> 显示查询结果</h1>  -->
+<!-- 		 	     <ul>			  -->
+<!-- 				     <div id="reservationInfo"> -->
+<!-- 				     </div>				 -->
+<!-- 				 </ul> -->
+<!-- 				 <div id="listInfoWrapper"> -->
+<!-- 				     <div id="listInfo"> -->
+<%-- 					    Total Page:<span id='count'>${pageCount}</span> --%>
+<%-- 					    Total Records:<span id='recordCount'>${recordCount}</span> --%>
+<!-- 				    </div> -->
 				    
-				    <div id="jump">
-					     <a href='javascript:void' onclick='GoToFirstPage()' id='FirstPage' ><img class="pageIcon"alt="Go to first page" src="<%=request.getContextPath()%>/resources/images/first.png"></a>
-					     <a href='javascript:void' onclick='GoToPrePage()' id='PrePage' ><img class="pageIcon"alt="Go to previous page" src="<%=request.getContextPath()%>/resources/images/prepage.png"></a>
-					     <span id="pageIndex"></span>
-					     <a href='javascript:void' onclick='GoToNextPage()' id='NextPage' ><img class="pageIcon"alt="Go to next page" src="<%=request.getContextPath()%>/resources/images/nextpage.png"></a>
-					     <a href='javascript:void' onclick='GoToEndPage()' id='EndPage' ><img class="pageIcon" alt="Go to last page"src="<%=request.getContextPath()%>/resources/images/end.png"></a>
-					     <input type='text' size='4' name='page' />
-					     <input class="btnJump" type='button' value='Jump' onclick='GoToAppointPage(this)' />
-				     </div>
-				 </div>
+<!-- 				    <div id="jump"> -->
+<%-- 					     <a href='javascript:void' onclick='GoToFirstPage()' id='FirstPage' ><img class="pageIcon"alt="Go to first page" src="<%=request.getContextPath()%>/resources/images/first.png"></a> --%>
+<%-- 					     <a href='javascript:void' onclick='GoToPrePage()' id='PrePage' ><img class="pageIcon"alt="Go to previous page" src="<%=request.getContextPath()%>/resources/images/prepage.png"></a> --%>
+<!-- 					     <span id="pageIndex"></span> -->
+<%-- 					     <a href='javascript:void' onclick='GoToNextPage()' id='NextPage' ><img class="pageIcon"alt="Go to next page" src="<%=request.getContextPath()%>/resources/images/nextpage.png"></a> --%>
+<%-- 					     <a href='javascript:void' onclick='GoToEndPage()' id='EndPage' ><img class="pageIcon" alt="Go to last page"src="<%=request.getContextPath()%>/resources/images/end.png"></a> --%>
+<!-- 					     <input type='text' size='4' name='page' /> -->
+<!-- 					     <input class="btnJump" type='button' value='Jump' onclick='GoToAppointPage(this)' /> -->
+<!-- 				     </div> -->
+<!-- 				 </div> -->
 
 <!-- --------------------------------------- -->
 			 
