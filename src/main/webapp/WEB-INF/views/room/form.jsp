@@ -51,7 +51,7 @@
     <div class="bookFormLabel">TelLine</div>
     <input class="bookFormInput" type="text" name="tele">
     <div class="bookFormLabel">Purpose</div>
-    <input class="bookFormInput" type="text" name="purpose">
+    <textarea class="bookFormInput" type="text" name="purpose"></textarea>
     <br />
     <input class="btnBook" type="submit" name="submit" value="Submit"/>
 </form>

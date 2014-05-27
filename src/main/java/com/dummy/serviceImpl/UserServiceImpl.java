@@ -1,9 +1,12 @@
 package com.dummy.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import com.dummy.dao.UserDao;
@@ -55,4 +58,30 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUserByAccount(account);
 	}
 
+	@Override
+	public List<DBUser> getUserByDepartment(int department_ID) {
+		return userDao.getUserByDepartment(department_ID);
+	}
+
+	@Override
+	public List<DBUser> getUserByRole(int roleType) {
+		return userDao.getUserByRole(roleType);
+	}
+
+	@Override
+	public List<JSONObject> getDepartmentUserByRole(int roleType,
+			int department_ID) {
+		List<DBUser> list = userDao.getDepartmentUserByRole(roleType,
+				department_ID);
+		ArrayList<JSONObject> result = new ArrayList<JSONObject>();
+		for (DBUser user : list) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("user_ID", String.valueOf(user.getUser_ID()));
+			map.put("department_ID", String.valueOf(department_ID));
+			map.put("account", user.getAccount());
+			JSONObject object = new JSONObject(map);
+			result.add(object);
+		}
+		return result;
+	}
 }

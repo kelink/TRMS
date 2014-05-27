@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,7 +61,7 @@ public class RoomController {
 
 	// getRoom
 	@RequestMapping(value = {"/getForm", ""})
-	public ModelAndView getForm(HttpServletRequest request) {
+	public ModelAndView getForm(HttpServletRequest request, HttpSession session) {
 		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
@@ -73,14 +74,21 @@ public class RoomController {
 		}
 		String select_date = year + "-" + month + "-" + day;
 		Room room = roomService.getRoom(room_ID);
-		List<Team> teams = teamService.getAllTeam();
+		List<Team> teams = null;
+		// role_LC can book limit room
+		String currentRole = (String) session.getAttribute("currentRole");
+		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
+		if (currentRole.equals("ROLE_LC")) {
+			teams = teamService.getTeamByUser(currentUser.getUser_ID());
+		} else if (currentRole.equals("ROLE_TA")) {
+			teams = teamService.getAllTeam();
+		}
 		ModelMap map = new ModelMap();
 		map.addAttribute("room", room);
 		map.addAttribute("teams", teams);
 		map.addAttribute("select_date", select_date);
 		return new ModelAndView("room/form", map);
 	}
-
 	// Room list
 	@RequestMapping("/list")
 	public ModelAndView list(

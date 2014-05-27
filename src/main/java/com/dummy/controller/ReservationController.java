@@ -79,7 +79,12 @@ public class ReservationController {
 
 		}
 		List<Room> rooms = roomService.getAllRoom();
-		List<Team> teams = teamService.getAllTeam();
+		List<Team> teams = null;
+		if (session.getAttribute("currentRole").equals("ROLE_LC")) {
+			teams = teamService.getTeamByUser(currentUser.getUser_ID());
+		} else if (session.getAttribute("currentRole").equals("ROLE_TA")) {
+			teams = teamService.getAllTeam();
+		}
 
 		int recordCount = reservationService.getReservationByOption(optionStr)
 				.size();
@@ -105,8 +110,11 @@ public class ReservationController {
 			Model model,
 			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
+			@RequestParam(value = "optionStr", required = false, defaultValue = "") String optionStr,
 			HttpSession session) {
-		String optionStr = (String) session.getAttribute("optionStr");
+		if (optionStr.equals("") || optionStr == null) {
+			optionStr = (String) session.getAttribute("optionStr");
+		}
 		System.out.println("接收到的optionStr---" + optionStr);
 		List<ReservationDetial> recorderPageList = reservationService
 				.getReservationDetialOnPage(pageNum, pageSize, optionStr);

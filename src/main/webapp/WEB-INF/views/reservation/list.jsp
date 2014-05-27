@@ -23,15 +23,11 @@ $(function() {
 });
 
 function AjaxGetData(index, size) {
-
-	var params="{pageNum:index,pageSize:size,optionStr:'${optionStr}'}";
 		
 	$.ajax({
 				url : "<%=request.getContextPath()%>/reservation/listPageReservation",
-				//type : "get",
-				//data : "pageNum=" + index + "&pageSize=" + size+"&optionStr="+"${optionStr}",	
-				type : "post",
-				data: "{pageNum:"+index+",pageSize:"+size+",optionStr:${optionStr}}", 
+				type : "get",
+				data : "pageNum=" + index + "&pageSize=" + size+"&optionStr="+"${optionStr}",	
 				dataType : "json",
 				success : function(json) {
 					var html="";

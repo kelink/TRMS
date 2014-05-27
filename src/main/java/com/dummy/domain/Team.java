@@ -61,4 +61,11 @@ public class Team implements Serializable {
 		this.teamName = teamName;
 	}
 
+	@Override
+	public String toString() {
+		return "Team [team_ID=" + team_ID + ", user_ID=" + user_ID
+				+ ", department_ID=" + department_ID + ", teamName=" + teamName
+				+ "]";
+	}
+
 }

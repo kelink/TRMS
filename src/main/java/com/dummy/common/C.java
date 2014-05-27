@@ -9,7 +9,7 @@ public class C {
 		public static final String CONFIG_EMAIL_PATH = "E:\\spring too suit\\workplace\\Dummy\\TRMS\\src\\main\\resources\\email.properties";
 	}
 
-	// ��������ݿ�Ĭ��ֵ�ĳ���ֵ
+	// DB constant
 	public static final class DB {
 		// DBUser
 		public static final int DEFAULT_ROLE_LC = 1;

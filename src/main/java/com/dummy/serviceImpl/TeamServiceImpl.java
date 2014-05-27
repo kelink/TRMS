@@ -59,4 +59,20 @@ public class TeamServiceImpl implements TeamService {
 		}
 		return result;
 	}
+
+	@Override
+	public List<Team> getTeamByUserDepartment(int user_ID, int partment_ID) {
+
+		return teamDao.getTeamByUserDepartment(user_ID, partment_ID);
+	}
+
+	@Override
+	public boolean delTeamByUser(int user_ID) {
+		return teamDao.delTeamByUser(user_ID);
+	}
+
+	@Override
+	public List<Team> getTeamByUser(int user_ID) {
+		return teamDao.getTeamByUser(user_ID);
+	}
 }

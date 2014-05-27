@@ -86,4 +86,29 @@ public class UserDaoImpl implements UserDao {
 		return (DBUser) query.uniqueResult();
 	}
 
+	@Override
+	public List<DBUser> getUserByDepartment(int department_ID) {
+		String hql = "from DBUser where dept_ID=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setParameter(0, department_ID);
+		return query.list();
+	}
+
+	@Override
+	public List<DBUser> getUserByRole(int roleType) {
+		String hql = "from DBUser where access=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setParameter(0, roleType);
+		return query.list();
+	}
+
+	@Override
+	public List<DBUser> getDepartmentUserByRole(int roleType, int department_ID) {
+		String hql = "from DBUser where access=? and dept_ID=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setParameter(0, roleType);
+		query.setParameter(1, department_ID);
+		return query.list();
+	}
+
 }

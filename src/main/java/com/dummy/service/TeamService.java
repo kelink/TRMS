@@ -18,4 +18,10 @@ public interface TeamService {
 	public boolean updateTeam(Team team);
 
 	public List<JSONObject> getTeamsByDepartment(int department_ID);
+
+	public List<Team> getTeamByUserDepartment(int user_ID, int partment_ID);
+
+	public boolean delTeamByUser(int user_ID);
+
+	public List<Team> getTeamByUser(int user_ID);
 }

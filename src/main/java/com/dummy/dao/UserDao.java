@@ -19,4 +19,9 @@ public interface UserDao {
 
 	public DBUser getAuthUser(String account, String password);
 
+	public List<DBUser> getUserByDepartment(int department_ID);
+
+	public List<DBUser> getUserByRole(int roleType);
+
+	public List<DBUser> getDepartmentUserByRole(int roleType, int department_ID);
 }

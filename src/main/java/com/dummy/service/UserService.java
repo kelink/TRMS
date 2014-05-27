@@ -2,6 +2,8 @@ package com.dummy.service;
 
 import java.util.List;
 
+import org.json.JSONObject;
+
 import com.dummy.domain.DBUser;
 
 public interface UserService {
@@ -18,4 +20,11 @@ public interface UserService {
 	public DBUser getAuthUser(String account, String password);
 
 	public DBUser getUserByAccount(String account);
+
+	public List<DBUser> getUserByDepartment(int department_ID);
+
+	public List<DBUser> getUserByRole(int roleType);
+
+	public List<JSONObject> getDepartmentUserByRole(int roleType,
+			int department_ID);
 }
