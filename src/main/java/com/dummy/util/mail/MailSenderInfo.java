@@ -6,28 +6,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 /**  
- * ·¢ËÍÓÊ¼şĞèÒªÊ¹ÓÃµÄ»ù±¾ĞÅÏ¢  
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ÒªÊ¹ï¿½ÃµÄ»ï¿½ï¿½ï¿½Ï¢  
  */
 import java.util.Properties;
 
 public class MailSenderInfo {
-	// ·¢ËÍÓÊ¼şµÄ·şÎñÆ÷µÄIPºÍ¶Ë¿Ú
+
 	private String mailServerHost;
 	private String mailServerPort = "25";
-	// ÓÊ¼ş·¢ËÍÕßµÄµØÖ·
 	private String fromAddress;
-	// ÓÊ¼ş½ÓÊÕÕßµÄµØÖ·
 	private String toAddress;
-	// µÇÂ½ÓÊ¼ş·¢ËÍ·şÎñÆ÷µÄÓÃ»§ÃûºÍÃÜÂë
 	private String userName;
 	private String password;
-	// ÊÇ·ñĞèÒªÉí·İÑéÖ¤
+
 	private boolean validate = false;
-	// ÓÊ¼şÖ÷Ìâ
+
 	private String subject;
-	// ÓÊ¼şµÄÎÄ±¾ÄÚÈİ
 	private String content;
-	// ÓÊ¼ş¸½¼şµÄÎÄ¼şÃû
 	private String[] attachFileNames;
 
 	public MailSenderInfo() {
@@ -35,7 +30,7 @@ public class MailSenderInfo {
 	}
 
 	/**
-	 * Í¨¹ıÅäÖÃÎÄ¼şÅäÖÃĞÅÏ¢
+	 * Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
 	public void setPropertiesByFile(String configPath) {
 		Properties prop = new Properties();
@@ -48,25 +43,24 @@ public class MailSenderInfo {
 			this.fromAddress = prop.getProperty("FromAddress").trim();
 			this.userName = prop.getProperty("UserName").trim();
 			this.password = prop.getProperty("Password").trim();
-			String isValidate = prop.getProperty("isValidate").trim();
-			;
+			String isValidate = prop.getProperty("isValidate").trim();;
 			if (isValidate.equals("true")) {
 				this.validate = true;
 			} else {
 				this.validate = false;
 			}
 		} catch (IOException e) {
-			System.out.println("email  configure error£¬Please Check it");
+			System.out.println("email  configure errorï¿½ï¿½Please Check it");
 			e.printStackTrace();
 		}
 
 	}
 
 	/**
-	 * »ñµÃÓÊ¼ş»á»°ÊôĞÔ
+	 * ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½á»°ï¿½ï¿½ï¿½ï¿½
 	 */
 	public Properties getProperties() {
-		// ´ÓÅäÖÃÎÄ¼ş¶ÁÈ¡ĞÅÏ¢
+		// set base configuration
 		Properties p = new Properties();
 		p.put("mail.smtp.host", this.mailServerHost);
 		p.put("mail.smtp.port", this.mailServerPort);
@@ -75,7 +69,7 @@ public class MailSenderInfo {
 	}
 
 	/**
-	 * ÉèÖÃ·¢ËÍ±êÌâ£¬ÄÚÈİ£¬ºÍ½ÓÊÜÕß
+	 * set Email content
 	 * 
 	 * @return
 	 */

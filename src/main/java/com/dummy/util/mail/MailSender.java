@@ -1,6 +1,7 @@
 package com.dummy.util.mail;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -18,61 +19,71 @@ import javax.mail.internet.MimeMultipart;
 import com.dummy.common.C;
 
 /**
- * 简单邮件（不带附件的邮件）发送器
+ * mailSender
  */
 public class MailSender {
 
-	// 需要注意security安全验证，初略版的email邮箱
-	// 配置邮件发送基本配置将来使用配置文件配置
 	public static void main(String[] args) {
-		// 这个类主要是设置邮件
 		MailSenderInfo mailInfo = new MailSenderInfo();
 		mailInfo.setPropertiesByFile(C.Util.CONFIG_EMAIL_PATH);
-		mailInfo.setEmailContent("设置邮箱标题", "设置邮箱内容", "1030041097@qq.com");
+		mailInfo.setEmailContent("test", "test", "1030041097@qq.com");
 		MailSender sms = new MailSender();
-		// 发送文体格式
+		//
 		sms.sendTextMail(mailInfo);
-		// 发送html格式
+
 		// sms.sendHtmlMail(mailInfo);
 	}
 
-	/**
-	 * 以文本格式发送邮件
-	 * 
-	 * @param mailInfo
-	 *            待发送的邮件的信息
-	 */
+	public static void sendEmailToAllAdmin(List<String> toAddressList,
+			String content, String subject) {
+		if (content == null) {
+			content = "A new reservation need to approve,Please Check";
+		}
+		if (subject == null) {
+			subject = "HSBC Training System:";
+		}
+		MailSender sms = new MailSender();
+		for (String toAddress : toAddressList) {
+			if (toAddress == null) {
+				continue;
+			}
+			MailSenderInfo mailInfo = new MailSenderInfo();
+			mailInfo.setPropertiesByFile(C.Util.CONFIG_EMAIL_PATH);
+			mailInfo.setEmailContent(subject, content, toAddress);
+			sms.sendTextMail(mailInfo);
+		}
+	}
 	public boolean sendTextMail(MailSenderInfo mailInfo) {
-		// 判断是否需要身份认证
+		// authenticator
 		EmailAuthenticator authenticator = null;
 		Properties pro = mailInfo.getProperties();
 		if (mailInfo.isValidate()) {
-			// 如果需要身份认证，则创建一个密码验证器
+			// authenticator
 			authenticator = new EmailAuthenticator(mailInfo.getUserName(),
 					mailInfo.getPassword());
 		}
-		// 根据邮件会话属性和密码验证器构造一个发送邮件的session
+		// mail session
 		Session sendMailSession = Session
 				.getDefaultInstance(pro, authenticator);
 		try {
-			// 根据session创建一个邮件消息
+			// new Mail message
 			Message mailMessage = new MimeMessage(sendMailSession);
-			// 创建邮件发送者地址
+			// fromAddres
 			Address from = new InternetAddress(mailInfo.getFromAddress());
-			// 设置邮件消息的发送者
+			// set fromAddress
 			mailMessage.setFrom(from);
-			// 创建邮件的接收者地址，并设置到邮件消息中
+			// InternetAddress for email
 			Address to = new InternetAddress(mailInfo.getToAddress());
 			mailMessage.setRecipient(Message.RecipientType.TO, to);
-			// 设置邮件消息的主题
+			// set subject
 			mailMessage.setSubject(mailInfo.getSubject());
-			// 设置邮件消息发送的时间
+			// set date
 			mailMessage.setSentDate(new Date());
-			// 设置邮件消息的主要内容
+			// set content
 			String mailContent = mailInfo.getContent();
 			mailMessage.setText(mailContent);
 
-			// 发送邮件
+			// sending
 			Transport.send(mailMessage);
 			return true;
 		} catch (MessagingException ex) {
@@ -82,48 +93,48 @@ public class MailSender {
 	}
 
 	/**
-	 * 以HTML格式发送邮件
+	 * send HTML
 	 * 
 	 * @param mailInfo
-	 *            待发送的邮件信息
+	 * 
 	 */
 	public static boolean sendHtmlMail(MailSenderInfo mailInfo) {
-		// 判断是否需要身份认证
+		// authenticator证
 		EmailAuthenticator authenticator = null;
 		Properties pro = mailInfo.getProperties();
-		// 如果需要身份认证，则创建一个密码验证器
+		// isValidate
 		if (mailInfo.isValidate()) {
 			authenticator = new EmailAuthenticator(mailInfo.getUserName(),
 					mailInfo.getPassword());
 		}
-		// 根据邮件会话属性和密码验证器构造一个发送邮件的session
+		// mail session
 		Session sendMailSession = Session
 				.getDefaultInstance(pro, authenticator);
 		try {
-			// 根据session创建一个邮件消息
+			// session to get mail Message
 			Message mailMessage = new MimeMessage(sendMailSession);
-			// 创建邮件发送者地址
+			// from address
 			Address from = new InternetAddress(mailInfo.getFromAddress());
-			// 设置邮件消息的发送者
+			// set from
 			mailMessage.setFrom(from);
-			// 创建邮件的接收者地址，并设置到邮件消息中
+			// to Address
 			Address to = new InternetAddress(mailInfo.getToAddress());
-			// Message.RecipientType.TO属性表示接收者的类型为TO
+			// Message.RecipientType.TO
 			mailMessage.setRecipient(Message.RecipientType.TO, to);
-			// 设置邮件消息的主题
+			// set subject
 			mailMessage.setSubject(mailInfo.getSubject());
-			// 设置邮件消息发送的时间
+			// set date
 			mailMessage.setSentDate(new Date());
-			// MiniMultipart类是一个容器类，包含MimeBodyPart类型的对象
+			// MiniMultipart
 			Multipart mainPart = new MimeMultipart();
-			// 创建一个包含HTML内容的MimeBodyPart
+			// new HTML body message
 			BodyPart html = new MimeBodyPart();
-			// 设置HTML内容
+			// set HTML content
 			html.setContent(mailInfo.getContent(), "text/html; charset=utf-8");
 			mainPart.addBodyPart(html);
-			// 将MiniMultipart对象设置为邮件内容
+			// set content
 			mailMessage.setContent(mainPart);
-			// 发送邮件
+			// sending
 			Transport.send(mailMessage);
 			return true;
 		} catch (MessagingException ex) {

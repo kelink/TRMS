@@ -121,6 +121,7 @@ public class ReservationController {
 		return recorderPageList;
 	}
 
+	// edit the reservation
 	@RequestMapping(value = {"/edit"})
 	public ModelAndView edit(
 			HttpServletRequest request,
@@ -207,7 +208,7 @@ public class ReservationController {
 		}
 		return new ModelAndView("redirect:/reservation/list");
 	}
-	// approve reservationDetial
+	// Ajax:approve reservationDetial
 	@RequestMapping(value = "/approve")
 	public @ResponseBody String approve(
 			@RequestParam(value = "reservation_ID", required = true) int reservation_ID,
@@ -236,7 +237,7 @@ public class ReservationController {
 		}
 	}
 
-	// reject reservation
+	// Ajax:reject reservation
 	@RequestMapping(value = "/reject")
 	public @ResponseBody String reject(
 			@RequestParam(value = "reservation_ID", required = true) int reservation_ID,

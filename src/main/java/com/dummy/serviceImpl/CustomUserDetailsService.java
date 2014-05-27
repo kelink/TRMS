@@ -21,7 +21,8 @@ import com.dummy.domain.DBUser;
 import com.dummy.service.UserService;
 
 /**
- * Ò»¸ö×Ô¶¨ÒåµÄÀàÓÃÀ´ºÍÊı¾İ¿â½øĞĞ²Ù×÷. ¼´ÒÔºóÎÒÃÇÒªÍ¨¹ıÊı¾İ¿â±£´æÈ¨ÏŞ.ÔòĞèÒªÎÒÃÇ¼Ì³ĞUserDetailsService
+ * Ò»ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½ï¿½Ğ²ï¿½ï¿½ï¿½.
+ * ï¿½ï¿½ï¿½Ôºï¿½ï¿½ï¿½ï¿½ï¿½ÒªÍ¨ï¿½ï¿½ï¿½ï¿½İ¿â±£ï¿½ï¿½È¨ï¿½ï¿½.ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ç¼Ì³ï¿½UserDetailsService
  * 
  * @author
  * 
@@ -48,47 +49,47 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 		try {
 
-			// ËÑË÷Êı¾İ¿âÒÔÆ¥ÅäÓÃ»§µÇÂ¼Ãû.
-			// ÎÒÃÇ¿ÉÒÔÍ¨¹ıdaoÊ¹ÓÃHibernateÀ´·ÃÎÊÊı¾İ¿â
-			logger.info(username + "   ÓÃ»§Ò³ÃæÊäÈëµÄÓÃ»§Ãû");
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½ï¿½.
+			// ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½Í¨ï¿½ï¿½daoÊ¹ï¿½ï¿½Hibernateï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½
+			logger.info(username + "   ï¿½Ã»ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½");
 			logger.info("  userService:" + userService);
 			DBUser dbUser = userService.getUserByAccount(username);
-			logger.info(dbUser.getAccount() + "   Êı¾İ¿âÈ¡³öµÄÕËºÅ");
-			// ÓÃ»§Ãû¡¢ÃÜÂë¡¢ÊÇ·ñÆôÓÃ¡¢ÊÇ·ñ±»Ëø¶¨¡¢ÊÇ·ñ¹ıÆÚ¡¢È¨ÏŞ
+			logger.info(dbUser.getAccount() + "   ï¿½ï¿½İ¿ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½");
+			// ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¡¢ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ã¡ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ú¡ï¿½È¨ï¿½ï¿½
 			user = new User(dbUser.getAccount(), dbUser.getPassword()
 					.toLowerCase(), true, true, true, true,
 					getAuthorities(new Integer(dbUser.getAccess())));
 
 		} catch (Exception e) {
-			logger.error("ÓÃ»§ĞÅÏ¢´íÎó£¡");
-			throw new UsernameNotFoundException("Òì³£´¦Àí£º¼ìË÷ÓÃ»§ĞÅÏ¢Î´Í¨¹ı£¡");
+			logger.error("ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½");
+			throw new UsernameNotFoundException("ï¿½ì³£ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢Î´Í¨ï¿½ï¿½");
 		}
 
 		return user;
 	}
 
 	/**
-	 * »ñµÃ·ÃÎÊ½ÇÉ«È¨ÏŞÁĞ±í
+	 * ï¿½ï¿½Ã·ï¿½ï¿½Ê½ï¿½É«È¨ï¿½ï¿½ï¿½Ğ±ï¿½
 	 * 
 	 * @param access
 	 * @return
 	 */
 	public Collection<GrantedAuthority> getAuthorities(Integer role) {
-		logger.info("È¡µÃµÄÈ¨ÏŞÊÇ  :" + role);
+		logger.info("È¡ï¿½Ãµï¿½È¨ï¿½ï¿½ï¿½ï¿½  :" + role);
 		List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
 
-		// ËùÓĞµÄÓÃ»§Ä¬ÈÏÓµÓĞROLE_USERÈ¨ÏŞ
+		// ï¿½ï¿½ï¿½Ğµï¿½ï¿½Ã»ï¿½Ä¬ï¿½ï¿½Óµï¿½ï¿½ROLE_USERÈ¨ï¿½ï¿½
 		if (role == 1) {
-			System.out.println("ÆÕÍ¨ÓÃ»§");
-			logger.debug("È¡µÃÆÕÍ¨ÓÃ»§È¨ÏŞ-->");
+			System.out.println("ï¿½ï¿½Í¨ï¿½Ã»ï¿½");
+			logger.debug("È¡ï¿½ï¿½ï¿½ï¿½Í¨ï¿½Ã»ï¿½È¨ï¿½ï¿½-->");
 			authList.add(new GrantedAuthorityImpl("ROLE_LC"));
 		}
-		// Èç¹û²ÎÊıroleÎª1.ÔòÓµÓĞROLE_ADMINÈ¨ÏŞ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½roleÎª1.ï¿½ï¿½Óµï¿½ï¿½ROLE_ADMINÈ¨ï¿½ï¿½
 		if (role == 2) {
-			logger.debug("È¡µÃADMINÓÃ»§È¨ÏŞ-->");
+			logger.debug("È¡ï¿½ï¿½ADMINï¿½Ã»ï¿½È¨ï¿½ï¿½-->");
 			authList.add(new GrantedAuthorityImpl("ROLE_TA"));
 		}
-		System.out.println(authList.size() + "  È¨ÏŞÁĞ±í³¤¶È");
+		System.out.println(authList.size() + "  È¨ï¿½ï¿½ï¿½Ğ±?ï¿½ï¿½");
 		return authList;
 	}
 }

@@ -28,4 +28,6 @@ public interface ReservationDao {
 
 	public Reservation getReservationByNum(String num);
 
+	public List<Reservation> getReservationByStatus(int status);
+
 }

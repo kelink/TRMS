@@ -128,6 +128,7 @@ public class RoomController {
 	}
 
 	// book room
+	@SuppressWarnings("null")
 	@RequestMapping(value = "/bookRoom")
 	public ModelAndView bookRoom(
 			HttpServletRequest request,
@@ -178,7 +179,15 @@ public class RoomController {
 			System.out.println(reservation);
 			map.addAttribute("reservation_Num", reservation_Num);
 			// 3.Send Email
+			// List<DBUser> admins = userService
+			// .getUserByRole(C.DB.DEFAULT_ROLE_TA);
+			// List<String> toAddressList = null;
+			// for (DBUser dbUser : admins) {
+			// toAddressList.add(dbUser.getAccount());
+			// MailSender.sendEmailToAllAdmin(toAddressList, null, null);
+			// }
 
+			// 4.add reservation
 			reservationService.addReservation(reservation);
 			return new ModelAndView("room/success", map);
 		}

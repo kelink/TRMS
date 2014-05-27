@@ -29,4 +29,6 @@ public interface ReservationService {
 	public Reservation getReservationByNum(String num);
 
 	public boolean approveOrReject(Reservation reservation, Room room);
+
+	public List<Reservation> getReservationByStatus(int status);
 }

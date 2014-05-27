@@ -10,14 +10,14 @@ public class CalanderUtil {
 		System.out.println(getLastDay());
 	}
 
-	// »ñÈ¡±¾ÔÂµÄµÚÒ»ÌìgetFirstDay
+	// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ÂµÄµï¿½Ò»ï¿½ï¿½getFirstDay
 	public static String getFirstDay() {
 		Calendar calendar = Calendar.getInstance();
 		return calendar.get(Calendar.YEAR) + "-"
 				+ (calendar.get(Calendar.MONTH) + 1) + "-" + "01";
 	}
 
-	// »ñÈ¡±¾ÔÂ×îºóÒ»Ìì
+	// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
 	public static String getLastDay() {
 		Calendar calendar = Calendar.getInstance();
 		int countDay = calDayByYearAndMonth(
@@ -27,7 +27,7 @@ public class CalanderUtil {
 				+ (calendar.get(Calendar.MONTH) + 1) + "-" + countDay;
 	}
 
-	// »ñÈ¡±¾ÔÂÓÐ¶àÉÙÌì
+	// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static int calDayByYearAndMonth(String dyear, String dmouth) {
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy/MM");
 		Calendar rightNow = Calendar.getInstance();
@@ -36,6 +36,7 @@ public class CalanderUtil {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return rightNow.getActualMaximum(Calendar.DAY_OF_MONTH);// ¸ù¾ÝÄêÔÂ »ñÈ¡ÔÂ·ÝÌìÊý
+		return rightNow.getActualMaximum(Calendar.DAY_OF_MONTH);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+																// ï¿½ï¿½È¡ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 }

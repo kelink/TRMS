@@ -408,4 +408,12 @@ public class ReservationDaoImpl implements ReservationDao {
 		return (Reservation) query.uniqueResult();
 	}
 
+	@Override
+	public List<Reservation> getReservationByStatus(int status) {
+		String hql = "from Reservation r where r.status=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, status);
+		return query.list();
+	}
+
 }

@@ -24,7 +24,7 @@ package com.dummy.future;
 //public class UserRole {
 //
 //	/**
-//	 * ÓÃ‘ô½ÇÉ«±í
+//	 * ï¿½Ã‘ï¿½ï¿½ï¿½É«ï¿½ï¿½
 //	 */
 //
 //	@Id
@@ -60,4 +60,4 @@ package com.dummy.future;
 //		this.role_id = role_id;
 //	}
 //
-//}
+// }

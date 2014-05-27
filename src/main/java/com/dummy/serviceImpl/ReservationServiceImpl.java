@@ -199,4 +199,9 @@ public class ReservationServiceImpl implements ReservationService {
 		isOK = roomDao.updateRoom(room);
 		return isOK;
 	}
+
+	@Override
+	public List<Reservation> getReservationByStatus(int status) {
+		return reservationDao.getReservationByStatus(status);
+	}
 }
