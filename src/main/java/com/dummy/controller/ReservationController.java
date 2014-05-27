@@ -47,6 +47,10 @@ public class ReservationController {
 	@Resource(name = "userService")
 	private UserService userService;
 
+	@RequestMapping(value = {"/reservationPage"})
+	public ModelAndView reservationPage(){
+		return new ModelAndView("reservation/reservationPage");
+	}
 	// reservation list
 	@RequestMapping(value = {"/list"})
 	public ModelAndView list(

@@ -25,11 +25,15 @@ $(function() {
 });
 
 function AjaxGetData(index, size) {
+
+	var params="{pageNum:index,pageSize:size,optionStr:'${optionStr}'}";
 		
 	$.ajax({
 				url : "<%=request.getContextPath()%>/reservation/listPageReservation",
-				type : "get",
-				data : "pageNum=" + index + "&pageSize=" + size+"&optionStr="+"${optionStr}",	
+				//type : "get",
+				//data : "pageNum=" + index + "&pageSize=" + size+"&optionStr="+"${optionStr}",	
+				type : "post",
+				data: "{pageNum:"+index+",pageSize:"+size+",optionStr:${optionStr}}", 
 				dataType : "json",
 				success : function(json) {
 					var html="";
@@ -143,6 +147,108 @@ function GoToAppointPage(e) {
 
 
 
+
+<c:url value="/j_spring_security_logout" var="logoutUrl"/>  
+
+<div id="cover">
+ </div>
+ <div class="wrapper">
+     <div class="header">
+	     <div class="headerContainer">
+		 <span id="logo"><img src="<%=request.getContextPath()%>/resources/images/hsbcLogo.png"/></span>
+		 </div>
+	 </div>
+	 
+	 <div class="status">
+
+	     <div class="statusContainer">
+	         <div id="userInfo">
+	         <img id="userCard" width="35px" height="35px" src="<%=request.getContextPath()%>/resources/images/card.png"/>
+	         <div id="userName">
+	         <span>Welcome! <security:authentication property="principal.username"/></span>
+	         </div>
+	         </div>
+	         <button id="logoutBtn" class="btnLogout" onclick="logout('${logoutUrl}');">
+	         <span id="logoutImage"><img id="logoutIcon" width="20px"height="20px" src="<%=request.getContextPath()%>/resources/images/logout.png"/>
+	         </span>
+	         <span>LogOut</span>
+	         </button>
+	      
+	     </div>
+	 </div>
+	 
+	 <div>
+	     <div class="seperateLine">
+		 </div>
+	 </div>
+	
+	 <div class="navigator">
+	     <div class="navContainer">
+		     <ul class="navi">
+			     <li>
+				     <a href="<%=request.getContextPath()%>/room/list" class="navItem">Book Room</a>
+				 </li>
+				 <li>
+				     <a href="<%=request.getContextPath()%>/reservation/reservationPage" class="navItem selected">Check My Reservation</a>
+				 </li>
+				 <li>
+				     <a href="<%=request.getContextPath()%>/reservation/delete" class="navItem">Delete My Reservation</a>
+				 </li>
+				 <li>
+				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
+				 </li>
+			 </ul>
+		 </div>
+	 </div>
+	 
+	 <div class="middle">
+	     <div class="middleContainer">
+		     <h1 class="roomList">Reservation List</h1>
+			 <div class="roomListBody" style="overflow:hidden;">
+			 
+			     <div id="checkLeftPanel">
+			         <div id="search1" class="checkMethod selected">
+			             Search by ID
+			         </div>
+			         <div id="search2" class="checkMethod">
+			             Fuzzy search
+			         </div>
+			         <div id="seperateLine">
+			         </div>
+			         <form action="<%=request.getContextPath()%>/reservation/list" method="get"target="checkRightInner">
+			         <div id="searchDivWrapper">
+			             <div class="searchDiv">
+			             <label class="searchLabel">Reservation ID...</label>
+			             <input type="text" class="searchInput" id="searchInput1"name="reservation_Num"></input>
+			             </div>
+			         
+			             <!--模糊查询额外部分-->
+			             <div class="searchDiv vague" >
+			             <label class="searchLabel">User LN...</label>
+			             <input type="text" class="searchInput" id="searchInput2"name="email"></input>
+			             </div>
+			             <div class="searchDiv vague">
+			             <label class="searchLabel">User Tele...</label>
+			             <input type="text" class="searchInput" id="searchInput3"name="tele"></input>
+			             </div>
+			             <div class="searchDiv vague">
+			             <label class="searchLabel">Purpose...</label>
+			             <input type="text" class="searchInput" id="searchInput4"name="purpose"></input>
+			             </div>
+			         
+			             <!--模糊查询额外部分-->
+			         </div>
+			         <input type="submit" class="btnSearch"id="submitSearch"value="Search">
+			             
+			         </input>
+			         </form>
+			     </div>
+			     <div id="checkRightPanel">
+			         <iframe id="checkRightInner" scrolling="no"src="<%=request.getContextPath()%>/reservation/list" >
+			         </iframe>
+			     
+			     </div>
+
 <!-- --------------------------------------- -->
 
 <!--                                                	<h1>高级查询</h1>		 -->
@@ -185,38 +291,48 @@ function GoToAppointPage(e) {
 <!-- 		<input type="submit"name="submit" value="submit"/> -->
 <!-- 		<hr/> -->
 <%-- 		</form> --%>
-			<h1> 显示查询结果</h1> 
-		 	     <ul>			 
-				     <div id="reservationInfo">
-				     </div>				
-				 </ul>
-				 <div id="listInfoWrapper">
-				     <div id="listInfo">
-					    Total Page:<span id='count'>${pageCount}</span>
-					    Total Records:<span id='recordCount'>${recordCount}</span>
-				    </div>
+<!-- 			<h1> 显示查询结果</h1>  -->
+<!-- 		 	     <ul>			  -->
+<!-- 				     <div id="reservationInfo"> -->
+<!-- 				     </div>				 -->
+<!-- 				 </ul> -->
+<!-- 				 <div id="listInfoWrapper"> -->
+<!-- 				     <div id="listInfo"> -->
+<%-- 					    Total Page:<span id='count'>${pageCount}</span> --%>
+<%-- 					    Total Records:<span id='recordCount'>${recordCount}</span> --%>
+<!-- 				    </div> -->
 				    
-				    <div id="jump">
-					     <a href='javascript:void' onclick='GoToFirstPage()' id='FirstPage' ><img class="pageIcon"alt="Go to first page" src="<%=request.getContextPath()%>/resources/images/first.png"></a>
-					     <a href='javascript:void' onclick='GoToPrePage()' id='PrePage' ><img class="pageIcon"alt="Go to previous page" src="<%=request.getContextPath()%>/resources/images/prepage.png"></a>
-					     <span id="pageIndex"></span>
-					     <a href='javascript:void' onclick='GoToNextPage()' id='NextPage' ><img class="pageIcon"alt="Go to next page" src="<%=request.getContextPath()%>/resources/images/nextpage.png"></a>
-					     <a href='javascript:void' onclick='GoToEndPage()' id='EndPage' ><img class="pageIcon" alt="Go to last page"src="<%=request.getContextPath()%>/resources/images/end.png"></a>
-					     <input type='text' size='4' name='page' />
-					     <input class="btnJump" type='button' value='Jump' onclick='GoToAppointPage(this)' />
-				     </div>
-				 </div>
+<!-- 				    <div id="jump"> -->
+<%-- 					     <a href='javascript:void' onclick='GoToFirstPage()' id='FirstPage' ><img class="pageIcon"alt="Go to first page" src="<%=request.getContextPath()%>/resources/images/first.png"></a> --%>
+<%-- 					     <a href='javascript:void' onclick='GoToPrePage()' id='PrePage' ><img class="pageIcon"alt="Go to previous page" src="<%=request.getContextPath()%>/resources/images/prepage.png"></a> --%>
+<!-- 					     <span id="pageIndex"></span> -->
+<%-- 					     <a href='javascript:void' onclick='GoToNextPage()' id='NextPage' ><img class="pageIcon"alt="Go to next page" src="<%=request.getContextPath()%>/resources/images/nextpage.png"></a> --%>
+<%-- 					     <a href='javascript:void' onclick='GoToEndPage()' id='EndPage' ><img class="pageIcon" alt="Go to last page"src="<%=request.getContextPath()%>/resources/images/end.png"></a> --%>
+<!-- 					     <input type='text' size='4' name='page' /> -->
+<!-- 					     <input class="btnJump" type='button' value='Jump' onclick='GoToAppointPage(this)' /> -->
+<!-- 				     </div> -->
+<!-- 				 </div> -->
 
 <!-- --------------------------------------- -->
 			 
+			 
+			 </div>
+		 </div>
+	 </div>
 
-
+ </div>
 
  
  
  
 
-
+ <div id="footerContainer">
+      <div id="footer">
+          <span id="copyright"> &copy; Copyright 2014 by <a href="#">Lin Jiajian</a>&<a href="#">Luo Kelin</a></span>
+          <span><img id="hsbcIconFooter" width="30px"height="15px" src="<%=request.getContextPath() %>/resources/images/hsbcFooter.png"/></span>
+          <span id="footerWord"><a href="#">Team</a> <a href="#">Telephone</a><a href="#">Email</a><a href="#">about</a></span>
+      </div>
+ </div>
 
 
 </body>
