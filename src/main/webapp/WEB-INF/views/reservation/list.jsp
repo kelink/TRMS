@@ -60,13 +60,13 @@ function AjaxGetData(index, size) {
 
 
                
-html+=("<div class=\"listItem\"id=\"listItem"+reservation_ID+"\"onmouseover=\"mouseon(this);\"onmouseout=\"mouseout(this)\"onclick=\"expand("+reservation_ID+");\">");
+html+=("<div class=\"listItem\"id=\"listItem"+reservation_ID+"\"onclick=\"expand("+reservation_ID+");\">");
 html+=("<div class=\"listFoldBtn\"id=\"listFoldBtn"+reservation_ID+"\"onclick=\"fold("+reservation_ID+",event)\">");
 html+=("<img class=\"listFoldImg\"src=\"/trms/resources/images/listFold.png\"/>");
 html+=("</div>");
 html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">");
 /////////////////////////////
-html+=("<iframe id='moreInfo'name='moreInfo' ></iframe>");
+
                         html+=("<div class=\"ticketTitle\">Ticket Information</div>");
                         html+=("<div class=\"ticketContent\">");
 						html+=("reservation_ID:"+reservation_ID+"<br/>");
@@ -88,7 +88,7 @@ html+=("<iframe id='moreInfo'name='moreInfo' ></iframe>");
 						html+=("applicant_account:"+applicant_account+"<br/>");
 						
 						html+=("handler_by:"+handler_by+"<br/>");
-						html+=(" <a class='btnMore'target='moreInfo'onclick='more();' href='<%=request.getContextPath()%>/reservation/edit?"
+						html+=(" <a class='btnMore'target='moreInfo'onclick='more(event);' href='<%=request.getContextPath()%>/reservation/edit?"
 								+"reservation_ID="+reservation_ID
 								+"&room_ID="+room_ID
 								+"&team_ID="+team_ID
@@ -109,7 +109,7 @@ html+=("</div>");
 
 					}					
 				$('#listWrapper').html("");
-		        $('#listWrapper').html(html); 
+		        $('#listWrapper').html("<iframe id=\"moreInfo\"name=\"moreInfo\" scrolling=\"no\" ></iframe>"+html); 
 
 	                $('#pageIndex').html("");
 	               $('#pageIndex').html(pageIndex);
@@ -173,7 +173,9 @@ function GoToAppointPage(e) {
     <span class="listContent2 topBarItem">Usage</span>
     <span class="listContent3 topBarItem">Order Time</span>
     </div>
-    <div id="listWrapper"></div>
+    <div id="listWrapper">
+    
+    </div>
 
 
 				 <div id="listInfoWrapper1" >

@@ -50,6 +50,75 @@ cursor: pointer;
 user-select: none;
 -webkit-appearance: none;
 }
+.btnUpdate
+{
+	margin:0px;
+	float:left;
+	text-decoration:none;
+	line-height: 20px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 12px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+	color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(94, 151, 189);
+background-image: -moz-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: -webkit-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: linear-gradient(rgb(155, 207, 255), rgb(94, 151, 189));
+background-repeat: repeat-x;
+
+border-radius: 3px;
+border: 1px solid rgb(152, 207, 243);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+}
+.btnDelete
+{margin-left: 15px;
+	float: left;
+text-decoration: none;
+line-height: 20px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 12px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(255,48, 48);
+background-image: -moz-linear-gradient(rgb(252,110,110),rgb(255,48,48));
+background-image: -webkit-linear-gradient(rgb(252, 110, 110),rgb(255,48,48));
+background-image: linear-gradient(rgb(252, 110, 110), rgb(255, 48, 48));
+background-repeat: repeat-x;
+border-radius: 3px;
+border: 1px solid rgb(211, 55, 55);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+}
+#btnWrapper
+{
+	margin-top: 15px;
+	
+}
 .ticketTitle
 {
 	border-bottom: 1px solid #cccccc;
@@ -67,11 +136,35 @@ font-size: 13px;
 color:rgb(77, 77, 77)
 
 }
-#moreInfo
+#close {
+	cursor:pointer;
+float:right;
+}
+#headerText
 {
-	width:300px;
-	height:300px;
-	display:none;
+	font-weight: bold;
+color: #333;
+text-shadow: 0 1px 0 #fff;
+}
+.panelHeader {
+padding: 8px 10px;
+background-color: #eeeeee;
+background-image: -moz-linear-gradient(#fafafa, #eee);
+background-image: -webkit-linear-gradient(#fafafa, #eee);
+background-image: linear-gradient(#fafafa, #eee);
+background-repeat: repeat-x;
+border-bottom: 1px solid #ddd;
+font-size: 14px;
+}
+#moreInfo
+{box-shadow: 0 1px 3px rgb(190, 190, 190);
+width: 515px;
+height: 339px;
+position: absolute;
+z-index: 1000;
+border: 1px solid #cccccc;
+display: none;
+border-radius: 5px;
 }
 .listContent1
 {
@@ -104,6 +197,14 @@ text-overflow:ellipsis;
 -o-text-overflow:ellipsis; 
 overflow: hidden; 
 height:15px;
+}
+#warning
+{
+	color:rgb(204, 0, 0);
+}
+#modifyWrapper
+{
+	padding: 15px;
 }
 .listFoldBtn
 {

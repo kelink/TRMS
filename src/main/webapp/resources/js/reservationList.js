@@ -21,14 +21,21 @@ function expand(id){
             window.top.scrollTo(0,250);
             
 		}});
-   
+   $(listItem).css("cursor","auto");
+   $(listItem).removeAttr("onclick");
+   $(listItem).unbind();//标签上的onclick事件只能通过jquery移除，不能通过jquery添加，jq的click事件跟标签的onclick不互通，jq重复设置click会叠加上去而不是取代。
     
 }
-function more(id){
+function more(event){
 	$("#moreInfo").css("display","block");
+	if(event.stopPropagation) event.stopPropagation();
+	else event.cancelBubble=true;
 }
     
-
+function abc()
+{
+	alert("fdas");
+}
 
 
 function fold (id,event)
@@ -45,4 +52,6 @@ function fold (id,event)
     
     if(event.stopPropagation) event.stopPropagation();
 	else event.cancelBubble=true;
+    $(listItem).css("cursor","pointer");
+    $(listItem).click(function(){expand(id)});
 }
