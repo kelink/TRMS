@@ -1,10 +1,12 @@
 #listBody
 {
-	padding:10px;
+
 	background:#f8f8f8 !important;
 }
 .listItem
 {
+	height:33px;
+	position:relative;
 	font-size:12px;
 	font-weight:bold;
 	padding: 8px 10px 8px 10px;
@@ -15,6 +17,154 @@ box-shadow: 0 1px 3px #E6E6E6;
 	margin-bottom:20px;
 	cursor:pointer;
 	overflow:hidden;
+}
+.btnMore
+{
+	float:right;
+	text-decoration:none;
+	line-height: 20px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 12px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+	color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(94, 151, 189);
+background-image: -moz-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: -webkit-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: linear-gradient(rgb(155, 207, 255), rgb(94, 151, 189));
+background-repeat: repeat-x;
+
+border-radius: 3px;
+border: 1px solid rgb(152, 207, 243);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+}
+.btnUpdate
+{
+	margin:0px;
+	float:left;
+	text-decoration:none;
+	line-height: 20px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 12px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+	color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(94, 151, 189);
+background-image: -moz-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: -webkit-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: linear-gradient(rgb(155, 207, 255), rgb(94, 151, 189));
+background-repeat: repeat-x;
+
+border-radius: 3px;
+border: 1px solid rgb(152, 207, 243);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+}
+.btnDelete
+{margin-left: 15px;
+	float: left;
+text-decoration: none;
+line-height: 20px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 12px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(255,48, 48);
+background-image: -moz-linear-gradient(rgb(252,110,110),rgb(255,48,48));
+background-image: -webkit-linear-gradient(rgb(252, 110, 110),rgb(255,48,48));
+background-image: linear-gradient(rgb(252, 110, 110), rgb(255, 48, 48));
+background-repeat: repeat-x;
+border-radius: 3px;
+border: 1px solid rgb(211, 55, 55);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+}
+#btnWrapper
+{
+	margin-top: 15px;
+	
+}
+.ticketTitle
+{
+	border-bottom: 1px solid #cccccc;
+margin-top: 10px;
+padding: 10px;
+font-size: 20px;
+color: rgb(99, 97, 97);
+margin-bottom: 10px;
+}
+.ticketContent
+{
+	padding:13px;
+	line-height: 17px;
+font-size: 13px;
+color:rgb(77, 77, 77)
+
+}
+#close {
+	cursor:pointer;
+float:right;
+}
+#headerText
+{
+	font-weight: bold;
+color: #333;
+text-shadow: 0 1px 0 #fff;
+}
+.panelHeader {
+padding: 8px 10px;
+background-color: #eeeeee;
+background-image: -moz-linear-gradient(#fafafa, #eee);
+background-image: -webkit-linear-gradient(#fafafa, #eee);
+background-image: linear-gradient(#fafafa, #eee);
+background-repeat: repeat-x;
+border-bottom: 1px solid #ddd;
+font-size: 14px;
+}
+#moreInfo
+{box-shadow: 0 1px 3px rgb(190, 190, 190);
+width: 515px;
+height: 339px;
+position: absolute;
+z-index: 1000;
+border: 1px solid #cccccc;
+display: none;
+border-radius: 5px;
 }
 .listContent1
 {
@@ -47,4 +197,103 @@ text-overflow:ellipsis;
 -o-text-overflow:ellipsis; 
 overflow: hidden; 
 height:15px;
+}
+#warning
+{
+	color:rgb(204, 0, 0);
+}
+#modifyWrapper
+{
+	padding: 15px;
+}
+.listFoldBtn
+{
+   height: 22px;
+width: 40px;
+
+position: absolute;
+right:0px;
+top: 0px;
+border-bottom-left-radius: 6px;
+background: linear-gradient(top,#e8e8e8,#d9d9d9);
+background: -webkit-linear-gradient(top,#e8e8e8,#d9d9d9);
+background: -moz-linear-gradient(top,#e8e8e8,#d9d9d9);
+display:none;
+cursor:pointer;
+}
+.listFoldImg
+{
+	width: 25px;
+position: absolute;
+top: 3px;
+left: 7px;
+
+}
+.reservationInfo
+{
+	display:none;
+}
+.listContent
+{
+
+}
+#listInfoWrapper1
+{
+padding-top:5px;
+height: 36px;
+line-height: 30px;
+
+padding-right: 35px;
+	background: -webkit-gradient(linear,0 0,0 100%,from(rgb(224, 228, 235)),to(rgb(204, 210, 221)));
+background: -moz-linear-gradient(top,rgb(224, 228, 235),rgb(204, 210, 221));
+background-color: #bcc2cd;
+
+}
+#listTitle
+{
+	height:36px;
+	background: -webkit-gradient(linear,0 0,0 100%,from(rgb(224, 228, 235)),to(rgb(204, 210, 221)));
+background: -moz-linear-gradient(top,rgb(224, 228, 235),rgb(204, 210, 221));
+background-color: #bcc2cd;
+}
+#listWrapper
+{
+	padding:10px;
+	padding-bottom: 0px;
+}
+#topBar
+{
+	height:25px;
+	background:#f2f4f6;
+	border-bottom:1px solid #c1c8d2;
+	margin-bottom:10px;
+}
+.topBarItem
+{
+	margin-top:4px;
+	border-left:1px solid rgb(226, 223, 223);
+	padding-left:9px;
+
+}
+.topBarItem1
+{
+	margin-top:4px;
+	margin-left:15px;
+	border-left:none;
+}
+::-webkit-scrollbar
+{
+	width:6px;
+	height:6px;
+}
+::-webkit-scrollbar-track-piece
+{
+    background-color: #CCCCCC;
+    -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:vertical
+{
+    height: 5px;
+    background-color: #999999;
+    -webkit-border-radius: 6px;
 }

@@ -17,7 +17,7 @@ overflow:hidden;
 
   
     padding-left:10px;
-    padding-right:10px;
+
 	
 	width:75%;
 	float:left;
@@ -28,7 +28,7 @@ overflow:hidden;
     background:#f8f8f8;
     border: none;
     width: 100%;
-    overflow:hidden;
+
 }
 .checkMethod
 {
@@ -94,13 +94,43 @@ border: 1px solid #cccccc;
 box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
 outline:none;
 }
-#searchInput:focus
+.searchInput:focus
 {
 	border-color: #51a7e8;
 box-shadow: inset 0 1px 2px rgba(0,0,0,0.075),0 0 5px rgba(81,167,232,0.5);
 }
+.preciseSearch
+{
+
+display:none;
+}
+.preciseInput:focus
+{
+	border-color: #51a7e8;
+box-shadow: inset 0 1px 2px rgba(0,0,0,0.075),0 0 5px rgba(81,167,232,0.5);
+}
+.preciseInput
+{
+	width: 100%;
+border: 1px solid #cccccc;
+border-radius: 3px;
+font-size: 14px;
+padding: 4px;
+padding-left: 7px;
+padding-right: 7px;
+outline:none;
+}
+
+.preciseLabel
+{
+	margin-top: 8px;
+color: rgb(80, 74, 74);
+margin-left: 2px;
+font-weight: bold;
+}
 .btnSearch
 {
+	width: 212px;
 margin-top:20px;	
 line-height: 28px;
 box-shadow: none;

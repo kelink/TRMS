@@ -11,6 +11,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
+<link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
+ <script src="<%=request.getContextPath()%>/resources/js/reservationEdit.js" type="text/javascript"></script>
+ <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
 function isEdit(){
 	
@@ -19,10 +22,16 @@ function isEdit(){
 </script>
 </head>
 </body>
-	<h1>订单具体信息显示，修改和删除界面</h1>
-	订单在未处理状态下可以修改和编辑，在approve 和 refuse 状态下不可更改<br/>
-	
+<div class="panelHeader">
+<span id="headerText">Modify Ticket</span>
+<span id="close"onclick="back();"><img id="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
+
+</div>
+        <div id="modifyWrapper">
+    	<div id="warning">The ticket can only be modify when it is at the status of untreated!</div>
+	    
 		<form action="<%=request.getContextPath()%>/reservation/update" method="post">
+		
 		Reservation Number:
 		<input type="text" name="reservation_Num" readOnly="true" value="${reservation.reservation_Num}"/><br/>
 
@@ -41,11 +50,14 @@ function isEdit(){
 		
 		<input type="hidden" name="reservation_ID" value="${reservation.reservation_ID}">
 		
-		<input type="submit"name="submit" value="update"/>
+		<div id="btnWrapper">
+		<input class="btnUpdate" type="submit"name="submit" value="update"/>
+		<a class="btnDelete" href="<%=request.getContextPath()%>/reservation/delete?reservation_ID=${reservation.reservation_ID}">delete</a>
+		</div>
 		</form>
-
+        </div>
 	
-	<a href="<%=request.getContextPath()%>/reservation/delete?reservation_ID=${reservation.reservation_ID}">delete</a>
+	
 	<br/>	
 </body>
 </html>
