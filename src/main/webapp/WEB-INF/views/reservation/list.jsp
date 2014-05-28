@@ -66,6 +66,9 @@ html+=("<img class=\"listFoldImg\"src=\"/trms/resources/images/listFold.png\"/>"
 html+=("</div>");
 html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">");
 /////////////////////////////
+html+=("<iframe id='moreInfo'name='moreInfo' ></iframe>");
+                        html+=("<div class=\"ticketTitle\">Ticket Information</div>");
+                        html+=("<div class=\"ticketContent\">");
 						html+=("reservation_ID:"+reservation_ID+"<br/>");
 						html+=("reservation_start_Daty:"+reservation_start_Daty+"<br/>");
 						html+=("reservation_end_Daty:"+reservation_end_Daty+"<br/>");
@@ -85,13 +88,14 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 						html+=("applicant_account:"+applicant_account+"<br/>");
 						
 						html+=("handler_by:"+handler_by+"<br/>");
-						html+=("Click <a href='<%=request.getContextPath()%>/reservation/edit?"
+						html+=(" <a class='btnMore'target='moreInfo'onclick='more();' href='<%=request.getContextPath()%>/reservation/edit?"
 								+"reservation_ID="+reservation_ID
 								+"&room_ID="+room_ID
 								+"&team_ID="+team_ID
 								+"&applicant_ID="+applicant_ID
 								+"&handler_by="+handler_by
-								+"'> Here </a> to get more Information<br/>");
+								+"'>More Information</a> <br/>");
+						html+=("</div>");
 
 ///////////////////////////////
 html+=("</div>");

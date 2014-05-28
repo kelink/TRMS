@@ -23,7 +23,10 @@ function expand(id){
 		}});
    
     
-}	
+}
+function more(id){
+	$("#moreInfo").css("display","block");
+}
     
 
 
