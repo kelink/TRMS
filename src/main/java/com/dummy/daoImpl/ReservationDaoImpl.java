@@ -416,4 +416,21 @@ public class ReservationDaoImpl implements ReservationDao {
 		return query.list();
 	}
 
+	@Override
+	public boolean isBetween(String begin_time, String end_time, int room_ID) {
+		String hql = "from Reservation " + "where " + "Reservation.status=? "
+				+ "and applied_start_date>=? " + "and applied_end_date<=? "
+				+ "and reservation.room_ID=? ";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, C.DB.DEFAULT_RESERVATION_ACCEPT);
+		query.setString(1, begin_time);
+		query.setString(2, end_time);
+		query.setInteger(3, room_ID);
+		if (query.list().size() > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 }

@@ -204,4 +204,12 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<Reservation> getReservationByStatus(int status) {
 		return reservationDao.getReservationByStatus(status);
 	}
+
+	@Override
+	public boolean isBetween(String begin_time, String end_time, int room_ID) {
+		return reservationDao.isBetween(begin_time, end_time, room_ID);
+	}
+
+	// check whether the reservation can approve
+
 }

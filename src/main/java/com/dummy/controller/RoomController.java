@@ -34,6 +34,7 @@ import com.dummy.service.ReservationService;
 import com.dummy.service.RoomService;
 import com.dummy.service.TeamService;
 import com.dummy.service.UserService;
+import com.dummy.util.CalanderUtil;
 import com.dummy.util.ReservationUtil;
 
 @Controller
@@ -127,6 +128,25 @@ public class RoomController {
 		return new ModelAndView("room/calendar", map);
 	}
 
+	// ajax to check whether date between start and end
+	@RequestMapping(value = "/bookRoom")
+	public @ResponseBody String isBetween(
+			@RequestParam(value = "team_ID", required = true) int team_ID,
+			@RequestParam(value = "begin_time", required = true) String begin_time,
+			@RequestParam(value = "end_time", required = true) String end_time,
+			HttpSession session) {
+		if ((CalanderUtil.isEarlyFirstDay(end_time) == true)
+				|| (CalanderUtil.isEarlyFirstDay(begin_time) == true)) {
+			return "book date wrong,check it please!";
+		}
+		boolean isOK = reservationService.isBetween(begin_time, end_time,
+				team_ID);
+		if (isOK) {
+			return null;
+		} else {
+			return "book date wrong,check it please!";
+		}
+	}
 	// book room
 	@SuppressWarnings("null")
 	@RequestMapping(value = "/bookRoom")
