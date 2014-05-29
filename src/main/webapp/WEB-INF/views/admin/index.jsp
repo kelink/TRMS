@@ -25,8 +25,7 @@
  });
 
  function AjaxGetData(index, size) {
- 	$
- 			.ajax({
+ 	$.ajax({
  				url : "<%=request.getContextPath()%>/room/listPageRoom",
  				type : "Get",
  				data : "pageNum=" + index + "&pageSize=" + size,
@@ -154,7 +153,7 @@
 	     <div class="navContainer">
 		     <ul class="navi">
 			   <li>
-				     <a href="<%=request.getContextPath()%>/room/list" class="navItem selected">Book Room</a>
+				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
@@ -188,8 +187,7 @@
 					<!-- 显示room的信息 -->
 					
 				 <ul>			 
-				    <div id="roomInfo">
-				    </div>				
+				    <div id="roomInfo"></div>				
 				 </ul>
 				 <div id="listInfoWrapper">
 				     <div id="listInfo">
@@ -220,15 +218,6 @@
 	 </div>
  </div>
  <%@ include file="footer.jsp"%>
---  <div id="footerContainer"> -->
-<!--       <div id="footer"> -->
-<!--           <span id="copyright"> &copy; Copyright 2014 by <a href="#">Lin Jiajian</a>&<a href="#">Luo Kelin</a></span> -->
-<%--           <span><img id="hsbcIconFooter" width="30px"height="15px" src="<%=request.getContextPath() %>/resources/images/hsbcFooter.png"/></span> --%>
-<!--           <span id="footerWord"><a href="#">Team</a> <a href="#">Telephone</a><a href="#">Email</a><a href="#">about</a></span> -->
-<!--       </div> -->
-  
- </div>
-
 </body>
 </html>
 

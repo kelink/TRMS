@@ -151,6 +151,7 @@ public class RoomController {
 	@RequestMapping(value = "/bookRoom")
 	public ModelAndView bookRoom(
 			HttpServletRequest request,
+			HttpSession session,
 			Model model,
 			@RequestParam(value = "team_ID", required = true) int team_ID,
 			@RequestParam(value = "room_ID", required = true) int room_ID,
@@ -182,18 +183,26 @@ public class RoomController {
 			// 2. create a reservation
 			Reservation reservation = new Reservation();
 			String reservation_Num = ReservationUtil.getUniqueSequence();
+
 			reservation.setApplied_End_Date(endDate);
 			reservation.setApplied_Start_Date(beginDate);
 			reservation.setEmail(email);
 			reservation.setOrder_Time(nowDate);
 			reservation.setPurpose(purpose);
 			reservation.setRoom_ID(room_ID);
-			reservation.setStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
 			reservation.setTeam_ID(team_ID);
 			reservation.setUser_ID(currentUser.getUser_ID());
 			reservation.setTele(tele);
 			reservation.setReservation_Num(reservation_Num);
-			reservation.setHandle_by(C.DB.DEFAULT_APPROVE_BY);
+
+			if (session.getAttribute("currentRole").equals("ROLE_LC")) {
+				reservation.setHandle_by(C.DB.DEFAULT_APPROVE_BY);
+				reservation.setStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
+			} else if (session.getAttribute("currentRole").equals("ROLE_TA")) {
+				reservation.setHandle_by(currentUser.getUser_ID());
+				reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
+			}
+
 			System.out.println(reservation);
 			map.addAttribute("reservation_Num", reservation_Num);
 			// 3.Send Email

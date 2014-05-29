@@ -11,13 +11,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
-
-
-    <link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
-
- <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
- 
-    <script src="<%=request.getContextPath()%>/resources/js/reservationList.js" type="text/javascript"></script>
+<link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/reservationList.js" type="text/javascript"></script>
 <script type="text/javascript">
 var pageIndex = 0;
 var pageSize =7;
