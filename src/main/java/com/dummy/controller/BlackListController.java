@@ -55,7 +55,7 @@ public class BlackListController {
 	}
 	// get the black through team
 	@RequestMapping(value = "/getReasonByTeam")
-	public @ResponseBody String getblacklistByTeam(
+	public @ResponseBody String getReasonByTeam(
 			@RequestParam(value = "team_ID", required = true) int team_ID,
 			HttpSession session) {
 		JSONObject blacklist = blackListService.getBlackListByTeam(team_ID);

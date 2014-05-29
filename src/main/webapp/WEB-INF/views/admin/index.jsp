@@ -54,16 +54,22 @@
 	 <div class="navigator">
 	     <div class="navContainer">
 		     <ul class="navi">
-			     <li>
+			      <li>
 				     <a href="<%=request.getContextPath()%>/room/list" class="navItem selected">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/reservationPage" class="navItem">Check My Reservation</a>
+				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/delete" class="navItem">Delete My Reservation</a>
+				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
+				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">LC Management </a>
+				 </li>
+				  <li>
+				     <a href="<%=request.getContextPath()%>/room/roommanager"class="navItem">Room Management</a>
+				 </li>
+				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
 				 </li>
 			 </ul>
@@ -73,18 +79,7 @@
 	 <div class="middle">
 	     <div class="middleContainer">
 		     <h1 class="roomList">Room List</h1>
-			 <div class="roomListBody">
-
- 
-
-					
-
-
-				 
-				 
-				     
-				 
-		 </div>
+			 <div class="roomListBody"></div>
 		 </div>
 	 </div>
 	 <div class="footer">

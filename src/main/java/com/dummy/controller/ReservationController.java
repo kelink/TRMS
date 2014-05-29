@@ -150,7 +150,7 @@ public class ReservationController {
 		// map.addAttribute("handler", handler);
 		return new ModelAndView("reservation/edit", map);
 	}
-	// Update the unhandled reservation
+	// Update the unhandled(处理TA尚且没处理的订单)reservation
 	@RequestMapping(value = {"/update"})
 	public ModelAndView update(HttpServletRequest request, HttpSession session) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -195,9 +195,9 @@ public class ReservationController {
 
 	// reservation Delete by reservation_id
 	@RequestMapping(value = {"/deleteByID"})
-	public ModelAndView deleteByID(HttpServletRequest request) {
-		int id = Integer.parseInt(request.getParameter("reservation_ID"));
-		if (reservationService.delReservation(id) == true) {
+	public ModelAndView deleteByID(
+			@RequestParam(value = "reservation_ID", required = true) int reservation_ID) {
+		if (reservationService.delReservation(reservation_ID) == true) {
 			return new ModelAndView("redirect:/reservation/list");
 		}
 		return new ModelAndView("redirect:/reservation/list");
@@ -205,9 +205,9 @@ public class ReservationController {
 
 	// reservation Delete by reservation_num
 	@RequestMapping(value = {"/deleteByNum"})
-	public ModelAndView deleteByNum(HttpServletRequest request) {
-		String num = request.getParameter("reservation_Num");
-		if (reservationService.delReservationByNum(num) == true) {
+	public ModelAndView deleteByNum(
+			@RequestParam(value = "reservation_Num", required = true) String reservation_Num) {
+		if (reservationService.delReservationByNum(reservation_Num) == true) {
 			return new ModelAndView("redirect:/reservation/list");
 		}
 		return new ModelAndView("redirect:/reservation/list");
@@ -271,4 +271,19 @@ public class ReservationController {
 		}
 	}
 
+	/***********************************************************
+	 * for administrator
+	 **********************************************************/
+	@RequestMapping(value = "/reservationManagerIndex")
+	public ModelAndView reservationManagerIndex() {
+
+		List<ReservationDetial> reservationDetials = reservationService
+				.getReservationByOption("where reservation.status="
+						+ C.DB.DEFAULT_RESERVATION_UNHANDLE);
+		int size = reservationDetials.size();
+		ModelMap map = new ModelMap();
+		map.addAttribute("size", size);
+		map.addAttribute("reservationDetials", reservationDetials);
+		return new ModelAndView("admin/reservationManagerIndex", map);
+	}
 }

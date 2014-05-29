@@ -38,6 +38,9 @@ public class TeamController {
 	@Resource(name = "teamService")
 	private TeamService teamService;
 
+	/*********************************
+	 * for administrator
+	 *********************************/
 	// user manager index page
 	@RequestMapping(value = {"/", "", "/index"})
 	public ModelAndView index() {
@@ -97,6 +100,7 @@ public class TeamController {
 				+ department_ID);
 		List<JSONObject> teamList = teamService
 				.getTeamsByDepartment(department_ID);
+		System.out.println(teamList);
 		return teamList.toString();
 	}
 
