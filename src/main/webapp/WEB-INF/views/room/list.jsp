@@ -40,7 +40,7 @@
  						var last_Used_Date=json[position].last_Used_Date;
  						
  						html+="<li id='list"+room_ID+"'class='roomListContent'>";
- 						html+="<span class='roomListNum'>"+room_ID+"</span>";
+ 						//html+="<span class='roomListNum'>"+room_ID+"</span>";
  						html+="<span class='roomicon'><img src='/trms/resources/images/roomicon.png' width='43px' height='43px'/></span>";
  						html+="<span class='roomNum'><span>"+item+"</span></span>";
  											
