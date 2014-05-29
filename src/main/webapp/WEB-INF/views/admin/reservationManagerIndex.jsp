@@ -15,7 +15,7 @@
   <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
  <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
-  <script src="<%=request.getContextPath()%>/resources/js/checkReservation.js" type="text/javascript"></script>
+  <script src="<%=request.getContextPath()%>/resources/js/adminReservation.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -60,10 +60,10 @@
 	     <div class="navContainer">
 		     <ul class="navi">
 			     <li>
-				     <a href="<%=request.getContextPath()%>/room/list" class="navItem selected">Book Room</a>
+				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
+				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem selected">Reservation Manager</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
@@ -88,7 +88,7 @@
 			 
 			     <div id="checkLeftPanel">
 			      <!-- handle  begin -->
-					 <div id="search1" class="checkMethod selected">
+					 <div id="search0" class="checkMethod selected">
 			             ${size} reservations unhandle
 			         </div>
 			         <div id="search1" class="checkMethod">
@@ -103,7 +103,7 @@
 			         </div>
 			         <div id="seperateLine">
 			         </div>
-			         <form action="<%=request.getContextPath()%>/reservation/list" method="get"target="checkRightInner">
+			         <form action="<%=request.getContextPath()%>/reservation/reservationManagerList" method="get"target="checkRightInner">
 			         <div id="searchDivWrapper">
 			             <div class="searchDiv">
 			             <label class="searchLabel">Reservation Num...</label>
@@ -174,84 +174,13 @@
 			         </form>
 			     </div>
 			     <div id="checkRightPanel">
-			         <iframe id="checkRightInner" src="<%=request.getContextPath()%>/reservation/list" >
+			         <iframe id="checkRightInner" src="<%=request.getContextPath()%>/reservation/reservationManagerList" >
 			         </iframe>
 			     
 			     </div>
 					
-					  <c:forEach var="reservationDetial" items="${reservationDetials}">	
-				              ${reservationDetial.reservation }<br/>
-				              <hr/>
-				               ${reservationDetial.team }<br/>
-				               
-				               </hr>
-				               ${reservationDetial.user }
-			          </c:forEach>
-<!-- --------------------------------------- -->
 
-<!--                                                	<h1>高级查询</h1>		 -->
-<%-- 	<form action="<%=request.getContextPath()%>/reservation/list" method="get"> --%>
-<!-- 		Reservation Number: -->
-<!-- 		<input type="text" name="reservation_Num"/><br/> -->
-<!-- 		Booked Time: -->
-<!-- 		<input type="date" name="order_Time"/><br/> -->
-<!-- 		Ticket Status: -->
-<!-- 		<select name="status"> -->
-<!-- 			<option></option> -->
-<!-- 			<option value="1">accept</option> -->
-<!-- 			<option value="-1">refuse</option> -->
-<!-- 			<option value="0">unhandle</option> -->
-<!-- 		</select> -->
-<!-- 		Room： -->
-<!-- 		<select name="room_ID"> -->
-<!-- 		<option></option> -->
-<%-- 			<c:forEach var="room" items="${rooms}">	 --%>
-<%-- 				<option value='${room.room_ID}'>${room.item}</option> --%>
-<%-- 			</c:forEach>		 --%>
-<!-- 		</select><br/> -->
-<!-- 		Planned Use Start Time： -->
-<!-- 		<input type="date" name="Applied_Start_Date"/><br/> -->
-<!-- 		Planned Use End Time： -->
-<!-- 		<input type="date" name="Applied_End_Date"/><br/> -->
-<!-- 		User LN: -->
-<!-- 		<input type="text" name="email"/><br/> -->
-<!-- 		User Team: -->
-<!-- 		<select name="team_ID"> -->
-<!-- 			<option></option> -->
-<%-- 			<c:forEach var="team" items="${teams}">	 --%>
-<%-- 				<option value='${team.team_ID}'>${team.teamName}</option> --%>
-<%-- 			</c:forEach> --%>
-<!-- 		</select><br/> -->
-<!-- 		User TelLine: -->
-<!-- 		<input type="text" name="tele"/><br/> -->
-<!-- 		Use Resaon: -->
-<!-- 		<input type="text" name="purpose"/> -->
-<!-- 		<input type="submit"name="submit" value="submit"/> -->
-<!-- 		<hr/> -->
-<%-- 		</form> --%>
-<!-- 			<h1> 显示查询结果</h1>  -->
-<!-- 		 	     <ul>			  -->
-<!-- 				     <div id="reservationInfo"> -->
-<!-- 				     </div>				 -->
-<!-- 				 </ul> -->
-<!-- 				 <div id="listInfoWrapper"> -->
-<!-- 				     <div id="listInfo"> -->
-<%-- 					    Total Page:<span id='count'>${pageCount}</span> --%>
-<%-- 					    Total Records:<span id='recordCount'>${recordCount}</span> --%>
-<!-- 				    </div> -->
-				    
-<!-- 				    <div id="jump"> -->
-<%-- 					     <a href='javascript:void' onclick='GoToFirstPage()' id='FirstPage' ><img class="pageIcon"alt="Go to first page" src="<%=request.getContextPath()%>/resources/images/first.png"></a> --%>
-<%-- 					     <a href='javascript:void' onclick='GoToPrePage()' id='PrePage' ><img class="pageIcon"alt="Go to previous page" src="<%=request.getContextPath()%>/resources/images/prepage.png"></a> --%>
-<!-- 					     <span id="pageIndex"></span> -->
-<%-- 					     <a href='javascript:void' onclick='GoToNextPage()' id='NextPage' ><img class="pageIcon"alt="Go to next page" src="<%=request.getContextPath()%>/resources/images/nextpage.png"></a> --%>
-<%-- 					     <a href='javascript:void' onclick='GoToEndPage()' id='EndPage' ><img class="pageIcon" alt="Go to last page"src="<%=request.getContextPath()%>/resources/images/end.png"></a> --%>
-<!-- 					     <input type='text' size='4' name='page' /> -->
-<!-- 					     <input class="btnJump" type='button' value='Jump' onclick='GoToAppointPage(this)' /> -->
-<!-- 				     </div> -->
-<!-- 				 </div> -->
 
-<!-- --------------------------------------- -->
 			 
 			 
 			 </div>
