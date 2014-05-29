@@ -26,9 +26,9 @@ $(function() {
 function AjaxGetData(index, size) {
 		
 	$.ajax({
-				url : "<%=request.getContextPath()%>/reservation/adminListPageReservation",
+				url : "<%=request.getContextPath()%>/reservation/unhandleListPageReservation",
 				type : "get",
-				data : "pageNum=" + index + "&pageSize=" + size+"&optionStr="+"${optionStr}",	
+				data : "pageNum=" + index + "&pageSize=" + size,	
 				dataType : "json",
 				success : function(json) {
 					var html="";
@@ -85,13 +85,13 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 						html+=("applicant_account:"+applicant_account+"<br/>");
 						
 						html+=("handler_by:"+handler_by+"<br/>");
-						html+=(" <a class='btnMore'target='moreInfo'onclick='more(event);' href='<%=request.getContextPath()%>/reservation/edit?"
+						html+=(" <a class='btnUpdate'target='moreInfo'onclick='more(event);' href='<%=request.getContextPath()%>/reservation/approve?"
 								+"reservation_ID="+reservation_ID
-								+"&room_ID="+room_ID
-								+"&team_ID="+team_ID
-								+"&applicant_ID="+applicant_ID
-								+"&handler_by="+handler_by
-								+"'>More Information</a> <br/>");
+								+"'>Approve </a> ");
+						
+						html+=(" <a class='btnDelete'target='moreInfo'onclick='more(event);' href='<%=request.getContextPath()%>/reservation/reject?"
+								+"reservation_ID="+reservation_ID
+								+"'>Reject</a> <br/>");
 						html+=("</div>");
 
 ///////////////////////////////

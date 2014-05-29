@@ -64,32 +64,35 @@ public class ReservationDaoImpl implements ReservationDao {
 	// Update a reservation
 	@Override
 	public boolean updateReservation(Reservation reservation) {
-		String hql = "update Reservation "
-				+ "set reservation.reservation_ID=?,"
-				+ "reservation.reservation_Num=?,"
-				+ "reservation.Applied_Start_Date=?,"
-				+ "reservation.Applied_End_Date=?," + "reservation.email=?,"
-				+ "reservation.tele=?," + "reservation.order_Time=?,"
-				+ "reservation.purpose=?," + "reservation.room_ID=?,"
-				+ "reservation.status=?," + "reservation.team_ID=?,"
-				+ "reservation.handle_by=?," + "reservation.user_ID=?"
-				+ " where reservation=?";
+		String hql = "update Reservation set " 
+				+ "reservation_Num=?,"
+				+ "Applied_Start_Date=?," 
+				+ "Applied_End_Date=?," 
+				+ "email=?,"
+				+ "tele=?," 
+				+ "order_Time=?," 
+				+ "purpose=?," 
+				+ "room_ID=?,"
+				+ "status=?," 
+				+ "team_ID=?," 
+				+ "handle_by=?," 
+				+ "user_ID=?"
+				+ " where reservation_ID=?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger(0, reservation.getReservation_ID());
-		query.setString(1, reservation.getReservation_Num());
-		query.setDate(2, reservation.getApplied_Start_Date());
-		query.setDate(3, reservation.getApplied_End_Date());
-		query.setString(4, reservation.getEmail());
-		query.setString(5, reservation.getTele());
-		query.setDate(6, reservation.getOrder_Time());
-		query.setString(7, reservation.getPurpose());
-		query.setInteger(8, reservation.getRoom_ID());
-		query.setInteger(9, reservation.getStatus());
-		query.setInteger(10, reservation.getTeam_ID());
-		query.setInteger(11, reservation.getHandle_by());
-		query.setInteger(12, reservation.getUser_ID());
+		query.setString(0, reservation.getReservation_Num());
+		query.setDate(1, reservation.getApplied_Start_Date());
+		query.setDate(2, reservation.getApplied_End_Date());
+		query.setString(3, reservation.getEmail());
+		query.setString(4, reservation.getTele());
+		query.setDate(5, reservation.getOrder_Time());
+		query.setString(6, reservation.getPurpose());
+		query.setInteger(7, reservation.getRoom_ID());
+		query.setInteger(8, reservation.getStatus());
+		query.setInteger(9, reservation.getTeam_ID());
+		query.setInteger(10, reservation.getHandle_by());
+		query.setInteger(11, reservation.getUser_ID());
 
-		query.setInteger(13, reservation.getUser_ID());
+		query.setInteger(12, reservation.getReservation_ID());
 		int n = query.executeUpdate();
 		if (n == 1) {
 			return true;

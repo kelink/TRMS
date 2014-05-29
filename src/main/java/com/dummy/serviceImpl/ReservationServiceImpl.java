@@ -20,7 +20,6 @@ import com.dummy.dao.UserDao;
 import com.dummy.domain.CalanderDataDomain;
 import com.dummy.domain.Reservation;
 import com.dummy.domain.ReservationDetial;
-import com.dummy.domain.Room;
 import com.dummy.service.ReservationService;
 
 @Service(value = "reservationService")
@@ -194,10 +193,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public boolean approveOrReject(Reservation reservation, Room room) {
-		boolean isOK = reservationDao.updateReservation(reservation);
-		isOK = roomDao.updateRoom(room);
-		return isOK;
+	public boolean approveOrReject(Reservation reservation) {
+		return reservationDao.updateReservation(reservation);
 	}
 
 	@Override

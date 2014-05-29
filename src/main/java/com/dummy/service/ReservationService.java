@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.dummy.domain.Reservation;
 import com.dummy.domain.ReservationDetial;
-import com.dummy.domain.Room;
 
 public interface ReservationService {
 	public Reservation getReservation(int id);
@@ -28,7 +27,7 @@ public interface ReservationService {
 
 	public Reservation getReservationByNum(String num);
 
-	public boolean approveOrReject(Reservation reservation, Room room);
+	public boolean approveOrReject(Reservation reservation);
 
 	public List<Reservation> getReservationByStatus(int status);
 

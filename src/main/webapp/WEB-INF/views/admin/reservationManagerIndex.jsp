@@ -89,7 +89,7 @@
 			     <div id="checkLeftPanel">
 			      <!-- handle  begin -->
 					 <div id="search0" class="checkMethod selected">
-			             ${size} reservations unhandle
+			             ${recordCount} reservations unhandle
 			         </div>
 			         <div id="search1" class="checkMethod">
 			             Search by ID
@@ -175,14 +175,8 @@
 			     </div>
 			     <div id="checkRightPanel">
 			         <iframe id="checkRightInner" src="<%=request.getContextPath()%>/reservation/reservationManagerList" >
-			         </iframe>
-			     
-			     </div>
-					
-
-
-			 
-			 
+			         </iframe>			     
+			     </div>		 
 			 </div>
 		 </div>
 	 </div>

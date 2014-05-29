@@ -216,61 +216,50 @@ public class ReservationController {
 	@RequestMapping(value = "/approve")
 	public @ResponseBody String approve(
 			@RequestParam(value = "reservation_ID", required = true) int reservation_ID,
-			@RequestParam(value = "room_ID", required = true) int room_ID,
 			HttpSession session) {
 		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
-		Room room = roomService.getRoom(room_ID);
 		Reservation reservation = reservationService
 				.getReservation(reservation_ID);
-		// whether current room is free and reservation haven't been handler
-		if (room.getRoom_Status() == C.DB.DEFAULT_UNFREE_ROOM) {
-			return "The room have assign to others,Please reflash to check";
-		}
+		String result = "";
 		if (reservation.getStatus() != C.DB.DEFAULT_RESERVATION_UNHANDLE) {
-			return "The reservation have been handlered by other admin";
+			result = "The reservation have been handlered by other admin";
 		}
 
 		reservation.setHandle_by(currentUser.getUser_ID());
 		reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
-		room.setRoom_Status(C.DB.DEFAULT_UNFREE_ROOM);
-		boolean isOK = reservationService.approveOrReject(reservation, room);
+		boolean isOK = reservationService.approveOrReject(reservation);
 		// send email
 
 		if (isOK == true) {
-			return "reservation approved,email have already sent";
+			result = "reservation approved,email have already sent";
 		} else {
-			return "reservation approved fail,try again or reflash to solve problem";
+			result = "reservation approved fail,try again or reflash to solve problem";
 		}
+		return "<script>alert('" + result + "')</script>";
 	}
 
 	// Ajax:reject reservation
 	@RequestMapping(value = "/reject")
 	public @ResponseBody String reject(
 			@RequestParam(value = "reservation_ID", required = true) int reservation_ID,
-			@RequestParam(value = "room_ID", required = true) int room_ID,
 			HttpSession session) {
 		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
-		Room room = roomService.getRoom(room_ID);
 		Reservation reservation = reservationService
 				.getReservation(reservation_ID);
-
-		// whether current room is free and reservation haven't been handler
-		if (room.getRoom_Status() == C.DB.DEFAULT_UNFREE_ROOM) {
-			return "The room have assign to others,Please reflash to check";
-		}
+		String result = "";
 		if (reservation.getStatus() != C.DB.DEFAULT_RESERVATION_UNHANDLE) {
-			return "The reservation have been handlered by other admin";
+			result = "The reservation have been handlered by other admin";
 		}
-
 		reservation.setHandle_by(currentUser.getUser_ID());
 		reservation.setStatus(C.DB.DEFAULT_RESERVATION_REFUSE);
-		room.setRoom_Status(C.DB.DEFAULT_FREE_ROOM);
-		boolean isOK = reservationService.approveOrReject(reservation, room);
+
+		boolean isOK = reservationService.approveOrReject(reservation);
 		if (isOK == true) {
-			return "reservation rejected,email have already sent";
+			result = "reservation rejected,email have already sent";
 		} else {
-			return "reservation rejected fail,try again or reflash to solve problem";
+			result = "reservation rejected fail,try again or reflash to solve problem";
 		}
+		return "<script>alert('" + result + "')</script>";
 	}
 
 	/***********************************************************
@@ -282,34 +271,38 @@ public class ReservationController {
 		List<ReservationDetial> reservationDetials = reservationService
 				.getReservationByOption("where reservation.status="
 						+ C.DB.DEFAULT_RESERVATION_UNHANDLE);
-		int size = reservationDetials.size();
+		int recordCount = reservationDetials.size();
 		ModelMap map = new ModelMap();
-		map.addAttribute("size", size);
+		map.addAttribute("recordCount", recordCount);
 		map.addAttribute("reservationDetials", reservationDetials);
 		return new ModelAndView("admin/reservationManagerIndex", map);
 	}
 	@RequestMapping(value = "/reservationManagerList")
-	public ModelAndView reservationManagerList() {
+	public ModelAndView reservationManagerList(
+			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
+			HttpSession session) {
 
 		List<ReservationDetial> reservationDetials = reservationService
 				.getReservationByOption("where reservation.status="
 						+ C.DB.DEFAULT_RESERVATION_UNHANDLE);
-		int size = reservationDetials.size();
+		int recordCount = reservationDetials.size();
+		int pageCount = (recordCount + pageSize - 1) / pageSize;
 		ModelMap map = new ModelMap();
-		map.addAttribute("size", size);
+		map.addAttribute("recordCount", recordCount);
+		map.addAttribute("pageCount", pageCount);
+
 		map.addAttribute("reservationDetials", reservationDetials);
 		return new ModelAndView("admin/reservationManagerList", map);
 	}
-
 	@RequestMapping("/unhandleListPageReservation")
 	public @ResponseBody List<ReservationDetial> unhandleListPageReservation(
 			HttpServletRequest request,
 			Model model,
 			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
-			@RequestParam(value = "optionStr", required = false, defaultValue = "") String optionStr,
 			HttpSession session) {
-		optionStr = "where reservation.status="
+		String optionStr = "where reservation.status="
 				+ C.DB.DEFAULT_RESERVATION_UNHANDLE;
 		List<ReservationDetial> recorderPageList = reservationService
 				.getReservationDetialOnPage(pageNum, pageSize, optionStr);
