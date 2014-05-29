@@ -178,7 +178,15 @@
 			         </iframe>
 			     
 			     </div>
-${reservationDetials }
+					
+					  <c:forEach var="reservationDetial" items="${reservationDetials}">	
+				              ${reservationDetial.reservation }<br/>
+				              <hr/>
+				               ${reservationDetial.team }<br/>
+				               
+				               </hr>
+				               ${reservationDetial.user }
+			          </c:forEach>
 <!-- --------------------------------------- -->
 
 <!--                                                	<h1>高级查询</h1>		 -->
