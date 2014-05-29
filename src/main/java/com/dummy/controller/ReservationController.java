@@ -234,6 +234,8 @@ public class ReservationController {
 		reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
 		room.setRoom_Status(C.DB.DEFAULT_UNFREE_ROOM);
 		boolean isOK = reservationService.approveOrReject(reservation, room);
+		// send email
+
 		if (isOK == true) {
 			return "reservation approved,email have already sent";
 		} else {
@@ -298,4 +300,20 @@ public class ReservationController {
 		map.addAttribute("reservationDetials", reservationDetials);
 		return new ModelAndView("admin/reservationManagerList", map);
 	}
+
+	@RequestMapping("/unhandleListPageReservation")
+	public @ResponseBody List<ReservationDetial> unhandleListPageReservation(
+			HttpServletRequest request,
+			Model model,
+			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
+			@RequestParam(value = "optionStr", required = false, defaultValue = "") String optionStr,
+			HttpSession session) {
+		optionStr = "where reservation.status="
+				+ C.DB.DEFAULT_RESERVATION_UNHANDLE;
+		List<ReservationDetial> recorderPageList = reservationService
+				.getReservationDetialOnPage(pageNum, pageSize, optionStr);
+		return recorderPageList;
+	}
+
 }
