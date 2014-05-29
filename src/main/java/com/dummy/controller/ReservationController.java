@@ -286,4 +286,16 @@ public class ReservationController {
 		map.addAttribute("reservationDetials", reservationDetials);
 		return new ModelAndView("admin/reservationManagerIndex", map);
 	}
+	@RequestMapping(value = "/reservationManagerList")
+	public ModelAndView reservationManagerList() {
+
+		List<ReservationDetial> reservationDetials = reservationService
+				.getReservationByOption("where reservation.status="
+						+ C.DB.DEFAULT_RESERVATION_UNHANDLE);
+		int size = reservationDetials.size();
+		ModelMap map = new ModelMap();
+		map.addAttribute("size", size);
+		map.addAttribute("reservationDetials", reservationDetials);
+		return new ModelAndView("admin/reservationManagerList", map);
+	}
 }
