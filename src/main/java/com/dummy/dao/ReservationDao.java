@@ -32,4 +32,5 @@ public interface ReservationDao {
 
 	public boolean isBetween(String begin_time, String end_time, int room_ID);
 
+	public boolean check(Reservation reservation);
 }

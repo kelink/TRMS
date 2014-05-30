@@ -223,6 +223,13 @@ public class ReservationController {
 		String result = "";
 		if (reservation.getStatus() != C.DB.DEFAULT_RESERVATION_UNHANDLE) {
 			result = "The reservation have been handlered by other admin";
+			return "<script>alert('" + result + "')</script>";
+		}
+		if (reservationService.check(reservation)) {
+			result = "The room have been booked between "
+					+ reservation.getApplied_Start_DateByString() + " and "
+					+ reservation.getApplied_End_DateByString();
+			return "<script>alert('" + result + "')</script>";
 		}
 
 		reservation.setHandle_by(currentUser.getUser_ID());
@@ -232,10 +239,12 @@ public class ReservationController {
 
 		if (isOK == true) {
 			result = "reservation approved,email have already sent";
+			return "<script>alert('" + result + "')</script>";
 		} else {
 			result = "reservation approved fail,try again or reflash to solve problem";
+			return "<script>alert('" + result + "')</script>";
 		}
-		return "<script>alert('" + result + "')</script>";
+
 	}
 
 	// Ajax:reject reservation
@@ -250,6 +259,7 @@ public class ReservationController {
 		if (reservation.getStatus() != C.DB.DEFAULT_RESERVATION_UNHANDLE) {
 			result = "The reservation have been handlered by other admin";
 		}
+
 		reservation.setHandle_by(currentUser.getUser_ID());
 		reservation.setStatus(C.DB.DEFAULT_RESERVATION_REFUSE);
 
@@ -295,6 +305,7 @@ public class ReservationController {
 		map.addAttribute("reservationDetials", reservationDetials);
 		return new ModelAndView("admin/reservationManagerList", map);
 	}
+	// Ajax to get the unhandle reservations
 	@RequestMapping("/unhandleListPageReservation")
 	public @ResponseBody List<ReservationDetial> unhandleListPageReservation(
 			HttpServletRequest request,

@@ -64,19 +64,10 @@ public class ReservationDaoImpl implements ReservationDao {
 	// Update a reservation
 	@Override
 	public boolean updateReservation(Reservation reservation) {
-		String hql = "update Reservation set " 
-				+ "reservation_Num=?,"
-				+ "Applied_Start_Date=?," 
-				+ "Applied_End_Date=?," 
-				+ "email=?,"
-				+ "tele=?," 
-				+ "order_Time=?," 
-				+ "purpose=?," 
-				+ "room_ID=?,"
-				+ "status=?," 
-				+ "team_ID=?," 
-				+ "handle_by=?," 
-				+ "user_ID=?"
+		String hql = "update Reservation set " + "reservation_Num=?,"
+				+ "Applied_Start_Date=?," + "Applied_End_Date=?," + "email=?,"
+				+ "tele=?," + "order_Time=?," + "purpose=?," + "room_ID=?,"
+				+ "status=?," + "team_ID=?," + "handle_by=?," + "user_ID=?"
 				+ " where reservation_ID=?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setString(0, reservation.getReservation_Num());
@@ -433,6 +424,23 @@ public class ReservationDaoImpl implements ReservationDao {
 			return false;
 		} else {
 			return true;
+		}
+	}
+
+	@Override
+	public boolean check(Reservation reservation) {
+		String hql = "from Reservation " + "where " + "Reservation.status=? "
+				+ "and applied_start_date>=? " + "and applied_end_date<=? "
+				+ "and reservation.room_ID=? ";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, C.DB.DEFAULT_RESERVATION_ACCEPT);
+		query.setString(1, reservation.getApplied_Start_DateByString());
+		query.setString(2, reservation.getApplied_End_DateByString());
+		query.setInteger(3, reservation.getRoom_ID());
+		if (query.list().size() > 0) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 

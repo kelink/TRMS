@@ -208,5 +208,9 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	// check whether the reservation can approve
+	@Override
+	public boolean check(Reservation reservation) {
+		return reservationDao.check(reservation);
+	}
 
 }
