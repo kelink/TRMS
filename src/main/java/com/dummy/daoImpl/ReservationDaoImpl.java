@@ -412,9 +412,10 @@ public class ReservationDaoImpl implements ReservationDao {
 
 	@Override
 	public boolean isBetween(String begin_time, String end_time, int room_ID) {
-		String hql = "from Reservation " + "where " + "Reservation.status=? "
-				+ "and applied_start_date>=? " + "and applied_end_date<=? "
-				+ "and reservation.room_ID=? ";
+		String hql = "from Reservation where " + "Reservation.status=? "
+				+ "and Reservation.Applied_Start_Date>=? "
+				+ "and Reservation.Applied_End_Date<=? "
+				+ "and Reservation.room_ID=? ";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, C.DB.DEFAULT_RESERVATION_ACCEPT);
 		query.setString(1, begin_time);
@@ -429,9 +430,9 @@ public class ReservationDaoImpl implements ReservationDao {
 
 	@Override
 	public boolean check(Reservation reservation) {
-		String hql = "from Reservation " + "where " + "Reservation.status=? "
-				+ "and applied_start_date>=? " + "and applied_end_date<=? "
-				+ "and reservation.room_ID=? ";
+		String hql = "from Reservation r where r.status=? "
+				+ "and  r.Applied_Start_Date>=? "
+				+ "and  r.Applied_End_Date<=? " + "and  r.room_ID=? ";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, C.DB.DEFAULT_RESERVATION_ACCEPT);
 		query.setString(1, reservation.getApplied_Start_DateByString());
