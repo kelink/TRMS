@@ -60,10 +60,10 @@
 	     <div class="navContainer">
 		     <ul class="navi">
 			     <li>
-				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
+				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem selected">Reservation Manager</a>
+				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem selected">Reservation Management</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
@@ -92,13 +92,16 @@
 			             ${recordCount} reservations unhandle
 			         </div>
 			         <div id="search1" class="checkMethod">
+			             All Reservation
+			         </div>
+			         <div id="search2" class="checkMethod">
 			             Search by ID
 			         </div>
 			         <!-- handle  end -->
-			         <div id="search2" class="checkMethod">
+			         <div id="search3" class="checkMethod">
 			             Fuzzy search
 			         </div>
-			         <div id="search3" class="checkMethod">
+			         <div id="search4" class="checkMethod">
 			             Precise search
 			         </div>
 			         <div id="seperateLine">

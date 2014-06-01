@@ -96,9 +96,10 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 
 ///////////////////////////////
 html+=("</div>");
+html+=("<input type='checkbox'name='checkbox' onclick='chose(event);'value='"+reservation_ID+"' class='checkbox1 listContentClass"+reservation_ID+"'>");
 html+=("<span class=\"listContent1 listContent listContentClass"+reservation_ID+"\">"+reservation_Num+"</span>");
-html+=("<span class=\"listContent2 listContent listContentClass"+reservation_ID+"\">"+purpose+"</span>");
-html+=("<span class=\"listContent3 listContent listContentClass"+reservation_ID+"\">"+Order_Date+"</span>");
+html+=("<span class=\"listContent2 listContentClass"+reservation_ID+"\">"+purpose+"</span>");
+html+=("<span class=\"listContent3 listContentClass"+reservation_ID+"\">"+Order_Date+"</span>");
 html+=("</div>");
 
 
@@ -163,16 +164,36 @@ function GoToAppointPage(e) {
 
 <body id="listBody">
 <div id="totalWrapper">
+
+    <div id="totalTitle">
+    Reservation List
+    </div>
+    
     <div id="listTitle">
+        <div id="btnFunctionWrapper">
+            <div class="btnFunction">Back</div>
+            <div id="verticalLine"></div>
+            <div class="btnFunction">Approve</div>
+            <div class="btnFunction">Reject</div>
+            <div class="btnFunction">Conflict</div>
+            <div class="btnFunction">Show<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
+            <div class="btnFunction">Sort<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
+        </div>   
     </div>
     <div id="topBar">
-    <span class="listContent1 topBarItem topBarItem1">Reservation Num</span>
-    <span class="listContent2 topBarItem">Usage</span>
-    <span class="listContent3 topBarItem">Order Time</span>
+  
+    <input type="checkbox" class="checkbox"onclick="check_all(this,'checkbox')">
+    <span class="topBarItem topBarItem1">Reservation No.</span>
+    <span class="topBarItem topBarItem2">Usage</span>
+    <span class="topBarItem topBarItem3">Order Time</span>
     </div>
+    <form action="#" method="get">
     <div id="listWrapper">
     
     </div>
+    <input type="submit"value="approve测试用">
+<!-----------------------------------------  用于测试的按钮----------------------------------- -->
+    </form>
 
 
 				 <div id="listInfoWrapper1" >

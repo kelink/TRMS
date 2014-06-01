@@ -8,6 +8,17 @@
 //{
 //	$(e).css("background","white");
 //}
+//window.onload=function(){
+//	$(".listItem").mouseover(function(){
+//		$(this).css("background","rgb(240, 238, 238)");
+//	});
+//	
+//}
+function check_all(obj,cName)
+{
+	var checkboxs = document.getElementsByName(cName); 
+    for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;}
+}
 function expand(id){
 	
 	var listItem="#listItem"+id;
@@ -25,6 +36,11 @@ function expand(id){
    $(listItem).removeAttr("onclick");
    $(listItem).unbind();//标签上的onclick事件只能通过jquery移除，不能通过jquery添加，jq的click事件跟标签的onclick不互通，jq重复设置click会叠加上去而不是取代。
     
+}
+function chose(event)
+{
+	if(event.stopPropagation) event.stopPropagation();
+	else event.cancelBubble=true;
 }
 function more(event){
 	$("#moreInfo").css("display","block");

@@ -3,6 +3,14 @@
 
 	background:#f8f8f8 !important;
 }
+#totalTitle
+{
+	font-size:17px;
+	font-weight:bold;
+	color:#001b55;
+	padding-left: 16px;
+	padding-bottom: 5px;
+}
 .listItem
 {
 	height:33px;
@@ -17,6 +25,64 @@ box-shadow: 0 1px 3px #E6E6E6;
 	margin-bottom:20px;
 	cursor:pointer;
 	overflow:hidden;
+}
+.checkbox
+{
+	float: left;
+margin-top: 5px;
+margin-left: 22px;
+}
+.checkbox1
+{
+	float: left;
+margin: 2px 0px 0px 1px;
+
+}
+.btnFunction
+{
+	line-height: 22px;
+box-shadow: none;
+position: relative;
+float:left;
+padding: 0px 12px;
+font-size: 13px;
+font-weight: bold;
+color: #333;
+text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+white-space: nowrap;
+background-color: #eeeeee;
+background-image: -moz-linear-gradient(top,#ffffff 0%,#ebebeb 90%,#F3F3F3 100%);
+background-image: -webkit-linear-gradient(top,#ffffff 0%,#ebebeb 90%,#F3F3F3 100%);
+background-image: linear-gradient(top,#ffffff 0%,#ebebeb 90%,#F3F3F3 100%);
+background-repeat: repeat-x;
+border-radius: 3px;
+border: 1px solid rgb(177, 176, 176);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+margin-left: 3px;
+}
+#verticalLine
+{
+	float:left;
+	border-left: 1px solid rgb(177, 177, 177);
+border-right: 1px solid white;
+height: 20px;
+margin-top: 3px;
+margin-left: 5px;
+margin-right: 2px;
+	
+}
+#btnFunctionWrapper
+{
+padding-left: 11px;
+padding-top: 6px;
 }
 .btnMore
 {
@@ -169,17 +235,23 @@ border-radius: 5px;
 .listContent1
 {
 	float:left;
-	width: 100px;
+	width: 102px;
 	white-space:nowrap; 
 text-overflow:ellipsis; 
 -o-text-overflow:ellipsis; 
 overflow: hidden; 
 height:15px;
 }
+.downImg
+{
+	height: 6px;
+width: 9px;
+margin-left: 7px;
+}
 .listContent2
 {
 	float:left;
-	width: 350px;
+	width: 313px;
 margin-left: 20px;
 white-space:nowrap; 
 text-overflow:ellipsis; 
@@ -190,7 +262,7 @@ height:15px;
 .listContent3
 {
 	float:left;
-	width: 150px;
+	width: 72px;
 margin-left: 20px;
 white-space:nowrap; 
 text-overflow:ellipsis; 
@@ -235,7 +307,7 @@ left: 7px;
 }
 .listContent
 {
-
+    margin-left: 54px;
 }
 #listInfoWrapper1
 {
@@ -275,11 +347,40 @@ background-color: #bcc2cd;
 	padding-left:9px;
 
 }
+.topBarItem3
+{
+		float:left;
+	width: 150px;
+margin-left: 20px;
+white-space:nowrap; 
+text-overflow:ellipsis; 
+-o-text-overflow:ellipsis; 
+overflow: hidden; 
+height:15px;
+}
+.topBarItem2
+{
+		float:left;
+	width: 312px;
+margin-left: 20px;
+white-space:nowrap; 
+text-overflow:ellipsis; 
+-o-text-overflow:ellipsis; 
+overflow: hidden; 
+height:15px;
+}
 .topBarItem1
 {
 	margin-top:4px;
-	margin-left:15px;
-	border-left:none;
+	margin-left:38px;
+		float:left;
+	width: 102px;
+	white-space:nowrap; 
+text-overflow:ellipsis; 
+-o-text-overflow:ellipsis; 
+overflow: hidden; 
+height:15px;
+
 }
 ::-webkit-scrollbar
 {
