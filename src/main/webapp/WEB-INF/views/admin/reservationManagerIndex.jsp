@@ -94,6 +94,8 @@
 			         <div id="search1" class="checkMethod">
 			             All Reservation
 			         </div>
+			         <div class="seperateLineSearch">
+			         </div>
 			         <div id="search2" class="checkMethod">
 			             Search by ID
 			         </div>
@@ -104,8 +106,7 @@
 			         <div id="search4" class="checkMethod">
 			             Precise search
 			         </div>
-			         <div id="seperateLine">
-			         </div>
+			         
 			         <form action="<%=request.getContextPath()%>/reservation/reservationManagerList" method="get"target="checkRightInner">
 			         <div id="searchDivWrapper">
 			             <div class="searchDiv">

@@ -1,6 +1,6 @@
 #checkLeftPanel
 {
-
+    //height:205px;
 	border-radius: 3px;
 	position:relative;
 	padding-left:10px;
@@ -53,10 +53,10 @@ overflow:hidden;
     background: #4183c4;
     border-radius:3px;
 }
-#seperateLine
+.seperateLineSearch
 {
 	border-top:1px solid #ddd;
-	margin:15px 0px 0px 0px;
+	margin: 10px 0px 10px 0px;
 }
 .searchLabel
 {
@@ -130,12 +130,13 @@ font-weight: bold;
 }
 .btnSearch
 {
+	display:none;
 	width: 212px;
 margin-top:20px;	
 line-height: 28px;
 box-shadow: none;
 position: relative;
-display: inline-block;
+
 padding: 0px 12px;
 font-size: 13px;
 font-weight: bold;
@@ -166,4 +167,5 @@ user-select: none;
 #searchDivWrapper
 {
     overflow:hidden;
+    display:none;
 }
