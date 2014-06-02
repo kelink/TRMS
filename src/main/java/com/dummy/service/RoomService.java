@@ -2,6 +2,8 @@ package com.dummy.service;
 
 import java.util.List;
 
+import org.json.JSONObject;
+
 import com.dummy.domain.Room;
 
 public interface RoomService {
@@ -18,4 +20,6 @@ public interface RoomService {
 	public List<Room> getRoomOnPage(int pageNum, int pageSize);
 
 	public List<Room> getFreeRooms();
+
+	public List<JSONObject> getRoomsBydepartment(int department_ID);
 }

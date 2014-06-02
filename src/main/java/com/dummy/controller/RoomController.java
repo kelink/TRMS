@@ -3,6 +3,7 @@ package com.dummy.controller;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -26,19 +28,22 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dummy.common.C;
 import com.dummy.domain.BlackList;
 import com.dummy.domain.DBUser;
+import com.dummy.domain.Department;
 import com.dummy.domain.Reservation;
 import com.dummy.domain.Room;
 import com.dummy.domain.Team;
 import com.dummy.service.BlackListService;
+import com.dummy.service.DepartmentService;
 import com.dummy.service.ReservationService;
 import com.dummy.service.RoomService;
 import com.dummy.service.TeamService;
 import com.dummy.service.UserService;
 import com.dummy.util.ReservationUtil;
+import com.dummy.util.mail.MailSender;
 
 @Controller
-@SessionAttributes({"currentUser"})
-@RequestMapping(value = {"/room"})
+@SessionAttributes({ "currentUser" })
+@RequestMapping(value = { "/room" })
 public class RoomController {
 
 	private static final Logger logger = LoggerFactory
@@ -59,8 +64,11 @@ public class RoomController {
 	@Resource(name = "blackListService")
 	private BlackListService blackListService;
 
+	@Resource(name = "departmentService")
+	private DepartmentService departmentService;
+
 	// getRoom
-	@RequestMapping(value = {"/getForm", ""})
+	@RequestMapping(value = { "/getForm", "" })
 	public ModelAndView getForm(HttpServletRequest request, HttpSession session) {
 		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
 		String year = request.getParameter("year");
@@ -89,6 +97,7 @@ public class RoomController {
 		map.addAttribute("select_date", select_date);
 		return new ModelAndView("room/form", map);
 	}
+
 	// Room list
 	@RequestMapping("/list")
 	public ModelAndView list(
@@ -127,25 +136,6 @@ public class RoomController {
 		return new ModelAndView("room/calendar", map);
 	}
 
-	// ajax to check whether date between start and end
-	// @RequestMapping(value = "/isBetween")
-	// public @ResponseBody String isBetween(
-	// @RequestParam(value = "team_ID", required = true) int team_ID,
-	// @RequestParam(value = "begin_time", required = true) String begin_time,
-	// @RequestParam(value = "end_time", required = true) String end_time,
-	// HttpSession session) {
-	// if ((CalanderUtil.isEarlyFirstDay(end_time) == true)
-	// || (CalanderUtil.isEarlyFirstDay(begin_time) == true)) {
-	// return "book date wrong,check it please!";
-	// }
-	// boolean isOK = reservationService.isBetween(begin_time, end_time,
-	// team_ID);
-	// if (isOK) {
-	// return null;
-	// } else {
-	// return "book date wrong,check it please!";
-	// }
-	// }
 	// book room
 	@SuppressWarnings("null")
 	@RequestMapping(value = "/bookRoom")
@@ -206,13 +196,14 @@ public class RoomController {
 			System.out.println(reservation);
 			map.addAttribute("reservation_Num", reservation_Num);
 			// 3.Send Email
-			// List<DBUser> admins = userService
-			// .getUserByRole(C.DB.DEFAULT_ROLE_TA);
-			// List<String> toAddressList = null;
-			// for (DBUser dbUser : admins) {
-			// toAddressList.add(dbUser.getAccount());
-			// MailSender.sendEmailToAllAdmin(toAddressList, null, null);
-			// }
+			List<DBUser> admins = userService
+					.getUserByRole(C.DB.DEFAULT_ROLE_TA);
+			List<String> toAddressList = new ArrayList<String>();
+			;
+			for (DBUser dbUser : admins) {
+				toAddressList.add(dbUser.getAccount());
+				MailSender.sendEmailToAllAdmin(toAddressList, null, null);
+			}
 
 			// 4.add reservation
 			reservationService.addReservation(reservation);
@@ -220,6 +211,7 @@ public class RoomController {
 		}
 
 	}
+
 	// get add reservation
 	@RequestMapping("/getAllReservation")
 	public List<Reservation> getAllReservation(HttpServletResponse response) {
@@ -230,17 +222,31 @@ public class RoomController {
 	 * for administrator
 	 *********************************/
 	@RequestMapping("/roommanager")
-	public ModelAndView roomManager() {
-		return new ModelAndView("room/roomManager");
+	public ModelAndView roommanager() {
+		List<Department> departments = departmentService.getAllDepartment();
+		ModelMap map = new ModelMap();
+		map.addAttribute("departments", departments);
+		return new ModelAndView("room/roomManager", map);
 	}
+
+	// AJAX to get all the room of a department
+	@RequestMapping("/getRoomsBydepartment")
+	public @ResponseBody String getRoomsBydepartment(
+			@RequestParam(value = "department_ID", required = true) int department_ID) {
+		List<JSONObject> list = roomService.getRoomsBydepartment(department_ID);
+		return list.toString();
+	}
+
 	@RequestMapping("/add")
 	public ModelAndView add() {
 		return null;
 	}
+
 	@RequestMapping("/delete")
 	public ModelAndView delete() {
 		return null;
 	}
+
 	@RequestMapping("/check")
 	public ModelAndView check() {
 		return null;

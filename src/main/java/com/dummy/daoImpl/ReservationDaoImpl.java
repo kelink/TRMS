@@ -286,8 +286,7 @@ public class ReservationDaoImpl implements ReservationDao {
 
 		System.out.println("hql-------------------------->>>>>" + hql);
 		SQLQuery query = sessionFactory.openSession().createSQLQuery(hql);
-		int offSet = (pageNum - 1) * pageSize >= 0
-				? (pageNum - 1) * pageSize
+		int offSet = (pageNum - 1) * pageSize >= 0 ? (pageNum - 1) * pageSize
 				: 0;
 		query.setFirstResult(offSet);// begin index
 		query.setMaxResults(pageSize);// size of recorder
@@ -412,10 +411,9 @@ public class ReservationDaoImpl implements ReservationDao {
 
 	@Override
 	public boolean isBetween(String begin_time, String end_time, int room_ID) {
-		String hql = "from Reservation where " + "Reservation.status=? "
-				+ "and Reservation.Applied_Start_Date>=? "
-				+ "and Reservation.Applied_End_Date<=? "
-				+ "and Reservation.room_ID=? ";
+		String hql = "from Reservation r where " + "r.status=? "
+				+ "and r.Applied_Start_Date>=? " + "and r.Applied_End_Date<=? "
+				+ "and r.room_ID=? ";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, C.DB.DEFAULT_RESERVATION_ACCEPT);
 		query.setString(1, begin_time);
@@ -425,23 +423,6 @@ public class ReservationDaoImpl implements ReservationDao {
 			return false;
 		} else {
 			return true;
-		}
-	}
-
-	@Override
-	public boolean check(Reservation reservation) {
-		String hql = "from Reservation r where r.status=? "
-				+ "and  r.Applied_Start_Date>=? "
-				+ "and  r.Applied_End_Date<=? " + "and  r.room_ID=? ";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger(0, C.DB.DEFAULT_RESERVATION_ACCEPT);
-		query.setString(1, reservation.getApplied_Start_DateByString());
-		query.setString(2, reservation.getApplied_End_DateByString());
-		query.setInteger(3, reservation.getRoom_ID());
-		if (query.list().size() > 0) {
-			return true;
-		} else {
-			return false;
 		}
 	}
 

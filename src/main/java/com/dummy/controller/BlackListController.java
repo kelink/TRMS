@@ -3,6 +3,7 @@ package com.dummy.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -33,7 +34,7 @@ public class BlackListController {
 	private TeamService teamService;
 
 	// index page of blacklist management
-	@RequestMapping(value = {"/", "", "/index"})
+	@RequestMapping(value = { "/", "", "/index" })
 	public ModelAndView index() {
 		List<Department> departments = departmentService.getAllDepartment();
 		ModelMap map = new ModelMap();
@@ -53,6 +54,7 @@ public class BlackListController {
 		}
 		return teams.toString();
 	}
+
 	// get the black through team
 	@RequestMapping(value = "/getReasonByTeam")
 	public @ResponseBody String getReasonByTeam(
@@ -64,6 +66,7 @@ public class BlackListController {
 		}
 		return blacklist.toString();
 	}
+
 	// add a blacklist
 	@RequestMapping(value = "/add")
 	public @ResponseBody String add(
@@ -89,4 +92,30 @@ public class BlackListController {
 		}
 	}
 
+	// delete multiple blacklists
+	@RequestMapping(value = "/deleteMutiBlacklist")
+	public @ResponseBody String deleteMutiBlacklist(HttpServletRequest request,
+			HttpSession session) {
+		String[] blackLists = request.getParameterValues("checkbox");
+		String message = null;
+		for (int i = 0; i < blackLists.length; i++) {
+			message = delete(Integer.parseInt(blackLists[i]), session);
+		}
+		return message;
+	}
+
+	// update a blacklist reason
+	@RequestMapping(value = "/update")
+	public @ResponseBody String update(
+			@RequestParam(value = "bl_ID", required = true) int bl_ID,
+			HttpServletRequest request, HttpSession session) {
+		BlackList blackList = blackListService.getBlackList(bl_ID);
+		String reason = request.getParameter("reason");
+		blackList.setReason(reason);
+		if (blackListService.updateBlackList(blackList) == true) {
+			return "'update success";
+		} else {
+			return "update fail";
+		}
+	}
 }

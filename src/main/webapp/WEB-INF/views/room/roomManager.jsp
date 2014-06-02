@@ -21,73 +21,43 @@ $(document).ready(function(){
 	  $("#departments").change(function(){
 		var department_ID=$("#departments").val();
 		if(department_ID==""){
-			$("#teams").empty(); 
+			$("#display").empty(); 
 			return false;
 		}	
-	    getDepartmentAllteam(department_ID);
+		getRoomInfo(department_ID);
 	  });
 	});
 
-function getDepartmentAllteam(department_ID){
+function getRoomInfo(department_ID){
  	$.ajax({
-		url : "<%=request.getContextPath()%>/team/getDepartmentAllteam",
+		url : "<%=request.getContextPath()%>/room/getRoomsBydepartment",
 		type : "Get",
 		data : "department_ID=" + department_ID,
 		dataType : "json",
 		success : function(json) {
-			$("#teams").empty();
-			$("#teams").append("<option value=''></option>");
-			for (position in json) {				
-					var team_ID=json[position].team_ID;
+			$("#display").empty();
+			for (position in json) {			
+					var room_ID=json[position].room_ID;
+					var item=json[position].item;
+					var last_Used_Date=json[position].last_Used_Date;
 					var department_ID=json[position].department_ID;
-					var teamName=json[position].teamName;
-					//添加元素，使得option可以选择				
-					$("#teams").append("<option value='"+team_ID+"'>"+teamName+"</option>");
+					var room_Status=json[position].room_Status;
+					
+					$("#display").append("room_ID:"+room_ID);
+					$("#display").append("item:"+item);
+					$("#display").append("last_Used_Date:"+last_Used_Date);
+					$("#display").append("department_ID:"+department_ID);
+					$("#display").append("room_Status:"+room_Status);
+					$("#display").append("<a href='#'>delete</a> ");
+					$("#display").append("<a href='#'>edit</a><br/>");
 			}			
          },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			//alert(XMLHttpRequest);
-			//alert(textStatus);
-			//alert(errorThrown);
+			alert("exception");
 		}
 	});
 }
-function displayBlackList(){
-	var team_ID=$("#teams").val();	
-	var departmentName=$("#departments option:selected").text();
-	var teamName=$("#teams option:selected").text();
-	if(team_ID==""){
-		$("#display").empty();
-		return false;
-	}
-	$.ajax({
-		url : "<%=request.getContextPath()%>/blacklist/getReasonByTeam",
-		type : "Get",
-		data : "team_ID=" + team_ID,
-		dataType : "json",
-		success : function(json) {
-			$("#display").empty();
-			$("#display").append("<form action='#' method='post' name='updateForm' id='updateForm'>");
-			$("#updateForm").append("<p>departmentName:"+departmentName+"</p>");
-			$("#updateForm").append("<p>teamName"+teamName+"</p>");
-			$("#updateForm").append("reason:<textarea id='reason_area' readonly='readonly' name='reason'>"+json.reason+"</textarea>");
-			$("#updateForm").append("<button name='updateBlackListBtn' id='updateBlackListBtn' onClick='updateBlackList("+json.bl_ID+")'>edit</button>");
-			$("#updateForm").append("</form>");
-         },
-		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			$("#display").empty();
-		}
-	});	
-}
 
-function updateBlackList(bl_ID){
-	$("#reason_area").attr('readonly','');
-	$("#updateBlackListBtn").remove();
-	$("#updateForm").attr('action','<%=request.getContextPath()%>/blacklist/update');
-	$("#reason_area").after("<input id='hidden' type='hidden' name='bl_ID' value='"+bl_ID+"'/>");
-	$("#hidden").after("<input type='submit' value='update' /></form>");
-	
-}
 
 </script>
 </head>
@@ -156,10 +126,8 @@ function updateBlackList(bl_ID){
 	     <div class="middleContainer">
 		     <h1 class="roomList">BlackList List</h1>
 			 <div class="roomListBody">
-			 	<h1>黑名单管理界面</h1>
-				<h3>传入的是部门信息，当点击部门的时候,显示出选择team的框，会ajax调用获取team信息，
-				当点击选中team后会ajax 查新当前的黑名单情况，可以同时选择多个team进行blacklist的管理
-				接口已经定义</h3>				
+			 	<h1>Room 房间管理界面</h1>
+				<h3>传入的是部门信息，当点击部门的时候,会ajax显示当前选择部门的 room,支持批量处理删除room</h3>				
 					departments
 					<select name="departments" id="departments">
 						<option value=""></option>
@@ -167,15 +135,11 @@ function updateBlackList(bl_ID){
 							<option value="${department.department_ID}">${department.departmentName}</option>
 						</c:forEach>
 					</select>
-					teams
-					<select name="team_ID" id="teams">
-						<option value=""></option>
-					</select>
 					<button name="checkBtn" id="checkBtn" onClick="displayBlackList()">check</button>					
 					<button name="deleteBtn" id="deleteBtn" onClick="deleteBlackList()">delete</button>
 					<hr/>
 					<!-- 显示信息区域 -->	
-					<div id="display"></div>
+					Room:<div id="display"></div>
 						
 			 </div>
 		 </div>

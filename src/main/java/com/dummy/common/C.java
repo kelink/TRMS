@@ -6,7 +6,7 @@ public class C {
 	}
 
 	public static final class Util {
-		public static final String CONFIG_EMAIL_PATH = "E:\\spring too suit\\workplace\\Dummy\\TRMS\\src\\main\\resources\\email.properties";
+		public static final String CONFIG_EMAIL_PATH = "F:\\spring tool suit\\workplace\\link\\TRMS\\src\\main\\resources\\email.properties";
 	}
 
 	// DB constant
@@ -18,8 +18,8 @@ public class C {
 		public static final String DEFAULT_ROLE_ADMIN = "ROLE_TA";
 		public static final String DEFAULT_ROLE_USER = "ROLE_LC";
 		// Room ״̬
-		public static final int DEFAULT_FREE_ROOM = 0;
-		public static final int DEFAULT_UNFREE_ROOM = 1;
+		public static final int DEFAULT_FREE_ROOM = 0;//代表可以申请
+		public static final int DEFAULT_UNFREE_ROOM = 1;//代表不可以申请
 
 		// Reservation״̬
 		public static final int DEFAULT_RESERVATION_ACCEPT = 1;
