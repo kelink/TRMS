@@ -12,11 +12,11 @@
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
 
 <title> BlackList Page </title>
-<link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
+<link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
 <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
-
+</head>
 </head>
 <body>
 <c:url value="/j_spring_security_logout" var="logoutUrl"/>  
@@ -80,28 +80,13 @@
 	 
 	 <div class="middle">
 	     <div class="middleContainer">
-		     <h1 class="roomList">BlackList List</h1>
+		     <h1 class="roomList">Department List</h1>
+		     <a href="<%=request.getContextPath()%>/department/index"><h2>back</h2></a>
 			 <div class="roomListBody">
-			 	<h1>admin 管理 界面普通用户user 的界面</h1>
-						管理员：<security:authentication property="principal.username"></security:authentication> 
-						<c:url value="/j_spring_security_logout" var="logoutUrl"/>  
-						<li><a href="${logoutUrl}">Log Out</a></li> 
-						<hr/>
-						department:
-						<form action="<%=request.getContextPath()%>/team/getDetial" method="post">
-						<select name="department_ID">
-							<option value=""></option>
-							<c:forEach var="department" items="${departments}">	
-									<option value='${department.department_ID}'>${department.departmentName}</option>
-							</c:forEach>
-						</select>
-						<input type="submit" value="check" name="submit" />					
-						<hr/>
-						</form>
-						<hr/>
-					<!-- 显示信息区域 -->	
-					
-						
+					<form action="<%=request.getContextPath()%>/department/add" method="post">
+						department Name:<input type="text" name="departmentName"/>
+						<input type="submit" name="submit" value="submit"/> 
+					</form>
 			 </div>
 		 </div>
 	 </div>

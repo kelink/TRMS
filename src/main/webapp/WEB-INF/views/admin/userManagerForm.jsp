@@ -16,27 +16,26 @@
 	
 	管理员：<security:authentication property="principal.username"></security:authentication> 
 	<c:url value="/j_spring_security_logout" var="logoutUrl"/>  
-	<li><a href="${logoutUrl}">Log Out</a></li> 
+	<a href="${logoutUrl}">Log Out</a>
 	<hr/>
 	<!-- 一开始不显示，当提交选择部门时候 ，ajax显示-->
 	User detial:
-	<form action="" method="post">
 		<c:forEach items="${userMap}" var="user">
 			User Name:${user.value.account}
-			<a href="#">delete</a>
-			<a href="#">update</a>	
+			<a href="<%=request.getContextPath()%>/team/delete?user_ID=${user.value.user_ID}">delete</a>
+			
 			<br/>
 			<c:forEach items="${teamMap[user.key]}" var="team">
+			
 				team_ID:${team.team_ID}
 				user_ID:${team.user_ID}
 				department_ID:${team.department_ID}
 				teamName:${team.teamName}
-				
+				<a href="<%=request.getContextPath()%>/team/update?team_ID=${team.team_ID}">update</a>	
 				<hr/>
 			</c:forEach>				
 		</c:forEach>
 	<hr/>
-	</form>
 	<a href="<%=request.getContextPath()%>/team/getUserAddForm">add</a>
 	<hr/>
 </body>
