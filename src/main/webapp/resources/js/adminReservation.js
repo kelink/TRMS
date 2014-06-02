@@ -58,10 +58,10 @@ window.onload=function(){
 		$("#search2").attr("class","checkMethod");
 		$("#search3").attr("class","checkMethod");
 		$("#search4").attr("class","checkMethod");
-		$("#searchDivWrapper").animate({height:"47px"},{duration:400,complete:function(){
-			$(".vague").css("display","none");
-			$(".preciseSearch").css("display","none");
-		}});
+		$("#searchDivWrapper").css("display","none");
+		$(".btnSearch").css("display","none");
+
+	
 		$("#checkRightInner").attr("src","/trms/reservation/reservationManagerList");
 		
 		
@@ -103,10 +103,8 @@ window.onload=function(){
 		$("#search2").attr("class","checkMethod");
 		$("#search4").attr("class","checkMethod");
 		
-		$("#searchDivWrapper").animate({height:"47px"},{duration:400,complete:function(){
-			$(".vague").css("display","none");
-			$(".preciseSearch").css("display","none");
-		}});
+		$("#searchDivWrapper").css("display","none");
+		$(".btnSearch").css("display","none");
 		$("#checkRightInner").attr("src","/trms/reservation/reservationManagerList");
 		//////////////////////////////////////////////////////////////这里修改为show all reservation的Url//////////////////////
 	   
@@ -145,6 +143,8 @@ window.onload=function(){
 		$("#search1").attr("class","checkMethod");
 		$("#search3").attr("class","checkMethod");
 		$("#search4").attr("class","checkMethod");
+		$("#searchDivWrapper").css("display","block");
+		$(".btnSearch").css("display","block");
 		$("#searchDivWrapper").animate({height:"47px"},{duration:400,complete:function(){
 			$(".vague").css("display","none");
 			$(".preciseSearch").css("display","none");
