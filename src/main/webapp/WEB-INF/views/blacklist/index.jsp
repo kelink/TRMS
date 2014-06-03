@@ -46,9 +46,9 @@ function getDepartmentAllteam(department_ID){
 			}			
          },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert(XMLHttpRequest);
-			alert(textStatus);
-			alert(errorThrown);
+			//alert(XMLHttpRequest);
+			//alert(textStatus);
+			//alert(errorThrown);
 		}
 	});
 }
@@ -66,21 +66,27 @@ function displayBlackList(){
 		data : "team_ID=" + team_ID,
 		dataType : "json",
 		success : function(json) {
-			$("#departmentName").empty();
-			$("#teamName").empty();
-			$("#reason").empty();	
-			$("#departmentName").append("departmentName:"+departmentName);
-			$("#teamName").append("teamName"+teamName);
-			$("#reason").append("reason:"+json.reason);
-			
+			$("#display").empty();
+			$("#display").append("<form action='#' method='post' name='updateForm' id='updateForm'>");
+			$("#updateForm").append("<p>departmentName:"+departmentName+"</p>");
+			$("#updateForm").append("<p>teamName"+teamName+"</p>");
+			$("#updateForm").append("reason:<textarea id='reason_area' readonly='readonly' name='reason'>"+json.reason+"</textarea>");
+			$("#updateForm").append("<button name='updateBlackListBtn' id='updateBlackListBtn' onClick='updateBlackList("+json.bl_ID+")'>edit</button>");
+			$("#updateForm").append("</form>");
          },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert(team_ID);
-			alert(XMLHttpRequest);
-			alert(textStatus);
-			alert(errorThrown);
+			$("#display").empty();
 		}
 	});	
+}
+
+function updateBlackList(bl_ID){
+	$("#reason_area").attr('readonly','');
+	$("#updateBlackListBtn").remove();
+	$("#updateForm").attr('action','<%=request.getContextPath()%>/blacklist/update');
+	$("#reason_area").after("<input id='hidden' type='hidden' name='bl_ID' value='"+bl_ID+"'/>");
+	$("#hidden").after("<input type='submit' value='update' /></form>");
+	
 }
 
 </script>
@@ -151,7 +157,9 @@ function displayBlackList(){
 		     <h1 class="roomList">BlackList List</h1>
 			 <div class="roomListBody">
 			 	<h1>黑名单管理界面</h1>
-				<h3>传入的是部门信息，当点击部门的时候,显示出选择team的框，会ajax调用获取team信息，当点击选中team后会ajax 查新当前的黑名单情况，接口已经定义</h3>				
+				<h3>传入的是部门信息，当点击部门的时候,显示出选择team的框，会ajax调用获取team信息，
+				当点击选中team后会ajax 查新当前的黑名单情况，可以同时选择多个team进行blacklist的管理
+				接口已经定义</h3>				
 					departments
 					<select name="departments" id="departments">
 						<option value=""></option>
@@ -163,14 +171,12 @@ function displayBlackList(){
 					<select name="team_ID" id="teams">
 						<option value=""></option>
 					</select>
-					<button name="checkBtn" id="checkBtn" onClick="displayBlackList()">check</button>
-					<hr/>	
-					<div id="display">
-						<h1>BlackList Detial</h1>
-						<h2 id="departmentName"></h2>
-						<h2 id="teamName"></h2>
-						<textarea id="reason"></textarea>
-					</div>		
+					<button name="checkBtn" id="checkBtn" onClick="displayBlackList()">check</button>					
+					<button name="deleteBtn" id="deleteBtn" onClick="deleteBlackList()">delete</button>
+					<hr/>
+					<!-- 显示信息区域 -->	
+					<div id="display"></div>
+						
 			 </div>
 		 </div>
 	 </div>

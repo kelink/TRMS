@@ -85,13 +85,10 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 						html+=("applicant_account:"+applicant_account+"<br/>");
 						
 						html+=("handler_by:"+handler_by+"<br/>");
-						html+=(" <a class='btnUpdate'target='moreInfo'onclick='more(event);' href='<%=request.getContextPath()%>/reservation/approve?"
-								+"reservation_ID="+reservation_ID
-								+"'>Approve </a> ");
 						
-						html+=(" <a class='btnDelete'target='moreInfo'onclick='more(event);' href='<%=request.getContextPath()%>/reservation/reject?"
-								+"reservation_ID="+reservation_ID
-								+"'>Reject</a> <br/>");
+						html+=("<button class='btnUpdate' name='approveBtn' id='approveBtn' onclick=' checkApproveRejectBtn(0)'>approve</button>");
+						html+=("<button class='btnDelete' name='rejectBtn' id='rejectBtn' onclick=' checkApproveRejectBtn(1)'>reject</button>");
+						
 						html+=("</div>");
 
 ///////////////////////////////
@@ -159,6 +156,14 @@ function GoToAppointPage(e) {
 	}
 }
 
+function checkApproveRejectBtn(args){
+	if(args=="1")
+		alert("test");
+	if(args=='0')
+		alert("2");
+	return false;
+}
+
 </script>
 </head>
 
@@ -206,14 +211,15 @@ function GoToAppointPage(e) {
             <div class="btnFunction" id="sortBtn">Sort<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
         </div>   
     </div>
+    <form action="<%=request.getContextPath()%>/reservation/approveReservations" method="get">
     <div id="topBar">
-  
+ 
     <input type="checkbox" class="checkbox"onclick="check_all(this,'checkbox')">
     <span class="topBarItem topBarItem1">Reservation No.</span>
     <span class="topBarItem topBarItem2">Usage</span>
     <span class="topBarItem topBarItem3">Order Time</span>
     </div>
-    <form action="#" method="get">
+   
     <div id="listWrapper">
     
     </div>

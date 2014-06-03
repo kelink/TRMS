@@ -55,7 +55,11 @@ public class BlackListDaoImpl implements BlackListDao {
 
 	@Override
 	public boolean updateBlackList(BlackList blackList) {
-		return false;
+		String hql = "update BlackList set " + "reason=?" + " where bl_ID=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setString(0, blackList.getReason());
+		query.setInteger(1, blackList.getBl_ID());
+		return (query.executeUpdate() > 0);
 	}
 
 	@Override

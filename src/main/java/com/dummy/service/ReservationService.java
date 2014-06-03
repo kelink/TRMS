@@ -31,7 +31,7 @@ public interface ReservationService {
 
 	public List<Reservation> getReservationByStatus(int status);
 
-	public boolean isBetween(String begin_time, String end_time, int room_ID);
-
-	public boolean check(Reservation reservation);
+	public String checkApprove(Reservation reservation);
+	
+	public String checkReject(Reservation reservation);
 }

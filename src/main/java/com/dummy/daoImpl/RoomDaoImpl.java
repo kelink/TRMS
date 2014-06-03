@@ -64,8 +64,7 @@ public class RoomDaoImpl implements RoomDao {
 	public List<Room> getRoomOnPage(int pageNum, int pageSize) {
 		String hql = "from Room r order by r.last_Used_Date desc";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		int offSet = (pageNum - 1) * pageSize >= 0
-				? (pageNum - 1) * pageSize
+		int offSet = (pageNum - 1) * pageSize >= 0 ? (pageNum - 1) * pageSize
 				: 0;
 		query.setFirstResult(offSet);
 		query.setMaxResults(pageSize);
@@ -78,6 +77,14 @@ public class RoomDaoImpl implements RoomDao {
 		String hql = "from Room r where r.room_Status=?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, status);
+		return query.list();
+	}
+
+	@Override
+	public List<Room> getRoomsBydepartment(int department_ID) {
+		String hql = "from Room r where r.department_ID=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, department_ID);
 		return query.list();
 	}
 }
