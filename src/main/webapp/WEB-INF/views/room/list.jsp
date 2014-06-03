@@ -220,8 +220,7 @@
 					<!-- 显示room的信息 -->
 					
 				 <ul>			 
-				    <div id="roomInfo">
-				    </div>				
+				    <div id="roomInfo"></div>				
 				 </ul>
 				 <div id="listInfoWrapper">
 				     <div id="listInfo">

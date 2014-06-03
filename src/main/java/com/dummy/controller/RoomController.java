@@ -1,11 +1,11 @@
 package com.dummy.controller;
 
-import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -43,8 +43,8 @@ import com.dummy.util.ReservationUtil;
 import com.dummy.util.mail.MailSender;
 
 @Controller
-@SessionAttributes({ "currentUser" })
-@RequestMapping(value = { "/room" })
+@SessionAttributes({"currentUser"})
+@RequestMapping(value = {"/room"})
 public class RoomController {
 
 	private static final Logger logger = LoggerFactory
@@ -70,8 +70,8 @@ public class RoomController {
 
 	// getRoom
 	@RequestMapping("/getForm")
-	public void getForm(HttpServletRequest request, HttpSession session,PrintWriter writer) {
-		
+	public @ResponseBody String getForm(HttpServletRequest request,
+			HttpSession session) {
 
 		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
 		String year = request.getParameter("year");
@@ -85,54 +85,56 @@ public class RoomController {
 		}
 		String select_date = year + "-" + month + "-" + day;
 		Room room = roomService.getRoom(room_ID);
-		/////////////////////////////////////////////////////////////问题：team拿不到
-//		List<Team> teams = null;
+		List<Team> teams = null;
 		// role_LC can book limit room
-//		String currentRole = (String) session.getAttribute("currentRole");
-//		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
-//		if (currentRole.equals("ROLE_LC")) {
-//			teams = teamService.getTeamByUser(currentUser.getUser_ID());
-//		} else if (currentRole.equals("ROLE_TA")) {
-//			teams = teamService.getAllTeam();
-//		}
+		String currentRole = (String) session.getAttribute("currentRole");
+		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
+		if (currentRole.equals("ROLE_LC")) {
+			teams = teamService.getTeamByUser(currentUser.getUser_ID());
+		} else if (currentRole.equals("ROLE_TA")) {
+			teams = teamService.getAllTeam();
+		}
+		HashMap<String, ArrayList<JSONObject>> result = new HashMap<String, ArrayList<JSONObject>>();
 
-          ////////////////////////////////////////
+		// 封装teams
+		ArrayList<JSONObject> teamList = new ArrayList<JSONObject>();
+		for (Team team : teams) {
+			HashMap<String, String> tempMap1 = new HashMap<String, String>();
+			tempMap1.put("team_ID", String.valueOf(team.getTeam_ID()));
+			tempMap1.put("user_ID", String.valueOf(team.getUser_ID()));
+			tempMap1.put("department_ID",
+					String.valueOf(team.getDepartment_ID()));
+			tempMap1.put("teamName", team.getTeamName());
+			JSONObject object = new JSONObject(tempMap1);
+			teamList.add(object);
+		}
+		// 封装room
+		ArrayList<JSONObject> roomList = new ArrayList<JSONObject>();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		HashMap<String, String> tempMap2 = new HashMap<String, String>();
+		tempMap2.put("room_ID", String.valueOf(room.getRoom_ID()));
+		tempMap2.put("item", room.getItem());
+		tempMap2.put("last_Used_Date", format.format(room.getLast_Used_Date()));
+		tempMap2.put("department_ID", String.valueOf(room.getDepartment_ID()));
+		tempMap2.put("room_Status", String.valueOf(room.getRoom_Status()));
+		JSONObject roomJson = new JSONObject(tempMap2);
+		roomList.add(roomJson);
 
-		
-		
-		
-		String result="{";
-		result+="\"roomId\":"+room.getRoom_ID()+",\"roomItem\":\""+room.getItem()+"\",\"selectDate\":\""+select_date+"\"";
-//		result+="\"team\":";///////////////////这里对应上面拿到的team~~~~~~~~~~~~~~~~
-//		result+="[";
-//		for(int i=0;i<teams.size();i++)
-//		{
-//			Team team=teams.get(i);
-//			int teamId=team.getTeam_ID();
-//			String teamName=team.getTeamName();
-//			if(i==teams.size()-1)
-//			{
-//			    result+="[teamId,\"teamName\"]";
-//			}
-//			else {
-//				result+="[teamId,\"teamName\"],";
-//			}
-//			
-//		}
-//		result+="]";
-		result+="}";
-		System.out.println(result);
-		writer.write(result);
-		writer.flush();
-		writer.close();
-		///////////////////////////////////////////
-//		ModelMap map = new ModelMap();
-//		map.addAttribute("room", room);//room都是一个对象，在jsp页面可以通过room取得里面属性
-//		map.addAttribute("teams", teams);
-//		map.addAttribute("select_date", select_date);
-//		return new ModelAndView("room/form", map);
+		// 封装select Date
+		ArrayList<JSONObject> selectDateList = new ArrayList<JSONObject>();
+		HashMap<String, String> tempMap3 = new HashMap<String, String>();
+		tempMap3.put("select_date", select_date);
+		JSONObject selectDateJson = new JSONObject(tempMap3);
+		selectDateList.add(selectDateJson);
+
+		result.put("select_date", selectDateList);
+		result.put("roomList", roomList);
+		result.put("teamList", teamList);
+
+		JSONObject resultJsonObject = new JSONObject(result);
+		return resultJsonObject.toString();
+
 	}
-
 	// Room list
 	@RequestMapping("/list")
 	public ModelAndView list(
@@ -234,7 +236,6 @@ public class RoomController {
 			List<DBUser> admins = userService
 					.getUserByRole(C.DB.DEFAULT_ROLE_TA);
 			List<String> toAddressList = new ArrayList<String>();
-			;
 			for (DBUser dbUser : admins) {
 				toAddressList.add(dbUser.getAccount());
 				MailSender.sendEmailToAllAdmin(toAddressList, null, null);
