@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
-<link href="<%=request.getContextPath()%>/resources/css/checkReservation.css" rel="stylesheet" >
+<link href="<%=request.getContextPath()%>/resources/css/checkReservationLc.css" rel="stylesheet" >
   <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
  <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
@@ -65,9 +65,7 @@
 				 <li>
 				     <a href="<%=request.getContextPath()%>/reservation/reservationPage" class="navItem selected">Check My Reservation</a>
 				 </li>
-				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/delete" class="navItem">Delete My Reservation</a>
-				 </li>
+				 
 				 <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
 				 </li>

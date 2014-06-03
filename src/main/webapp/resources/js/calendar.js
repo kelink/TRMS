@@ -212,18 +212,60 @@ function bookInfo(a)
 }
 function setDate(year,month,day)
 {
-	var url=path+'/room/getForm?room_ID='+roomId+'&year='+year+'&month='+month+'&day='+day;
-	window.location.href=url;
-	var a=window.top.document.getElementById("calArea"+roomId);
-	var b=window.top.document.getElementById("cover");
 	
-    a.setAttribute("class","calArea floatTicket");
-    b.setAttribute("class","cover");
-    eval(
-    		"b.setAttribute(\"onclick\",\"turnback("+roomId+");\");"		
-    )
-  //  document.getElementById('turnback').style.backgroundColor='#ff0000';
-//     document.getElementById("turnback").setAttribute("onclick",);
+	
+	
+	
+//	var url=path+'/room/getForm?room_ID='+roomId+'&year='+year+'&month='+month+'&day='+day;
+//	window.location.href=url;//禁用这个url，直接复制给floatTicketDiv浮出来
+//	var a=window.top.document.getElementById("calArea"+roomId);
+//	var b=window.top.document.getElementById("cover");
+//	
+//    a.setAttribute("class","calArea floatTicket");
+//    b.setAttribute("class","cover");
+//    eval(
+//    		"b.setAttribute(\"onclick\",\"turnback("+roomId+");\");"		
+//    )
+	
+	
+	
+
     
-    
+
+	
+	$.ajax({
+		url : path+"/room/getForm",
+		type : "Get",
+		data : { room_ID: roomId, year: year,month:month,day:day },
+		dataType : "json",
+		success : function(json) {
+	
+			
+		    var roomOption=window.top.document.getElementById("roomOption");
+		    var time1=window.top.document.getElementById("begin_time");
+		    var time2=window.top.document.getElementById("end_time");
+		    var close=window.top.document.getElementById("close");
+		    roomOption.setAttribute("value",json.roomId);
+		    roomOption.innerHTML=json.roomItem;
+		    time1.setAttribute("value",json.selectDate);
+		    time2.setAttribute("value",json.selectDate);
+			close.setAttribute("onclick","back("+json.roomId+")");
+			
+			
+			var a=window.top.document.getElementById("floatTicket");
+			var b=window.top.document.getElementById("cover");
+			a.setAttribute("class","floatTicket");
+			b.setAttribute("class","cover");
+		    eval(
+		    		"b.setAttribute(\"onclick\",\"turnback("+roomId+");\");"		
+		    )
+
+
+         },
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+               alert('failed');
+		}
+	});
+	
 }
+

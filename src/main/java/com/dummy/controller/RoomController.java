@@ -1,5 +1,6 @@
 package com.dummy.controller;
 
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -59,9 +60,22 @@ public class RoomController {
 	@Resource(name = "blackListService")
 	private BlackListService blackListService;
 
+	
+	
+	///////////////////////
+	
+//	@RequestMapping("/getForm")
+//	public @ResponseBody List<Room> listPageRoom(
+//			Model model) {
+//		List<Room> roomPageList = roomService.getRoomOnPage(1, 5);
+//		return roomPageList;
+//	}
+	//////////////////////////
 	// getRoom
-	@RequestMapping(value = {"/getForm", ""})
-	public ModelAndView getForm(HttpServletRequest request, HttpSession session) {
+	@RequestMapping("/getForm")
+	public void getForm(HttpServletRequest request, HttpSession session,PrintWriter writer) {
+		
+///////////////////////////////
 		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
@@ -74,20 +88,52 @@ public class RoomController {
 		}
 		String select_date = year + "-" + month + "-" + day;
 		Room room = roomService.getRoom(room_ID);
+		/////////////////////////////////////////////////////////////
 		List<Team> teams = null;
 		// role_LC can book limit room
-		String currentRole = (String) session.getAttribute("currentRole");
-		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
-		if (currentRole.equals("ROLE_LC")) {
-			teams = teamService.getTeamByUser(currentUser.getUser_ID());
-		} else if (currentRole.equals("ROLE_TA")) {
-			teams = teamService.getAllTeam();
-		}
-		ModelMap map = new ModelMap();
-		map.addAttribute("room", room);
-		map.addAttribute("teams", teams);
-		map.addAttribute("select_date", select_date);
-		return new ModelAndView("room/form", map);
+//		String currentRole = (String) session.getAttribute("currentRole");
+//		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
+//		if (currentRole.equals("ROLE_LC")) {
+//			teams = teamService.getTeamByUser(currentUser.getUser_ID());
+//		} else if (currentRole.equals("ROLE_TA")) {
+//			teams = teamService.getAllTeam();
+//		}
+
+////////////////////////////////////////
+
+		
+		
+		
+		String result="{";
+		result+="\"roomId\":"+room.getRoom_ID()+",\"roomItem\":\""+room.getItem()+"\",\"selectDate\":\""+select_date+"\"";
+//		result+="\"team\":";
+//		result+="[";
+//		for(int i=0;i<teams.size();i++)
+//		{
+//			Team team=teams.get(i);
+//			int teamId=team.getTeam_ID();
+//			String teamName=team.getTeamName();
+//			if(i==teams.size()-1)
+//			{
+//			    result+="[teamId,\"teamName\"]";
+//			}
+//			else {
+//				result+="[teamId,\"teamName\"],";
+//			}
+//			
+//		}
+//		result+="]";
+		result+="}";
+		System.out.println(result);
+		writer.write(result);
+		writer.flush();
+		writer.close();
+		///////////////////////////////////////////
+//		ModelMap map = new ModelMap();
+//		map.addAttribute("room", room);//room都是一个对象，在jsp页面可以通过room取得里面属性
+//		map.addAttribute("teams", teams);
+//		map.addAttribute("select_date", select_date);
+//		return new ModelAndView("room/form", map);
 	}
 	// Room list
 	@RequestMapping("/list")

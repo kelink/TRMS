@@ -409,6 +409,7 @@ border-color: #b5b5b5;
 }
 .floatTicket
 {
+display:block !important;
 position: fixed;
 left: 50%;
 margin-left: -300px;
@@ -424,6 +425,10 @@ height: 560px;
 overflow: hidden;
 color: #666;
 
+}
+#floatTicket
+{
+	display:none;
 }
 
 .iframe

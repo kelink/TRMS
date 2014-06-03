@@ -96,9 +96,7 @@
 				 <li>
 				     <a href="<%=request.getContextPath()%>/reservation/reservationPage" class="navItem">Check My Reservation</a>
 				 </li>
-				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/delete" class="navItem">Delete My Reservation</a>
-				 </li>
+				
 				 <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem selected">Manage My Profile</a>
 				 </li>
