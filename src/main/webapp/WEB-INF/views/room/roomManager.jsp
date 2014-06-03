@@ -101,7 +101,7 @@ function getRoomInfo(department_ID){
 	     <div class="navContainer">
 		     <ul class="navi">
 			     <li>
-				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
+				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
@@ -113,7 +113,7 @@ function getRoomInfo(department_ID){
 				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">LC Management </a>
 				 </li>
 				  <li>
-				     <a href="<%=request.getContextPath()%>/room/roommanager"class="navItem">Room Management</a>
+				     <a href="<%=request.getContextPath()%>/room/roommanager"class="navItem selected">Room Management</a>
 				 </li>
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>

@@ -13,9 +13,10 @@
 
 <title> BlackList Page </title>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/resources/css/userManagement.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" />
-<script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/userManagement.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -57,7 +58,7 @@
 	     <div class="navContainer">
 		     <ul class="navi">
 			     <li>
-				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
+				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
@@ -66,7 +67,7 @@
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">LC Management </a>
+				     <a href="<%=request.getContextPath()%>/team/index"class="navItem selected">LC Management </a>
 				 </li>
 				  <li>
 				     <a href="<%=request.getContextPath()%>/room/roommanager"class="navItem">Room Management</a>
@@ -80,13 +81,15 @@
 	 
 	 <div class="middle">
 	     <div class="middleContainer">
-		     <h1 class="roomList">BlackList List</h1>
+		     <h1 class="roomList">User Management</h1>
 			 <div class="roomListBody">
-			 	<h1>admin 管理 界面普通用户user 的界面</h1>
-						管理员：<security:authentication property="principal.username"></security:authentication> 
-						<c:url value="/j_spring_security_logout" var="logoutUrl"/>  
-						<li><a href="${logoutUrl}">Log Out</a></li> 
-						<hr/>
+
+             
+			 <div id="userSearchDiv">
+			     <div id="userSearchLabel"><img id="searchImg" src="<%=request.getContextPath()%>/resources/images/search.png"/><span id="userSearchSpan">Search by department or user LN...</span></div>
+			     <input id="userSearchInput">
+			 </div>
+						
 						department:
 						<form action="<%=request.getContextPath()%>/team/getDetial" method="post">
 						<select name="department_ID">
@@ -96,19 +99,23 @@
 							</c:forEach>
 						</select>
 						<input type="submit" value="check" name="submit" />					
-						<hr/>
+				
 						</form>
-						<hr/>
+			
 					<!-- 显示信息区域 -->	
 					
 						
 			 </div>
 		 </div>
 	 </div>
-	 <div class="footer">
-	     <div class="footerContainer">
-		 </div>
-	 </div>
+	
+ </div>
+  <div id="footerContainer">
+      <div id="footer">
+          <span id="copyright"> &copy; Copyright 2014 by <a href="#">Lin Jiajian</a>&<a href="#">Luo Kelin</a></span>
+          <span><img id="hsbcIconFooter" width="30px"height="15px" src="<%=request.getContextPath() %>/resources/images/hsbcFooter.png"/></span>
+          <span id="footerWord"><a href="#">Team</a> <a href="#">Telephone</a><a href="#">Email</a><a href="#">about</a></span>
+      </div>
  </div>
 
 	

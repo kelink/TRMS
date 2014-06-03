@@ -131,13 +131,13 @@ function updateBlackList(bl_ID){
 	     <div class="navContainer">
 		     <ul class="navi">
 			     <li>
-				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
+				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
+				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem selected">BlackList Management</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">LC Management </a>
