@@ -12,7 +12,7 @@ left: 1px;
 background: transparent;
 	float: left;
 width: 80%;
-border-radius: 3px;
+border-radius: 19px;
 border: 1px solid #cccccc;
 padding: 7px;
 padding-left: 36px;
@@ -41,4 +41,44 @@ z-index: 2000;
 {
 	color:rgb(139, 139, 139);
 	margin-left: 38px;
+}
+.userSearchBtn
+{
+	margin-right: 96px;
+margin-top: 4px;
+	
+	
+float: right;
+line-height: 28px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 12px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(94, 151, 189);
+background-image: -moz-linear-gradient(rgb(166, 212, 255), rgb(114, 181, 226));
+background-image: -webkit-linear-gradient(rgb(166, 212, 255), rgb(114, 181, 226));
+background-image: linear-gradient(rgb(166, 212, 255), rgb(114, 181, 226));
+background-repeat: repeat-x;
+border-radius: 17px;
+border: 1px solid rgb(152, 207, 243);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+}
+#userManagementIframe
+{
+	height: 600px;
+width: 100%;
+border: none;
 }

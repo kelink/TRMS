@@ -12,12 +12,12 @@
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 </head>
 <body>
-	<h1>显示LC 和它管理的team的信息</h1>
+
 	
-	管理员：<security:authentication property="principal.username"></security:authentication> 
-	<c:url value="/j_spring_security_logout" var="logoutUrl"/>  
-	<a href="${logoutUrl}">Log Out</a>
-	<hr/>
+
+
+
+
 	<!-- 一开始不显示，当提交选择部门时候 ，ajax显示-->
 	User detial:
 		<c:forEach items="${userMap}" var="user">

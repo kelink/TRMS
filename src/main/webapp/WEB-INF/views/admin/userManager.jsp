@@ -86,12 +86,14 @@
 
              
 			 <div id="userSearchDiv">
-			     <div id="userSearchLabel"><img id="searchImg" src="<%=request.getContextPath()%>/resources/images/search.png"/><span id="userSearchSpan">Search by department or user LN...</span></div>
+			 <form method="get" action="#"target="userManagementIframe">
+			     <div id="userSearchLabel"><input type="submit" class="userSearchBtn"value="Search"><img id="searchImg" src="<%=request.getContextPath()%>/resources/images/search.png"/><span id="userSearchSpan">Search by department or user LN...</span></div>
 			     <input id="userSearchInput">
+			 </form>    
 			 </div>
 						
 						department:
-						<form action="<%=request.getContextPath()%>/team/getDetial" method="post">
+						<form action="<%=request.getContextPath()%>/team/getDetial" method="post"target="userManagementIframe">
 						<select name="department_ID">
 							<option value=""></option>
 							<c:forEach var="department" items="${departments}">	
@@ -101,6 +103,7 @@
 						<input type="submit" value="check" name="submit" />					
 				
 						</form>
+						<iframe id="userManagementIframe" name="userManagementIframe"></iframe>
 			
 					<!-- 显示信息区域 -->	
 					
