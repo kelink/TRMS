@@ -121,19 +121,19 @@ function getDepartmentAllteam(department_ID){
 	     <div class="navContainer">
 		     <ul class="navi">
 			     <li>
-				     <a href="<%=request.getContextPath()%>/room/list" class="navItem selected">Book   Room</a>
+				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/reservationPage" class="navItem">Reservation Manager</a>
+				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/delete" class="navItem">BlackList Management</a>
+				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">LC Management </a>
+				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">User Management </a>
 				 </li>
 				  <li>
-				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Room Management</a>
+				     <a href="<%=request.getContextPath()%>/room/roommanager"class="navItem">Room Management</a>
 				 </li>
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
@@ -144,9 +144,9 @@ function getDepartmentAllteam(department_ID){
 	 
 	 <div class="middle">
 	     <div class="middleContainer">
-		     <h1 class="roomList">BlackList List</h1>
+		     <h1 class="roomList">User List</h1>
 			 <div class="roomListBody">
-			 	<h1>黑名单管理界面</h1>
+			 	<h1>LC用户添加管理界面</h1>
 				<h3>传入的是部门信息，当点击部门的时候,显示出选择team的框，会ajax调用获取team信息，当点击选中team后会ajax 查新当前的黑名单情况，接口已经定义</h3>				
 				<form action="" method="post">
 					departments

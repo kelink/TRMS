@@ -18,4 +18,6 @@ public interface RoomDao {
 	public List<Room> getRoomOnPage(int pageNum, int pageSize);
 
 	public List<Room> getRoomByStatus(int status);
+
+	public List<Room> getRoomsBydepartment(int department_ID);
 }

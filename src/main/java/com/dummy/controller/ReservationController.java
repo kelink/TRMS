@@ -2,6 +2,7 @@ package com.dummy.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,9 +30,10 @@ import com.dummy.service.RoomService;
 import com.dummy.service.TeamService;
 import com.dummy.service.UserService;
 import com.dummy.util.ReservationUtil;
+import com.dummy.util.mail.MailSender;
 
 @Controller
-@SessionAttributes({"currentUser"})
+@SessionAttributes({ "currentUser" })
 @RequestMapping(value = "/reservation")
 public class ReservationController {
 
@@ -47,12 +49,13 @@ public class ReservationController {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	@RequestMapping(value = {"/reservationPage"})
+	@RequestMapping(value = { "/reservationPage" })
 	public ModelAndView reservationPage() {
 		return new ModelAndView("reservation/reservationPage");
 	}
+
 	// reservation list
-	@RequestMapping(value = {"/list"})
+	@RequestMapping(value = { "/list" })
 	public ModelAndView list(
 			HttpServletRequest request,
 			Model model,
@@ -126,7 +129,7 @@ public class ReservationController {
 	}
 
 	// edit the reservation
-	@RequestMapping(value = {"/edit"})
+	@RequestMapping(value = { "/edit" })
 	public ModelAndView edit(
 			HttpServletRequest request,
 			Model model,
@@ -150,8 +153,9 @@ public class ReservationController {
 		// map.addAttribute("handler", handler);
 		return new ModelAndView("reservation/edit", map);
 	}
+
 	// Update the unhandled(处理TA尚且没处理的订单)reservation
-	@RequestMapping(value = {"/update"})
+	@RequestMapping(value = { "/update" })
 	public ModelAndView update(HttpServletRequest request, HttpSession session) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date Applied_Start_Date = null;
@@ -188,13 +192,15 @@ public class ReservationController {
 		}
 		return null;
 	}
-	@RequestMapping(value = {"/delete"})
+
+	// get the view of delete
+	@RequestMapping(value = { "/delete" })
 	public ModelAndView delete(HttpServletRequest request) {
 		return new ModelAndView("reservation/delete");
 	}
 
 	// reservation Delete by reservation_id
-	@RequestMapping(value = {"/deleteByID"})
+	@RequestMapping(value = { "/deleteByID" })
 	public ModelAndView deleteByID(
 			@RequestParam(value = "reservation_ID", required = true) int reservation_ID) {
 		if (reservationService.delReservation(reservation_ID) == true) {
@@ -204,72 +210,13 @@ public class ReservationController {
 	}
 
 	// reservation Delete by reservation_num
-	@RequestMapping(value = {"/deleteByNum"})
+	@RequestMapping(value = { "/deleteByNum" })
 	public ModelAndView deleteByNum(
 			@RequestParam(value = "reservation_Num", required = true) String reservation_Num) {
 		if (reservationService.delReservationByNum(reservation_Num) == true) {
 			return new ModelAndView("redirect:/reservation/list");
 		}
 		return new ModelAndView("redirect:/reservation/list");
-	}
-	// Ajax:approve reservationDetial
-	@RequestMapping(value = "/approve")
-	public @ResponseBody String approve(
-			@RequestParam(value = "reservation_ID", required = true) int reservation_ID,
-			HttpSession session) {
-		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
-		Reservation reservation = reservationService
-				.getReservation(reservation_ID);
-		String result = "";
-		if (reservation.getStatus() != C.DB.DEFAULT_RESERVATION_UNHANDLE) {
-			result = "The reservation have been handlered by other admin";
-			return "<script>alert('" + result + "')</script>";
-		}
-		if (reservationService.check(reservation)) {
-			result = "The room have been booked between "
-					+ reservation.getApplied_Start_DateByString() + " and "
-					+ reservation.getApplied_End_DateByString();
-			return "<script>alert('" + result + "')</script>";
-		}
-
-		reservation.setHandle_by(currentUser.getUser_ID());
-		reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
-		boolean isOK = reservationService.approveOrReject(reservation);
-		// send email
-
-		if (isOK == true) {
-			result = "reservation approved,email have already sent";
-			return "<script>alert('" + result + "')</script>";
-		} else {
-			result = "reservation approved fail,try again or reflash to solve problem";
-			return "<script>alert('" + result + "')</script>";
-		}
-
-	}
-
-	// Ajax:reject reservation
-	@RequestMapping(value = "/reject")
-	public @ResponseBody String reject(
-			@RequestParam(value = "reservation_ID", required = true) int reservation_ID,
-			HttpSession session) {
-		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
-		Reservation reservation = reservationService
-				.getReservation(reservation_ID);
-		String result = "";
-		if (reservation.getStatus() != C.DB.DEFAULT_RESERVATION_UNHANDLE) {
-			result = "The reservation have been handlered by other admin";
-		}
-
-		reservation.setHandle_by(currentUser.getUser_ID());
-		reservation.setStatus(C.DB.DEFAULT_RESERVATION_REFUSE);
-
-		boolean isOK = reservationService.approveOrReject(reservation);
-		if (isOK == true) {
-			result = "reservation rejected,email have already sent";
-		} else {
-			result = "reservation rejected fail,try again or reflash to solve problem";
-		}
-		return "<script>alert('" + result + "')</script>";
 	}
 
 	/***********************************************************
@@ -287,6 +234,8 @@ public class ReservationController {
 		map.addAttribute("reservationDetials", reservationDetials);
 		return new ModelAndView("admin/reservationManagerIndex", map);
 	}
+
+	// for reservationManagerList
 	@RequestMapping(value = "/reservationManagerList")
 	public ModelAndView reservationManagerList(
 			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
@@ -305,6 +254,7 @@ public class ReservationController {
 		map.addAttribute("reservationDetials", reservationDetials);
 		return new ModelAndView("admin/reservationManagerList", map);
 	}
+
 	// Ajax to get the unhandle reservations
 	@RequestMapping("/unhandleListPageReservation")
 	public @ResponseBody List<ReservationDetial> unhandleListPageReservation(
@@ -320,4 +270,81 @@ public class ReservationController {
 		return recorderPageList;
 	}
 
+	// Ajax:approve reservationDetial
+	@RequestMapping(value = "/approveAReservation")
+	public @ResponseBody String approveAReservation(
+			@RequestParam(value = "reservation_ID", required = true) int reservation_ID,
+			HttpSession session) {
+		Reservation reservation = reservationService
+				.getReservation(reservation_ID);
+		String message = reservationService.checkApprove(reservation);
+		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
+		if (message == null) {
+			reservation.setHandle_by(currentUser.getUser_ID());
+			reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
+			reservationService.approveOrReject(reservation);
+			// send email
+			// List<String> list = new ArrayList<String>();
+			// list.add(reservation.getEmail());
+			// MailSender.sendEmailToAllAdmin(list, null, null);
+			message = "approve success,email have sent!";
+		}
+		return message;
+
+	}
+
+	// Ajax:reject reservation
+	@RequestMapping(value = "/rejectAReservation")
+	public @ResponseBody String rejectAReservation(
+			@RequestParam(value = "reservation_ID", required = true) int reservation_ID,
+			HttpSession session) {
+		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
+		Reservation reservation = reservationService
+				.getReservation(reservation_ID);
+		String message = reservationService.checkReject(reservation);
+		if (message == null) {
+			reservation.setHandle_by(currentUser.getUser_ID());
+			reservation.setStatus(C.DB.DEFAULT_RESERVATION_REFUSE);
+			reservationService.approveOrReject(reservation);
+			// send email
+			// List<String> list = new ArrayList<String>();
+			// list.add(reservation.getEmail());
+			// MailSender.sendEmailToAllAdmin(list, null, null);
+			List<String> list = new ArrayList<String>();
+			list.add(reservation.getEmail());
+			MailSender.sendEmailToAllAdmin(list, null, null);
+			message += "reject success,email have sent!";
+
+		}
+		return message;
+
+	}
+
+	// batch to approve the reservations
+	@RequestMapping(value = "/approveReservations")
+	public @ResponseBody String approveReservations(HttpServletRequest request,
+			HttpSession session) {
+		String[] reservations = request.getParameterValues("checkbox");
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < reservations.length; i++) {
+			int reservation_ID = Integer.parseInt(reservations[i]);
+			builder.append(this.approveAReservation(reservation_ID, session));
+		}
+		return builder.toString();
+
+	}
+
+	// batch to reject the reservations
+	@RequestMapping(value = "/rejectReservations")
+	public @ResponseBody String rejectReservations(HttpServletRequest request,
+			HttpSession session) {
+		String[] reservations = request.getParameterValues("checkbox");
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < reservations.length; i++) {
+			int reservation_ID = Integer.parseInt(reservations[i]);
+			builder.append(this.rejectAReservation(reservation_ID, session));
+		}
+		return builder.toString();
+
+	}
 }

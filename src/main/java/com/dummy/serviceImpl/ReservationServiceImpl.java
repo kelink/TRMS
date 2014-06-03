@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.dummy.common.C;
+import com.dummy.dao.BlackListDao;
 import com.dummy.dao.ReservationDao;
 import com.dummy.dao.RoomDao;
 import com.dummy.dao.TeamDao;
@@ -20,6 +22,7 @@ import com.dummy.dao.UserDao;
 import com.dummy.domain.CalanderDataDomain;
 import com.dummy.domain.Reservation;
 import com.dummy.domain.ReservationDetial;
+import com.dummy.domain.Room;
 import com.dummy.service.ReservationService;
 
 @Service(value = "reservationService")
@@ -37,6 +40,9 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Resource(name = "roomDao")
 	private RoomDao roomDao;
+
+	@Resource(name = "blackListDao")
+	private BlackListDao blackListDao;
 
 	@Override
 	public Reservation getReservation(int id) {
@@ -186,6 +192,7 @@ public class ReservationServiceImpl implements ReservationService {
 	public Reservation getReservationByNum(String num) {
 		return reservationDao.getReservationByNum(num);
 	}
+
 	// get reservation detial by num
 	public List<ReservationDetial> getReservationDetialByNum(String num) {
 		String optionStr = "where reservation.reservation_Num=" + num;
@@ -202,15 +209,69 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationDao.getReservationByStatus(status);
 	}
 
+	// check whether the reservation can approve
 	@Override
-	public boolean isBetween(String begin_time, String end_time, int room_ID) {
-		return reservationDao.isBetween(begin_time, end_time, room_ID);
+	public String checkApprove(Reservation reservation) {
+		// 检验当前表单时候是否可以approve
+		String message = null;
+		try {
+			// 判断申请时间是否已经过去
+			if (reservation.getApplied_Start_Date().getTime() < System
+					.currentTimeMillis()) {
+				message = "Reservation over time,please reject it";
+				return message;
+			}
+			// 判断是否是本月订单
+			// if (condition) {
+			//
+			// }
+			// 判断当前申请时间段内是否有预定，而且approve的
+			if (!reservationDao.isBetween(
+					reservation.getApplied_Start_DateByString(),
+					reservation.getApplied_End_DateByString(),
+					reservation.getRoom_ID())) {
+				message = "Reservation applied time is not in current month,please reject it!";
+				return message;
+			}
+			// 判断当前reservation状态
+			if (reservation.getStatus() != C.DB.DEFAULT_RESERVATION_UNHANDLE) {
+				message = "Reservation handled,Please refalsh ";
+				return message;
+			}
+			// 判断是否在黑名单
+			if (blackListDao.getBlackList(reservation.getTeam_ID()) != null) {
+				message = "Reservation team is in the blacklist,can't approve";
+				return message;
+			}
+			// 判断当前room是否可以对外申请
+			Room room = roomDao.getRoom(reservation.getRoom_ID());
+			if (room.getRoom_Status() == C.DB.DEFAULT_FREE_ROOM) {
+				message = "Room can't book now";
+				return message;
+			}
+			return null;
+		} catch (Exception e) {
+			message = "Exception between approving!";
+			return message;
+		}
 	}
 
 	// check whether the reservation can approve
 	@Override
-	public boolean check(Reservation reservation) {
-		return reservationDao.check(reservation);
+	public String checkReject(Reservation reservation) {
+		// 检验当前表单时候是否可以reject
+		// 1、当前是否已经处理，处理则抛出异常，back
+		String message = null;
+		try {
+			if (reservation.getStatus() != C.DB.DEFAULT_RESERVATION_UNHANDLE) {
+				message = "Reservation handled,Please refalsh ";
+				return message;
+			}
+			return null;
+		} catch (Exception e) {
+			message = "Exception between approve!";
+			return message;
+		}
 	}
 
 }

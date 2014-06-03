@@ -1,9 +1,13 @@
 package com.dummy.serviceImpl;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import com.dummy.common.C;
@@ -48,5 +52,23 @@ public class RoomServiceImpl implements RoomService {
 
 	public List<Room> getFreeRooms() {
 		return roomDao.getRoomByStatus(C.DB.DEFAULT_FREE_ROOM);
+	}
+
+	@Override
+	public List<JSONObject> getRoomsBydepartment(int department_ID) {
+		List<Room> list = roomDao.getRoomsBydepartment(department_ID);
+		ArrayList<JSONObject> result = new ArrayList<JSONObject>();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		for (Room room : list) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("room_ID", String.valueOf(room.getRoom_ID()));
+			map.put("item", room.getItem());
+			map.put("last_Used_Date", format.format(room.getLast_Used_Date()));
+			map.put("department_ID", String.valueOf(room.getDepartment_ID()));
+			map.put("room_Status", String.valueOf(room.getRoom_Status()));
+			JSONObject object = new JSONObject(map);
+			result.add(object);
+		}
+		return result;
 	}
 }
