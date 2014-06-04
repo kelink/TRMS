@@ -57,12 +57,12 @@ function AjaxGetData(index, size) {
 
 
                
-html+=("<div class=\"listItem\"id=\"listItem"+reservation_ID+"\"onclick=\"expand("+reservation_ID+");\">");
-html+=("<div class=\"listFoldBtn\"id=\"listFoldBtn"+reservation_ID+"\"onclick=\"fold("+reservation_ID+",event)\">");
-html+=("<img class=\"listFoldImg\"src=\"/trms/resources/images/listFold.png\"/>");
-html+=("</div>");
-html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">");
-/////////////////////////////
+                        html+=("<div class=\"listItem\"id=\"listItem"+reservation_ID+"\"onclick=\"expand("+reservation_ID+");\">");
+                        html+=("<div class=\"listFoldBtn\"id=\"listFoldBtn"+reservation_ID+"\"onclick=\"fold("+reservation_ID+",event)\">");
+                        html+=("<img class=\"listFoldImg\"src=\"/trms/resources/images/listFold.png\"/>");
+                        html+=("</div>");
+                        html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">");
+                        /////////////////////////////
 
                         html+=("<div class=\"ticketTitle\">Ticket Information</div>");
                         html+=("<div class=\"ticketContent\">");
@@ -86,23 +86,21 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 						
 						html+=("handler_by:"+handler_by+"<br/>");
 						
-						html+=("<button class='btnUpdate' name='approveBtn' id='approveBtn' onclick=' checkApproveRejectBtn(0)'>approve</button>");
-						html+=("<button class='btnDelete' name='rejectBtn' id='rejectBtn' onclick=' checkApproveRejectBtn(1)'>reject</button>");
+						html+=("<div class='btnUpdate' name='approveBtn' id='approveBtn' onclick=' checkApproveRejectBtn(0)'>approve</div>");
+						html+=("<div class='btnDelete' name='rejectBtn' id='rejectBtn' onclick=' checkApproveRejectBtn(1)'>reject</div>");
 						
 						html+=("</div>");
 
-///////////////////////////////
-html+=("</div>");
-html+=("<input type='checkbox'name='checkbox' onclick='chose(event);'value='"+reservation_ID+"' class='checkbox1 listContentClass"+reservation_ID+"'>");
-html+=("<span class=\"listContent1 listContent listContentClass"+reservation_ID+"\">"+reservation_Num+"</span>");
-html+=("<span class=\"listContent2 listContentClass"+reservation_ID+"\">"+purpose+"</span>");
-html+=("<span class=\"listContent3 listContentClass"+reservation_ID+"\">"+Order_Date+"</span>");
-html+=("</div>");
+                         ///////////////////////////////
+                        html+=("</div>");
+                        html+=("<input type='checkbox'name='checkbox' onclick='chose(event);'value='"+reservation_ID+"' class='checkbox1 listContentClass"+reservation_ID+"'>");
+                        html+=("<span class=\"listContent1 listContent listContentClass"+reservation_ID+"\">"+reservation_Num+"</span>");
+                        html+=("<span class=\"listContent2 listContentClass"+reservation_ID+"\">"+purpose+"</span>");
+                        html+=("<span class=\"listContent3 listContentClass"+reservation_ID+"\">"+Order_Date+"</span>");
+                        html+=("</div>");
 
-
-
-
-					}					
+				}
+					
 				$('#listWrapper').html("");
 		        $('#listWrapper').html("<iframe id=\"moreInfo\"name=\"moreInfo\" scrolling=\"no\" ></iframe>"+html); 
 
