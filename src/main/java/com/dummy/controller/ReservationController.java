@@ -33,7 +33,7 @@ import com.dummy.util.ReservationUtil;
 import com.dummy.util.mail.MailSender;
 
 @Controller
-@SessionAttributes({ "currentUser" })
+@SessionAttributes({"currentUser"})
 @RequestMapping(value = "/reservation")
 public class ReservationController {
 
@@ -49,39 +49,49 @@ public class ReservationController {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	@RequestMapping(value = { "/reservationPage" })
+	@RequestMapping(value = {"/reservationPage"})
 	public ModelAndView reservationPage() {
 		return new ModelAndView("reservation/reservationPage");
 	}
 
 	// reservation list
-	@RequestMapping(value = { "/list" })
+	@RequestMapping(value = {"/list"})
 	public ModelAndView list(
 			HttpServletRequest request,
 			Model model,
-			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
+			@RequestParam(value = "pageSize", required = false, defaultValue = "7") int pageSize,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
 			HttpSession session) {
 
 		// get the query
 		String advOption = ReservationUtil.generateQueryOption(request);
 		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
+		String orderby = request.getParameter("orderby");
+		String reservationOrderBy = null;
+		if (orderby == null || orderby.equals("desc")) {
+			reservationOrderBy = " order by reservation.order_Time desc";
+		} else if (orderby.equals("asc")) {
+			reservationOrderBy = " order by reservation.order_Time asc";
+		} else {
+			reservationOrderBy = " order by reservation.order_Time desc";
+		}
 		String optionStr = null;
 		if (session.getAttribute("currentRole").equals("ROLE_TA")) {
 			// 默认搜索的是全部
 			if (advOption.length() > 0) {
-				optionStr = "where " + advOption;
+				optionStr = "where " + advOption + reservationOrderBy;
 			} else {
-				optionStr = "";
+				optionStr = "" + reservationOrderBy;
 			}
 		}
 		if (session.getAttribute("currentRole").equals("ROLE_LC")) {
 			// 默认搜索的是当前用户
 			if (advOption.length() > 0) {
 				optionStr = "where DBUser.user_ID=" + currentUser.getUser_ID()
-						+ " and " + advOption;
+						+ " and " + advOption + reservationOrderBy;
 			} else {
-				optionStr = "where DBUser.user_ID=" + currentUser.getUser_ID();
+				optionStr = "where DBUser.user_ID=" + currentUser.getUser_ID()
+						+ reservationOrderBy;
 			}
 
 		}
@@ -115,7 +125,7 @@ public class ReservationController {
 	public @ResponseBody List<ReservationDetial> listPageReservation(
 			HttpServletRequest request,
 			Model model,
-			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
+			@RequestParam(value = "pageSize", required = false, defaultValue = "7") int pageSize,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
 			@RequestParam(value = "optionStr", required = false, defaultValue = "") String optionStr,
 			HttpSession session) {
@@ -129,7 +139,7 @@ public class ReservationController {
 	}
 
 	// edit the reservation
-	@RequestMapping(value = { "/edit" })
+	@RequestMapping(value = {"/edit"})
 	public ModelAndView edit(
 			HttpServletRequest request,
 			Model model,
@@ -155,7 +165,7 @@ public class ReservationController {
 	}
 
 	// Update the unhandled(处理TA尚且没处理的订单)reservation
-	@RequestMapping(value = { "/update" })
+	@RequestMapping(value = {"/update"})
 	public ModelAndView update(HttpServletRequest request, HttpSession session) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date Applied_Start_Date = null;
@@ -194,13 +204,13 @@ public class ReservationController {
 	}
 
 	// get the view of delete
-	@RequestMapping(value = { "/delete" })
+	@RequestMapping(value = {"/delete"})
 	public ModelAndView delete(HttpServletRequest request) {
 		return new ModelAndView("reservation/delete");
 	}
 
 	// reservation Delete by reservation_id
-	@RequestMapping(value = { "/deleteByID" })
+	@RequestMapping(value = {"/deleteByID"})
 	public ModelAndView deleteByID(
 			@RequestParam(value = "reservation_ID", required = true) int reservation_ID) {
 		if (reservationService.delReservation(reservation_ID) == true) {
@@ -210,7 +220,7 @@ public class ReservationController {
 	}
 
 	// reservation Delete by reservation_num
-	@RequestMapping(value = { "/deleteByNum" })
+	@RequestMapping(value = {"/deleteByNum"})
 	public ModelAndView deleteByNum(
 			@RequestParam(value = "reservation_Num", required = true) String reservation_Num) {
 		if (reservationService.delReservationByNum(reservation_Num) == true) {
@@ -238,7 +248,7 @@ public class ReservationController {
 	// for reservationManagerList
 	@RequestMapping(value = "/reservationManagerList")
 	public ModelAndView reservationManagerList(
-			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
+			@RequestParam(value = "pageSize", required = false, defaultValue = "7") int pageSize,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
 			HttpSession session) {
 
@@ -260,7 +270,7 @@ public class ReservationController {
 	public @ResponseBody List<ReservationDetial> unhandleListPageReservation(
 			HttpServletRequest request,
 			Model model,
-			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
+			@RequestParam(value = "pageSize", required = false, defaultValue = "7") int pageSize,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
 			HttpSession session) {
 		String optionStr = "where reservation.status="

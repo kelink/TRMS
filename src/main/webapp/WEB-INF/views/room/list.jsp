@@ -21,7 +21,7 @@
 
  <script type="text/javascript" >
  var pageIndex = 0;
- var pageSize = 5;
+ var pageSize = 7;
  $(function() {
  	pageIndex = 1;
  	AjaxGetData(pageIndex, pageSize);

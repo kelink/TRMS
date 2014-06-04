@@ -130,11 +130,8 @@ function getDepartmentAllteam(department_ID){
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">User Management </a>
-				 </li>
-				  <li>
-				     <a href="<%=request.getContextPath()%>/room/roommanager"class="navItem">Room Management</a>
-				 </li>
+				     <a href="<%=request.getContextPath()%>/department/index"class="navItem">Department Management </a>
+				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
 				 </li>

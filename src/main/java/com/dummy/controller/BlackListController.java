@@ -1,5 +1,7 @@
 package com.dummy.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,9 +18,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dummy.domain.BlackList;
 import com.dummy.domain.Department;
+import com.dummy.domain.Team;
 import com.dummy.service.BlackListService;
 import com.dummy.service.DepartmentService;
 import com.dummy.service.TeamService;
+
+/*****
+ * only for the administrator
+ */
 
 @Controller
 @RequestMapping("/blacklist")
@@ -34,15 +41,33 @@ public class BlackListController {
 	private TeamService teamService;
 
 	// index page of blacklist management
-	@RequestMapping(value = { "/", "", "/index" })
+	@RequestMapping(value = {"", "/", "/index"})
 	public ModelAndView index() {
-		List<Department> departments = departmentService.getAllDepartment();
+		return new ModelAndView("redirect:/blacklist/list");
+	}
+	// list the blacklist
+	@RequestMapping(value = {"/list"})
+	public ModelAndView list() {
+		List<BlackList> blacklists = blackListService.getAllBlackList();
 		ModelMap map = new ModelMap();
+		HashMap<Integer, List<String>> blackLists = new HashMap<Integer, List<String>>();
+		for (BlackList blackList : blacklists) {
+			List<String> temp = new ArrayList<String>();
+			Team team = teamService.getTeam(blackList.getTeam_ID());
+			temp.add(String.valueOf(blackList.getBl_ID()));
+			temp.add(blackList.getReason());
+			temp.add(String.valueOf(blackList.getTeam_ID()));
+			temp.add(team.getTeamName());
+			temp.add(String.valueOf(team.getUser_ID()));
+			blackLists.put(blackList.getBl_ID(), temp);
+		}
+		List<Department> departments = departmentService.getAllDepartment();
 		map.addAttribute("departments", departments);
-		return new ModelAndView("blacklist/index", map);
+		map.addAttribute("blackLists", blackLists);
+		return new ModelAndView("blacklist/list", map);
 	}
 
-	// check the teams info
+	// get the teams information
 	@RequestMapping(value = "/getTeamsByDepartment")
 	public @ResponseBody String getTeamsByDepartment(
 			@RequestParam(value = "department_ID", required = true) int department_ID,
@@ -67,6 +92,14 @@ public class BlackListController {
 		return blacklist.toString();
 	}
 
+	// get AddForm
+	@RequestMapping(value = "/getAddForm")
+	public ModelAndView getAddForm() {
+		ModelMap map = new ModelMap();
+		List<Department> departments = departmentService.getAllDepartment();
+		map.addAttribute("departments", departments);
+		return new ModelAndView("blacklist/form", map);
+	}
 	// add a blacklist
 	@RequestMapping(value = "/add")
 	public @ResponseBody String add(

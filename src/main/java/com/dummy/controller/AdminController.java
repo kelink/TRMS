@@ -44,7 +44,7 @@ public class AdminController {
 	@RequestMapping(value = "/index")
 	public ModelAndView index(
 			Model model,
-			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
+			@RequestParam(value = "pageSize", required = false, defaultValue = "7") int pageSize,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum) {
 		int recordCount = roomService.getAllRoom().size();
 		int pageCount = (recordCount + pageSize - 1) / pageSize;

@@ -18,7 +18,7 @@
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
  <script type="text/javascript" >
  var pageIndex = 0;
- var pageSize = 5;
+ var pageSize = 7;
  $(function() {
  	pageIndex = 1;
  	AjaxGetData(pageIndex, pageSize);
@@ -162,11 +162,8 @@
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">LC Management </a>
-				 </li>
-				  <li>
-				     <a href="<%=request.getContextPath()%>/room/roommanager"class="navItem">Room Management</a>
-				 </li>
+				     <a href="<%=request.getContextPath()%>/department/index"class="navItem">Department Management </a>
+				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
 				 </li>

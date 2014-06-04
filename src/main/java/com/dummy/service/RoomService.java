@@ -22,4 +22,7 @@ public interface RoomService {
 	public List<Room> getFreeRooms();
 
 	public List<JSONObject> getRoomsBydepartment(int department_ID);
+
+	public List<Room> getRoomsBydepartmentToObject(int department_ID);
+
 }

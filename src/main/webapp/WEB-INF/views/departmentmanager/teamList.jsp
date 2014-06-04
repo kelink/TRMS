@@ -12,11 +12,12 @@
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
 
 <title> BlackList Page </title>
-<link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
-<link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
-<script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+<link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/resources/css/userManagement.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" />
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
-</head>
+<script src="<%=request.getContextPath()%>/resources/js/userManagement.js" type="text/javascript"></script>
+
 </head>
 <body>
 <c:url value="/j_spring_security_logout" var="logoutUrl"/>  
@@ -56,7 +57,7 @@
 	 <div class="navigator">
 	     <div class="navContainer">
 		     <ul class="navi">
-			     <li>
+			      <li>
 				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
 				 </li>
 				 <li>
@@ -66,11 +67,8 @@
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">LC Management </a>
-				 </li>
-				  <li>
-				     <a href="<%=request.getContextPath()%>/room/roommanager"class="navItem">Room Management</a>
-				 </li>
+				     <a href="<%=request.getContextPath()%>/department/index"class="navItem">Department Management </a>
+				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
 				 </li>
@@ -80,20 +78,44 @@
 	 
 	 <div class="middle">
 	     <div class="middleContainer">
-		     <h1 class="roomList">Department List</h1>
-		     <a href="<%=request.getContextPath()%>/department/index"><h2>back</h2></a>
+		     <h1 class="roomList">User Management</h1>
 			 <div class="roomListBody">
-					<form action="<%=request.getContextPath()%>/department/add" method="post">
-						department Name:<input type="text" name="departmentName"/>
-						<input type="submit" name="submit" value="submit"/> 
-					</form>
+
+             
+			 <div id="userSearchDiv">
+			 <form method="get" action="#"target="userManagementIframe">
+			     <div id="userSearchLabel"><input type="submit" class="userSearchBtn"value="Search"><img id="searchImg" src="<%=request.getContextPath()%>/resources/images/search.png"/><span id="userSearchSpan">Search by department or user LN...</span></div>
+			     <input id="userSearchInput">
+			 </form>    
+			 </div>
+						
+						department:
+						<form action="<%=request.getContextPath()%>/team/getDetial" method="post"target="userManagementIframe">
+						<select name="department_ID">
+							<option value=""></option>
+							<c:forEach var="department" items="${departments}">	
+									<option value='${department.department_ID}'>${department.departmentName}</option>
+							</c:forEach>
+						</select>
+						<input type="submit" value="check" name="submit" />					
+				
+						</form>
+						<iframe id="userManagementIframe" name="userManagementIframe"></iframe>
+			
+					<!-- 显示信息区域 -->	
+					
+						
 			 </div>
 		 </div>
 	 </div>
-	 <div class="footer">
-	     <div class="footerContainer">
-		 </div>
-	 </div>
+	
+ </div>
+  <div id="footerContainer">
+      <div id="footer">
+          <span id="copyright"> &copy; Copyright 2014 by <a href="#">Lin Jiajian</a>&<a href="#">Luo Kelin</a></span>
+          <span><img id="hsbcIconFooter" width="30px"height="15px" src="<%=request.getContextPath() %>/resources/images/hsbcFooter.png"/></span>
+          <span id="footerWord"><a href="#">Team</a> <a href="#">Telephone</a><a href="#">Email</a><a href="#">about</a></span>
+      </div>
  </div>
 
 	

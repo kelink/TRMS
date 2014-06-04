@@ -60,20 +60,17 @@
 	     <div class="navContainer">
 		     <ul class="navi">
 			     <li>
-				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
+				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem selected">Reservation Management</a>
+				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">LC Management </a>
-				 </li>
-				  <li>
-				     <a href="<%=request.getContextPath()%>/room/roommanager"class="navItem">Room Management</a>
-				 </li>
+				     <a href="<%=request.getContextPath()%>/department/index"class="navItem">Department Management </a>
+				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
 				 </li>
@@ -107,7 +104,7 @@
 			             Precise search
 			         </div>
 			         
-			         <form action="<%=request.getContextPath()%>/reservation/reservationManagerList" method="get"target="checkRightInner">
+			         <form action="<%=request.getContextPath()%>/reservation/list" method="get"target="checkRightInner">
 			         <div id="searchDivWrapper">
 			             <div class="searchDiv">
 			             <label class="searchLabel">Reservation Num...</label>

@@ -68,4 +68,11 @@ public class Department implements Serializable {
 		this.roomSet = roomSet;
 	}
 
+	@Override
+	public String toString() {
+		return "Department [department_ID=" + department_ID
+				+ ", departmentName=" + departmentName + ", roomSet=" + roomSet
+				+ ", teamSet=" + teamSet + "]";
+	}
+
 }

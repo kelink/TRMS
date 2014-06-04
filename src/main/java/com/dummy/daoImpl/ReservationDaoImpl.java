@@ -164,7 +164,7 @@ public class ReservationDaoImpl implements ReservationDao {
 				+ "left join Room on Reservation.room_ID=Room.room_ID "
 				+ "left join DBUser on Reservation.user_ID=DBUser.user_ID "
 				+ "left join Team on  Reservation.team_ID=Team.team_ID "
-				+ optionSql + " order by reservation.order_Time desc";
+				+ optionSql;
 
 		System.out.println(hql);
 		SQLQuery query = sessionFactory.openSession().createSQLQuery(hql);
@@ -282,11 +282,12 @@ public class ReservationDaoImpl implements ReservationDao {
 				+ "left join Room on Reservation.room_ID=Room.room_ID "
 				+ "left join DBUser on Reservation.user_ID=DBUser.user_ID "
 				+ "left join Team on  Reservation.team_ID=Team.team_ID "
-				+ optionSql + " order by reservation.order_Time desc";
+				+ optionSql;
 
 		System.out.println("hql-------------------------->>>>>" + hql);
 		SQLQuery query = sessionFactory.openSession().createSQLQuery(hql);
-		int offSet = (pageNum - 1) * pageSize >= 0 ? (pageNum - 1) * pageSize
+		int offSet = (pageNum - 1) * pageSize >= 0
+				? (pageNum - 1) * pageSize
 				: 0;
 		query.setFirstResult(offSet);// begin index
 		query.setMaxResults(pageSize);// size of recorder

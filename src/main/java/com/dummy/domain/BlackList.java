@@ -45,4 +45,10 @@ public class BlackList {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+
+	@Override
+	public String toString() {
+		return "BlackList [bl_ID=" + bl_ID + ", team_ID=" + team_ID
+				+ ", reason=" + reason + "]";
+	}
 }

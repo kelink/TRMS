@@ -56,7 +56,7 @@
 	 <div class="navigator">
 	     <div class="navContainer">
 		     <ul class="navi">
-			     <li>
+			       <li>
 				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
 				 </li>
 				 <li>
@@ -66,11 +66,8 @@
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">LC Management </a>
-				 </li>
-				  <li>
-				     <a href="<%=request.getContextPath()%>/room/roommanager"class="navItem">Room Management</a>
-				 </li>
+				     <a href="<%=request.getContextPath()%>/department/index"class="navItem">Department Management </a>
+				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
 				 </li>
@@ -81,16 +78,21 @@
 	 <div class="middle">
 	     <div class="middleContainer">
 		     <h1 class="roomList">Department List</h1>
-		     <a href="<%=request.getContextPath()%>/department/add"><h2>add</h2></a>
+		     <a href="<%=request.getContextPath()%>/department/index"><h2>back</h2></a>
 			 <div class="roomListBody">
-						departments
+			 		<h1>departments information:</h1>
 						<c:forEach items="${departments}" var="department">
-							${department.departmentName}---->${department.department_ID}<br/>
-							<a href="<%=request.getContextPath()%>/department/edit?department_ID=${department.department_ID}">edit</a>
-							<a href="<%=request.getContextPath()%>/department/delete?department_ID=${department.department_ID}">delete</a>
+							${department.departmentName}---->${department.department_ID}<br/>						
+							<a href="<%=request.getContextPath()%>/department/update?department_ID=${department.department_ID}">update department</a>
+							<a href="<%=request.getContextPath()%>/department/delete?department_ID=${department.department_ID}">delete department</a>
 							<hr/>
 						</c:forEach>
 						 ${departments }
+			 	
+					<form action="<%=request.getContextPath()%>/department/addDepartment" method="post">
+						department Name:<input type="text" name="departmentName"/>
+						<input type="submit" name="submit" value="submit"/> 
+					</form>
 			 </div>
 		 </div>
 	 </div>

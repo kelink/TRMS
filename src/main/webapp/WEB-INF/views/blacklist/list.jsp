@@ -46,9 +46,7 @@ function getDepartmentAllteam(department_ID){
 			}			
          },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			//alert(XMLHttpRequest);
-			//alert(textStatus);
-			//alert(errorThrown);
+			alert("error");
 		}
 	});
 }
@@ -88,6 +86,11 @@ function updateBlackList(bl_ID){
 	$("#hidden").after("<input type='submit' value='update' /></form>");
 	
 }
+
+function addBlackList(){
+	var team_ID=$("#teams").val();
+}
+
 
 </script>
 </head>
@@ -131,20 +134,17 @@ function updateBlackList(bl_ID){
 	     <div class="navContainer">
 		     <ul class="navi">
 			     <li>
-				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
+				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem selected">BlackList Management</a>
+				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">LC Management </a>
-				 </li>
-				  <li>
-				     <a href="<%=request.getContextPath()%>/room/roommanager"class="navItem">Room Management</a>
-				 </li>
+				     <a href="<%=request.getContextPath()%>/department/index"class="navItem">Department Management </a>
+				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
 				 </li>
@@ -156,7 +156,8 @@ function updateBlackList(bl_ID){
 	     <div class="middleContainer">
 		     <h1 class="roomList">BlackList List</h1>
 			 <div class="roomListBody">
-			 	<h1>黑名单管理界面</h1>
+			 		
+					<h1>黑名单管理界面</h1>
 				<h3>传入的是部门信息，当点击部门的时候,显示出选择team的框，会ajax调用获取team信息，
 				当点击选中team后会ajax 查新当前的黑名单情况，可以同时选择多个team进行blacklist的管理
 				接口已经定义</h3>				
@@ -171,12 +172,29 @@ function updateBlackList(bl_ID){
 					<select name="team_ID" id="teams">
 						<option value=""></option>
 					</select>
-					<button name="checkBtn" id="checkBtn" onClick="displayBlackList()">check</button>					
+					<button name="checkBtn" id="checkBtn" onClick="displayBlackList()">check</button>
+					<button name="deleteBtn" id="addBtn" onClick="addBlackList()">add</button>					
 					<button name="deleteBtn" id="deleteBtn" onClick="deleteBlackList()">delete</button>
 					<hr/>
+					
+					
+					<!-- 进来时默认显示全部的黑名单 -->
+					<div id="blacklistArea">
+					<h1>黑名单information</h1>
+					<c:forEach items="${blackLists}" var="blacklist">
+						blackList ID:${blacklist.value[0]}<br/>
+						blackList Reason:${blacklist.value[1]}<br/>
+						blackList team_ID:${blacklist.value[2]}	<br/>
+						blackList TeamName:${blacklist.value[3]}<br/>	
+						blackList LCName:${blacklist.value[4]}	<br/>						
+						<a href="">edit</a>
+						<button onClick="deleteBlackList(${blacklist.value[0]})">delete</button>
+						<hr/>
+					</c:forEach>
+					</div>
 					<!-- 显示信息区域 -->	
 					<div id="display"></div>
-						
+					
 			 </div>
 		 </div>
 	 </div>

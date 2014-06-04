@@ -71,4 +71,9 @@ public class RoomServiceImpl implements RoomService {
 		}
 		return result;
 	}
+
+	@Override
+	public List<Room> getRoomsBydepartmentToObject(int department_ID) {
+		return roomDao.getRoomsBydepartment(department_ID);
+	}
 }

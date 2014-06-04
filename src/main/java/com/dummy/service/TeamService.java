@@ -19,7 +19,9 @@ public interface TeamService {
 
 	public List<JSONObject> getTeamsByDepartment(int department_ID);
 
-	public List<Team> getTeamByUserDepartment(int user_ID, int partment_ID);
+	public List<Team> getTeamByUserDepartment(int user_ID, int department_ID);
+
+	public List<Team> getTeamsByDepartmentToObject(int department_ID);
 
 	public boolean delTeamByUser(int user_ID);
 

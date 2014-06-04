@@ -42,7 +42,7 @@ public class TeamController {
 	 * for administrator
 	 *********************************/
 	// user manager index page
-	@RequestMapping(value = { "/", "", "/index" })
+	@RequestMapping(value = {"/", "", "/index"})
 	public ModelAndView index() {
 		List<Department> departments = departmentService.getAllDepartment();
 		ModelMap map = new ModelMap();
@@ -51,7 +51,7 @@ public class TeamController {
 	}
 
 	// get the user and the team that he/she manager
-	@RequestMapping(value = { "/getDetial" })
+	@RequestMapping(value = {"/getDetial"})
 	public ModelAndView getDetial(
 			HttpSession session,
 			@RequestParam(value = "department_ID", required = true) int department_ID) {
@@ -74,7 +74,7 @@ public class TeamController {
 	}
 
 	// 添加LC （对每一个部门，都只能选择本部门的team ，且只能为本部门里面的user 角色为LC 的用户添加）
-	@RequestMapping(value = { "/getUserAddForm" })
+	@RequestMapping(value = {"/getUserAddForm"})
 	public ModelAndView getUserAddForm() {
 		List<Department> departments = departmentService.getAllDepartment();
 		ModelMap map = new ModelMap();
@@ -83,7 +83,7 @@ public class TeamController {
 	}
 
 	// Ajax to get user of department
-	@RequestMapping(value = { "/getDepartmentAllCommontUser" })
+	@RequestMapping(value = {"/getDepartmentAllCommontUser"})
 	public @ResponseBody String getDepartmentAllCommontUser(
 			@RequestParam(value = "department_ID", required = true) int department_ID) {
 		System.out
@@ -95,7 +95,7 @@ public class TeamController {
 	}
 
 	// Ajax to get team of department
-	@RequestMapping(value = { "/getDepartmentAllteam" })
+	@RequestMapping(value = {"/getDepartmentAllteam"})
 	public @ResponseBody String getDepartmentAllteam(
 			@RequestParam(value = "department_ID", required = true) int department_ID) {
 
@@ -107,9 +107,9 @@ public class TeamController {
 		return teamList.toString();
 	}
 
-	// add LC from team
-	@RequestMapping(value = { "/add" })
-	public ModelAndView add(
+	// add LC for team
+	@RequestMapping(value = {"/addUser"})
+	public ModelAndView addUser(
 			HttpSession session,
 			@RequestParam(value = "department_ID", required = true) int department_ID,
 			@RequestParam(value = "user_ID", required = true) int user_ID,
@@ -128,9 +128,9 @@ public class TeamController {
 		return null;
 	}
 
-	// delete LC from team
-	@RequestMapping(value = { "/delete" })
-	public @ResponseBody String delete(
+	// delete LC for team
+	@RequestMapping(value = {"/delete"})
+	public @ResponseBody String deleteUser(
 			@RequestParam(value = "user_ID", required = true) int user_ID,
 			HttpSession session) {
 		boolean isOK = teamService.delTeamByUser(user_ID);
