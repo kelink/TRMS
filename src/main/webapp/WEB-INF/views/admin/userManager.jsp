@@ -78,31 +78,29 @@
 	 
 	 <div class="middle">
 	     <div class="middleContainer">
-		     <h1 class="roomList">Team Management</h1>
-			 <div class="roomListBody">
 
-             
 			 <div id="userSearchDiv">
-			 <form method="get" action="#"target="userManagementIframe">
-			     <div id="userSearchLabel"><input type="submit" class="userSearchBtn"value="Search"><img id="searchImg" src="<%=request.getContextPath()%>/resources/images/search.png"/><span id="userSearchSpan">Search by department or user LN...</span></div>
-			     <input id="userSearchInput">
-			 </form>    
-			 </div>
-						
-						department:
-						<form action="<%=request.getContextPath()%>/team/getDetial" method="post"target="userManagementIframe">
-						<select name="department_ID">
-							<option value=""></option>
-							<c:forEach var="department" items="${departments}">	
-									<option value='${department.department_ID}'>${department.departmentName}</option>
-							</c:forEach>
-						</select>
-						<input type="submit" value="check" name="submit" />					
-				
-						</form>
-						<iframe id="userManagementIframe" name="userManagementIframe"></iframe>
 			
-					<!-- 显示信息区域 -->	
+			     <div id="userSearchLabel"><img id="searchImg" src="<%=request.getContextPath()%>/resources/images/search.png"/><span id="userSearchSpan">Search by user LN...</span></div>
+			     
+			     <input id="userSearchInput">
+			    
+			 </div>
+			  <div id="checkLeftPanel">
+			      <!-- handle  begin -->
+					 <div id="allDepartment" class="checkMethod selected">
+			             All Department
+			         </div>
+			         <div id="seperateLine">
+			         </div>
+			         <div id="departmentWrapper"></div>
+			  </div>
+		      <div id="userDisplay">
+<!-- 		      <p id="defaultInfo">No user information to show</p> -->
+		      <div id="displayArea"></div>
+		      </div>			
+
+
 					
 						
 			 </div>

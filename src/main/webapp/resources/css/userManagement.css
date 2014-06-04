@@ -2,7 +2,11 @@
 {
     overflow:hidden;
     position:relative;
-    height: 90px;
+    height: 56px;
+}
+.roomListBodyUserManagement
+{
+	min-height: 533px;
 }
 #userSearchInput
 {
@@ -11,7 +15,7 @@ top: 1px;
 left: 1px;
 background: transparent;
 	float: left;
-width: 80%;
+width: 99%;
 border-radius: 19px;
 border: 1px solid #cccccc;
 padding: 7px;
@@ -81,4 +85,56 @@ user-select: none;
 	height: 600px;
 width: 100%;
 border: none;
+}
+#userDisplay
+{
+	background:#f5f5f5;
+float: right;
+width: 75%;
+padding: 18px;
+margin-right: 21px;
+}
+#checkLeftPanel
+{
+ 
+	border-radius: 3px;
+	position:relative;
+	padding-left:10px;
+	padding-right:10px;
+	width:21%;
+	float:left;
+
+padding-top: 0px;
+padding-bottom: 10px;
+overflow:hidden;
+}
+.checkMethod.selected
+{
+	color: #fff;
+    background: #4183c4 !important;
+    border-radius: 3px;
+
+}
+
+.checkMethod
+{
+	padding:8px 10px;
+	margin:0px 0px 5px;
+	font-size:14px;
+
+    
+	color: #777;
+	cursor:pointer;
+}
+#seperateLine
+{
+		border-top:1px solid #ddd;
+	margin: 10px 0px 10px 0px;
+}
+#defaultInfo
+{
+	padding: 30px 20px;
+	color:#999;
+	text-align: center;
+font-size: 15px;
 }
