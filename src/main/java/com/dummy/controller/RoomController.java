@@ -40,7 +40,6 @@ import com.dummy.service.RoomService;
 import com.dummy.service.TeamService;
 import com.dummy.service.UserService;
 import com.dummy.util.ReservationUtil;
-import com.dummy.util.mail.MailSender;
 
 @Controller
 @SessionAttributes({"currentUser"})
@@ -235,13 +234,13 @@ public class RoomController {
 			System.out.println(reservation);
 			map.addAttribute("reservation_Num", reservation_Num);
 			// 3.Send Email
-			List<DBUser> admins = userService
-					.getUserByRole(C.DB.DEFAULT_ROLE_TA);
-			List<String> toAddressList = new ArrayList<String>();
-			for (DBUser dbUser : admins) {
-				toAddressList.add(dbUser.getAccount());
-				MailSender.sendEmailToAllAdmin(toAddressList, null, null);
-			}
+			// List<DBUser> admins = userService
+			// .getUserByRole(C.DB.DEFAULT_ROLE_TA);
+			// List<String> toAddressList = new ArrayList<String>();
+			// for (DBUser dbUser : admins) {
+			// toAddressList.add(dbUser.getAccount());
+			// MailSender.sendEmailToAllAdmin(toAddressList, null, null);
+			// }
 
 			// 4.add reservation
 			reservationService.addReservation(reservation);

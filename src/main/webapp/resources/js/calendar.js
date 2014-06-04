@@ -228,7 +228,6 @@ function setDate(year, month, day) {
 			// Team2","user_ID":"1","team_ID":"8","department_ID":"2"},{"teamName":"GLTC
 			// Team1","user_ID":"1","team_ID":"9","department_ID":"4"}]}
 
-			alert(json.roomList[0].room_ID);
 			var roomOption = window.top.document.getElementById("roomOption");
 			var time1 = window.top.document.getElementById("begin_time");
 			var time2 = window.top.document.getElementById("end_time");
@@ -246,7 +245,6 @@ function setDate(year, month, day) {
 			var b = window.top.document.getElementById("cover");
 			a.setAttribute("class", "floatTicket");
 			b.setAttribute("class", "cover");
-			alert("" + json.teamList.length);
 			var teams = "<option></option>";
 			for (var k = 0; k < json.teamList.length; k++) {
 				teams += "<option ";
