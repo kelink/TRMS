@@ -1,6 +1,7 @@
 package com.dummy.controller;
 
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -67,6 +68,80 @@ public class TeamController {
 //         writer.close();
 //	}
 
+	//lc管理页面初始化
+	@RequestMapping("getBoot")
+	public void getBoot(PrintWriter writer){
+		String result="";
+		List<Department> departments=departmentService.getAllDepartment();
+		Iterator iterator=departments.iterator();
+		result+="{\"result\":[";
+		int n=0;
+		while(iterator.hasNext())
+		{
+			
+			Department departmentItem=(Department)iterator.next();
+			int department_ID=departmentItem.getDepartment_ID();
+			System.out.println(department_ID);//输出departmentId
+			Department department=departmentService.getDepartment(department_ID);
+			List<DBUser> userList = userService.getUserByDepartment(department_ID);
+			
+			
+			
+			for (DBUser dbUser : userList) {
+				System.out.println(dbUser.getUser_ID());//输出userId
+				
+				///////////取得user对象///////////////
+				if(n==0)
+				{
+				
+					result+="{";
+				}
+				else {
+					result+=",{";
+				}
+				result+="\"departmentName\":\""+department.getDepartmentName()+"\",";
+				result+="\"lcAccount\":\""+dbUser.getAccount()+"\",";
+				result+="\"tele\":\""+dbUser.getTele()+"\",";
+				
+				
+				
+				List<Team> teams = teamService.getTeamByUserDepartment(
+						dbUser.getUser_ID(), department_ID);//取出该department下某个user对应的team
+				Iterator iter=teams.iterator();
+				
+				///////////////取得该department下user对象对应的多个team///////////////
+				result+="\"teams\":";
+				result+="[";
+				int k=0;
+				while(iter.hasNext())
+				{
+					
+					Team team=(Team)iter.next();
+					System.out.println(team.getTeamName());
+					if(k==0)
+					{
+						result+="\""+team.getTeamName()+"\"";
+					}
+					else {
+						result+=",\""+team.getTeamName()+"\"";
+					}
+					
+					k++;
+				}
+				result+="]";
+				result+="}";
+				n++;
+			}
+			
+	        
+		}
+		result+="]}";
+		System.out.println(result);
+		writer.write(result);
+		writer.flush();
+		writer.close();
+	}
+	
 	@RequestMapping(value = { "/getDetail" })
 	public void getDetial(PrintWriter writer,String searchWord,
 			HttpSession session) {
