@@ -60,7 +60,7 @@ function boot()
             	  temp1=json.result[i].departmentName;
             	  if(repeat1==temp1)
             		  {
-            		      userInfo+="<div>"+json.result[i].lcAccount+json.result[i].tele+json.result[i].teams[0]+json.result[i].teams[1]+"</div>";
+            		      userInfo+="<div>"+json.result[i].departmentName+json.result[i].lcAccount+json.result[i].tele+json.result[i].teams[0]+json.result[i].teams[1]+"</div>";
             		      turn=true;
             		      continue;
             		  }
@@ -76,7 +76,7 @@ function boot()
             		  }
             	  end=true;
             	  userInfo+="<div id=\"displayArea"+count1+"\">";
-            	  userInfo+="<div>"+json.result[i].lcAccount+json.result[i].tele+json.result[i].teams[0]+json.result[i].teams[1]+"</div>";
+            	  userInfo+="<div>"+json.result[i].departmentName+json.result[i].lcAccount+json.result[i].tele+json.result[i].teams[0]+json.result[i].teams[1]+"</div>";
             	  repeat1=temp1;
             	  count1++;
               }
@@ -94,7 +94,7 @@ function boot()
               	$("#"+i).bind("mouseout",function(){
               		$(this).css("background","white");
               	});
-              	alert(i);
+              	
             
               	$("#"+i).bind("click",function(){
               	    $("#displayArea"+$(this).attr("id")).css("display","block");

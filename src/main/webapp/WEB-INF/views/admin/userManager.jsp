@@ -102,7 +102,7 @@
 			         <div id="departmentWrapper"></div>
 			  </div>
 		      <div id="userDisplay">
-		      <p id="defaultInfo">No user information to show</p>
+<!-- 		      <p id="defaultInfo">No user information to show</p> -->
 		      <div id="displayArea"></div>
 		      </div>			
 
