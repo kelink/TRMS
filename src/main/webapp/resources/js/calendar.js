@@ -249,6 +249,7 @@ function setDate(year,month,day)
 		    roomOption.innerHTML=json.roomItem;
 		    time1.setAttribute("value",json.selectDate);
 		    time2.setAttribute("value",json.selectDate);
+		    
 			close.setAttribute("onclick","back("+json.roomId+")");
 			
 			
