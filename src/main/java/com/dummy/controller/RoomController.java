@@ -81,7 +81,7 @@ public class RoomController {
 			month = "0" + month;
 		}
 		if (day.length() == 1) {
-			month = "0" + month;
+			day = "0" + day;
 		}
 		String select_date = year + "-" + month + "-" + day;
 		Room room = roomService.getRoom(room_ID);
@@ -132,6 +132,8 @@ public class RoomController {
 		result.put("teamList", teamList);
 
 		JSONObject resultJsonObject = new JSONObject(result);
+		System.out.println("resultJsonObject.toString()-------------->>>"
+				+ resultJsonObject.toString());
 		return resultJsonObject.toString();
 
 	}
