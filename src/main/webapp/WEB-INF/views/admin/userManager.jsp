@@ -79,6 +79,13 @@
 	 <div class="middle">
 	     <div class="middleContainer">
 
+		 
+
+		     <h1 class="roomList">User Management</h1>
+			 <div class="roomListBody roomListBodyUserManagement">
+
+
+             
 			 <div id="userSearchDiv">
 			
 			     <div id="userSearchLabel"><img id="searchImg" src="<%=request.getContextPath()%>/resources/images/search.png"/><span id="userSearchSpan">Search by user LN...</span></div>

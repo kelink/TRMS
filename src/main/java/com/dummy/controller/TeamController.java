@@ -288,7 +288,6 @@ public class TeamController {
 	// map.addAttribute("teamMap", teamMap);//每个user_id对应一个teams list包含多个team
 	// System.out.println(map);
 	// return new ModelAndView("admin/userManagerForm", map);
-	// }
 
 	// 添加LC （对每一个部门，都只能选择本部门的team ，且只能为本部门里面的user 角色为LC 的用户添加）
 	@RequestMapping(value = {"/getUserAddForm"})

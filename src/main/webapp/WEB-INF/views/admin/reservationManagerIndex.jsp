@@ -175,7 +175,7 @@
 			         </form>
 			     </div>
 			     <div id="checkRightPanel">
-			         <iframe id="checkRightInner" src="<%=request.getContextPath()%>/reservation/reservationManagerList" >
+			         <iframe id="checkRightInner" name="checkRightInner" src="<%=request.getContextPath()%>/reservation/reservationManagerList" >
 			         </iframe>			     
 			     </div>		 
 			 </div>
