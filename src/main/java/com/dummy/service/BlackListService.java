@@ -18,4 +18,7 @@ public interface BlackListService {
 	public boolean updateBlackList(BlackList blackList);
 
 	public JSONObject getBlackListByTeam(int team_ID);
+
+	public BlackList getBlackListByTeamToObject(int team_ID);
+
 }

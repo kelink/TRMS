@@ -245,7 +245,7 @@ function setDate(year, month, day) {
 			var b = window.top.document.getElementById("cover");
 			a.setAttribute("class", "floatTicket");
 			b.setAttribute("class", "cover");
-			var teams = "<option></option>";
+			var teams = "<option id='empty'></option>";
 			for (var k = 0; k < json.teamList.length; k++) {
 				teams += "<option ";
 				teams += "value=\"" + json.teamList[k].team_ID + "\"";
@@ -261,5 +261,4 @@ function setDate(year, month, day) {
 			alert('failed');
 		}
 	});
-
 }

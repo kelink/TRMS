@@ -59,4 +59,9 @@ public class BlackListServiceImpl implements BlackListService {
 		map.put("team_ID", String.valueOf(blackList.getTeam_ID()));
 		return new JSONObject(map);
 	}
+
+	@Override
+	public BlackList getBlackListByTeamToObject(int team_ID) {
+		return blackListDao.getBlackListByTeam(team_ID);
+	}
 }

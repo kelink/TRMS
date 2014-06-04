@@ -111,6 +111,34 @@
  		}
  	}
  }
+	// 检验是否属于黑名单
+	$(document).ready(function() {
+		$("#teams").change(function() {
+			 var team_ID = $("#teams").val();
+			 if (team_ID == "") {
+			 return false;
+			 }			
+			 isInBlackList(team_ID);
+		});
+	});
+	function isInBlackList(team_ID) {
+		$.ajax({
+			url : "<%=request.getContextPath()%>/room/isInBlackList",
+			type : "Get",
+			data : "team_ID=" + team_ID,
+			dataType : "html",
+			success : function(json) {
+				
+				if(json!=""){
+					alert(json);
+					$("#empty").attr("selected","selected");
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {			
+				alert("error");
+			}
+		});
+	}
 
  </script>
 </head>
@@ -174,7 +202,7 @@
 	     <div class="middleContainer">
 		     <h1 class="roomList">Room List</h1>
 			 <div class="roomListBody">
-			     
+			     <iframe id="bookRoomResult" name="bookRoomResult"></iframe>
 			     <div id="floatTicket">
 			         <div class="panelHeader">
                          <span id="headerText">Fill in the form</span>
@@ -182,7 +210,7 @@
 
                      </div>
 
-                     <form class="bookForm" action="<%=request.getContextPath()%>/room/bookRoom" method="post" name="bookForm" onsubmit="return isEmpty()">
+                     <form class="bookForm" action="<%=request.getContextPath()%>/room/bookRoom" method="post" name="bookForm" onsubmit="return isEmpty()" target="bookRoomResult">
 
                          <div class="bookFormLabel">Free Room</div>
                          <select class="bookFormInput" name="room_ID"> 

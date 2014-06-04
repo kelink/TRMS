@@ -190,65 +190,72 @@ public class RoomController {
 			@RequestParam(value = "purpose", required = true) String purpose,
 			@ModelAttribute("currentUser") DBUser currentUser) {
 		ModelMap map = new ModelMap();
-		// 1.whether is in the blacklist
-		BlackList blacklist = blackListService.getBlackList(team_ID);
-		if (blacklist != null) {
-			map.addAttribute("blacklist", blacklist);
-			return new ModelAndView("room/fail", map);
-		} else {
-			DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-			Date beginDate = null;
-			Date endDate = null;
-			Date nowDate = null;
-			try {
-				beginDate = (Date) format1.parse(begin_time);
-				endDate = (Date) format1.parse(end_time);
-				String now = format1.format(new java.util.Date());
-				nowDate = (Date) format1.parse(now);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			// 2. create a reservation
-			Reservation reservation = new Reservation();
-			String reservation_Num = ReservationUtil.getUniqueSequence();
 
-			reservation.setApplied_End_Date(endDate);
-			reservation.setApplied_Start_Date(beginDate);
-			reservation.setEmail(email);
-			reservation.setOrder_Time(nowDate);
-			reservation.setPurpose(purpose);
-			reservation.setRoom_ID(room_ID);
-			reservation.setTeam_ID(team_ID);
-			reservation.setUser_ID(currentUser.getUser_ID());
-			reservation.setTele(tele);
-			reservation.setReservation_Num(reservation_Num);
-
-			if (session.getAttribute("currentRole").equals("ROLE_LC")) {
-				reservation.setHandle_by(C.DB.DEFAULT_APPROVE_BY);
-				reservation.setStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
-			} else if (session.getAttribute("currentRole").equals("ROLE_TA")) {
-				reservation.setHandle_by(currentUser.getUser_ID());
-				reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
-			}
-
-			System.out.println(reservation);
-			map.addAttribute("reservation_Num", reservation_Num);
-			// 3.Send Email
-			// List<DBUser> admins = userService
-			// .getUserByRole(C.DB.DEFAULT_ROLE_TA);
-			// List<String> toAddressList = new ArrayList<String>();
-			// for (DBUser dbUser : admins) {
-			// toAddressList.add(dbUser.getAccount());
-			// MailSender.sendEmailToAllAdmin(toAddressList, null, null);
-			// }
-
-			// 4.add reservation
-			reservationService.addReservation(reservation);
-			return new ModelAndView("room/success", map);
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date beginDate = null;
+		Date endDate = null;
+		Date nowDate = null;
+		try {
+			beginDate = (Date) format1.parse(begin_time);
+			endDate = (Date) format1.parse(end_time);
+			String now = format1.format(new java.util.Date());
+			nowDate = (Date) format1.parse(now);
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
+		// 1. create a reservation
+		Reservation reservation = new Reservation();
+		String reservation_Num = ReservationUtil.getUniqueSequence();
+
+		reservation.setApplied_End_Date(endDate);
+		reservation.setApplied_Start_Date(beginDate);
+		reservation.setEmail(email);
+		reservation.setOrder_Time(nowDate);
+		reservation.setPurpose(purpose);
+		reservation.setRoom_ID(room_ID);
+		reservation.setTeam_ID(team_ID);
+		reservation.setUser_ID(currentUser.getUser_ID());
+		reservation.setTele(tele);
+		reservation.setReservation_Num(reservation_Num);
+
+		if (session.getAttribute("currentRole").equals("ROLE_LC")) {
+			reservation.setHandle_by(C.DB.DEFAULT_APPROVE_BY);
+			reservation.setStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
+		} else if (session.getAttribute("currentRole").equals("ROLE_TA")) {
+			reservation.setHandle_by(currentUser.getUser_ID());
+			reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
+		}
+
+		System.out.println(reservation);
+		map.addAttribute("reservation_Num", reservation_Num);
+		// 3.Send Email
+		// List<DBUser> admins = userService
+		// .getUserByRole(C.DB.DEFAULT_ROLE_TA);
+		// List<String> toAddressList = new ArrayList<String>();
+		// for (DBUser dbUser : admins) {
+		// toAddressList.add(dbUser.getAccount());
+		// MailSender.sendEmailToAllAdmin(toAddressList, null, null);
+		// }
+
+		// 4.add reservation
+		reservationService.addReservation(reservation);
+		return new ModelAndView("room/success", map);
 
 	}
 
+	// 判断是否属于黑名单
+	@RequestMapping("/isInBlackList")
+	public @ResponseBody String isInBlackList(
+			@RequestParam(value = "team_ID", required = true) int team_ID) {
+		System.out.println("接收到的team_ID------》" + team_ID);
+		BlackList blacklist = blackListService
+				.getBlackListByTeamToObject(team_ID);
+		if (blacklist != null) {
+			return "team is in the blackList,Please Contact Administrator";
+		} else {
+			return "";
+		}
+	}
 	// get add reservation
 	@RequestMapping("/getAllReservation")
 	public List<Reservation> getAllReservation(HttpServletResponse response) {

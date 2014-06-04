@@ -166,7 +166,8 @@ public class ReservationController {
 
 	// Update the unhandled(处理TA尚且没处理的订单)reservation
 	@RequestMapping(value = {"/update"})
-	public ModelAndView update(HttpServletRequest request, HttpSession session) {
+	public @ResponseBody String update(HttpServletRequest request,
+			HttpSession session) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date Applied_Start_Date = null;
 		Date Applied_End_Date = null;
@@ -180,29 +181,32 @@ public class ReservationController {
 
 			e.printStackTrace();
 		}
-
-		int reservation_ID = Integer.parseInt(request
-				.getParameter("reservation_ID"));
 		String email = request.getParameter("email");
 		String tele = request.getParameter("tele");
 		String purpose = request.getParameter("purpose");
+		String reservationStr = request.getParameter("reservation_ID");
+
+		if (reservationStr == null || reservationStr.length() == 0) {
+			return "request error, no reservation need to update";
+		}
+		int reservation_ID = Integer.parseInt(reservationStr);
 
 		Reservation reservation = reservationService
 				.getReservation(reservation_ID);
-
+		if (reservation.getStatus() != C.DB.DEFAULT_RESERVATION_UNHANDLE) {
+			return " reservation have been handle,Please Check";
+		}
 		reservation.setApplied_Start_Date(Applied_Start_Date);
 		reservation.setApplied_End_Date(Applied_End_Date);
 		reservation.setEmail(email);
 		reservation.setTele(tele);
 		reservation.setPurpose(purpose);
 		if (reservationService.updateReservation(reservation)) {
-			System.out.println("update success!");
+			return "update success!";
 		} else {
-			System.out.println("update fail");
+			return "update fail";
 		}
-		return null;
 	}
-
 	// get the view of delete
 	@RequestMapping(value = {"/delete"})
 	public ModelAndView delete(HttpServletRequest request) {
