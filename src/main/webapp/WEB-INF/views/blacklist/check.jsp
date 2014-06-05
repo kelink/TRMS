@@ -70,6 +70,7 @@ function displayBlackList(){
 			$("#updateForm").append("<p>teamName"+teamName+"</p>");
 			$("#updateForm").append("reason:<textarea id='reason_area' readonly='readonly' name='reason'>"+json.reason+"</textarea>");
 			$("#updateForm").append("<button name='updateBlackListBtn' id='updateBlackListBtn' onClick='updateBlackList("+json.bl_ID+")'>edit</button>");
+			$("#updateForm").append("<button name='deleteBlackListBtn' id='deleteBlackListBtn' onClick='deleteBlackList("+json.bl_ID+")'>delete</button>");			
 			$("#updateForm").append("</form>");
          },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -84,23 +85,33 @@ function updateBlackList(bl_ID){
 	$("#updateForm").attr('action','<%=request.getContextPath()%>/blacklist/update');
 	$("#reason_area").after("<input id='hidden' type='hidden' name='bl_ID' value='"+bl_ID+"'/>");
 	$("#hidden").after("<input type='submit' value='update' /></form>");
+	window.location.reload();//刷新当前界面
+}
+
+function deleteBlackList(bl_ID){
+	$.ajax({
+		url : "<%=request.getContextPath()%>/blacklist/delete",
+		type : "Get",
+		data : "bl_ID=" + bl_ID,
+		success : function(json) {
+			alert("test"+json);
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			$("#display").empty();
+			alert("error");
+		}
+	});	
+	window.location.reload();//刷新当前界面
 	
 }
 
-function addBlackList(){
-	var team_ID=$("#teams").val();
-}
 
 
 </script>
 </head>
 </head>
-<body>	 
-	 <div class="middle">
-	     <div class="middleContainer">
-		     <h1 class="roomList">Add BlackList</h1>
-			 <div class="roomListBody">
-					<form action="<%=request.getContextPath()%>/blacklist/add" method="post">					
+<body>	
+					<h1>黑名单管理界面</h1>							
 					departments
 					<select name="departments" id="departments">
 						<option value=""></option>
@@ -112,17 +123,11 @@ function addBlackList(){
 					<select name="team_ID" id="teams">
 						<option value=""></option>
 					</select>
-					Reason
-					<textarea id="reason" name="reason"></textarea>
-					<input type="submit" name="submit" value="submit"/>
-					</form>
+					<button name="checkBtn" id="checkBtn" onClick="displayBlackList()">check</button>				
 					<hr/>
 					<!-- 显示信息区域 -->	
 					<div id="display"></div>
-					
-			 </div>
-		 </div>
-	 </div>	
+	
 </body>
 </body>
 </html>

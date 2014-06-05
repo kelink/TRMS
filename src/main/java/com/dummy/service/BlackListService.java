@@ -21,4 +21,6 @@ public interface BlackListService {
 
 	public BlackList getBlackListByTeamToObject(int team_ID);
 
+	public boolean isInBlackaList(int team_ID);
+
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dummy.common.C;
 import com.dummy.domain.DBUser;
 import com.dummy.domain.Department;
 import com.dummy.domain.Role;
@@ -53,7 +54,12 @@ public class profileController {
 		map.addAttribute("department", department);
 		map.addAttribute("role", role);
 		map.addAttribute("gender", gender);
-		return new ModelAndView("user/profile", map);
+		if (currentUser.getAccess() == C.DB.DEFAULT_ROLE_TA) {
+			return new ModelAndView("admin/profile", map);
+		} else {
+			return new ModelAndView("user/profile", map);
+		}
+
 	}
 	// check old password
 	@RequestMapping(value = "/checkOldPwd")

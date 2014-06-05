@@ -53,7 +53,7 @@ function isEdit(){
 		<div id="btnWrapper">
 
 		<input class="btnUpdate" type="submit"name="submit"id="btnUpdate"" value="update"/>
-		<a class="btnDelete" href="<%=request.getContextPath()%>/reservation/delete?reservation_ID=${reservation.reservation_ID}">delete</a>
+		<a class="btnDelete" href="<%=request.getContextPath()%>/reservation/deleteByID?reservation_ID=${reservation.reservation_ID}">delete</a>
 		</div>
 		</form>
         </div>

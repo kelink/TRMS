@@ -86,8 +86,8 @@ function AjaxGetData(index, size) {
 						
 						html+=("handler_by:"+handler_by+"<br/>");
 						
-						html+=("<div class='btnUpdate' name='approveBtn' id='approveBtn' onclick=' checkApproveRejectBtn(0)'>approve</div>");
-						html+=("<div class='btnDelete' name='rejectBtn' id='rejectBtn' onclick=' checkApproveRejectBtn(1)'>reject</div>");
+						html+=("<div class='btnUpdate' name='approveBtn' id='approveBtn' onclick=' checkApproveRejectBtn(0,"+reservation_ID+")'>approve</div>");
+						html+=("<div class='btnDelete' name='rejectBtn' id='rejectBtn' onclick=' checkApproveRejectBtn(1,"+reservation_ID+")'>reject</div>");
 						
 						html+=("</div>");
 
@@ -154,11 +154,82 @@ function GoToAppointPage(e) {
 	}
 }
 
-function checkApproveRejectBtn(args){
-	if(args=="1")
-		alert("test");
-	if(args=='0')
-		alert("2");
+function checkCheckbox(args){
+	//判断是否已经选择
+	var  box = new Array(); 
+	if($("input[name='checkbox']:checkbox:checked").length>0){	   
+	    $("input[name='checkbox']:checkbox:checked").each(function(){
+	    	box.push($(this).val());  
+	    	//box += $(this).val()+',';
+	    }); 
+	    alert(box);
+	 }else{
+	    alert('You do not choose an item');
+	    return false;
+	}
+	//ajax to approve or reject seleted reservation
+	
+	if(args=="0")
+		//approve 
+		$.ajax({
+				url : "<%=request.getContextPath()%>/reservation/approveReservations",
+				type : "get",
+				data:'checkbox='+box,  		
+				dataType : "html",
+				success : function(json) {
+					alert(json);
+		        },
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("error");
+				}
+			});
+	//reject
+	if(args=='1')
+		$.ajax({
+			url : "<%=request.getContextPath()%>/reservation/rejectReservations",
+			type : "get",
+			data:'checkbox='+box, 
+			dataType : "html",
+			success : function(json) {
+				alert(json);
+	        },
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("error");
+			}
+		});
+	return false;
+	
+}
+
+function checkApproveRejectBtn(args,reservation_ID){
+	if(args=="0")
+		//approve 
+		$.ajax({
+				url : "<%=request.getContextPath()%>/reservation/approveAReservation",
+				type : "get",
+				data : "reservation_ID=" + reservation_ID,	
+				dataType : "html",
+				success : function(json) {
+					alert(json);
+		        },
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("error");
+				}
+			});
+	//reject
+	if(args=='1')
+		$.ajax({
+			url : "<%=request.getContextPath()%>/reservation/rejectAReservation",
+			type : "get",
+			data : "reservation_ID=" + reservation_ID,	
+			dataType : "html",
+			success : function(json) {
+				alert(json);
+	        },
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("error");
+			}
+		});
 	return false;
 }
 
@@ -202,14 +273,14 @@ function checkApproveRejectBtn(args){
         <div id="btnFunctionWrapper">
             <div class="btnFunction">Back</div>
             <div id="verticalLine"></div>
-            <div class="btnFunction" id="approveBtn">Approve</div>
-            <div class="btnFunction" id="rejectBtn">Reject</div>
+            <div class="btnFunction" id="approveBtn" onClick="checkCheckbox(0)">Approve</div>
+            <div class="btnFunction" id="rejectBtn" onClick="checkCheckbox(1)">Reject</div>
             <div class="btnFunction" id="conflictBtn">Conflict</div>
             <div class="btnFunction" id="showBtn">Show<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
             <div class="btnFunction" id="sortBtn">Sort<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
         </div>   
     </div>
-    <form action="<%=request.getContextPath()%>/reservation/approveReservations" method="get">
+    <form action="<%=request.getContextPath()%>/reservation/approveReservations" method="post">
     <div id="topBar">
  
     <input type="checkbox" class="checkbox"onclick="check_all(this,'checkbox')">
@@ -217,12 +288,8 @@ function checkApproveRejectBtn(args){
     <span class="topBarItem topBarItem2">Usage</span>
     <span class="topBarItem topBarItem3">Order Time</span>
     </div>
-   
-    <div id="listWrapper">
-    
+    <div id="listWrapper">   
     </div>
-    <input type="submit"value="approve测试用">
-<!-----------------------------------------  用于测试的按钮----------------------------------- -->
     </form>
 
 

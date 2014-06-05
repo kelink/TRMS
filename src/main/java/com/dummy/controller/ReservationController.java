@@ -2,7 +2,6 @@ package com.dummy.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +29,6 @@ import com.dummy.service.RoomService;
 import com.dummy.service.TeamService;
 import com.dummy.service.UserService;
 import com.dummy.util.ReservationUtil;
-import com.dummy.util.mail.MailSender;
 
 @Controller
 @SessionAttributes({"currentUser"})
@@ -218,9 +216,9 @@ public class ReservationController {
 	public ModelAndView deleteByID(
 			@RequestParam(value = "reservation_ID", required = true) int reservation_ID) {
 		if (reservationService.delReservation(reservation_ID) == true) {
-			return new ModelAndView("redirect:/reservation/list");
+			return new ModelAndView("redirect:/reservation/reservationPage");
 		}
-		return new ModelAndView("redirect:/reservation/list");
+		return new ModelAndView("redirect:/reservation/reservationPage");
 	}
 
 	// reservation Delete by reservation_num
@@ -228,9 +226,9 @@ public class ReservationController {
 	public ModelAndView deleteByNum(
 			@RequestParam(value = "reservation_Num", required = true) String reservation_Num) {
 		if (reservationService.delReservationByNum(reservation_Num) == true) {
-			return new ModelAndView("redirect:/reservation/list");
+			return new ModelAndView("redirect:/reservation/reservationPage");
 		}
-		return new ModelAndView("redirect:/reservation/list");
+		return new ModelAndView("redirect:/reservation/reservationPage");
 	}
 
 	/***********************************************************
@@ -294,13 +292,14 @@ public class ReservationController {
 		String message = reservationService.checkApprove(reservation);
 		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
 		if (message == null) {
-			reservation.setHandle_by(currentUser.getUser_ID());
-			reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
-			reservationService.approveOrReject(reservation);
+
 			// send email
 			// List<String> list = new ArrayList<String>();
 			// list.add(reservation.getEmail());
 			// MailSender.sendEmailToAllAdmin(list, null, null);
+			reservation.setHandle_by(currentUser.getUser_ID());
+			reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
+			reservationService.approveOrReject(reservation);
 			message = "approve success,email have sent!";
 		}
 		return message;
@@ -324,9 +323,9 @@ public class ReservationController {
 			// List<String> list = new ArrayList<String>();
 			// list.add(reservation.getEmail());
 			// MailSender.sendEmailToAllAdmin(list, null, null);
-			List<String> list = new ArrayList<String>();
-			list.add(reservation.getEmail());
-			MailSender.sendEmailToAllAdmin(list, null, null);
+			// List<String> list = new ArrayList<String>();
+			// list.add(reservation.getEmail());
+			// MailSender.sendEmailToAllAdmin(list, null, null);
 			message += "reject success,email have sent!";
 
 		}
@@ -338,27 +337,37 @@ public class ReservationController {
 	@RequestMapping(value = "/approveReservations")
 	public @ResponseBody String approveReservations(HttpServletRequest request,
 			HttpSession session) {
-		String[] reservations = request.getParameterValues("checkbox");
-		StringBuilder builder = new StringBuilder();
-		for (int i = 0; i < reservations.length; i++) {
-			int reservation_ID = Integer.parseInt(reservations[i]);
-			builder.append(this.approveAReservation(reservation_ID, session));
+		String reservationStr = request.getParameter("checkbox");
+		if (reservationStr == null || reservationStr.length() <= 0) {
+			return "error ,can not get the reservation";
+		} else {
+			String[] reservations = reservationStr.split(",");
+			StringBuilder builder = new StringBuilder();
+			for (int i = 0; i < reservations.length; i++) {
+				int reservation_ID = Integer.parseInt(reservations[i]);
+				builder.append(this
+						.approveAReservation(reservation_ID, session));
+			}
+			return builder.toString();
 		}
-		return builder.toString();
 
 	}
-
 	// batch to reject the reservations
 	@RequestMapping(value = "/rejectReservations")
 	public @ResponseBody String rejectReservations(HttpServletRequest request,
 			HttpSession session) {
-		String[] reservations = request.getParameterValues("checkbox");
-		StringBuilder builder = new StringBuilder();
-		for (int i = 0; i < reservations.length; i++) {
-			int reservation_ID = Integer.parseInt(reservations[i]);
-			builder.append(this.rejectAReservation(reservation_ID, session));
+		String reservationStr = request.getParameter("checkbox");
+		if (reservationStr == null || reservationStr.length() <= 0) {
+			return "error ,can not get the reservation";
+		} else {
+			String[] reservations = reservationStr.split(",");
+			StringBuilder builder = new StringBuilder();
+			for (int i = 0; i < reservations.length; i++) {
+				int reservation_ID = Integer.parseInt(reservations[i]);
+				builder.append(this.rejectAReservation(reservation_ID, session));
+			}
+			return builder.toString();
 		}
-		return builder.toString();
 
 	}
 }

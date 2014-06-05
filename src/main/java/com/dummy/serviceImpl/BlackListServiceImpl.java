@@ -64,4 +64,14 @@ public class BlackListServiceImpl implements BlackListService {
 	public BlackList getBlackListByTeamToObject(int team_ID) {
 		return blackListDao.getBlackListByTeam(team_ID);
 	}
+
+	@Override
+	public boolean isInBlackaList(int team_ID) {
+		BlackList blackList = blackListDao.getBlackListByTeam(team_ID);
+		if (blackList != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

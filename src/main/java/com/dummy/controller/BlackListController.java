@@ -43,7 +43,7 @@ public class BlackListController {
 	// index page of blacklist management
 	@RequestMapping(value = {"", "/", "/index"})
 	public ModelAndView index() {
-		return new ModelAndView("redirect:/blacklist/list");
+		return new ModelAndView("blacklist/index");
 	}
 	// list the blacklist
 	@RequestMapping(value = {"/list"})
@@ -100,17 +100,31 @@ public class BlackListController {
 		map.addAttribute("departments", departments);
 		return new ModelAndView("blacklist/form", map);
 	}
+	// get check Page
+	@RequestMapping(value = "/getCheckPage")
+	public ModelAndView getCheckPage() {
+		ModelMap map = new ModelMap();
+		List<Department> departments = departmentService.getAllDepartment();
+		map.addAttribute("departments", departments);
+		return new ModelAndView("blacklist/check", map);
+	}
 	// add a blacklist
 	@RequestMapping(value = "/add")
 	public @ResponseBody String add(
 			@RequestParam(value = "team_ID", required = true) int team_ID,
 			@RequestParam(value = "reason", required = false, defaultValue = "") String reason,
 			HttpSession session) {
-		BlackList blackList = new BlackList();
-		blackList.setReason(reason);
-		blackList.setTeam_ID(team_ID);
-		blackListService.addBlackList(blackList);
-		return "success";
+		// 判断是否当前team已经存在blacklist中
+		if (!blackListService.isInBlackaList(team_ID)) {
+			BlackList blackList = new BlackList();
+			blackList.setReason(reason);
+			blackList.setTeam_ID(team_ID);
+			blackListService.addBlackList(blackList);
+			return "success";
+		} else {
+			return "curren team is in the blacklist,do not repet to operate";
+		}
+
 	}
 
 	// delete a blacklist
@@ -119,9 +133,9 @@ public class BlackListController {
 			@RequestParam(value = "bl_ID", required = true) int bl_ID,
 			HttpSession session) {
 		if (blackListService.delBlackList(bl_ID) == true) {
-			return "success";
+			return "delete success";
 		} else {
-			return "fail";
+			return "delete fail";
 		}
 	}
 
