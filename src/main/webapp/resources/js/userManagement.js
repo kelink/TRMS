@@ -169,7 +169,18 @@ window.onload = function() {
 		$(this).css("border-left","none");
 	});
 	
-	boot();
+	for(var k=1;k<=4;k++)
+	{
+		$("#rightNav"+k).click(function(){
+			for(var i=1;i<=4;i++)
+			{
+				$("#rightNav"+i).css("border-right","none");
+			}
+			$(this).css("border-right","4px solid rgb(255, 92, 0)");
+			
+			
+		});
+	}
 
 	$("#logoutBtn").mouseover(function() {
 		$(this).attr("class", "btnLogout btnHover");
