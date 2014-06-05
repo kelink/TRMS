@@ -1,0 +1,177 @@
+#userSearchDiv
+{
+    overflow:hidden;
+    position:relative;
+    height: 56px;
+}
+.roomListBodyUserManagement
+{
+	min-height: 533px;
+}
+#userSearchInput
+{
+	position: absolute;
+top: 1px;
+left: 1px;
+background: transparent;
+	float: left;
+width: 99%;
+border-radius: 19px;
+border: 1px solid #cccccc;
+padding: 7px;
+padding-left: 36px;
+//box-shadow: 0 0 5px rgb(209, 209, 209);
+box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+outline: none;
+}
+#userSearchInput:focus
+{
+	border-color: #51a7e8;
+box-shadow: inset 0 1px 2px rgba(0,0,0,0.075),0 0 5px rgba(81,167,232,0.5);
+}
+#searchImg
+{
+width: 23px;
+position: absolute;
+top: 8px;
+left: 10px;
+z-index: 2000;
+}
+#userSearchLabel
+{
+	line-height: 38px;
+}
+#userSearchSpan
+{
+	color:rgb(139, 139, 139);
+	margin-left: 38px;
+}
+.userSearchBtn
+{
+	margin-right: 96px;
+margin-top: 4px;
+	
+	
+float: right;
+line-height: 28px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 12px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(94, 151, 189);
+background-image: -moz-linear-gradient(rgb(166, 212, 255), rgb(114, 181, 226));
+background-image: -webkit-linear-gradient(rgb(166, 212, 255), rgb(114, 181, 226));
+background-image: linear-gradient(rgb(166, 212, 255), rgb(114, 181, 226));
+background-repeat: repeat-x;
+border-radius: 17px;
+border: 1px solid rgb(152, 207, 243);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+}
+#userManagementIframe
+{
+	height: 600px;
+width: 100%;
+border: none;
+}
+#userDisplay
+{
+	background:#f5f5f5;
+float: right;
+width: 71%;
+padding: 18px;
+margin-right: 10px;
+}
+#checkLeftPanel
+{
+ 
+	border-radius: 3px;
+	position:relative;
+	padding-left:10px;
+	padding-right:10px;
+	width:21%;
+	float:left;
+
+padding-top: 0px;
+padding-bottom: 10px;
+overflow:hidden;
+}
+.checkMethod.selected
+{
+	color: #fff;
+    background: #4183c4 !important;
+    border-radius: 3px;
+
+}
+
+.checkMethod
+{
+	padding:8px 10px;
+	margin:0px 0px 5px;
+	font-size:14px;
+
+    
+	color: #777;
+	cursor:pointer;
+}
+#seperateLine
+{
+		border-top:1px solid #ddd;
+	margin: 10px 0px 10px 0px;
+}
+#defaultInfo
+{
+	padding: 30px 20px;
+	color:#999;
+	text-align: center;
+font-size: 15px;
+}
+#rightNav
+{
+	float: right;
+width: 38px;
+border-left: 1px solid rgb(238, 238, 238);
+height: 400px;
+
+margin-right: 10px;
+}
+#rightNav1
+{
+	margin-top:0px;
+	
+}
+#rightNav2
+{
+
+}
+#rightNav3
+{
+border-right: 4px solid rgb(255, 92, 0);
+}
+#rightNav4
+{
+
+}
+.rightNavItem
+{
+	height: 38px;
+	
+	margin-top: 20px;
+
+}
+.rightNavIcon
+{
+	cursor:pointer;
+}

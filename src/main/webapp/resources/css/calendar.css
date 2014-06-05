@@ -31,7 +31,7 @@
 #mm{width:68px;}
 .pass
 {
-	background-color:rgb(236, 252, 255);
+	cursor:not-allowed !important;
 }
 /* .booked */
 /* { */

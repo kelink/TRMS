@@ -13,8 +13,9 @@
 
 <title> BlackList Page </title>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
+<link href="<%=request.getContextPath()%>/resources/css/roomManagement.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
-<script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/roomManagement.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -101,7 +102,7 @@ function getRoomInfo(department_ID){
 	     <div class="navContainer">
 		     <ul class="navi">
 			     <li>
-				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
+				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
@@ -110,7 +111,7 @@ function getRoomInfo(department_ID){
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/department/index"class="navItem">Department Management </a>
+				     <a href="<%=request.getContextPath()%>/department/index"class="navItem selected">Department Management </a>
 				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
@@ -121,32 +122,72 @@ function getRoomInfo(department_ID){
 	 
 	 <div class="middle">
 	     <div class="middleContainer">
-		     <h1 class="roomList">BlackList List</h1>
-			 <div class="roomListBody">
-			 	<h1>Room 房间管理界面</h1>
-				<h3>传入的是部门信息，当点击部门的时候,会ajax显示当前选择部门的 room,支持批量处理删除room</h3>				
-					departments
-					<select name="departments" id="departments">
-						<option value=""></option>
-						<c:forEach items="${departments}" var="department">
-							<option value="${department.department_ID}">${department.departmentName}</option>
-						</c:forEach>
-					</select>
-					<button name="checkBtn" id="checkBtn" onClick="displayBlackList()">check</button>					
-					<button name="deleteBtn" id="deleteBtn" onClick="deleteBlackList()">delete</button>
-					<hr/>
-					<!-- 显示信息区域 -->	
-					Room:<div id="display"></div>
+		     <h1 class="roomList">Room Management</h1>
+		     
+		      <div class="roomListBody roomListBodyUserManagement">
+
+
+             
+			 <div id="userSearchDiv">
+			
+			     <div id="userSearchLabel"><img id="searchImg" src="<%=request.getContextPath()%>/resources/images/search.png"/><span id="userSearchSpan">Search by user LN...</span></div>
+			     
+			     <input id="userSearchInput">
+			    
+			 </div>
+			  <div id="checkLeftPanel">
+			      <!-- handle  begin -->
+					 <div id="allDepartment" class="checkMethod selected">
+			             All Department
+			         </div>
+			         <div id="seperateLine">
+			         </div>
+			         <div id="departmentWrapper"></div>
+			  </div>
+			  <div id="rightNav">
+			      <div id="rightNav1"class="rightNavItem"><a href="<%=request.getContextPath()%>/team/index"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/person.png"/></a></div>
+			      <div id="rightNav2"class="rightNavItem"><a href="<%=request.getContextPath()%>/team/index"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/team.png"/></a></div>
+			      <div id="rightNav3"class="rightNavItem"><a href="<%=request.getContextPath()%>/room/roommanager"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/room.png"/></a></div>
+			      <div id="rightNav4"class="rightNavItem"><a href="<%=request.getContextPath()%>/department/departmentList"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/department.png"/></a></div>
+			  </div>
+		      <div id="userDisplay">
+<!-- 		      <p id="defaultInfo">No user information to show</p> -->
+		      <div id="displayArea"></div>
+		      </div>			
+		      
+
+
+					
 						
 			 </div>
+<!-- 			 <div class="roomListBody"> -->
+<!-- 			 	<h1>Room 房间管理界面</h1> -->
+<!-- 				<h3>传入的是部门信息，当点击部门的时候,会ajax显示当前选择部门的 room,支持批量处理删除room</h3>				 -->
+<!-- 					departments -->
+<!-- 					<select name="departments" id="departments"> -->
+<!-- 						<option value=""></option> -->
+<%-- 						<c:forEach items="${departments}" var="department"> --%>
+<%-- 							<option value="${department.department_ID}">${department.departmentName}</option> --%>
+<%-- 						</c:forEach> --%>
+<!-- 					</select> -->
+<!-- 					<button name="checkBtn" id="checkBtn" onClick="displayBlackList()">check</button>					 -->
+<!-- 					<button name="deleteBtn" id="deleteBtn" onClick="deleteBlackList()">delete</button> -->
+<!-- 					<hr/> -->
+<!-- 					显示信息区域	 -->
+<!-- 					Room:<div id="display"></div> -->
+						
+<!-- 			 </div> -->
 		 </div>
 	 </div>
-	 <div class="footer">
-	     <div class="footerContainer">
-		 </div>
-	 </div>
+	
  </div>
-
+  <div id="footerContainer">
+      <div id="footer">
+          <span id="copyright"> &copy; Copyright 2014 by <a href="#">Lin Jiajian</a>&<a href="#">Luo Kelin</a></span>
+          <span><img id="hsbcIconFooter" width="30px"height="15px" src="<%=request.getContextPath() %>/resources/images/hsbcFooter.png"/></span>
+          <span id="footerWord"><a href="#">Team</a> <a href="#">Telephone</a><a href="#">Email</a><a href="#">about</a></span>
+      </div>
+ </div>
 	
 </body>
 </body>
