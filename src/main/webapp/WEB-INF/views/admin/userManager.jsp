@@ -101,13 +101,7 @@
 			      <div id="rightNav2"class="rightNavItem"><a target="userDisplay" href="http://www.baidu.com"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/team.png"/></a></div>
 			      <div id="rightNav3"class="rightNavItem"><a target="userDisplay" href="http://www.baidu.com"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/room.png"/></a></div>
 			      <div id="rightNav4"class="rightNavItem"><a target="userDisplay" href="http://www.baidu.com"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/department.png"/></a></div>
-			  </div>
-		
-		      
-
-
-					
-						
+			  </div>				
 			 </div>
 		 </div>
 	 </div>
