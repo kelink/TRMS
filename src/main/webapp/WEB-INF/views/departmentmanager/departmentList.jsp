@@ -129,7 +129,25 @@
 			      <div id="rightNav4"class="rightNavItem"><a href="<%=request.getContextPath()%>/department/departmentList"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/department.png"/></a></div>
 			  </div>
 		      <div id="userDisplay">
-<!-- 		      <p id="defaultInfo">No user information to show</p> -->
+		      <h2>department information</h2>
+		      <c:forEach var="department" items="${departments}">	 
+							
+ 							department Name:${department.departmentName }<br/> 
+ 							<!-- 
+ 							department ID:${department.department_ID }<br/> 
+ 							<c:forEach var="team" items="${department.getTeamSet()}"> 
+ 									${team } 
+ 							</c:forEach> 
+ 							department room: <br/> 
+							<c:forEach var="room" items="${department.getRoomSet()}"> 
+ 								${room } 
+ 								</c:forEach>									
+ 							<hr/>
+ 							-->
+						</c:forEach> 
+						<!-- 
+		      <p id="defaultInfo">No user information to show</p> 
+		       -->
 		      <div id="displayArea"></div>
 		      </div>			
 		      

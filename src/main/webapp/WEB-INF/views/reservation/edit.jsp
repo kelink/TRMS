@@ -23,12 +23,29 @@ function updateCheck(status){
 	}else{
 		return true;
 	}
+	window.parent.location.reload();
 	
 }
+function deleteReservation(reservation_ID){
+	
+	$.ajax({
+				url : "<%=request.getContextPath()%>/reservation/deleteByID",
+				type : "get",
+				data : "reservation_ID="+reservation_ID,	
+				dataType : "html",
+				success : function(json) {
+						alert(json);
+	                },
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("Eerror");
+				}
+			});
+}
+
 
 </script>
 </head>
-</body>
+<body>
 <div class="panelHeader">
 <span id="headerText">Modify Ticket</span>
 <span id="close"onclick="back();"><img id="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
@@ -59,13 +76,14 @@ function updateCheck(status){
 		
 		<div id="btnWrapper">
 
-		<input class="btnUpdate" type="submit"name="submit" id="btnUpdate"" value="update"/>
-		<a class="btnDelete" href="<%=request.getContextPath()%>/reservation/deleteByID?reservation_ID=${reservation.reservation_ID}">delete</a>
+		<input class="btnUpdate" type="submit"name="submit" id="btnUpdate"  value="update"/>
+		<a class="btnDelete" href="#" onclick="deleteReservation(${reservation.reservation_ID})">delete</a>
 		</div>
 		</form>
         </div>
 	
 	
 	<br/>	
+
 </body>
 </html>

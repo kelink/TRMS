@@ -213,22 +213,22 @@ public class ReservationController {
 
 	// reservation Delete by reservation_id
 	@RequestMapping(value = {"/deleteByID"})
-	public ModelAndView deleteByID(
+	public @ResponseBody String deleteByID(
 			@RequestParam(value = "reservation_ID", required = true) int reservation_ID) {
 		if (reservationService.delReservation(reservation_ID) == true) {
-			return new ModelAndView("redirect:/reservation/reservationPage");
+			return "delete success!";
 		}
-		return new ModelAndView("redirect:/reservation/reservationPage");
+		return "delete fail!";
 	}
 
 	// reservation Delete by reservation_num
 	@RequestMapping(value = {"/deleteByNum"})
-	public ModelAndView deleteByNum(
+	public @ResponseBody String deleteByNum(
 			@RequestParam(value = "reservation_Num", required = true) String reservation_Num) {
 		if (reservationService.delReservationByNum(reservation_Num) == true) {
-			return new ModelAndView("redirect:/reservation/reservationPage");
+			return "delete success!";
 		}
-		return new ModelAndView("redirect:/reservation/reservationPage");
+		return "delete fail!";
 	}
 
 	/***********************************************************
