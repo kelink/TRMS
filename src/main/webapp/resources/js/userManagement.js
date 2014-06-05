@@ -1,4 +1,3 @@
-
 function logout(url) {
 	$("#logoutBtn").attr("class", "btnLogout btnSelected");
 	window.location.href = url;
@@ -128,7 +127,6 @@ function boot() {
 											});
 									$("#" + k).attr("class", "checkMethod");
 									$("#" + k).css("background", "white");
-
 								}
 
 							}
@@ -156,20 +154,19 @@ function boot() {
 
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert('failed');
 		}
 	});
 }
 var count = 0;
 window.onload = function() {
-	$(".rightNavItem").mouseover(function(){
-		$(this).css("border-left","3px solid rgb(231, 231, 231)");
+	$(".rightNavItem").mouseover(function() {
+		$(this).css("border-left", "3px solid rgb(231, 231, 231)");
 	});
-	$(".rightNavItem").mouseout(function(){
-		$(this).css("border-left","none");
+	$(".rightNavItem").mouseout(function() {
+		$(this).css("border-left", "none");
 	});
-	
-	boot();
+
+	// boot();
 
 	$("#logoutBtn").mouseover(function() {
 		$(this).attr("class", "btnLogout btnHover");

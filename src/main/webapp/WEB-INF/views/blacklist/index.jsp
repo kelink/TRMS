@@ -84,7 +84,7 @@ function changeFrame(args){
 	 <div class="navigator">
 	     <div class="navContainer">
 		     <ul class="navi">
-			     <li>
+			      <li>
 				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
 				 </li>
 				 <li>
@@ -94,7 +94,7 @@ function changeFrame(args){
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem selected">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">Department Management </a>
+				     <a href="<%=request.getContextPath()%>/department/index"class="navItem">Department Management </a>
 				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
