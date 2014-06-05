@@ -67,6 +67,15 @@ public class RoomController {
 	@Resource(name = "departmentService")
 	private DepartmentService departmentService;
 
+	// head Information
+		@RequestMapping("/headInfo")
+		public ModelAndView list(
+				Model model) {
+		
+
+			return new ModelAndView("room/headInfo");
+		}
+	
 	// getRoom
 	@RequestMapping("/getForm")
 	public @ResponseBody String getForm(HttpServletRequest request,

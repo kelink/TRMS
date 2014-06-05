@@ -113,12 +113,12 @@ function getDynamicTable(Y, M) {
 			if (buffer == true) {
 
 				if (book == true) {
-					Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle'onclick=\"alert('The date is unavailable to book')\"><div class=\"bookedDiv\"></div>"
-							: "<td class='idle'onclick=\"alert('The date is unavailable to book')\"><div class=\"bookedDiv\"></div>")
+					Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle infoCursor'onclick=\"alert('The date is unavailable to book')\"><div class=\"bookedDiv\"></div>"
+							: "<td class='idle infoCursor'onclick=\"alert('The date is unavailable to book')\"><div class=\"bookedDiv\"></div>")
 							+ j + "</td>"
 				} else {
-					Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle'onclick=\"alert('The date is unavailable to book')\">"
-							: "<td class='idle'onclick=\"alert('The date is unavailable to book')\">")
+					Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle buffer'onclick=\"alert('The date is unavailable to book')\">"
+							: "<td class='idle buffer'onclick=\"alert('The date is unavailable to book')\">")
 							+ j + "</td>"
 				}
 
@@ -131,12 +131,12 @@ function getDynamicTable(Y, M) {
 
 				if (book == true) {
 					if (future == true) {
-						Temp += "<td onclick='bookInfo(" + l
+						Temp += "<td class='infoCursor' onclick='bookInfo(" + l
 								+ ")'><div class=\"bookedDiv\"></div>" + j
 								+ "</td>";
 						book = false;
 					} else {
-						Temp += "<td class='pass idle'onclick='bookInfo(" + l
+						Temp += "<td class='pass idle infoCursor'onclick='bookInfo(" + l
 								+ ")'><div class=\"bookedDiv\"></div>" + j
 								+ "</td>";
 						book = false;

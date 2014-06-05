@@ -30,18 +30,7 @@ function logout(url){
 	$("#logoutBtn").attr("class","btnLogout btnSelected");
 	window.location.href=url;
 }
-function turnback(id)
-{
 
-		var a=window.top.document.getElementById("floatTicket");
-		var b=window.top.document.getElementById("cover");
-		window.top.document.getElementById("iframe"+id).setAttribute("src","/trms/room/calendar?room_ID="+id);
-	    a.setAttribute("class","");
-	    b.setAttribute("class","");
-	    
-	
-    
-}
 window.onload=function(){
 
 	$("#logoutBtn").mouseover(function(){

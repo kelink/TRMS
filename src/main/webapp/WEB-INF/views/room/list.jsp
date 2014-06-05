@@ -16,7 +16,7 @@
  <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
   <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
    <script src="<%=request.getContextPath()%>/resources/js/bookForm.js" type="text/javascript"></script>
- <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 
  <script type="text/javascript" >
@@ -202,7 +202,7 @@
 	     <div class="middleContainer">
 		     <h1 class="roomList">Room List</h1>
 			 <div class="roomListBody">
-			     <iframe id="bookRoomResult" name="bookRoomResult"></iframe>
+			     <iframe id="bookRoomResult" name="bookRoomResult"scrolling="no"src="<%=request.getContextPath()%>/room/headInfo"></iframe>
 			     <div id="floatTicket">
 			         <div class="panelHeader">
                          <span id="headerText">Fill in the form</span>
@@ -235,7 +235,7 @@
                          <div class="bookFormLabel">Purpose</div>
                           <textarea class="bookFormInput" type="text" name="purpose" id="purpose"></textarea>
                          <br />
-                         <input class="btnBook" type="submit" name="submit" value="Submit"/>
+                         <input id="bookFormSubmit" class="btnBook" type="submit" name="submit" value="Submit"/>
                          </form>
 			     </div>
 			  	 
