@@ -71,9 +71,12 @@ public class RoomController {
 		@RequestMapping("/headInfo")
 		public ModelAndView list(
 				Model model) {
-		
-
-			return new ModelAndView("room/headInfo");
+		List<Reservation> list=reservationService.getReservationByStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
+            ModelMap map=new ModelMap();
+            int count=list.size();
+            map.addAttribute("count", count);
+            map.addAttribute("list", list);
+			return new ModelAndView("room/headInfo",map);
 		}
 	
 	// getRoom
