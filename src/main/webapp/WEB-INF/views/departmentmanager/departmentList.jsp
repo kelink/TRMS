@@ -12,9 +12,10 @@
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
 
 <title> BlackList Page </title>
+<link href="<%=request.getContextPath()%>/resources/css/departmentList.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
-<script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/departmentList.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 </head>
 </head>
@@ -78,28 +79,64 @@
 	 <div class="middle">
 	     <div class="middleContainer">
 		     <h1 class="roomList">Department Information Manager Page</h1>		   
-			 <div class="roomListBody">				
-						<br/>
-						<h1>Department Information Detial</h1>	
-						<br/>
-									<h2><a href="<%=request.getContextPath()%>/team/index">Department Manager</a></h2>
-									<h2><a href="<%=request.getContextPath()%>/team/index">Team Manager</a></h2>
-									<h2><a href="<%=request.getContextPath()%>/room/roommanager">Room Manager</a></h2>
-									<h2><a href="<%=request.getContextPath()%>/department/userList">User Manager </a></h2>	
-						<br/>
-						<c:forEach var="department" items="${departments}">	
-									department ID:${department.department_ID }<br/>
-									department ID:${department.departmentName }<br/>
-									department team:<br/>
-									<c:forEach var="team" items="${department.getTeamSet()}">
-										${team }
-									</c:forEach>
-									department room: <br/>
-									<c:forEach var="room" items="${department.getRoomSet()}">
-									${room }
-									</c:forEach>									
-									<hr/>
-						</c:forEach>
+<!-- 			 <div class="roomListBody">				 -->
+<!-- 						<br/> -->
+<!-- 						<h1>Department Information Detial</h1>	 -->
+<!-- 						<br/> -->
+<%-- 									<h2><a href="<%=request.getContextPath()%>/team/index">Department Manager</a></h2> --%>
+<%-- 									<h2><a href="<%=request.getContextPath()%>/team/index">Team Manager</a></h2> --%>
+<%-- 									<h2><a href="<%=request.getContextPath()%>/room/roommanager">Room Manager</a></h2> --%>
+<%-- 									<h2><a href="<%=request.getContextPath()%>/department/userList">User Manager </a></h2>	 --%>
+<!-- 						<br/> -->
+<%-- 						<c:forEach var="department" items="${departments}">	 --%>
+<%-- 									department ID:${department.department_ID }<br/> --%>
+<%-- 									department ID:${department.departmentName }<br/> --%>
+<!-- 									department team:<br/> -->
+<%-- 									<c:forEach var="team" items="${department.getTeamSet()}"> --%>
+<%-- 										${team } --%>
+<%-- 									</c:forEach> --%>
+<!-- 									department room: <br/> -->
+<%-- 									<c:forEach var="room" items="${department.getRoomSet()}"> --%>
+<%-- 									${room } --%>
+<%-- 									</c:forEach>									 --%>
+<!-- 									<hr/> -->
+<%-- 						</c:forEach> --%>
+<!-- 			 </div> -->
+<div class="roomListBody roomListBodyUserManagement">
+
+
+             
+			 <div id="userSearchDiv">
+			
+			     <div id="userSearchLabel"><img id="searchImg" src="<%=request.getContextPath()%>/resources/images/search.png"/><span id="userSearchSpan">Search by user LN...</span></div>
+			     
+			     <input id="userSearchInput">
+			    
+			 </div>
+			  <div id="checkLeftPanel">
+			      <!-- handle  begin -->
+					 <div id="allDepartment" class="checkMethod selected">
+			             All Department
+			         </div>
+			         <div id="seperateLine">
+			         </div>
+			         <div id="departmentWrapper"></div>
+			  </div>
+			  <div id="rightNav">
+			      <div id="rightNav1"class="rightNavItem"><a href="<%=request.getContextPath()%>/team/index"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/person.png"/></a></div>
+			      <div id="rightNav2"class="rightNavItem"><a href="<%=request.getContextPath()%>/team/index"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/team.png"/></a></div>
+			      <div id="rightNav3"class="rightNavItem"><a href="<%=request.getContextPath()%>/room/roommanager"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/room.png"/></a></div>
+			      <div id="rightNav4"class="rightNavItem"><a href="<%=request.getContextPath()%>/department/departmentList"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/department.png"/></a></div>
+			  </div>
+		      <div id="userDisplay">
+<!-- 		      <p id="defaultInfo">No user information to show</p> -->
+		      <div id="displayArea"></div>
+		      </div>			
+		      
+
+
+					
+						
 			 </div>
 		 </div>
 	 </div>
