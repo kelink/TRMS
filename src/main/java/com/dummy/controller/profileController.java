@@ -1,5 +1,7 @@
 package com.dummy.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -82,6 +84,21 @@ public class profileController {
 		userService.updateUser(currentUser);
 		// 使得当前会话失效，重新登录(后面新增)
 		return new ModelAndView("redirect:/login/index");
+	}
 
+	// edit user information
+	@RequestMapping(value = "/getEditUserForm")
+	public ModelAndView getEditUserForm(
+			@ModelAttribute("currentUser") DBUser currentUser) {
+		List<Department> departments = departmentService.getAllDepartment();
+		ModelMap map = new ModelMap();
+		map.addAttribute("currentUser", currentUser);
+		map.addAttribute("departments", departments);
+		return new ModelAndView("user/edit", map);
+	}
+	@RequestMapping(value = "/updateUser")
+	public ModelAndView updateUser(HttpServletRequest request,
+			@ModelAttribute("currentUser") DBUser currentUser) {
+		return null;
 	}
 }

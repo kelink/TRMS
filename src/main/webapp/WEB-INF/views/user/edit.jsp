@@ -47,7 +47,6 @@
 	 }
  }
  
- //
  
  </script>
  
@@ -180,7 +179,7 @@
 			  	     <div class="infoRow">
 			  	     <div class="label">
 			  	     User Gender:
-			  	      </div>
+			  	     </div>
 			  	     <div class="userInfo">${gender}</div>
 			  	     </div>
 			  	     
@@ -201,10 +200,7 @@
 			  	     
 			  	     </div>
 			  	 
-			  	 </div>
-			  	 
-			  	 
-			  	 
+			  	 </div>		  	 
 		     </div>
 		 </div>
 	 </div>

@@ -155,9 +155,7 @@
 			             
 			             
 			         </div>
-			         <input type="submit" name="submit"class="btnSearch"id="submitSearch"value="Search">
-			             
-			         </input>
+			         <input type="submit" name="submit"class="btnSearch"id="submitSearch"value="Search">			         
 			         </form>
 			     </div>
 			     <div id="checkRightPanel">

@@ -65,32 +65,37 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 
                         html+=("<div class=\"ticketTitle\">Ticket Information</div>");
                         html+=("<div class=\"ticketContent\">");
-						html+=("reservation_ID:"+reservation_ID+"<br/>");
-						html+=("reservation_start_Daty:"+reservation_start_Daty+"<br/>");
-						html+=("reservation_end_Daty:"+reservation_end_Daty+"<br/>");
+						//html+=("reservation_ID:"+reservation_ID+"<br/>");
+						
 						html+=("reservation_Num:"+reservation_Num+"<br/>");
+						html+=("room_item:"+room_item+"<br/>");
 						html+=("purpose:"+purpose+"<br/>");
-						html+=("email:"+email+"<br/>");
-						html+=("tele:"+tele+"<br/>");
+						
 						html+=("Order_Date:"+Order_Date+"<br/>");
 				
-						html+=("team_ID:"+team_ID+"<br/>");	
+						//html+=("team_ID:"+team_ID+"<br/>");	
 						html+=("order_Team:"+order_Team+"<br/>");	
 						
-						html+=("room_ID:"+room_ID+"<br/>");	
-						html+=("room_item:"+room_item+"<br/>");
-				
-						html+=("applicant_ID:"+applicant_ID+"<br/>");	
+						//html+=("room_ID:"+room_ID+"<br/>");	
+					
+						
+						html+=("reservation_start_Daty:"+reservation_start_Daty+"<br/>");
+						html+=("reservation_end_Daty:"+reservation_end_Daty+"<br/>");
+						
+						//html+=("applicant_ID:"+applicant_ID+"<br/>");	
 						html+=("applicant_account:"+applicant_account+"<br/>");
 						
-						html+=("handler_by:"+handler_by+"<br/>");
+						html+=("email:"+email+"<br/>");
+						html+=("tele:"+tele+"<br/>");
+						html+=("<br/><br/><br/>");
+						//html+=("handler_by:"+handler_by+"<br/>");
 						html+=(" <a class='btnMore'target='moreInfo'onclick='more(event);' href='<%=request.getContextPath()%>/reservation/edit?"
 								+"reservation_ID="+reservation_ID
 								+"&room_ID="+room_ID
 								+"&team_ID="+team_ID
 								+"&applicant_ID="+applicant_ID
 								+"&handler_by="+handler_by
-								+"'>More Information</a> <br/>");
+								+"'>Edit Information</a> <br/>");
 						html+=("</div>");
 
 ///////////////////////////////
