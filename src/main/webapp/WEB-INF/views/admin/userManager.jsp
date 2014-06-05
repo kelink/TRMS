@@ -58,7 +58,7 @@
 	     <div class="navContainer">
 		     <ul class="navi">
 			      <li>
-				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
+				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
@@ -67,7 +67,7 @@
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/department/index"class="navItem">Department Management </a>
+				     <a href="<%=request.getContextPath()%>/team/index"class="navItem selected">Department Management </a>
 				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
@@ -102,10 +102,17 @@
 			         </div>
 			         <div id="departmentWrapper"></div>
 			  </div>
+			  <div id="rightNav">
+			      <div id="rightNav1"class="rightNavItem"><a href="<%=request.getContextPath()%>/team/index"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/person.png"/></a></div>
+			      <div id="rightNav2"class="rightNavItem"><a href="<%=request.getContextPath()%>/team/index"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/team.png"/></a></div>
+			      <div id="rightNav3"class="rightNavItem"><a href="<%=request.getContextPath()%>/room/roommanager"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/room.png"/></a></div>
+			      <div id="rightNav4"class="rightNavItem"><a href="<%=request.getContextPath()%>/department/departmentList"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/department.png"/></a></div>
+			  </div>
 		      <div id="userDisplay">
 <!-- 		      <p id="defaultInfo">No user information to show</p> -->
 		      <div id="displayArea"></div>
 		      </div>			
+		      
 
 
 					

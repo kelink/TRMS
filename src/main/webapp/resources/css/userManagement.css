@@ -90,9 +90,9 @@ border: none;
 {
 	background:#f5f5f5;
 float: right;
-width: 75%;
+width: 71%;
 padding: 18px;
-margin-right: 21px;
+margin-right: 10px;
 }
 #checkLeftPanel
 {
@@ -137,4 +137,41 @@ overflow:hidden;
 	color:#999;
 	text-align: center;
 font-size: 15px;
+}
+#rightNav
+{
+	float: right;
+width: 38px;
+border-left: 1px solid rgb(238, 238, 238);
+height: 400px;
+
+margin-right: 10px;
+}
+#rightNav1
+{
+	margin-top:0px;
+	border-right: 4px solid rgb(255, 92, 0);
+}
+#rightNav2
+{
+
+}
+#rightNav3
+{
+
+}
+#rightNav4
+{
+
+}
+.rightNavItem
+{
+	height: 38px;
+	
+	margin-top: 20px;
+
+}
+.rightNavIcon
+{
+	cursor:pointer;
 }

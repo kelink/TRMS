@@ -162,6 +162,13 @@ function boot() {
 }
 var count = 0;
 window.onload = function() {
+	$(".rightNavItem").mouseover(function(){
+		$(this).css("border-left","3px solid rgb(231, 231, 231)");
+	});
+	$(".rightNavItem").mouseout(function(){
+		$(this).css("border-left","none");
+	});
+	
 	boot();
 
 	$("#logoutBtn").mouseover(function() {
