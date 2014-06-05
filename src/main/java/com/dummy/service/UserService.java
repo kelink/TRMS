@@ -27,4 +27,6 @@ public interface UserService {
 
 	public List<JSONObject> getDepartmentUserByRole(int roleType,
 			int department_ID);
+
+	public int getUserRole(int user_ID);
 }

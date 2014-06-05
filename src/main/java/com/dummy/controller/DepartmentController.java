@@ -47,7 +47,7 @@ public class DepartmentController {
 	// index of DepartmentManager
 	@RequestMapping(value = "/index")
 	public ModelAndView index() {
-		return new ModelAndView("redirect:/department/departmentList");
+		return new ModelAndView("departmentmanager/index");
 	}
 	// list departments
 	@RequestMapping(value = "/departmentList")

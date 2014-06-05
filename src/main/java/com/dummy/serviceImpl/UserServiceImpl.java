@@ -84,4 +84,10 @@ public class UserServiceImpl implements UserService {
 		}
 		return result;
 	}
+
+	@Override
+	public int getUserRole(int user_ID) {
+		DBUser user = userDao.getUser(user_ID);
+		return user.getAccess();
+	}
 }

@@ -10,36 +10,47 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
-
-<title> BlackList Page </title>
-<link href="<%=request.getContextPath()%>/resources/css/departmentList.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
+<link href="<%=request.getContextPath()%>/resources/css/roomManagement.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
-<script src="<%=request.getContextPath()%>/resources/js/departmentList.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+function getDepartmentInfo(dept_ID){
+	$.ajax({
+			url : "<%=request.getContextPath()%>/admin/getUserDepartment",
+			type : "Get",
+			data : "department_ID=" + dept_ID,
+			dataType : "html",
+			success : function(json) {
+				alert(json);
+             },
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("error");
+			}
+		});
+}
+</script>
+
+<title> User Page </title>
 </head>
 <body>
-<div class="roomListBody"> 
- <h2>department information</h2>
-		      <c:forEach var="department" items="${departments}">	 
-							
- 							department Name:${department.departmentName }<br/> 
- 							<!-- 
- 							department ID:${department.department_ID }<br/> 
- 							<c:forEach var="team" items="${department.getTeamSet()}"> 
- 									${team } 
- 							</c:forEach> 
- 							department room: <br/> 
-							<c:forEach var="room" items="${department.getRoomSet()}"> 
- 								${room } 
- 								</c:forEach>									
- 							<hr/>
- 							-->
-						</c:forEach> 
-						<!-- 
-		      <p id="defaultInfo">No user information to show</p> 
-		       -->
-		      <div id="displayArea"></div>
-</div>
+ <div class="roomListBody"> 
+		<div id="commonUser">
+			<h2>commonUser Information</h2>
+			<c:forEach items="${commonUsers}" var="commonUser">
+				commonUser :${commonUser}<br/>
+				<br/>
+				department:${commonUser.dept_ID}
+			</c:forEach>
+		</div>
+		<hr/>
+		<div id="admins">
+			<h2>commonUser Information</h2>
+			<c:forEach items="${admins}" var="admin">
+				admin :${admin}<br/>
+			</c:forEach>
+		</div>
+	</div>
 </body>
 </html>

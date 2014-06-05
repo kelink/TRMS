@@ -11,10 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dummy.common.C;
+import com.dummy.domain.DBUser;
+import com.dummy.domain.Department;
 import com.dummy.domain.Room;
 import com.dummy.service.BlackListService;
+import com.dummy.service.DepartmentService;
 import com.dummy.service.ReservationService;
 import com.dummy.service.RoomService;
 import com.dummy.service.TeamService;
@@ -40,6 +45,9 @@ public class AdminController {
 	@Resource(name = "blackListService")
 	private BlackListService blackListService;
 
+	@Resource(name = "departmentService")
+	private DepartmentService departmentService;
+
 	// index page
 	@RequestMapping(value = "/index")
 	public ModelAndView index(
@@ -54,5 +62,43 @@ public class AdminController {
 		List<Room> rooms = roomService.getAllRoom();
 		map.addAttribute("rooms", rooms);
 		return new ModelAndView("admin/index", map);
+	}
+
+	@RequestMapping("/listUser")
+	public ModelAndView listUser() {
+		List<DBUser> commonUsers = userService
+				.getUserByRole(C.DB.DEFAULT_ROLE_LC);
+		List<DBUser> admins = userService.getUserByRole(C.DB.DEFAULT_ROLE_TA);
+		ModelMap map = new ModelMap();
+		map.addAttribute("commonUsers", commonUsers);
+		map.addAttribute("admins", admins);
+		return new ModelAndView("admin/listUser", map);
+	}
+
+	@RequestMapping("/deleteCommonUser")
+	public @ResponseBody String deleteCommonUser(
+			@RequestParam(value = "user_ID", required = true) int user_ID) {
+		if (userService.getUserRole(user_ID) == C.DB.DEFAULT_ROLE_LC) {
+			boolean isOk = userService.delUser(user_ID);
+			if (isOk) {
+				return "delete success";
+			} else {
+				return "delete fail";
+			}
+		} else {
+			return "You have not right to operator";
+		}
+	}
+
+	// get department information
+	@RequestMapping("/getUserDepartment")
+	public @ResponseBody String getUserDepartment(
+			@RequestParam(value = "department_ID", required = true) int department_ID) {
+		Department department = departmentService.getDepartment(department_ID);
+		if (department != null) {
+			return department.getDepartmentName() + "";
+		} else {
+			return null;
+		}
 	}
 }

@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
 
-<title> BlackList Page </title>
+<title> Departments Manager Page </title>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/css/userManagement.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" />
@@ -67,7 +67,7 @@
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/team/index"class="navItem selected">Department Management </a>
+				     <a href="<%=request.getContextPath()%>/department/index"class="navItem selected">Department Management </a>
 				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
@@ -94,18 +94,17 @@
 			    
 			 </div>
 			 <div id="userDisplayWrapper">
-			      <iframe id="userDisplay"name="userDisplay"></iframe>
+			      <iframe id="userDisplay"name="userDisplay" src="<%=request.getContextPath()%>/admin/listUser"></iframe>
 			  </div>
 			  <div id="rightNav">
-			      <div id="rightNav1"class="rightNavItem"><a target="userDisplay" href="<%=request.getContextPath()%>/team/index"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/person.png"/></a></div>
+			      <div id="rightNav1"class="rightNavItem"><a target="userDisplay" href="<%=request.getContextPath()%>/admin/listUser"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/person.png"/></a></div>
 			      <div id="rightNav2"class="rightNavItem"><a target="userDisplay" href="<%=request.getContextPath()%>/team/index"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/team.png"/></a></div>
 			      <div id="rightNav3"class="rightNavItem"><a target="userDisplay" href="<%=request.getContextPath()%>/room/roommanager"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/room.png"/></a></div>
 			      <div id="rightNav4"class="rightNavItem"><a target="userDisplay" href="<%=request.getContextPath()%>/department/departmentList"><img class="rightNavIcon" width="38px" src="<%=request.getContextPath()%>/resources/images/department.png"/></a></div>
 			  </div>				
 			 </div>
 		 </div>
-	 </div>
-	
+	 </div>	
  </div>
   <div id="footerContainer">
       <div id="footer">

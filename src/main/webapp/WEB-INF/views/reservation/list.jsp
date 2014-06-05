@@ -116,9 +116,7 @@ html+=("</div>");
 	               $('#pageIndex').html(pageIndex);
 	                },
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
-// 					alert(XMLHttpRequest);
-// 					alert(textStatus);
-// 					alert(errorThrown);
+						alert("error");
 				}
 			});
 }
