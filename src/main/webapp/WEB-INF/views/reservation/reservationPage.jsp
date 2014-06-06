@@ -174,9 +174,9 @@
 
                              </div>
           
-                             <a class="sortPanelItem">Newest</a>
-                             <a class="sortPanelItem">Oldest</a>
-                             <a class="sortPanelItem">Reservation No.</a>
+                             <a class="sortPanelItem"  target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?orderby=desc">Time DESC</a>
+                             <a class="sortPanelItem" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?orderby=asc">Time ASC</a>
+                            
             
             
                            </div>
@@ -185,20 +185,17 @@
                                    <span class="headerText">Sort Option</span>
                                    <span class="close"id="closeShow"><img class="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
 
-                               </div>
-          
-                               <a class="sortPanelItem">Today</a>
-                               <a class="sortPanelItem">Last 3 Days</a>
-                               <a class="sortPanelItem">All</a>
-            
+                               </div>         
+                               <a class="sortPanelItem" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?status=-1">Unhandled</a>
+                               <a class="sortPanelItem" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?status=1">Approve</a>
+                               <a class="sortPanelItem" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?status=0">Reject</a>
             
                           </div>
                           <div id="btnFunctionWrapper">
-                              <div class="btnFunction">Back</div>
+                              <a class="btnFunction" href="<%=request.getContextPath()%>/reservation/list" target="checkRightInner">All</a>
                               <div id="verticalLine"></div>
-                              <div class="btnFunction" id="approveBtn" onClick="checkCheckbox(0)">Approve</div>
-                              <div class="btnFunction" id="rejectBtn" onClick="checkCheckbox(1)">Reject</div>
-                              <div class="btnFunction" id="conflictBtn">Conflict</div>
+                              
+                            
                               <div class="btnFunction" id="showBtn">Show<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
                               <div class="btnFunction" id="sortBtn">Sort<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
                           </div>   
@@ -209,7 +206,7 @@
 			     
 			     
 			     
-			         <iframe id="checkRightInner" src="<%=request.getContextPath()%>/reservation/list" >
+			         <iframe id="checkRightInner" name="checkRightInner" src="<%=request.getContextPath()%>/reservation/list" >
 			         </iframe>
 			     
 			     </div>
