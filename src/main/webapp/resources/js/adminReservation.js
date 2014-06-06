@@ -3,7 +3,16 @@ window.onload = function() {
 	
 	//////////////////////////////////////////////
 	
-	
+	$("#logoutBtn").mouseover(function(){
+		$(this).attr("class","btnLogout btnHover");
+		
+	});
+	$("#logoutBtn").mouseout(function(){
+		$(this).attr("class","btnLogout");
+	});
+	$("#logoutBtn").mousedown(function(){
+		$(this).attr("class","btnLogout btnLogoutSelected");
+	});	
 	
 	$(".close").mouseover(function(){
 		$(".closeIcon").attr("src","/trms/resources/images/closeDeep.png");
@@ -313,3 +322,8 @@ window.onload = function() {
 	}
 
 };
+
+function logout(url){
+	$("#logoutBtn").attr("class","btnLogout btnSelected");
+	window.location.href=url;
+}

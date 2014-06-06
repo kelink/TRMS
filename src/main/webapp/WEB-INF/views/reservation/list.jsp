@@ -51,7 +51,7 @@ function AjaxGetData(index, size) {
 						
 						var applicant_ID=json[position].user.user_ID;
 						var applicant_account=json[position].user.account;
-																	
+						var status=json[position].reservation.status;											
 
 
 
@@ -65,40 +65,123 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 
                         html+=("<div class=\"ticketTitle\">Ticket Information</div>");
                         html+=("<div class=\"ticketContent\">");
-						//html+=("reservation_ID:"+reservation_ID+"<br/>");
-						
-						html+=("reservation_Num:"+reservation_Num+"<br/>");
-						html+=("room_item:"+room_item+"<br/>");
-						html+=("purpose:"+purpose+"<br/>");
-						
-						html+=("Order_Date:"+Order_Date+"<br/>");
-				
-						//html+=("team_ID:"+team_ID+"<br/>");	
-						html+=("order_Team:"+order_Team+"<br/>");	
-						
-						//html+=("room_ID:"+room_ID+"<br/>");	
-					
-						
-						html+=("reservation_start_Daty:"+reservation_start_Daty+"<br/>");
-						html+=("reservation_end_Daty:"+reservation_end_Daty+"<br/>");
-						
-						//html+=("applicant_ID:"+applicant_ID+"<br/>");	
-						html+=("applicant_account:"+applicant_account+"<br/>");
-						
-						html+=("email:"+email+"<br/>");
-						html+=("tele:"+tele+"<br/>");
-						html+=("<br/><br/><br/>");
-						//html+=("handler_by:"+handler_by+"<br/>");
-						html+=(" <a class='btnMore'target='moreInfo'onclick='more(event);' href='<%=request.getContextPath()%>/reservation/edit?"
-								+"reservation_ID="+reservation_ID
-								+"&room_ID="+room_ID
-								+"&team_ID="+team_ID
-								+"&applicant_ID="+applicant_ID
-								+"&handler_by="+handler_by
-								+"'>Edit Information</a> <br/>");
-						html+=("</div>");
 
-///////////////////////////////
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+						
+						
+						
+						
+						
+						
+						
+						
+///////////////////////////////////////////////////////////////////////////////////
+
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					// // 						<div id="modifyWrapper">
+                         html+="<div id='modifyWrapper'>";
+// // 				    	<div id="warning">The ticket can only be modify when it is at the status of untreated!</div>
+ 					    html+="<div id=\"warning\">The ticket can only be modify when it is at the status of untreated!</div>";
+<%--					<form action="<%=request.getContextPath()%>/reservation/update" method="post" onsubmit="return updateCheck(${reservation.status})"> --%> 
+// //////////////////////////////////////////////////////////////////////////////////有问题
+                         html+="<form action=\"<%=request.getContextPath()%>/reservation/update\" method=\"post\" onsubmit=\"return updateCheck("+status+")\">"; 
+// 						Reservation Number:
+	                    html+="Reservation Number:";
+// 						<input type="text" name="reservation_Num" readOnly="true" value="${reservation.reservation_Num}"/><br/>
+                        html+="<input type=\"text\" name=\"reservation_Num\" readOnly=\"true\" value=\""+reservation_Num+"\"/><br/>";
+// 						Room：<input type="text" name="room_item" readOnly="true" value="${room.item}"/><br/>
+					    html+="Room：<input type=\"text\" name=\"room_item\" readOnly=\"true\" value=\""+room_item+"\"/><br/>";
+// 						Planned Use Start Time：
+                        html+="Planned Use Start Time：";
+// 						<input type="date" name="Applied_Start_Date" value="${reservation.getApplied_Start_DateByString()}"/><br/>
+                        html+="<input type=\"date\" name=\"Applied_Start_Date\" value=\""+reservation_start_Daty+"\"/><br/>";
+// 						Planned Use End Time：
+                        html+="Planned Use End Time：";
+// 						<input type="date" name="Applied_End_Date"value="${reservation.getApplied_End_DateByString()}"/><br/>
+                        html+="<input type=\"date\" name=\"Applied_End_Date\"value=\""+reservation_end_Daty+"\"/><br/>";
+// 						User LN:
+	                    html+="User LN:";
+// 						<input type="text" name="email" value="${reservation.email}"/><br/>
+                        html+="<input type=\"text\" name=\"email\" value=\""+email+"\"/><br/>";
+// 						User TelLine:
+	                    html+="User TelLine:";
+// 						<input type="text" name="tele" value="${reservation.tele}"/><br/>
+                        html+="<input type=\"text\" name=\"tele\" value=\""+tele+"\"/><br/>";
+// 						Use Resaon:
+	                    html+="Use Resaon:";
+// 						<input type="text" name="purpose"value="${reservation.purpose}"/>
+                        html+="<input type=\"text\" name=\"purpose\"value=\""+purpose+"\"/>";
+						
+// 						<input type="hidden" name="reservation_ID" value="${reservation.reservation_ID}">
+                        html+="<input type=\"hidden\" name=\"reservation_ID\" value=\""+reservation_ID+"\">";
+						
+// 						<div id="btnWrapper">
+                        html+="<div id=\"btnWrapper\">";
+
+// 						<input class="btnUpdate" type="submit"name="submit" id="btnUpdate"  value="update"/>
+                        html+="<input class=\"btnUpdate\" type=\"submit\"name=\"submit\" id=\"btnUpdate\"  value=\"update\"/>";
+// // 						<a class="btnDelete" href="#" onclick="deleteReservation(${reservation.reservation_ID})">delete</a>
+                        html+="<a class=\"btnDelete\" href=\"#\" onclick=\"deleteReservation"+reservation_ID+"\">delete</a>";
+// // 						</div>
+                        html+="</div>";
+// // 						</form>
+                         html+="</form>";
+// // 				        </div>
+                         html+="</div>";	
+						
+						
+                         html+=("</div>");
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+/////////////////////////////////////////////////////////////////////////////////////
 						html+=("</div>");
                         html+=("<input type='checkbox'name='checkbox' onclick='chose(event);'value='"+reservation_ID+"' class='checkbox1 listContentClass"+reservation_ID+"'>");
                         html+=("<span class=\"listContent1 listContent listContentClass"+reservation_ID+"\">"+reservation_Num+"</span>");

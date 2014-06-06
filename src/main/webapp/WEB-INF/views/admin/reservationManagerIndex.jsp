@@ -14,7 +14,7 @@
 <link href="<%=request.getContextPath()%>/resources/css/checkReservation.css" rel="stylesheet" >
   <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
   <link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
- <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 
   <script src="<%=request.getContextPath()%>/resources/js/adminReservation.js" type="text/javascript"></script>
