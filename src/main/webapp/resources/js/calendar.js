@@ -62,7 +62,7 @@ function getDynamicTable(Y, M) {
 	var book = false;
 	var future = false;
 	var buffer = false;
-	var bufferNum = 2;
+	var bufferNum = 3;
 
 	var Temp, i, j, k, l
 
