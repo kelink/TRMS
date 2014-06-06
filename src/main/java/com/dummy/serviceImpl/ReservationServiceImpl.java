@@ -281,4 +281,10 @@ public class ReservationServiceImpl implements ReservationService {
 		}
 		return message;
 	}
+
+	@Override
+	public List<Reservation> getReservationByStatusAndUser(int status,
+			int user_ID) {
+		return reservationDao.getReservationByStatusAndUser(status, user_ID);
+	}
 }

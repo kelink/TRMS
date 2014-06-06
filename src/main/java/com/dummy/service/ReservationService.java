@@ -31,6 +31,9 @@ public interface ReservationService {
 
 	public List<Reservation> getReservationByStatus(int status);
 
+	public List<Reservation> getReservationByStatusAndUser(int status,
+			int user_ID);
+
 	public String checkApprove(Reservation reservation);
 
 	public String checkReject(Reservation reservation);

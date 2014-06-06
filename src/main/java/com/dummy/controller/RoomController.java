@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -78,24 +77,24 @@ public class RoomController {
 
 	@RequestMapping("/headInfo")
 	public ModelAndView headInfo(Model model, HttpSession session) {
-		List<Reservation> list = reservationService
-				.getReservationByStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
+		List<Reservation> list = new ArrayList<Reservation>();
 		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
-		List<Reservation> listLc = new ArrayList();
-		Iterator iterator = list.iterator();
-		while (iterator.hasNext()) {
-			Reservation reservation = (Reservation) iterator.next();
-			if (currentUser.getUser_ID() == reservation.getUser_ID()) {
-				listLc.add(reservation);
-			}
+		if (currentUser.getAccess() == C.DB.DEFAULT_ROLE_LC) {
+			list = reservationService
+					.getReservationByStatusAndUser(
+							C.DB.DEFAULT_RESERVATION_UNHANDLE,
+							currentUser.getUser_ID());
+		} else {
+			list = reservationService
+					.getReservationByStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
 		}
+
 		ModelMap map = new ModelMap();
-		int count = listLc.size();
+		int count = list.size();
 		map.addAttribute("count", count);
 		map.addAttribute("list", list);
 		return new ModelAndView("room/headInfo", map);
 	}
-
 	// getRoom
 	@RequestMapping("/getForm")
 	public @ResponseBody String getForm(HttpServletRequest request,
