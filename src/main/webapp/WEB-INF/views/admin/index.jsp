@@ -15,7 +15,7 @@
   <link href="<%=request.getContextPath()%>/resources/css/bookForm.css" rel="stylesheet" type="text/css" >
  <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
   <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
-   <script src="<%=request.getContextPath()%>/resources/js/bookForm.js" type="text/javascript"></script>
+   <script src="<%=request.getContextPath()%>/resources/js/bookFormTA.js" type="text/javascript"></script>
 
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 

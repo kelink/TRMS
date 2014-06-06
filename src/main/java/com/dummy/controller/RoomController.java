@@ -185,6 +185,18 @@ public class RoomController {
 		System.out.println(calendarData);
 		return new ModelAndView("room/calendar", map);
 	}
+	
+	// request calendarTA
+	@RequestMapping(value = "/calendarTA")
+	public ModelAndView calendarTA(HttpServletRequest request) {
+		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
+		String calendarData = reservationService.getCalanderData(room_ID);
+		ModelMap map = new ModelMap();
+		map.addAttribute("calendarData", calendarData);
+		map.addAttribute("room_ID", room_ID);
+		System.out.println(calendarData);
+		return new ModelAndView("room/calendarTA", map);
+	}
 
 	// book room
 	@SuppressWarnings("null")
