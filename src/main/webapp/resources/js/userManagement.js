@@ -161,9 +161,11 @@ var count = 0;
 window.onload = function() {
 	$(".rightNavItem").mouseover(function() {
 		$(this).css("border-left", "3px solid rgb(231, 231, 231)");
+		$(this).find(".floatLabel").css("display","block");
 	});
 	$(".rightNavItem").mouseout(function() {
 		$(this).css("border-left", "none");
+		$(this).find(".floatLabel").css("display","none");
 	});
 
 	// boot();
@@ -221,7 +223,7 @@ window.onload = function() {
 
 					},
 					error : function(XMLHttpRequest, textStatus, errorThrown) {
-						alert('failed');
+						
 					}
 				});
 

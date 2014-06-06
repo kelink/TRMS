@@ -54,7 +54,7 @@ function getRoomInfo(department_ID){
 			}			
          },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("exception");
+
 		}
 	});
 }
@@ -70,7 +70,7 @@ function teamOperate(args){
 						
 	         },
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("exception");
+
 			}
 		});
 	}
@@ -85,7 +85,7 @@ function teamOperate(args){
 					
 	         },
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("exception");
+			
 			}
 		});
 	}
@@ -100,7 +100,7 @@ function teamOperate(args){
 					
 	         },
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("exception");
+		
 			}
 		});
 	}

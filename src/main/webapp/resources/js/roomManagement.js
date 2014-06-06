@@ -156,7 +156,7 @@ function boot() {
 
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert('failed');
+
 		}
 	});
 }
@@ -214,7 +214,7 @@ window.onload = function() {
 
 					},
 					error : function(XMLHttpRequest, textStatus, errorThrown) {
-						alert('failed');
+		
 					}
 				});
 
