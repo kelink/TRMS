@@ -16,7 +16,7 @@ var path="<%=request.getContextPath()%>"
 </script>
 <link href="<%=request.getContextPath()%>/resources/css/calendar.css" rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
-<script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/calendar.js" type="text/javascript"charset=”utf-8″></script>
 
@@ -24,7 +24,8 @@ var path="<%=request.getContextPath()%>"
 <body class="calBody">
 <div class="day">
     <div class="DaySelect">
-		<i class="lr" onclick="Month('l')" title="Last Month"><</i>
+<!-- 		<i class="lr" onclick="Month('l')" title="Last Month"><</i> -->
+		<i class="lr"  title="Last Month"id="l"><</i>
         <div class="select">
             <div class="stop" id="cy"></div>
         
@@ -37,7 +38,8 @@ var path="<%=request.getContextPath()%>"
 <!--                 </ul> -->
             </div>
         </div>
-        <i class="lr" onclick="Month('r')" title="Next Month">></i>
+<!--         <i class="lr" onclick="Month('r')" title="Next Month">></i> -->
+        <i class="lr" title="Next Month"id="r">></i>
         <i onclick="now()">Today</i>
     </div>
     <div id="DayAll"></div>

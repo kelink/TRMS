@@ -1,0 +1,60 @@
+#headInfoWrapper
+{
+	overflow: hidden;
+	border:1px solid #cccccc;
+   color: rgb(80, 80, 80);
+font-weight: bold;
+	border-radius:3px;
+	border-bottom-left-radius:0px;
+	border-bottom-right-radius:0px;
+}
+#headInfoBottom
+{
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
+height: 12px;
+background: rgb(255, 208, 108);
+}
+.headInfoItem
+{
+	
+	float: left;
+line-height: 102px;
+font-size: 15px;
+}
+#unhandleWrapper
+{
+	float:left;
+	margin-left: 41px;
+margin-top: 19px;
+}
+#unhandleIcon
+{
+	width: 57px;
+}
+#unhandleWord
+{
+	float:left;
+	display: inline-block;
+font-size: 27px;
+color: rgb(231, 147, 69);
+margin-right: 6px;
+}
+#nextMonth
+{
+	margin-left: 79px;
+}
+#nextMonthWrapper
+{
+	float:left;
+	margin-top: 22px;
+}
+#nextMonthOpenIcon
+{
+	width: 53px;
+}
+
+#nextMonthWord
+{
+	float:left;
+}

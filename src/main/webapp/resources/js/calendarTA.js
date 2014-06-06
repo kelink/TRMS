@@ -55,14 +55,16 @@ function Month(s) {
 }
 function now() {// ///////////////////////////////////////////////////////////
 	getDynamicTable(SY, SM)
-	cy.innerHTML = SY
-	cm.innerHTML = SM
+	//cy.innerHTML = SY
+	//cm.innerHTML = SM
+	$("#cy").html(SY);
+	$("#cm").html(SM);
 }
 function getDynamicTable(Y, M) {
 	var book = false;
 	var future = false;
 	var buffer = false;
-	var bufferNum = 3;
+	var bufferNum = 0;
 
 	var Temp, i, j, k, l
 
@@ -105,29 +107,7 @@ function getDynamicTable(Y, M) {
 			if (SY <= Y && SM <= M && SD <= j || SY <= Y && SM < M) {
 				future = true;
 			}
-			if (SY == Y && SM == M && SD == j) {
 
-				buffer = true;
-
-			}
-			if (buffer == true) {
-
-				if (book == true) {
-					Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle infoCursor'onclick=\"alert('The date is unavailable to book')\"><div class=\"bookedDiv\"></div>"
-							: "<td class='idle infoCursor'onclick=\"alert('The date is unavailable to book')\"><div class=\"bookedDiv\"></div>")
-							+ j + "</td>"
-				} else {
-					Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle buffer'onclick=\"alert('The date is unavailable to book')\">"
-							: "<td class='idle buffer'onclick=\"alert('The date is unavailable to book')\">")
-							+ j + "</td>"
-				}
-
-				if (bufferNum == 1) {
-					buffer = false;
-
-				}
-				bufferNum--;
-			} else {
 
 				if (book == true) {
 					if (future == true) {
@@ -155,7 +135,7 @@ function getDynamicTable(Y, M) {
 								+ j + "</td>"
 					}
 				}
-			}
+
 
 			j = j + 1
 		}

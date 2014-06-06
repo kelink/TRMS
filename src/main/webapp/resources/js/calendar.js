@@ -10,9 +10,21 @@ window.onload = function() {
 	getDynamicTable(SY, SM)
 	document.getElementById("cy").innerHTML = parseInt(SY)
 	document.getElementById("cm").innerHTML = parseInt(SM)
+	checkOpen();
 	// document.getElementById("YearAll").innerHTML = YearAll(SY)
 	// document.getElementById("DateAll").innerHTML = DateAll(SY,SM)
 };
+function checkOpen(){
+	
+	if(SD>=20)
+	{
+		
+		document.getElementById("l").setAttribute("onclick","Month('l')");
+		document.getElementById("r").setAttribute("onclick","Month('r')");
+		
+	}
+}
+
 // function YearAll(Y){
 // var Ystr = ""
 //	
@@ -55,8 +67,8 @@ function Month(s) {
 }
 function now() {// ///////////////////////////////////////////////////////////
 	getDynamicTable(SY, SM)
-	cy.innerHTML = SY
-	cm.innerHTML = SM
+	$("#cy").html(SY);
+	$("#cm").html(SM);
 }
 function getDynamicTable(Y, M) {
 	var book = false;
