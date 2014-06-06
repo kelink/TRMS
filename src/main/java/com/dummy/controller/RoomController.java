@@ -77,21 +77,15 @@ public class RoomController {
 	// }
 
 	@RequestMapping("/headInfo")
-<<<<<<< HEAD
-	public ModelAndView headInfo(Model model) {
-=======
-	public ModelAndView headInfo(Model model,HttpSession session) {
->>>>>>> bd0bc4432c4313132c12c3516a393000e61dfb9a
+	public ModelAndView headInfo(Model model, HttpSession session) {
 		List<Reservation> list = reservationService
 				.getReservationByStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
 		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
-		List<Reservation> listLc=new ArrayList();
-		Iterator iterator=list.iterator();
-		while(iterator.hasNext())
-		{
-			Reservation reservation=(Reservation)iterator.next();
-			if(currentUser.getUser_ID()==reservation.getUser_ID())
-			{
+		List<Reservation> listLc = new ArrayList();
+		Iterator iterator = list.iterator();
+		while (iterator.hasNext()) {
+			Reservation reservation = (Reservation) iterator.next();
+			if (currentUser.getUser_ID() == reservation.getUser_ID()) {
 				listLc.add(reservation);
 			}
 		}
