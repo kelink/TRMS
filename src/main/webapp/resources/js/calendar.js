@@ -14,14 +14,13 @@ window.onload = function() {
 	// document.getElementById("YearAll").innerHTML = YearAll(SY)
 	// document.getElementById("DateAll").innerHTML = DateAll(SY,SM)
 };
-function checkOpen(){
-	
-	if(SD>=20)
-	{
-		
-		document.getElementById("l").setAttribute("onclick","Month('l')");
-		document.getElementById("r").setAttribute("onclick","Month('r')");
-		
+function checkOpen() {
+
+	if (SD >= 20) {
+
+		document.getElementById("l").setAttribute("onclick", "Month('l')");
+		document.getElementById("r").setAttribute("onclick", "Month('r')");
+
 	}
 }
 
@@ -148,8 +147,10 @@ function getDynamicTable(Y, M) {
 								+ "</td>";
 						book = false;
 					} else {
-						Temp += "<td class='pass idle infoCursor'onclick='bookInfo(" + l
-								+ ")'><div class=\"bookedDiv\"></div>" + j
+						Temp += "<td class='pass idle infoCursor'onclick='bookInfo("
+								+ l
+								+ ")'><div class=\"bookedDiv\"></div>"
+								+ j
 								+ "</td>";
 						book = false;
 					}
@@ -206,7 +207,7 @@ function bookInfo(a) {
 	// alert("dept:"+bookedDate[a].department+"lc:"+bookedDate[a].lc+"tele:"+bookedDate[a].usertele);
 }
 function setDate(year, month, day) {
-
+	$("#email,#tele,#purpose", window.parent.document).val("");
 	// var
 	// url=path+'/room/getForm?room_ID='+roomId+'&year='+year+'&month='+month+'&day='+day;
 	// window.location.href=url;//禁用这个url，直接复制给floatTicketDiv浮出来

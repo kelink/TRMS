@@ -91,7 +91,7 @@
 			         </div>
 			         <div id="seperateLine">
 			         </div>
-			         <form action="<%=request.getContextPath()%>/reservation/list" method="get"target="checkRightInner">
+			         <form action="<%=request.getContextPath()%>/reservation/list" method="post"target="checkRightInner">
 			         <div id="searchDivWrapper">
 			             <div class="searchDiv">
 			             <label class="searchLabel">Reservation Num...</label>

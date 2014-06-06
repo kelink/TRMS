@@ -12,12 +12,10 @@
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/checkReservation.css" rel="stylesheet" >
-  <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
-  <link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
- <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
- <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
-
-  <script src="<%=request.getContextPath()%>/resources/js/adminReservation.js" type="text/javascript"></script>
+<link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
+<link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/adminReservation.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -71,7 +69,7 @@
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/team/index"class="navItem">Department Management </a>
+				     <a href="<%=request.getContextPath()%>/department/index"class="navItem">Department Management </a>
 				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
@@ -106,7 +104,7 @@
 			             Precise search
 			         </div>
 			         
-			         <form action="<%=request.getContextPath()%>/reservation/list" method="get"target="checkRightInner">
+			         <form action="<%=request.getContextPath()%>/reservation/list" method="post"target="checkRightInner">
 			         <div id="searchDivWrapper">
 			             <div class="searchDiv">
 			             <label class="searchLabel">Reservation Num...</label>
@@ -188,10 +186,10 @@
                              <span class="close"id="closeSort"onclick="close()"><img class="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
 
                              </div>
-          
-                             <a class="sortPanelItem">Newest</a>
-                             <a class="sortPanelItem">Oldest</a>
-                             <a class="sortPanelItem">Reservation No.</a>
+                             
+          					<a class="sortPanelItem"  target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?orderby=desc">Time DESC</a>
+                            <a class="sortPanelItem" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?orderby=asc">Time ASC</a>
+                       
             
             
                            </div>
@@ -201,18 +199,19 @@
                                    <span class="close"id="closeShow"><img class="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
 
                                </div>
-          
-                               <a class="sortPanelItem">Today</a>
-                               <a class="sortPanelItem">Last 3 Days</a>
-                               <a class="sortPanelItem">All</a>
+                             <a class="sortPanelItem" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?status=-1">Unhandled</a>
+                               <a class="sortPanelItem" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?status=1">Approve</a>
+                               <a class="sortPanelItem" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?status=0">Reject</a>
             
+                               
             
                           </div>
                           <div id="btnFunctionWrapper">
                               <div class="btnFunction">Back</div>
                               <div id="verticalLine"></div>
-                              <div class="btnFunction" id="approveBtn" onClick="checkCheckbox(0)">Approve</div>
-                              <div class="btnFunction" id="rejectBtn" onClick="checkCheckbox(1)">Reject</div>
+
+                              <div class="btnFunction" id="approveBtn" onClick="window.frames['checkRightInner'].checkCheckbox(0)">Approve</div>
+                              <div class="btnFunction" id="rejectBtn" onClick="window.frames['checkRightInner'].checkCheckbox(1)">Reject</div>
                               <div class="btnFunction" id="conflictBtn">Conflict</div>
                               <div class="btnFunction" id="showBtn">Show<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
                               <div class="btnFunction" id="sortBtn">Sort<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>

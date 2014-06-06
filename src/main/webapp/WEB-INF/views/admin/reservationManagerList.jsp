@@ -160,9 +160,7 @@ function checkCheckbox(args){
 	if($("input[name='checkbox']:checkbox:checked").length>0){	   
 	    $("input[name='checkbox']:checkbox:checked").each(function(){
 	    	box.push($(this).val());  
-	    	//box += $(this).val()+',';
 	    }); 
-	    alert(box);
 	 }else{
 	    alert('You do not choose an item');
 	    return false;
@@ -250,6 +248,11 @@ function checkApproveRejectBtn(args,reservation_ID){
     </div>
     <div id="listWrapper">   
     </div>
+    
+    
+    
+    <div style="display:none;" class="btnFunction" id="approveBtn" onClick="checkCheckbox(0)">Approve</div>
+    <div style="display:none;"class="btnFunction" id="rejectBtn" onClick="checkCheckbox(1)">Reject</div>
     </form>
 
 

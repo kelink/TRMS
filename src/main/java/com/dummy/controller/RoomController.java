@@ -223,9 +223,7 @@ public class RoomController {
 	@SuppressWarnings("null")
 	@RequestMapping(value = "/bookRoomTA")
 	public ModelAndView bookRoomTA(
-			HttpServletRequest request,
 			HttpSession session,
-			Model model,
 			@RequestParam(value = "team_ID", required = true) int team_ID,
 			@RequestParam(value = "room_ID", required = true) int room_ID,
 			@RequestParam(value = "begin_time", required = true) String begin_time,
@@ -292,9 +290,7 @@ public class RoomController {
 	@SuppressWarnings("null")
 	@RequestMapping(value = "/bookRoom")
 	public ModelAndView bookRoom(
-			HttpServletRequest request,
 			HttpSession session,
-			Model model,
 			@RequestParam(value = "team_ID", required = true) int team_ID,
 			@RequestParam(value = "room_ID", required = true) int room_ID,
 			@RequestParam(value = "begin_time", required = true) String begin_time,
@@ -303,6 +299,15 @@ public class RoomController {
 			@RequestParam(value = "tele", required = true) String tele,
 			@RequestParam(value = "purpose", required = true) String purpose,
 			@ModelAttribute("currentUser") DBUser currentUser) {
+
+		System.out.println("email------------------>>" + email);
+		System.out.println("tele------------------>>" + tele);
+		System.out.println("purpose------------------>>" + purpose);
+		System.out.println("team_ID------------------>>" + team_ID);
+		System.out.println("begin_time------------------>>" + begin_time);
+		System.out.println("end_time------------------>>" + end_time);
+		System.out.println("room_ID------------------>>" + room_ID);
+
 		ModelMap map = new ModelMap();
 
 		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -371,6 +376,7 @@ public class RoomController {
 		}
 	}
 	// check whether time can be booked
+	@RequestMapping("/checkTime")
 	public @ResponseBody String checkTime(
 			@RequestParam(value = "room_ID", required = true) int room_ID,
 			HttpServletRequest request, HttpSession session) {

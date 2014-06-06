@@ -277,7 +277,7 @@ public class ReservationServiceImpl implements ReservationService {
 	public String checkTime(String beginTime, String endTime, int room_ID) {
 		String message = null;
 		if (!reservationDao.isBetween(beginTime, endTime, room_ID)) {
-			message = "Reservation applied time is not in current month,please reject it!";
+			message = "Reservation applied time error!";
 		}
 		return message;
 	}

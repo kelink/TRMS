@@ -18,8 +18,11 @@
 <script src="<%=request.getContextPath()%>/resources/js/departmentList.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-function display(){
-	
+function changeFrame(args){
+	if(args==0){
+		window.location.href='<%=request.getContextPath()%>/department/index';
+		window.parent.document.getElementById("userDisplay").src="<%=request.getContextPath()%>/team/index"
+	}
 }
 
 </script>
@@ -37,9 +40,9 @@ function display(){
 		<li>
 		<!-- 当点击选择部门时候才显示部门的信息 -->
 			<input type='radio' name='department' value=${department.department_ID }>${department.departmentName }<br>			
- 			<a href="#">User numbers:(${userList[department.department_ID].size()})</a><br/>
-			<a href="#">Team numbers(${department.getTeamSet().size() })</a><br/>
-			<a href="#">Room numbers(${department.getRoomSet().size() })</a><br/>
+ 			<a href="#" onClick="changeFrame(0)">User numbers:(${userList[department.department_ID].size()})</a><br/>
+			<a href="#"  onClick="changeFrame(1)">Team numbers(${department.getTeamSet().size() })</a><br/>
+			<a href="#"  onClick="changeFrame(2)">Room numbers(${department.getRoomSet().size() })</a><br/>
  			 <!--  
 			<c:if test="${department.departmentName}">
 				<p id="defaultInfo">No user information to show</p> 

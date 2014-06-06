@@ -119,8 +119,11 @@
 			 if (team_ID == "") {
 			 return false;
 			 }			
-			 isInBlackList(team_ID);
-			// isTimeBook();
+			 isInBlackList(team_ID);		
+		});
+		
+		$('#end_time').blur(function (){
+			 isTimeBook();
 		});
 	});
 	// 检验是否属于黑名单
@@ -130,11 +133,9 @@
 			type : "Get",
 			data : "team_ID=" + team_ID,
 			dataType : "html",
-			success : function(json) {
-				
+			success : function(json) {				
 				if(json!=""){
 					alert(json);
-					$("#empty").attr("selected","selected");
 				}
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {			
@@ -153,10 +154,8 @@
 			data : "room_ID=" + room_ID+"&beginTime="+beginTime+"&endTime="+endTime,
 			dataType : "html",
 			success : function(json) {
-				
 				if(json!=""){
 					alert(json);
-					$("#empty").attr("selected","selected");
 				}
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {			
@@ -235,7 +234,7 @@
 
                      </div>
 
-                     <form class="bookForm" action="<%=request.getContextPath()%>/room/bookRoom" method="post" name="bookForm" onsubmit="return isEmpty()" target="bookRoomResult">
+                     <form class="bookForm" action="<%=request.getContextPath()%>/room/bookRoom" method="post" id="bookForm1" name="bookForm" onsubmit="return isEmpty()" target="bookRoomResult">
 
                          <div class="bookFormLabel">Free Room</div>
                          <select class="bookFormInput" name="room_ID"> 
@@ -248,17 +247,17 @@
                          </select><span>*</span>
     
                          <div class="bookFormLabel">Start_Time</div>
-                         <input class="bookFormInput"  type="date" name="begin_time"  id="begin_time"/><span>*</span>
+                         <input class="bookFormInput"  type="date" name="begin_time"  id="begin_time" required/><span>*</span>
                          <div class="bookFormLabel">End_Time</div>
-                         <input class="bookFormInput" type="date" name="end_time"  id="end_time"/><span>*</span>
+                         <input class="bookFormInput" type="date" name="end_time"  id="end_time" required/><span>*</span>
                          <div class="bookFormLabel">Email</div>
-                         <input class="bookFormInput" type="text" name="email" id="email"/><span>*</span>
+                         <input class="bookFormInput" type="text" name="email" id="email" required/><span>*</span>
    
     
                          <div class="bookFormLabel">TelLine</div>
-                         <input class="bookFormInput" type="text" name="tele" id="tele">
+                         <input class="bookFormInput" type="text" name="tele" id="tele" required>
                          <div class="bookFormLabel">Purpose</div>
-                          <textarea class="bookFormInput" type="text" name="purpose" id="purpose"></textarea>
+                          <textarea class="bookFormInput" type="text" name="purpose" id="purpose" required></textarea>
                          <br />
                          <input id="bookFormSubmit" class="btnBook" type="submit" name="submit" value="Submit"/>
                          </form>
