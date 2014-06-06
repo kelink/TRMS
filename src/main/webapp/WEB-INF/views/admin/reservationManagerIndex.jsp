@@ -12,10 +12,19 @@
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/checkReservation.css" rel="stylesheet" >
+<<<<<<< HEAD
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/adminReservation.js" type="text/javascript"></script>
+=======
+  <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
+  <link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
+
+ <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+
+  <script src="<%=request.getContextPath()%>/resources/js/adminReservation.js" type="text/javascript"></script>
+>>>>>>> ba7a495f866cb0f0d64763704fba711c321b1703
 </head>
 <body>
 
