@@ -76,7 +76,7 @@ public class RoomController {
 	// }
 
 	@RequestMapping("/headInfo")
-	public ModelAndView list(Model model) {
+	public ModelAndView headInfo(Model model) {
 		List<Reservation> list = reservationService
 				.getReservationByStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
 		ModelMap map = new ModelMap();
@@ -166,7 +166,7 @@ public class RoomController {
 		ModelMap map = new ModelMap();
 		map.addAttribute("recordCount", recordCount);
 		map.addAttribute("pageCount", pageCount);
-		List<Room> rooms = roomService.getAllRoom();
+		List<Room> rooms = roomService.getFreeRooms();
 		map.addAttribute("rooms", rooms);
 		return new ModelAndView("room/list", map);
 	}
