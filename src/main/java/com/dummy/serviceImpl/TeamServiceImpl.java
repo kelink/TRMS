@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import com.dummy.dao.TeamDao;
+import com.dummy.dao.UserDao;
 import com.dummy.domain.Team;
 import com.dummy.service.TeamService;
 
@@ -18,6 +19,9 @@ public class TeamServiceImpl implements TeamService {
 
 	@Resource(name = "teamDao")
 	private TeamDao teamDao;
+
+	@Resource(name = "userDao")
+	private UserDao userDao;
 
 	@Override
 	public Team getTeam(int id) {
@@ -54,6 +58,8 @@ public class TeamServiceImpl implements TeamService {
 			map.put("department_ID", String.valueOf(team.getDepartment_ID()));
 			map.put("teamName", team.getTeamName());
 			map.put("user_ID", String.valueOf(team.getUser_ID()));
+			map.put("user_Account", userDao.getUser(team.getUser_ID())
+					.getAccount());
 			JSONObject object = new JSONObject(map);
 			result.add(object);
 		}

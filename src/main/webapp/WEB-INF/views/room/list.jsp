@@ -111,21 +111,46 @@
  		}
  	}
  }
-	// 检验是否属于黑名单
+	
 	$(document).ready(function() {
 		$("#teams").change(function() {
 			 var team_ID = $("#teams").val();
+			
 			 if (team_ID == "") {
 			 return false;
 			 }			
 			 isInBlackList(team_ID);
+			// isTimeBook();
 		});
 	});
+	// 检验是否属于黑名单
 	function isInBlackList(team_ID) {
 		$.ajax({
 			url : "<%=request.getContextPath()%>/room/isInBlackList",
 			type : "Get",
 			data : "team_ID=" + team_ID,
+			dataType : "html",
+			success : function(json) {
+				
+				if(json!=""){
+					alert(json);
+					$("#empty").attr("selected","selected");
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {			
+				alert("error");
+			}
+		});
+	}
+	// 检验时间是否可以book
+	function  isTimeBook() {
+		var beginTime = $("#begin_time").val();
+		var endTime = $("#end_time").val();
+		var room_ID = $("#roomOption").val();		 
+		$.ajax({
+			url : "<%=request.getContextPath()%>/room/checkTime",
+			type : "Get",
+			data : "room_ID=" + room_ID+"&beginTime="+beginTime+"&endTime="+endTime,
 			dataType : "html",
 			success : function(json) {
 				

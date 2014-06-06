@@ -32,6 +32,8 @@ public interface ReservationService {
 	public List<Reservation> getReservationByStatus(int status);
 
 	public String checkApprove(Reservation reservation);
-	
+
 	public String checkReject(Reservation reservation);
+
+	public String checkTime(String beginTime, String endTime, int room_ID);
 }

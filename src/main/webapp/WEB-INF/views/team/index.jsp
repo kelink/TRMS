@@ -44,8 +44,10 @@ function getDepartmentAllteam(department_ID,departmentName){
 					var team_ID=json[position].team_ID;
 					var department_ID=json[position].department_ID;
 					var teamName=json[position].teamName;
+					var account=json[position].user_Account;
 					//添加元素，使得option可以选择
-					html+="team_ID:"+teamName;
+					html+="team_ID:"+teamName+"<br/>";
+					html+="account:"+account+"<br/>";
 					html+='<button onclick="showEdit('+team_ID+',\''+teamName+'\''+',\''+departmentName+'\')">'+"edit"+'</button>';			
 					html+="<br/>";
 			}	

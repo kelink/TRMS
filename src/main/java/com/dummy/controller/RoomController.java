@@ -159,9 +159,9 @@ public class RoomController {
 	@RequestMapping("/list")
 	public ModelAndView list(
 			Model model,
-			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
+			@RequestParam(value = "pageSize", required = false, defaultValue = "7") int pageSize,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum) {
-		int recordCount = roomService.getAllRoom().size();
+		int recordCount = roomService.getFreeRooms().size();
 		int pageCount = (recordCount + pageSize - 1) / pageSize;
 		ModelMap map = new ModelMap();
 		map.addAttribute("recordCount", recordCount);
@@ -175,7 +175,7 @@ public class RoomController {
 	@RequestMapping("/listPageRoom")
 	public @ResponseBody List<Room> listPageRoom(
 			Model model,
-			@RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,
+			@RequestParam(value = "pageSize", required = false, defaultValue = "7") int pageSize,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum) {
 		List<Room> roomPageList = roomService.getRoomOnPage(pageNum, pageSize);
 		return roomPageList;
@@ -286,6 +286,14 @@ public class RoomController {
 		} else {
 			return "";
 		}
+	}
+	// check whether time can be booked
+	public @ResponseBody String checkTime(
+			@RequestParam(value = "room_ID", required = true) int room_ID,
+			HttpServletRequest request, HttpSession session) {
+		String beginTime = request.getParameter("beginTime");
+		String endTime = request.getParameter("endTime");
+		return reservationService.checkTime(beginTime, endTime, room_ID);
 	}
 	// get add reservation
 	@RequestMapping("/getAllReservation")

@@ -17,28 +17,49 @@
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
 <script src="<%=request.getContextPath()%>/resources/js/departmentList.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+function display(){
+	
+}
+
+</script>
 </head>
 <body>
 <div class="roomListBody"> 
  <h2>department information</h2>
-		      <c:forEach var="department" items="${departments}">	 
-							
- 							department Name:${department.departmentName }<br/> 
- 							<!-- 
- 							department ID:${department.department_ID }<br/> 
- 							<c:forEach var="team" items="${department.getTeamSet()}"> 
- 									${team } 
- 							</c:forEach> 
- 							department room: <br/> 
-							<c:forEach var="room" items="${department.getRoomSet()}"> 
- 								${room } 
- 								</c:forEach>									
- 							<hr/>
- 							-->
-						</c:forEach> 
-						<!-- 
-		      <p id="defaultInfo">No user information to show</p> 
-		       -->
+ 	<button>add Department</button>
+ 	<button>delete Department</button>
+ 	<button onclick="display()">check Department</button><br/>
+ 	<ul>		
+ 	
+ 		<c:forEach var="department" items="${departments}">
+ 		
+		<li>
+		<!-- 当点击选择部门时候才显示部门的信息 -->
+			<input type='radio' name='department' value=${department.department_ID }>${department.departmentName }<br>			
+ 			<a href="#">User numbers:(${userList[department.department_ID].size()})</a><br/>
+			<a href="#">Team numbers(${department.getTeamSet().size() })</a><br/>
+			<a href="#">Room numbers(${department.getRoomSet().size() })</a><br/>
+ 			 <!--  
+			<c:if test="${department.departmentName}">
+				<p id="defaultInfo">No user information to show</p> 
+			</c:if>	
+			<c:forEach var="team" items="${department.getTeamSet()}"> 
+ 						${team } 
+ 			</c:forEach> 
+ 			department room: <br/> 
+			<c:forEach var="room" items="${department.getRoomSet()}"> 
+ 					${room } 
+ 			</c:forEach>
+ 			 -->
+ 			<hr/>	
+ 		</li>								
+ 								
+		</c:forEach> 
+ 		
+ 	</ul>
+	 
+			
 		      <div id="displayArea"></div>
 </div>
 </body>

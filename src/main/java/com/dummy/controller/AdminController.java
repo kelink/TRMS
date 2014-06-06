@@ -59,7 +59,7 @@ public class AdminController {
 		ModelMap map = new ModelMap();
 		map.addAttribute("recordCount", recordCount);
 		map.addAttribute("pageCount", pageCount);
-		List<Room> rooms = roomService.getAllRoom();
+		List<Room> rooms = roomService.getFreeRooms();
 		map.addAttribute("rooms", rooms);
 		return new ModelAndView("admin/index", map);
 	}

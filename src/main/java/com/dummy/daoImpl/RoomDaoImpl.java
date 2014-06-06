@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.dummy.common.C;
 import com.dummy.controller.LoginController;
 import com.dummy.dao.RoomDao;
 import com.dummy.domain.Room;
@@ -62,11 +63,12 @@ public class RoomDaoImpl implements RoomDao {
 	// get room by page
 	@SuppressWarnings("unchecked")
 	public List<Room> getRoomOnPage(int pageNum, int pageSize) {
-		String hql = "from Room r order by r.last_Used_Date desc";
+		String hql = "from Room r where r.room_Status=?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		int offSet = (pageNum - 1) * pageSize >= 0
 				? (pageNum - 1) * pageSize
 				: 0;
+		query.setInteger(0, C.DB.DEFAULT_FREE_ROOM);
 		query.setFirstResult(offSet);
 		query.setMaxResults(pageSize);
 		return query.list();

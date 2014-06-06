@@ -58,6 +58,54 @@ function getRoomInfo(department_ID){
 		}
 	});
 }
+function teamOperate(args){
+	//delete team
+	if(args==0){
+		$.ajax({
+			url : "<%=request.getContextPath()%>/room/getRoomsBydepartment",
+			type : "Get",
+			data : "department_ID=" + department_ID,
+			dataType : "json",
+			success : function(json) {
+						
+	         },
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("exception");
+			}
+		});
+	}
+	if(args==1){
+		$.ajax({
+			url : "<%=request.getContextPath()%>/room/getRoomsBydepartment",
+			type : "Get",
+			data : "department_ID=" + department_ID,
+			dataType : "json",
+			success : function(json) {
+				
+					
+	         },
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("exception");
+			}
+		});
+	}
+	if(args==2){
+		$.ajax({
+			url : "<%=request.getContextPath()%>/room/getRoomsBydepartment",
+			type : "Get",
+			data : "department_ID=" + department_ID,
+			dataType : "json",
+			success : function(json) {
+				
+					
+	         },
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("exception");
+			}
+		});
+	}
+
+}
 </script>
 </head>
 </head>
@@ -72,8 +120,9 @@ function getRoomInfo(department_ID){
 							<option value="${department.department_ID}">${department.departmentName}</option> 
  						</c:forEach> 
 					</select> 
-					<button name="checkBtn" id="checkBtn" onClick="displayBlackList()">check</button>				
- 					<button name="deleteBtn" id="deleteBtn" onClick="deleteBlackList()">delete</button> 
+					<button name="checkBtn" id="checkBtn" onClick="displayRoom()">check</button>				
+ 					<button name="deleteBtn" id="deleteBtn" onClick="deleteRoom()">delete</button>
+ 					<button name="deleteBtn" id="deleteBtn" onClick="addRoom()">add</button> 
 					<hr/> 
  					显示信息区域	 
 				Room:<div id="display"></div> 

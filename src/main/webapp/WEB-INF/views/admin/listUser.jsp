@@ -30,6 +30,9 @@ function getDepartmentInfo(dept_ID){
 			}
 		});
 }
+function getDetial(dept_ID){
+	$("#display").attr("src","<%=request.getContextPath()%>/team/getDetail?department_ID="+dept_ID);
+}
 </script>
 
 <title> User Page </title>
@@ -41,16 +44,11 @@ function getDepartmentInfo(dept_ID){
 			<c:forEach items="${commonUsers}" var="commonUser">
 				commonUser :${commonUser}<br/>
 				<br/>
-				department:${commonUser.dept_ID}
+				<button onclick='getDetial(${commonUser.dept_ID})'>getDetial</button>
 			</c:forEach>
 		</div>
-		<hr/>
-		<div id="admins">
-			<h2>commonUser Information</h2>
-			<c:forEach items="${admins}" var="admin">
-				admin :${admin}<br/>
-			</c:forEach>
-		</div>
+		<hr/>	
+			<iframe id ="display" src="<%=request.getContextPath()%>/team/getDetail?department_ID=1"></iframe>
 	</div>
 </body>
 </html>

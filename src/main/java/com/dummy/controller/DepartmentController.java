@@ -53,7 +53,14 @@ public class DepartmentController {
 	@RequestMapping(value = "/departmentList")
 	public ModelAndView departmentList() {
 		List<Department> departments = departmentService.getAllDepartment();
+		HashMap<Integer, List<DBUser>> userList = new HashMap<Integer, List<DBUser>>();
+		for (Department department : departments) {
+			List<DBUser> list = userService.getUserByDepartment(department
+					.getDepartment_ID());
+			userList.put(department.getDepartment_ID(), list);
+		}
 		ModelMap map = new ModelMap();
+		map.addAttribute("userList", userList);// 部门员工
 		map.addAttribute("departments", departments);
 		return new ModelAndView("departmentmanager/departmentList", map);
 	}
@@ -79,7 +86,7 @@ public class DepartmentController {
 		map.addAttribute("result", result);
 		return new ModelAndView("departmentmanager/teamList", map);
 	}
-	// list room
+	// list room of department
 	@RequestMapping(value = "/roomList")
 	public ModelAndView roomList() {
 		List<Department> departments = departmentService.getAllDepartment();
@@ -87,7 +94,7 @@ public class DepartmentController {
 		map.addAttribute("departments", departments);
 		return new ModelAndView("departmentmanager/roomList", map);
 	}
-	// list user
+	// list user of department
 	@RequestMapping(value = "/userList")
 	public ModelAndView userList() {
 		List<Department> departments = departmentService.getAllDepartment();
