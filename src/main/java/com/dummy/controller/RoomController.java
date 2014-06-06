@@ -97,6 +97,20 @@ public class RoomController {
 		map.addAttribute("list", list);
 		return new ModelAndView("room/headInfo", map);
 	}
+	
+
+	@RequestMapping("/headInfoTA")
+	public ModelAndView headInfoTA(Model model,HttpSession session) {
+		List<Reservation> list = reservationService
+				.getReservationByStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
+
+	
+		ModelMap map = new ModelMap();
+		int count = list.size();
+		map.addAttribute("count", count);
+		map.addAttribute("list", list);
+		return new ModelAndView("room/headInfoTA", map);
+	}
 
 	// getRoom
 	@RequestMapping("/getForm")
@@ -217,6 +231,76 @@ public class RoomController {
 		return new ModelAndView("room/calendarTA", map);
 	}
 
+	// book roomTA
+	@SuppressWarnings("null")
+	@RequestMapping(value = "/bookRoomTA")
+	public ModelAndView bookRoomTA(
+			HttpServletRequest request,
+			HttpSession session,
+			Model model,
+			@RequestParam(value = "team_ID", required = true) int team_ID,
+			@RequestParam(value = "room_ID", required = true) int room_ID,
+			@RequestParam(value = "begin_time", required = true) String begin_time,
+			@RequestParam(value = "end_time", required = true) String end_time,
+			@RequestParam(value = "email", required = true) String email,
+			@RequestParam(value = "tele", required = true) String tele,
+			@RequestParam(value = "purpose", required = true) String purpose,
+			@ModelAttribute("currentUser") DBUser currentUser) {
+		ModelMap map = new ModelMap();
+
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date beginDate = null;
+		Date endDate = null;
+		Date nowDate = null;
+		try {
+			beginDate = (Date) format1.parse(begin_time);
+			endDate = (Date) format1.parse(end_time);
+			String now = format1.format(new java.util.Date());
+			nowDate = (Date) format1.parse(now);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		// 1. create a reservation
+		Reservation reservation = new Reservation();
+		String reservation_Num = ReservationUtil.getUniqueSequence();
+
+		reservation.setApplied_End_Date(endDate);
+		reservation.setApplied_Start_Date(beginDate);
+		reservation.setEmail(email);
+		reservation.setOrder_Time(nowDate);
+		reservation.setPurpose(purpose);
+		reservation.setRoom_ID(room_ID);
+		reservation.setTeam_ID(team_ID);
+		reservation.setUser_ID(currentUser.getUser_ID());
+		reservation.setTele(tele);
+		reservation.setReservation_Num(reservation_Num);
+
+		if (session.getAttribute("currentRole").equals("ROLE_LC")) {
+			reservation.setHandle_by(C.DB.DEFAULT_APPROVE_BY);
+			reservation.setStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
+		} else if (session.getAttribute("currentRole").equals("ROLE_TA")) {
+			reservation.setHandle_by(currentUser.getUser_ID());
+			reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
+		}
+
+		System.out.println(reservation);
+		map.addAttribute("reservation_Num", reservation_Num);
+		// 3.Send Email
+		// List<DBUser> admins = userService
+		// .getUserByRole(C.DB.DEFAULT_ROLE_TA);
+		// List<String> toAddressList = new ArrayList<String>();
+		// for (DBUser dbUser : admins) {
+		// toAddressList.add(dbUser.getAccount());
+		// MailSender.sendEmailToAllAdmin(toAddressList, null, null);
+		// }
+
+		// 4.add reservation
+		reservationService.addReservation(reservation);
+		return new ModelAndView("room/successTA", map);
+
+	}
+	
+	
 	// book room
 	@SuppressWarnings("null")
 	@RequestMapping(value = "/bookRoom")

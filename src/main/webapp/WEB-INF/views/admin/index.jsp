@@ -207,7 +207,7 @@
 	     <div class="middleContainer">
 		     <h1 class="roomList">Room List</h1>
 			 <div class="roomListBody">
-			     <iframe id="bookRoomResult" name="bookRoomResult"scrolling="no"src="<%=request.getContextPath()%>/room/headInfo"></iframe>
+			     <iframe id="bookRoomResult" name="bookRoomResult"scrolling="no"src="<%=request.getContextPath()%>/room/headInfoTA"></iframe>
 			     <div id="floatTicket">
 			         <div class="panelHeader">
                          <span id="headerText">Fill in the form</span>
@@ -215,7 +215,7 @@
 
                      </div>
 
-                     <form class="bookForm" action="<%=request.getContextPath()%>/room/bookRoom" method="post" name="bookForm" onsubmit="return isEmpty()" target="bookRoomResult">
+                     <form class="bookForm" action="<%=request.getContextPath()%>/room/bookRoomTA" method="post" name="bookForm" onsubmit="return isEmpty()" target="bookRoomResult">
 
                          <div class="bookFormLabel">Free Room</div>
                          <select class="bookFormInput" name="room_ID"> 

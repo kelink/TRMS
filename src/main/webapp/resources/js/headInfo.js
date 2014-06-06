@@ -1,5 +1,5 @@
 window.onload=function(){
-	SD = new Date().getDate();
+	SD =new Date().getDate();
 	
 	if(SD>=20)
 	{
