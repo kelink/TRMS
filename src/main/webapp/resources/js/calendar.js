@@ -55,8 +55,8 @@ function Month(s) {
 }
 function now() {// ///////////////////////////////////////////////////////////
 	getDynamicTable(SY, SM)
-	cy.innerHTML = SY
-	cm.innerHTML = SM
+	$("#cy").html(SY);
+	$("#cm").html(SM);
 }
 function getDynamicTable(Y, M) {
 	var book = false;
