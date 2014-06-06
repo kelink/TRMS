@@ -3,9 +3,12 @@ window.onload=function(){
 	
 	if(SD>=20)
 	{
-		$("#nextMonthOpen").html("available to book rooms of next month");
+		$("#nextMonthWord").html("It's available to book rooms for next month");
+		$("#nextMonthOpenIcon").attr("src","/trms/resources/images/nextMonthOpen.png");
+		
 	}
 	else{
-		$("#nextMonthOpen").html("you can only book room of this month");
+		$("#nextMonthWord").html("You can only book room for this month");
+		$("#nextMonthOpenIcon").attr("src","/trms/resources/images/nextMonthClose1.png");
 	};
 }
