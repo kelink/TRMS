@@ -13,6 +13,6 @@
   <link href="<%=request.getContextPath()%>/resources/css/headInfo.css" rel="stylesheet" >
 </head>
 <body>
-
+${count}
 </body>
 </html>

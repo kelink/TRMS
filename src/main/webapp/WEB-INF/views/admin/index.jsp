@@ -12,10 +12,13 @@
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
 
   <title> LC Page </title>
+  <link href="<%=request.getContextPath()%>/resources/css/bookForm.css" rel="stylesheet" type="text/css" >
  <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
   <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
- <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+   <script src="<%=request.getContextPath()%>/resources/js/bookFormTA.js" type="text/javascript"></script>
+
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+
  <script type="text/javascript" >
  var pageIndex = 0;
  var pageSize = 7;
@@ -25,7 +28,8 @@
  });
 
  function AjaxGetData(index, size) {
- 	$.ajax({
+ 	$
+ 			.ajax({
  				url : "<%=request.getContextPath()%>/room/listPageRoom",
  				type : "Get",
  				data : "pageNum=" + index + "&pageSize=" + size,
@@ -107,6 +111,34 @@
  		}
  	}
  }
+	// 检验是否属于黑名单
+	$(document).ready(function() {
+		$("#teams").change(function() {
+			 var team_ID = $("#teams").val();
+			 if (team_ID == "") {
+			 return false;
+			 }			
+			 isInBlackList(team_ID);
+		});
+	});
+	function isInBlackList(team_ID) {
+		$.ajax({
+			url : "<%=request.getContextPath()%>/room/isInBlackList",
+			type : "Get",
+			data : "team_ID=" + team_ID,
+			dataType : "html",
+			success : function(json) {
+				
+				if(json!=""){
+					alert(json);
+					$("#empty").attr("selected","selected");
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {			
+				alert("error");
+			}
+		});
+	}
 
  </script>
 </head>
@@ -152,7 +184,7 @@
 	 <div class="navigator">
 	     <div class="navContainer">
 		     <ul class="navi">
-			   <li>
+			     <li>
 				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem selected">Book Room</a>
 				 </li>
 				 <li>
@@ -175,6 +207,43 @@
 	     <div class="middleContainer">
 		     <h1 class="roomList">Room List</h1>
 			 <div class="roomListBody">
+			     <iframe id="bookRoomResult" name="bookRoomResult"scrolling="no"src="<%=request.getContextPath()%>/room/headInfo"></iframe>
+			     <div id="floatTicket">
+			         <div class="panelHeader">
+                         <span id="headerText">Fill in the form</span>
+                         <span id="close"><img id="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
+
+                     </div>
+
+                     <form class="bookForm" action="<%=request.getContextPath()%>/room/bookRoom" method="post" name="bookForm" onsubmit="return isEmpty()" target="bookRoomResult">
+
+                         <div class="bookFormLabel">Free Room</div>
+                         <select class="bookFormInput" name="room_ID"> 
+	                         <option id="roomOption" ></option>
+                         </select>
+                         <div class="bookFormLabel">Team</div>
+                         <select class="bookFormInput" name="team_ID" id="teams">
+    	                     <option value=""></option>
+	                 
+                         </select><span>*</span>
+    
+                         <div class="bookFormLabel">Start_Time</div>
+                         <input class="bookFormInput"  type="date" name="begin_time"  id="begin_time"/><span>*</span>
+                         <div class="bookFormLabel">End_Time</div>
+                         <input class="bookFormInput" type="date" name="end_time"  id="end_time"/><span>*</span>
+                         <div class="bookFormLabel">Email</div>
+                         <input class="bookFormInput" type="text" name="email" id="email"/><span>*</span>
+   
+    
+                         <div class="bookFormLabel">TelLine</div>
+                         <input class="bookFormInput" type="text" name="tele" id="tele">
+                         <div class="bookFormLabel">Purpose</div>
+                          <textarea class="bookFormInput" type="text" name="purpose" id="purpose"></textarea>
+                         <br />
+                         <input id="bookFormSubmit" class="btnBook" type="submit" name="submit" value="Submit"/>
+                         </form>
+			     </div>
+			  	 
 			  	 <div class="roomListHeader">
 				     <div class="roomListTitle">
 					     Room
@@ -215,7 +284,18 @@
 	 </div>
  </div>
  <%@ include file="footer.jsp"%>
+ 
+ 
+ 
+
+<!--  <div id="footerContainer"> -->
+<!--       <div id="footer"> -->
+<!--           <span id="copyright"> &copy; Copyright 2014 by <a href="#">Lin Jiajian</a>&<a href="#">Luo Kelin</a></span> -->
+<%--           <span><img id="hsbcIconFooter" width="30px"height="15px" src="<%=request.getContextPath() %>/resources/images/hsbcFooter.png"/></span> --%>
+<!--           <span id="footerWord"><a href="#">Team</a> <a href="#">Telephone</a><a href="#">Email</a><a href="#">about</a></span> -->
+<!--       </div> -->
+  
+ </div>
+
 </body>
 </html>
-
-

@@ -68,10 +68,22 @@ public class RoomController {
 	private DepartmentService departmentService;
 
 	// head Information
+
+	// @RequestMapping("/headInfo")
+	// public ModelAndView list(Model model) {
+	//
+	// return new ModelAndView("room/headInfo");
+	// }
+
 	@RequestMapping("/headInfo")
 	public ModelAndView list(Model model) {
-
-		return new ModelAndView("room/headInfo");
+		List<Reservation> list = reservationService
+				.getReservationByStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
+		ModelMap map = new ModelMap();
+		int count = list.size();
+		map.addAttribute("count", count);
+		map.addAttribute("list", list);
+		return new ModelAndView("room/headInfo", map);
 	}
 
 	// getRoom
@@ -179,6 +191,18 @@ public class RoomController {
 		map.addAttribute("room_ID", room_ID);
 		System.out.println(calendarData);
 		return new ModelAndView("room/calendar", map);
+	}
+
+	// request calendarTA
+	@RequestMapping(value = "/calendarTA")
+	public ModelAndView calendarTA(HttpServletRequest request) {
+		int room_ID = Integer.parseInt(request.getParameter("room_ID"));
+		String calendarData = reservationService.getCalanderData(room_ID);
+		ModelMap map = new ModelMap();
+		map.addAttribute("calendarData", calendarData);
+		map.addAttribute("room_ID", room_ID);
+		System.out.println(calendarData);
+		return new ModelAndView("room/calendarTA", map);
 	}
 
 	// book room
