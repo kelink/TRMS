@@ -275,6 +275,8 @@ public class ReservationController {
 			@RequestParam(value = "pageSize", required = false, defaultValue = "7") int pageSize,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
 			HttpSession session) {
+		String temp = request.getParameter("optionStr");
+
 		String optionStr = "where reservation.status="
 				+ C.DB.DEFAULT_RESERVATION_UNHANDLE;
 		List<ReservationDetial> recorderPageList = reservationService
