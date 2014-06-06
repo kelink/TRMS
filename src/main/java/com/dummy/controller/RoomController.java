@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -76,11 +77,22 @@ public class RoomController {
 	// }
 
 	@RequestMapping("/headInfo")
-	public ModelAndView headInfo(Model model) {
+	public ModelAndView headInfo(Model model,HttpSession session) {
 		List<Reservation> list = reservationService
 				.getReservationByStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
+		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
+		List<Reservation> listLc=new ArrayList();
+		Iterator iterator=list.iterator();
+		while(iterator.hasNext())
+		{
+			Reservation reservation=(Reservation)iterator.next();
+			if(currentUser.getUser_ID()==reservation.getUser_ID())
+			{
+				listLc.add(reservation);
+			}
+		}
 		ModelMap map = new ModelMap();
-		int count = list.size();
+		int count = listLc.size();
 		map.addAttribute("count", count);
 		map.addAttribute("list", list);
 		return new ModelAndView("room/headInfo", map);

@@ -11,8 +11,11 @@
 <title>Insert title here</title>
  <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
   <link href="<%=request.getContextPath()%>/resources/css/headInfo.css" rel="stylesheet" >
+  <script src="<%=request.getContextPath()%>/resources/js/headInfo.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 </head>
 <body>
-${count}
+<div id="nextMonthOpen"></div>
+<div id="unhandleReservation">${count}</div>
 </body>
 </html>
