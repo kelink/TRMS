@@ -46,11 +46,12 @@ function deleteReservation(reservation_ID){
 </script>
 </head>
 <body>
+<!-- top -->
 <div class="panelHeader">
 <span id="headerText">Modify Ticket</span>
 <span id="close"onclick="back();"><img id="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
-
 </div>
+<!-- content -->
         <div id="modifyWrapper">
     	<div id="warning">The ticket can only be modify when it is at the status of untreated!</div>
 	    
@@ -81,8 +82,6 @@ function deleteReservation(reservation_ID){
 		</div>
 		</form>
         </div>
-	
-	
 	<br/>	
 
 </body>

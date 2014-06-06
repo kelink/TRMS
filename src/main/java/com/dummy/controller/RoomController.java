@@ -68,14 +68,12 @@ public class RoomController {
 	private DepartmentService departmentService;
 
 	// head Information
-		@RequestMapping("/headInfo")
-		public ModelAndView list(
-				Model model) {
-		
+	@RequestMapping("/headInfo")
+	public ModelAndView list(Model model) {
 
-			return new ModelAndView("room/headInfo");
-		}
-	
+		return new ModelAndView("room/headInfo");
+	}
+
 	// getRoom
 	@RequestMapping("/getForm")
 	public @ResponseBody String getForm(HttpServletRequest request,
@@ -292,6 +290,11 @@ public class RoomController {
 
 	@RequestMapping("/add")
 	public ModelAndView add() {
+		return null;
+	}
+	@RequestMapping("/update")
+	public ModelAndView Update(
+			@RequestParam(value = "department_ID", required = true) int department_ID) {
 		return null;
 	}
 

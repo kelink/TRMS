@@ -13,22 +13,24 @@
 
 <title> BlackList Page </title>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
-<link href="<%=request.getContextPath()%>/resources/css/roomManagement.css" rel="stylesheet" >
+<link href="<%=request.getContextPath()%>/resources/css/teamEdit.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/teamEdit.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	  $("#departments").change(function(){
-		var department_ID=$("#departments").val();
+		var department_ID=$("#departments").val();	
+		var departmentName=$("#departments  option:selected").text();
 		if(department_ID==""){
 			$("#teams").empty(); 
 			return false;
 		}	
-	    getDepartmentAllteam(department_ID);
+	    getDepartmentAllteam(department_ID,departmentName);
 	  });
 	});
 
-function getDepartmentAllteam(department_ID){
+function getDepartmentAllteam(department_ID,departmentName){
 	$.ajax({
 		url : "<%=request.getContextPath()%>/team/getDepartmentAllteam",
 		type : "Get",
@@ -43,8 +45,8 @@ function getDepartmentAllteam(department_ID){
 					var department_ID=json[position].department_ID;
 					var teamName=json[position].teamName;
 					//添加元素，使得option可以选择
-					html+="team_ID:"+teamName;								
-					html+="<a href='<%=request.getContextPath()%>/team?team_ID="+team_ID+"'>edit</a>";
+					html+="team_ID:"+teamName;
+					html+='<button onclick="showEdit('+team_ID+',\''+teamName+'\''+',\''+departmentName+'\')">'+"edit"+'</button>';			
 					html+="<br/>";
 			}	
 			$("#display").empty();
@@ -55,15 +57,23 @@ function getDepartmentAllteam(department_ID){
 		}
 	});
 }
+function showEdit(team_ID, teamName,departmentName) {
+	$("#tipsWrapper").css("display", "block");
+	$("#departmentName").attr("value", departmentName);
+	$("#team_item").attr("value", teamName);
+	$("#team_ID").attr("value", team_ID);
+}
+function back() {
+	$("#tipsWrapper").css("display", "none");
+
+}
 
 </script>
 </head>
 
 <body>
 
-
-
- 			 <div class="roomListBody"> 
+ <div class="roomListBody"> 
  			 <h1>team管理界面</h1>							
 					departments
 					<select name="departments" id="departments">
@@ -77,12 +87,35 @@ function getDepartmentAllteam(department_ID){
 					<!-- 显示信息区域 -->
 					teams Information	
 					<div id="display"></div>
-						
-			 </div>
+					
+</div>
+<!-- top -->
+<div id="tipsWrapper">
+<div class="panelHeader">
+<span id="headerText">Modify Team</span>
+<span id="close"onclick="back();"><img id="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
+</div>
+<!-- content -->
+        <div id="modifyWrapper">
+	    
+		<form action="<%=request.getContextPath()%>/reservation/update" method="post">
+		<br/>
+		<h2>Department Name:<input type="text" id="departmentName" name="departmentName" readOnly="true"/></h2>
+		<br/>
+		<h2>Team Item：<input type="text" id="team_item" name="team_item"/><br/></h2>
+	
+		<input type="hidden" id="team_ID" name="team_ID"/>
+		<div id="btnWrapper">
+
+		<input class="btnUpdate" type="submit"name="submit" id="btnUpdate"  value="update"/>
+		<a class="btnDelete" href="#" onclick="deleteReservation(${reservation.reservation_ID})">delete</a>
+		</div>
+		</form>
+        </div>
+	<br/>
+
+</div>
+ 			
 
 </body>
 </html>
-
-
-
-
