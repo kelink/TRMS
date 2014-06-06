@@ -1,14 +1,11 @@
 package com.dummy.util;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.Stack;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-
-import com.dummy.common.C;
 
 public class ReservationUtil {
 	// use JDK_UUID schema to generate number of reservation
@@ -90,16 +87,18 @@ public class ReservationUtil {
 		return builder.toString();
 	}
 
-	// for conflict
-	public static String getConflictSqlOption() {
-		return "where reservation.status=" + C.DB.DEFAULT_RESERVATION_UNHANDLE;
-	}
-
 	// public static String get
 	public static void main(String[] args) {
-		Date now = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println(format.format(now));
+
+		Stack<String> testStack = new Stack<String>();
+		testStack.push("1");
+		testStack.push("2");
+		testStack.push("3");
+		testStack.push("4");
+		System.out.println(testStack.peek());
+		System.out.println(testStack.pop());
+		System.out.println(testStack.pop());
+		System.out.println(testStack);
 	}
 
 }

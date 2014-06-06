@@ -39,4 +39,6 @@ public interface ReservationService {
 	public String checkReject(Reservation reservation);
 
 	public String checkTime(String beginTime, String endTime, int room_ID);
+
+	public List<ReservationDetial> getConflictReservationDetials(int room_ID);
 }

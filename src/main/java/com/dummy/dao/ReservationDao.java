@@ -34,4 +34,7 @@ public interface ReservationDao {
 
 	public List<Reservation> getReservationByStatusAndUser(int status,
 			int user_ID);
+
+	public List<Reservation> getReservationByStatusAndRoom(int status,
+			int room_ID);
 }

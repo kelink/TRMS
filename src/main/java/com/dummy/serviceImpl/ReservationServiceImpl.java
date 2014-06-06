@@ -287,4 +287,12 @@ public class ReservationServiceImpl implements ReservationService {
 			int user_ID) {
 		return reservationDao.getReservationByStatusAndUser(status, user_ID);
 	}
+
+	// 获取有冲突的Reservation
+	@Override
+	public List<ReservationDetial> getConflictReservationDetials(int room_ID) {
+
+		return null;
+	}
+
 }

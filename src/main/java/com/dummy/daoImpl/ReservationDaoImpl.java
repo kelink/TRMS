@@ -437,4 +437,14 @@ public class ReservationDaoImpl implements ReservationDao {
 		return query.list();
 	}
 
+	@Override
+	public List<Reservation> getReservationByStatusAndRoom(int status,
+			int room_ID) {
+		String hql = "from Reservation r where r.status=? and r.room_ID=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, status);
+		query.setInteger(1, room_ID);
+		return query.list();
+	}
+
 }
