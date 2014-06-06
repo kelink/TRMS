@@ -76,7 +76,7 @@ public class RoomController {
 	// }
 
 	@RequestMapping("/headInfo")
-	public ModelAndView list(Model model) {
+	public ModelAndView headInfo(Model model) {
 		List<Reservation> list = reservationService
 				.getReservationByStatus(C.DB.DEFAULT_RESERVATION_UNHANDLE);
 		ModelMap map = new ModelMap();
