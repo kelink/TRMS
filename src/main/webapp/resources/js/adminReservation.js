@@ -1,32 +1,23 @@
 window.onload = function() {
-<<<<<<< HEAD
 
 	// ////////////////////////////////////////////
+
+	$("#logoutBtn").mouseover(function() {
+		$(this).attr("class", "btnLogout btnHover");
+
+	});
+	$("#logoutBtn").mouseout(function() {
+		$(this).attr("class", "btnLogout");
+	});
+	$("#logoutBtn").mousedown(function() {
+		$(this).attr("class", "btnLogout btnLogoutSelected");
+	});
 
 	$(".close").mouseover(function() {
 		$(".closeIcon").attr("src", "/trms/resources/images/closeDeep.png");
 	});
 	$(".close").mouseout(function() {
 		$(".closeIcon").attr("src", "/trms/resources/images/closeShallow.png");
-=======
-	
-	
-	//////////////////////////////////////////////
-	
-	$("#logoutBtn").mouseover(function(){
-		$(this).attr("class","btnLogout btnHover");
-		
-	});
-	$("#logoutBtn").mouseout(function(){
-		$(this).attr("class","btnLogout");
-	});
-	$("#logoutBtn").mousedown(function(){
-		$(this).attr("class","btnLogout btnLogoutSelected");
-	});	
-	
-	$(".close").mouseover(function(){
-		$(".closeIcon").attr("src","/trms/resources/images/closeDeep.png");
->>>>>>> ba7a495f866cb0f0d64763704fba711c321b1703
 	});
 	$("#closeShow").click(function() {
 		$("#showPanel").css("display", "none");
@@ -324,29 +315,10 @@ window.onload = function() {
 		});
 
 	}
-	$("#logoutBtn").mouseover(function() {
-		$(this).attr("class", "btnLogout btnHover");
-
-	});
-	$("#logoutBtn").mouseout(function() {
-		$(this).attr("class", "btnLogout");
-	});
-	$("#logoutBtn").mousedown(function() {
-		$(this).attr("class", "btnLogout btnLogoutSelected");
-	});
 
 };
 
-<<<<<<< HEAD
 function logout(url) {
 	$("#logoutBtn").attr("class", "btnLogout btnSelected");
 	window.location.href = url;
 }
-=======
-};
-
-function logout(url){
-	$("#logoutBtn").attr("class","btnLogout btnSelected");
-	window.location.href=url;
-}
->>>>>>> ba7a495f866cb0f0d64763704fba711c321b1703
