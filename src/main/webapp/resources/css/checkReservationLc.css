@@ -12,6 +12,11 @@ padding-top: 0px;
 padding-bottom: 10px;
 overflow:hidden;
 }
+#multiDeleteBtn
+{
+	text-decoration:none;
+}
+
 #checkRightPanel
 {
 

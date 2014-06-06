@@ -194,7 +194,7 @@
                           <div id="btnFunctionWrapper">
                               <a class="btnFunction" href="<%=request.getContextPath()%>/reservation/list" target="checkRightInner">All</a>
                               <div id="verticalLine"></div>
-                              
+                              <a class="btnFunction" id="multiDeleteBtn" href="#" target="checkRightInner">Delete</a>
                             
                               <div class="btnFunction" id="showBtn">Show<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
                               <div class="btnFunction" id="sortBtn">Sort<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>

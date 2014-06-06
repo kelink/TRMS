@@ -109,7 +109,7 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
  					    html+="<div id=\"warning\">The ticket can only be modify when it is at the status of untreated!</div>";
 
                          html+="<form action=\"<%=request.getContextPath()%>/reservation/update\" method=\"post\" onsubmit=\"return updateCheck("+status+")\">"; 
-
+ 	                    html+="<div id=\"reservationTableWrapper\">";
 	                    html+="<table>";
 	                    html+="</tr>";	
 	                    
@@ -119,7 +119,7 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 	                    html+="</td>";
 
 html+="<td>";	
-                        html+="<input type=\"text\" name=\"reservation_Num\" readOnly=\"true\" value=\""+reservation_Num+"\"/>";
+                        html+="<input class=\"readonlyInfo\" type=\"text\" name=\"reservation_Num\" readOnly=\"true\" value=\""+reservation_Num+"\"/>";
 
                 html+="</td>";      
 html+="</tr>";	
@@ -128,7 +128,7 @@ html+="</tr>";
 					    html+="Room：";
 					    html+="</td>";
 					    html+="<td>";	
-					    html+="<input type=\"text\" name=\"room_item\" readOnly=\"true\" value=\""+room_item+"\"/>";
+					    html+="<input class=\"readonlyInfo\" type=\"text\" name=\"room_item\" readOnly=\"true\" value=\""+room_item+"\"/>";
 
 html+="</td>";
 html+="</tr>";	
@@ -188,16 +188,17 @@ html+="<td>";
                     	html+="<td class=\"btnWrapper\">";	                   
 
 
-                        html+="<input class=\"btnUpdate\" type=\"submit\"name=\"submit\" id=\"btnUpdate\"  value=\"update\"/>";
-                        html+="<a class=\"btnDelete\" href=\"#\" onclick=\"deleteReservation"+reservation_ID+"\">delete</a>";
+                        html+="<input class=\"btnUpdate reservationLcBtn\" type=\"submit\"name=\"submit\" id=\"btnUpdate\"  value=\"update\"/>";
+                        
                         html+="</td>";
                         html+="<td class=\"btnWrapper\">";
-                        
+                        html+="<a class=\"btnDelete reservationLcBtn\" href=\"#\" onclick=\"deleteReservation"+reservation_ID+"\">delete</a>";
                         html+="</td>";
                         html+="</tr>";
                    
 
                          html+="</table>";
+                         html+="</div>";
                          html+="</form>";
 
                          html+="</div>";	
