@@ -1,4 +1,61 @@
 window.onload = function() {
+	
+	
+	//////////////////////////////////////////////
+	
+	
+	
+	$(".close").mouseover(function(){
+		$(".closeIcon").attr("src","/trms/resources/images/closeDeep.png");
+	});
+	$(".close").mouseout(function(){
+		$(".closeIcon").attr("src","/trms/resources/images/closeShallow.png");
+	});
+	$("#closeShow").click(function(){
+		$("#showPanel").css("display","none");
+	});
+	$("#closeSort").click(function(){
+		$("#sortPanel").css("display","none");
+	});
+	
+		$("#sortBtn").click(function(){
+			if($("#sortPanel").css("display")=="none")
+			$("#sortPanel").css("display","block");
+			else
+				$("#sortPanel").css("display","none");
+			
+			$("#showPanel").css("display","none");
+		});
+		$(".sortPanelItem").mouseover(function(){
+			$(this).css("background","#4183c4");
+			$(this).css("color","white");
+		});
+		$(".sortPanelItem").mouseout(function(){
+			$(this).css("background","white");
+			$(this).css("color","rgb(105, 105, 105)");
+		});
+		
+		
+		$("#showBtn").click(function(){
+			if($("#showPanel").css("display")=="none")
+			$("#showPanel").css("display","block");
+			else
+				$("#showPanel").css("display","none");
+			$("#sortPanel").css("display","none");
+		});
+		$(".sortPanelItem").mouseover(function(){
+			$(this).css("background","#4183c4");
+			$(this).css("color","white");
+		});
+		$(".sortPanelItem").mouseout(function(){
+			$(this).css("background","white");
+			$(this).css("color","rgb(105, 105, 105)");
+		});
+	
+	
+	
+	
+	///////////////////////////////////////////////
 	$("#search1").bind("mouseover", function() {
 		$(this).css("background-color", "rgb(238, 238, 238)");
 	});

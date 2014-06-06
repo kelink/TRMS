@@ -11,9 +11,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
+  <link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/checkReservationLc.css" rel="stylesheet" >
   <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
- <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
   <script src="<%=request.getContextPath()%>/resources/js/checkReservation.js" type="text/javascript"></script>
 </head>
@@ -159,76 +160,61 @@
 			         </form>
 			     </div>
 			     <div id="checkRightPanel">
+			     
+<!-- 			         ------------------------------------------------------ -->
+			         <div id="totalTitle">
+                          Reservation List
+                     </div>
+    
+                     <div id="listTitle">
+                         <div id="sortPanel">
+                             <div class="panelHeader">
+                             <span class="headerText">Sort Option</span>
+                             <span class="close"id="closeSort"onclick="close()"><img class="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
+
+                             </div>
+          
+                             <a class="sortPanelItem">Newest</a>
+                             <a class="sortPanelItem">Oldest</a>
+                             <a class="sortPanelItem">Reservation No.</a>
+            
+            
+                           </div>
+                           <div id="showPanel">
+                               <div class="panelHeader">
+                                   <span class="headerText">Sort Option</span>
+                                   <span class="close"id="closeShow"><img class="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
+
+                               </div>
+          
+                               <a class="sortPanelItem">Today</a>
+                               <a class="sortPanelItem">Last 3 Days</a>
+                               <a class="sortPanelItem">All</a>
+            
+            
+                          </div>
+                          <div id="btnFunctionWrapper">
+                              <div class="btnFunction">Back</div>
+                              <div id="verticalLine"></div>
+                              <div class="btnFunction" id="approveBtn" onClick="checkCheckbox(0)">Approve</div>
+                              <div class="btnFunction" id="rejectBtn" onClick="checkCheckbox(1)">Reject</div>
+                              <div class="btnFunction" id="conflictBtn">Conflict</div>
+                              <div class="btnFunction" id="showBtn">Show<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
+                              <div class="btnFunction" id="sortBtn">Sort<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
+                          </div>   
+                   </div>
+			        
+			         
+<!-- 			         ------------------------------------------------------ -->						     
+			     
+			     
+			     
 			         <iframe id="checkRightInner" src="<%=request.getContextPath()%>/reservation/list" >
 			         </iframe>
 			     
 			     </div>
 
-<!-- --------------------------------------- -->
 
-<!--                                                	<h1>高级查询</h1>		 -->
-<%-- 	<form action="<%=request.getContextPath()%>/reservation/list" method="get"> --%>
-<!-- 		Reservation Number: -->
-<!-- 		<input type="text" name="reservation_Num"/><br/> -->
-<!-- 		Booked Time: -->
-<!-- 		<input type="date" name="order_Time"/><br/> -->
-<!-- 		Ticket Status: -->
-<!-- 		<select name="status"> -->
-<!-- 			<option></option> -->
-<!-- 			<option value="1">accept</option> -->
-<!-- 			<option value="-1">refuse</option> -->
-<!-- 			<option value="0">unhandle</option> -->
-<!-- 		</select> -->
-<!-- 		Room： -->
-<!-- 		<select name="room_ID"> -->
-<!-- 		<option></option> -->
-<%-- 			<c:forEach var="room" items="${rooms}">	 --%>
-<%-- 				<option value='${room.room_ID}'>${room.item}</option> --%>
-<%-- 			</c:forEach>		 --%>
-<!-- 		</select><br/> -->
-<!-- 		Planned Use Start Time： -->
-<!-- 		<input type="date" name="Applied_Start_Date"/><br/> -->
-<!-- 		Planned Use End Time： -->
-<!-- 		<input type="date" name="Applied_End_Date"/><br/> -->
-<!-- 		User LN: -->
-<!-- 		<input type="text" name="email"/><br/> -->
-<!-- 		User Team: -->
-<!-- 		<select name="team_ID"> -->
-<!-- 			<option></option> -->
-<%-- 			<c:forEach var="team" items="${teams}">	 --%>
-<%-- 				<option value='${team.team_ID}'>${team.teamName}</option> --%>
-<%-- 			</c:forEach> --%>
-<!-- 		</select><br/> -->
-<!-- 		User TelLine: -->
-<!-- 		<input type="text" name="tele"/><br/> -->
-<!-- 		Use Resaon: -->
-<!-- 		<input type="text" name="purpose"/> -->
-<!-- 		<input type="submit"name="submit" value="submit"/> -->
-<!-- 		<hr/> -->
-<%-- 		</form> --%>
-<!-- 			<h1> 显示查询结果</h1>  -->
-<!-- 		 	     <ul>			  -->
-<!-- 				     <div id="reservationInfo"> -->
-<!-- 				     </div>				 -->
-<!-- 				 </ul> -->
-<!-- 				 <div id="listInfoWrapper"> -->
-<!-- 				     <div id="listInfo"> -->
-<%-- 					    Total Page:<span id='count'>${pageCount}</span> --%>
-<%-- 					    Total Records:<span id='recordCount'>${recordCount}</span> --%>
-<!-- 				    </div> -->
-				    
-<!-- 				    <div id="jump"> -->
-<%-- 					     <a href='javascript:void' onclick='GoToFirstPage()' id='FirstPage' ><img class="pageIcon"alt="Go to first page" src="<%=request.getContextPath()%>/resources/images/first.png"></a> --%>
-<%-- 					     <a href='javascript:void' onclick='GoToPrePage()' id='PrePage' ><img class="pageIcon"alt="Go to previous page" src="<%=request.getContextPath()%>/resources/images/prepage.png"></a> --%>
-<!-- 					     <span id="pageIndex"></span> -->
-<%-- 					     <a href='javascript:void' onclick='GoToNextPage()' id='NextPage' ><img class="pageIcon"alt="Go to next page" src="<%=request.getContextPath()%>/resources/images/nextpage.png"></a> --%>
-<%-- 					     <a href='javascript:void' onclick='GoToEndPage()' id='EndPage' ><img class="pageIcon" alt="Go to last page"src="<%=request.getContextPath()%>/resources/images/end.png"></a> --%>
-<!-- 					     <input type='text' size='4' name='page' /> -->
-<!-- 					     <input class="btnJump" type='button' value='Jump' onclick='GoToAppointPage(this)' /> -->
-<!-- 				     </div> -->
-<!-- 				 </div> -->
-
-<!-- --------------------------------------- -->
 			 
 			 
 			 </div>

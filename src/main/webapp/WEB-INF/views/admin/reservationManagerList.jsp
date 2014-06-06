@@ -239,47 +239,7 @@ function checkApproveRejectBtn(args,reservation_ID){
 <body id="listBody">
 <div id="totalWrapper">
 
-    <div id="totalTitle">
-    Reservation List
-    </div>
-    
-    <div id="listTitle">
-        <div id="sortPanel">
-            <div class="panelHeader">
-                <span class="headerText">Sort Option</span>
-                <span class="close"id="closeSort"onclick="close()"><img class="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
 
-            </div>
-          
-            <a class="sortPanelItem">Newest</a>
-            <a class="sortPanelItem">Oldest</a>
-            <a class="sortPanelItem">Reservation No.</a>
-            
-            
-        </div>
-        <div id="showPanel">
-            <div class="panelHeader">
-                <span class="headerText">Sort Option</span>
-                <span class="close"id="closeShow"><img class="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
-
-            </div>
-          
-            <a class="sortPanelItem">Today</a>
-            <a class="sortPanelItem">Last 3 Days</a>
-            <a class="sortPanelItem">All</a>
-            
-            
-        </div>
-        <div id="btnFunctionWrapper">
-            <div class="btnFunction">Back</div>
-            <div id="verticalLine"></div>
-            <div class="btnFunction" id="approveBtn" onClick="checkCheckbox(0)">Approve</div>
-            <div class="btnFunction" id="rejectBtn" onClick="checkCheckbox(1)">Reject</div>
-            <div class="btnFunction" id="conflictBtn">Conflict</div>
-            <div class="btnFunction" id="showBtn">Show<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
-            <div class="btnFunction" id="sortBtn">Sort<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
-        </div>   
-    </div>
     <form action="<%=request.getContextPath()%>/reservation/approveReservations" method="post">
     <div id="topBar">
  

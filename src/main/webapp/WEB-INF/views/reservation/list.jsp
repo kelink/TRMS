@@ -99,11 +99,12 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 						html+=("</div>");
 
 ///////////////////////////////
-html+=("</div>");
-html+=("<span class=\"listContent1 listContent listContentClass"+reservation_ID+"\">"+reservation_Num+"</span>");
-html+=("<span class=\"listContent2 listContent listContentClass"+reservation_ID+"\">"+purpose+"</span>");
-html+=("<span class=\"listContent3 listContent listContentClass"+reservation_ID+"\">"+Order_Date+"</span>");
-html+=("</div>");
+						html+=("</div>");
+                        html+=("<input type='checkbox'name='checkbox' onclick='chose(event);'value='"+reservation_ID+"' class='checkbox1 listContentClass"+reservation_ID+"'>");
+                        html+=("<span class=\"listContent1 listContent listContentClass"+reservation_ID+"\">"+reservation_Num+"</span>");
+                        html+=("<span class=\"listContent2 listContentClass"+reservation_ID+"\">"+purpose+"</span>");
+                        html+=("<span class=\"listContent3 listContentClass"+reservation_ID+"\">"+Order_Date+"</span>");
+                        html+=("</div>");
 
 
 
@@ -165,12 +166,13 @@ function GoToAppointPage(e) {
 </head>
 <body id="listBody">
 <div id="totalWrapper">
-    <div id="listTitle">
-    </div>
+
     <div id="topBar">
-    <span class="listContent1 topBarItem topBarItem1">Reservation Num</span>
-    <span class="listContent2 topBarItem">Usage</span>
-    <span class="listContent3 topBarItem">Order Time</span>
+ 
+    <input type="checkbox" class="checkbox"onclick="check_all(this,'checkbox')">
+    <span class="topBarItem topBarItem1">Reservation No.</span>
+    <span class="topBarItem topBarItem2">Usage</span>
+    <span class="topBarItem topBarItem3">Order Time</span>
     </div>
     <div id="listWrapper">
     
