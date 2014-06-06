@@ -103,55 +103,103 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 						
 						
 						
-					// // 						<div id="modifyWrapper">
+
                          html+="<div id='modifyWrapper'>";
-// // 				    	<div id="warning">The ticket can only be modify when it is at the status of untreated!</div>
+
  					    html+="<div id=\"warning\">The ticket can only be modify when it is at the status of untreated!</div>";
-<%--					<form action="<%=request.getContextPath()%>/reservation/update" method="post" onsubmit="return updateCheck(${reservation.status})"> --%> 
-// //////////////////////////////////////////////////////////////////////////////////有问题
+
                          html+="<form action=\"<%=request.getContextPath()%>/reservation/update\" method=\"post\" onsubmit=\"return updateCheck("+status+")\">"; 
-// 						Reservation Number:
+
+	                    html+="<table>";
+	                    html+="</tr>";	
+	                    
+	                    html+="<tr>";
+	                    html+="<td>";	
 	                    html+="Reservation Number:";
-// 						<input type="text" name="reservation_Num" readOnly="true" value="${reservation.reservation_Num}"/><br/>
-                        html+="<input type=\"text\" name=\"reservation_Num\" readOnly=\"true\" value=\""+reservation_Num+"\"/><br/>";
-// 						Room：<input type="text" name="room_item" readOnly="true" value="${room.item}"/><br/>
-					    html+="Room：<input type=\"text\" name=\"room_item\" readOnly=\"true\" value=\""+room_item+"\"/><br/>";
-// 						Planned Use Start Time：
+	                    html+="</td>";
+
+html+="<td>";	
+                        html+="<input type=\"text\" name=\"reservation_Num\" readOnly=\"true\" value=\""+reservation_Num+"\"/>";
+
+                html+="</td>";      
+html+="</tr>";	
+                        html+="<tr>";
+                        html+="<td>";	
+					    html+="Room：";
+					    html+="</td>";
+					    html+="<td>";	
+					    html+="<input type=\"text\" name=\"room_item\" readOnly=\"true\" value=\""+room_item+"\"/>";
+
+html+="</td>";
+html+="</tr>";	
+html+="<tr>";
+html+="<td>";	
                         html+="Planned Use Start Time：";
-// 						<input type="date" name="Applied_Start_Date" value="${reservation.getApplied_Start_DateByString()}"/><br/>
-                        html+="<input type=\"date\" name=\"Applied_Start_Date\" value=\""+reservation_start_Daty+"\"/><br/>";
-// 						Planned Use End Time：
+                        html+="</td>";
+                        html+="<td>";	
+
+                        html+="<input type=\"date\" name=\"Applied_Start_Date\" value=\""+reservation_start_Daty+"\"/>";
+
+html+="</td>";
+html+="</tr>";	
+html+="<tr>";
+html+="<td>";	
                         html+="Planned Use End Time：";
-// 						<input type="date" name="Applied_End_Date"value="${reservation.getApplied_End_DateByString()}"/><br/>
-                        html+="<input type=\"date\" name=\"Applied_End_Date\"value=\""+reservation_end_Daty+"\"/><br/>";
-// 						User LN:
+                        html+="</td>";
+                        html+="<td>";	
+
+                        html+="<input type=\"date\" name=\"Applied_End_Date\"value=\""+reservation_end_Daty+"\"/>";
+
+	html+="</td>";
+	html+="</tr>";	
+	html+="<tr>";
+	html+="<td>";	
 	                    html+="User LN:";
-// 						<input type="text" name="email" value="${reservation.email}"/><br/>
-                        html+="<input type=\"text\" name=\"email\" value=\""+email+"\"/><br/>";
-// 						User TelLine:
+
+html+="<td>";	
+                        html+="<input type=\"text\" name=\"email\" value=\""+email+"\"/>";
+
+	html+="</td>";
+	html+="</tr>";	
+	html+="<tr>";
+	html+="<td>";	
 	                    html+="User TelLine:";
-// 						<input type="text" name="tele" value="${reservation.tele}"/><br/>
-                        html+="<input type=\"text\" name=\"tele\" value=\""+tele+"\"/><br/>";
-// 						Use Resaon:
+	                    html+="</td>";
+	                    html+="<td>";	
+
+                        html+="<input type=\"text\" name=\"tele\" value=\""+tele+"\"/>";
+                        html+="</td>";
+
+	html+="</tr>";	
+	html+="<tr>";
+	html+="<td>";	
 	                    html+="Use Resaon:";
-// 						<input type="text" name="purpose"value="${reservation.purpose}"/>
+	                    html+="</td>";
+	                    html+="<td>";	
+
                         html+="<input type=\"text\" name=\"purpose\"value=\""+purpose+"\"/>";
-						
-// 						<input type="hidden" name="reservation_ID" value="${reservation.reservation_ID}">
+                        html+="</td>";
+    html+="</tr>";					
+
                         html+="<input type=\"hidden\" name=\"reservation_ID\" value=\""+reservation_ID+"\">";
 						
-// 						<div id="btnWrapper">
-                        html+="<div id=\"btnWrapper\">";
 
-// 						<input class="btnUpdate" type="submit"name="submit" id="btnUpdate"  value="update"/>
+                        html+="<tr>";
+                    	html+="<td class=\"btnWrapper\">";	                   
+
+
                         html+="<input class=\"btnUpdate\" type=\"submit\"name=\"submit\" id=\"btnUpdate\"  value=\"update\"/>";
-// // 						<a class="btnDelete" href="#" onclick="deleteReservation(${reservation.reservation_ID})">delete</a>
                         html+="<a class=\"btnDelete\" href=\"#\" onclick=\"deleteReservation"+reservation_ID+"\">delete</a>";
-// // 						</div>
-                        html+="</div>";
-// // 						</form>
+                        html+="</td>";
+                        html+="<td class=\"btnWrapper\">";
+                        
+                        html+="</td>";
+                        html+="</tr>";
+                   
+
+                         html+="</table>";
                          html+="</form>";
-// // 				        </div>
+
                          html+="</div>";	
 						
 						
@@ -194,7 +242,7 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 
 					}					
 				$('#listWrapper').html("");
-		        $('#listWrapper').html("<iframe id=\"moreInfo\"name=\"moreInfo\" scrolling=\"no\" ></iframe>"+html); 
+		        $('#listWrapper').html(html); 
 
 	                $('#pageIndex').html("");
 	               $('#pageIndex').html(pageIndex);

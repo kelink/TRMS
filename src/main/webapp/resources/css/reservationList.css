@@ -180,9 +180,9 @@ cursor: pointer;
 user-select: none;
 -webkit-appearance: none;
 }
-#btnWrapper
+.btnWrapper
 {
-	margin-top: 15px;
+	height: 65px;
 	
 }
 .ticketTitle
@@ -276,7 +276,7 @@ height:15px;
 }
 #modifyWrapper
 {
-	padding: 15px;
+
 }
 .listFoldBtn
 {
