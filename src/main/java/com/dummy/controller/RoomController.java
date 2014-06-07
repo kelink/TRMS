@@ -400,25 +400,98 @@ public class RoomController {
 		List<JSONObject> list = roomService.getRoomsBydepartment(department_ID);
 		return list.toString();
 	}
-
+	// add room
 	@RequestMapping("/add")
-	public ModelAndView add() {
-		return null;
+	public @ResponseBody String add(HttpServletRequest request,
+			HttpSession session) {
+		String item = request.getParameter("item");
+		String last_Used_date = request.getParameter("last_Used_date");
+		String room_Status = request.getParameter("room_Status");
+		String department_ID = request.getParameter("department_ID");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-DD");
+		String message = "";
+		Room room = new Room();
+		try {
+			if (item.length() > 0) {
+				room.setItem(item);
+			}
+			if (last_Used_date.length() > 0) {
+				Date date = new Date();
+				String now = format.format(date);
+				try {
+					room.setLast_Used_Date(format.parse(now));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (room_Status.length() > 0) {
+				room.setRoom_Status(C.DB.DEFAULT_UNFREE_ROOM);
+			}
+			if (department_ID.length() > 0) {
+				room.setDepartment_ID(Integer.parseInt(department_ID));
+			}
+			roomService.addRoom(room);
+			message = "add Room success";
+		} catch (Exception e) {
+			message = "add Room fail";
+		}
+		return message;
 	}
+	// update room
 	@RequestMapping("/update")
-	public ModelAndView Update(
-			@RequestParam(value = "department_ID", required = true) int department_ID) {
-		return null;
+	public @ResponseBody String update(HttpServletRequest request,
+			HttpSession session) {
+		String room_ID = request.getParameter("room_ID");
+		String item = request.getParameter("item");
+		String last_Used_date = request.getParameter("last_Used_date");
+		String room_Status = request.getParameter("room_Status");
+		String department_ID = request.getParameter("department_ID");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-DD");
+		String message = "";
+		Room room = roomService.getRoom(Integer.parseInt(room_ID.trim()));
+		try {
+			if (item.length() > 0) {
+				room.setItem(item);
+			}
+			if (last_Used_date.length() > 0) {
+				Date date = new Date();
+				String now = format.format(date);
+				try {
+					room.setLast_Used_Date(format.parse(now));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (room_Status.length() > 0) {
+				room.setRoom_Status(C.DB.DEFAULT_UNFREE_ROOM);
+			}
+			if (department_ID.length() > 0) {
+				room.setDepartment_ID(Integer.parseInt(department_ID));
+			}
+			roomService.updateRoom(room);
+			message = "update Room success";
+		} catch (Exception e) {
+			message = "update Room fail";
+		}
+		return message;
 	}
-
+	// delete room
 	@RequestMapping("/delete")
-	public ModelAndView delete() {
-		return null;
+	public @ResponseBody String delete(
+			@RequestParam(value = "room_ID", required = true) int room_ID) {
+		if (roomService.delRoom(room_ID)) {
+			return "delete success";
+		} else {
+			return "delete fail";
+		}
 	}
 
 	@RequestMapping("/check")
 	public ModelAndView check() {
 		return null;
 	}
+	//
 
 }

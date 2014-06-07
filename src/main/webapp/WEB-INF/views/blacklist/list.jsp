@@ -28,14 +28,18 @@ $(function() {
 	AjaxGetData(pageIndex, pageSize);
 });
 
-function AjaxGetData(index, size) {
+function AjaxGetData(index, pageSize) {
 		
 	$.ajax({
-				url : "<%=request.getContextPath()%>/reservation/unhandleListPageReservation",
+				url : "<%=request.getContextPath()%>/blacklist/getBlackListOnPage",
 				type : "get",
-				data : "pageNum=" + index + "&pageSize=" + size,	
-				dataType : "json",
+				data : "pageNum=" + index + "&pageSize=" + pageSize,	
+				dataType : "html",
 				success : function(json) {
+					for (position in json) {
+						
+					}
+					
 	                },
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					alert("error");
@@ -77,7 +81,7 @@ function GoToAppointPage(e) {
 			pageIndex = tempPageIndex;
 			alert("Please input valid page scope!");
 		} else {
-			AjaxGetData(pageIndex, pageSize);
+		AjaxGetData(pageIndex, pageSize);
 		}
 	}
 }
@@ -109,11 +113,11 @@ function GoToAppointPage(e) {
 					    </tr>
 					    <c:forEach items="${blacklists}" var="blacklist">
 						<tr>
-							<td>${departments.get(blacklist.bl_ID).departmentName}</td>
-							<td>${teams.get(blacklist.bl_ID).teamName}</td>
-							<td>${blacklist.reason}</td>
+							<td id="departmentName">${departments.get(blacklist.bl_ID).departmentName}</td>
+							<td id="teamName">${teams.get(blacklist.bl_ID).teamName}</td>
+							<td id="reason">${blacklist.reason}</td>
 							<td class="operation"><a class="btnDelete"
-								href="<%=request.getContextPath()%>/blacklist/delete?bl_ID=${blacklist.bl_ID}">delete</a>
+								href="<%=request.getContextPath()%>/blacklist/delete?bl_ID=${blacklist.bl_ID}" id="btnDelete">delete</a>
 							</td>
 						</tr>	
 										

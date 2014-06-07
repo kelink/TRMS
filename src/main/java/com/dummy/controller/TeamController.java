@@ -82,7 +82,7 @@ public class TeamController {
 		System.out.println(map);
 		return new ModelAndView("admin/userManagerForm", map);
 	}
-	// 添加LC(选择部门里面的LC用户)
+	// 获取为添加用户的表单
 	@RequestMapping(value = {"/getUserAddForm"})
 	public ModelAndView getUserAddForm() {
 		List<Department> departments = departmentService.getAllDepartment();
@@ -113,7 +113,7 @@ public class TeamController {
 		return teamList.toString();
 	}
 
-	// add LC for team
+	// 同时支持添加多个 LC
 	@RequestMapping(value = {"/addUser"})
 	public ModelAndView addUser(
 			HttpSession session,

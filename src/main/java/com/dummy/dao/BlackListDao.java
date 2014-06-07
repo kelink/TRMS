@@ -16,4 +16,6 @@ public interface BlackListDao {
 	public boolean updateBlackList(BlackList blackList);
 
 	public BlackList getBlackListByTeam(int team_ID);
+
+	public List<BlackList> getBlackListOnPage(int pageNum, int pageSize);
 }

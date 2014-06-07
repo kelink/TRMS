@@ -70,4 +70,16 @@ public class BlackListDaoImpl implements BlackListDao {
 		return (BlackList) query.uniqueResult();
 	}
 
+	@Override
+	public List<BlackList> getBlackListOnPage(int pageNum, int pageSize) {
+		String hql = "from BlackList";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		int offSet = (pageNum - 1) * pageSize >= 0
+				? (pageNum - 1) * pageSize
+				: 0;
+		query.setFirstResult(offSet);
+		query.setMaxResults(pageSize);
+		return query.list();
+	}
+
 }

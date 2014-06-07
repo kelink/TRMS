@@ -15,6 +15,8 @@
 		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_TA')" />
 		<security:intercept-url pattern="/blacklist/**" access="hasRole('ROLE_TA')" />
 		<security:intercept-url pattern="/room/**" access="hasAnyRole('ROLE_TA','ROLE_LC')" />
+		<security:intercept-url pattern="/team/**" access="hasRole('ROLE_TA')" />
+		<security:intercept-url pattern="/department/**" access="hasRole('ROLE_TA')" />
 		<security:intercept-url pattern="/reservation/**" access="hasAnyRole('ROLE_TA','ROLE_LC')" />
 		<security:intercept-url pattern="/profile/**" access="hasAnyRole('ROLE_TA','ROLE_LC')" />
 		<!-- login-page::默认指定的登录页面. authentication-failure-url:出错后跳转页面. default-target-url:成功登陆后跳转页面 -->

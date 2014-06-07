@@ -23,4 +23,5 @@ public interface BlackListService {
 
 	public boolean isInBlackaList(int team_ID);
 
+	public List<BlackList> getBlackListOnPage(int pageNum, int pageSize);
 }

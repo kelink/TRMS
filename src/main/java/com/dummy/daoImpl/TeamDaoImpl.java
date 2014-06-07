@@ -52,9 +52,20 @@ public class TeamDaoImpl implements TeamDao {
 
 	@Override
 	public boolean updateTeam(Team team) {
-		return false;
+		String hql = "update team set " + "department_ID=?," + "teamName=?,"
+				+ "user_ID=?," + " where team_ID=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, team.getDepartment_ID());
+		query.setString(1, team.getTeamName());
+		query.setInteger(2, team.getUser_ID());
+		query.setInteger(3, team.getTeam_ID());
+		int n = query.executeUpdate();
+		if (n == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-
 	@Override
 	public List<Team> getTeamsByDepartment(int department_ID) {
 		String hql = "from Team t where t.department_ID=?";

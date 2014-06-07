@@ -46,8 +46,12 @@ public class BlackListController {
 	}
 	// list the blacklist
 	@RequestMapping(value = {"/list"})
-	public ModelAndView list() {
+	public ModelAndView list(
+			@RequestParam(value = "pageSize", required = false, defaultValue = "7") int pageSize,
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum) {
 		List<BlackList> blacklists = blackListService.getAllBlackList();
+		int recordCount = blacklists.size();
+		int pageCount = (recordCount + pageSize - 1) / pageSize;
 		// 1.get team by blacklist ID
 		HashMap<Integer, Team> teams = new HashMap<Integer, Team>();
 		for (BlackList blackList : blacklists) {
@@ -66,8 +70,44 @@ public class BlackListController {
 		map.addAttribute("blacklists", blacklists);
 		map.addAttribute("teams", teams);
 		map.addAttribute("departments", departments);
+		map.addAttribute("recordCount", recordCount);
+		map.addAttribute("pageCount", pageCount);
 		return new ModelAndView("blacklist/list", map);
 	}
+	// page list of blacklist
+	// @RequestMapping(value = "/getBlackListOnPage")
+	// public @ResponseBody String getBlackListOnPage(
+	// @RequestParam(value = "pageSize", required = false, defaultValue = "7")
+	// int pageSize,
+	// @RequestParam(value = "pageNum", required = false, defaultValue = "1")
+	// int pageNum) {
+	// List<BlackList> blacklists = blackListService.getBlackListOnPage(
+	// pageNum, pageSize);
+	// // 1.get team by blacklist ID
+	// HashMap<Integer, Team> teams = new HashMap<Integer, Team>();
+	// HashMap<Integer, BlackList> blacklistMap = new HashMap<Integer,
+	// BlackList>();
+	// for (BlackList blackList : blacklists) {
+	// Team team = teamService.getTeam(blackList.getTeam_ID());
+	// teams.put(blackList.getBl_ID(), team);
+	// blacklistMap.put(blackList.getBl_ID(), blackList);
+	// }
+	// // get department information by teams
+	// HashMap<Integer, Department> departments = new HashMap<Integer,
+	// Department>();
+	// for (Integer index : teams.keySet()) {
+	// int departent_ID = teams.get(index).getDepartment_ID();
+	// Department department = departmentService
+	// .getDepartment(departent_ID);
+	// departments.put(index, department);
+	// }
+	// HashMap<String, Object> result = new HashMap<String, Object>();
+	// result.put("blacklistMap", blacklistMap);
+	// result.put("teams", teams);
+	// result.put("departments", departments);
+	// JSONObject object1 = new JSONObject(result);
+	// return object1.toString();
+	// }
 	// get the teams information
 	@RequestMapping(value = "/getTeamsByDepartment")
 	public @ResponseBody String getTeamsByDepartment(

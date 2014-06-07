@@ -74,4 +74,9 @@ public class BlackListServiceImpl implements BlackListService {
 			return false;
 		}
 	}
+
+	@Override
+	public List<BlackList> getBlackListOnPage(int pageNum, int pageSize) {
+		return blackListDao.getBlackListOnPage(pageNum, pageSize);
+	}
 }

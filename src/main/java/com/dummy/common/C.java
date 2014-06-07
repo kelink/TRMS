@@ -4,11 +4,6 @@ public class C {
 	public static final class base {
 		public static final String APPPATH_STRING = "";
 	}
-
-	public static final class Util {
-		public static final String CONFIG_EMAIL_PATH = "F:\\spring tool suit\\workplace\\link\\TRMS\\src\\main\\resources\\email.properties";
-	}
-
 	// DB constant
 	public static final class DB {
 		// DBUser

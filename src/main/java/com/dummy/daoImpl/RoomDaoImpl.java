@@ -57,9 +57,21 @@ public class RoomDaoImpl implements RoomDao {
 
 	@Override
 	public boolean updateRoom(Room room) {
-		return false;
+		String hql = "update room set " + "item=?," + "last_Used_Date=?,"
+				+ "room_Status=?," + "department_ID=?" + " where room_ID=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setString(0, room.getItem());
+		query.setDate(1, room.getLast_Used_Date());
+		query.setInteger(2, room.getRoom_Status());
+		query.setInteger(3, room.getDepartment_ID());
+		query.setInteger(4, room.getRoom_ID());
+		int n = query.executeUpdate();
+		if (n == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-
 	// get room by page
 	@SuppressWarnings("unchecked")
 	public List<Room> getRoomOnPage(int pageNum, int pageSize) {

@@ -56,9 +56,18 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean updateUser(DBUser user) {
-		String hql = "update DBUser set password=" + user.getPassword()
-				+ " where user_ID=" + user.getUser_ID();
+
+		String hql = "update DBUser set " + "Tele=?," + "access=?,"
+				+ "account=?," + "gender=?," + "password=?," + "dept_ID=?,"
+				+ " where user_ID=?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setString(0, user.getTele());
+		query.setInteger(1, user.getAccess());
+		query.setString(2, user.getAccount());
+		query.setInteger(3, user.getGender());
+		query.setString(4, user.getPassword());
+		query.setInteger(5, user.getDept_ID());
+		query.setInteger(6, user.getUser_ID());
 		int n = query.executeUpdate();
 		if (n == 1) {
 			return true;
@@ -66,7 +75,6 @@ public class UserDaoImpl implements UserDao {
 			return false;
 		}
 	}
-
 	@Override
 	public DBUser getAuthUser(String account, String password) {
 		String hql = "from DBUser u where u.account=? and u.password=?";

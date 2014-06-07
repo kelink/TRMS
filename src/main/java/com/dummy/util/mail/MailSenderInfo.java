@@ -30,13 +30,13 @@ public class MailSenderInfo {
 	}
 
 	/**
-	 * ͨ�������ļ�������Ϣ
+	 * configure email sender by properties
 	 */
-	public void setPropertiesByFile(String configPath) {
+	public void setPropertiesByFile(String emailconfigPath) {
 		Properties prop = new Properties();
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(configPath));
+			inputStream = new FileInputStream(new File(emailconfigPath));
 			prop.load(inputStream);
 			this.mailServerHost = prop.getProperty("mail.smtp.host").trim();
 			this.mailServerPort = prop.getProperty("mail.smtp.port").trim();
@@ -50,14 +50,14 @@ public class MailSenderInfo {
 				this.validate = false;
 			}
 		} catch (IOException e) {
-			System.out.println("email  configure error��Please Check it");
+			System.out.println("email  configure error,please Check it");
 			e.printStackTrace();
 		}
 
 	}
 
 	/**
-	 * ����ʼ��Ự����
+	 * set base configuration
 	 */
 	public Properties getProperties() {
 		// set base configuration
