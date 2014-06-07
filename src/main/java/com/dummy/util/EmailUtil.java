@@ -1,5 +1,7 @@
 package com.dummy.util;
 
+import com.dummy.util.mail.MailSenderInfo;
+
 public class EmailUtil {
 
 	public static final String EMAIL_CONFIG_PATH = "E:\\spring too suit\\workplace\\link\\TRMS\\src\\main\\resources\\email.properties";
@@ -8,7 +10,8 @@ public class EmailUtil {
 		String path = EmailUtil.class.getResource("/email.properties")
 				.getPath();
 		System.out.println(path);
-
+		MailSenderInfo mailInfo = new MailSenderInfo();
+		mailInfo.setPropertiesByFile(path);
 		// sms.sendHtmlMail(mailInfo);
 	}
 
