@@ -123,8 +123,8 @@ window.onload = function() {
 				$(".btnSearch").css("display", "none");
 
 				$("#checkRightInner").attr("src",
-						"/trms/reservation/reservationManagerList");
-
+						"/trms/reservation/list?status=-1");
+		
 			});
 
 	$("#search1").click(function() {
@@ -317,7 +317,14 @@ window.onload = function() {
 	}
 
 };
-
+function closeSort()
+{
+	$("#sortPanel").css("display","none");
+}
+function closeShow()
+{
+	$("#showPanel").css("display","none");
+}
 function logout(url) {
 	$("#logoutBtn").attr("class", "btnLogout btnSelected");
 	window.location.href = url;

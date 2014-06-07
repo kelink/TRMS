@@ -174,21 +174,21 @@
 
                              </div>
           
-                             <a class="sortPanelItem"  target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?orderby=desc">Time DESC</a>
-                             <a class="sortPanelItem" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?orderby=asc">Time ASC</a>
+                             <a class="sortPanelItem"onclick="closeSort();"  target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?orderby=desc">Time DESC</a>
+                             <a class="sortPanelItem" onclick="closeSort();"target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?orderby=asc">Time ASC</a>
                             
             
             
                            </div>
                            <div id="showPanel">
                                <div class="panelHeader">
-                                   <span class="headerText">Sort Option</span>
+                                   <span class="headerText">Show Option</span>
                                    <span class="close"id="closeShow"><img class="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
 
                                </div>         
-                               <a class="sortPanelItem" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?status=-1">Unhandled</a>
-                               <a class="sortPanelItem" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?status=1">Approve</a>
-                               <a class="sortPanelItem" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?status=0">Reject</a>
+                               <a class="sortPanelItem"onclick="closeShow();" target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?status=-1">Unhandled</a>
+                               <a class="sortPanelItem" onclick="closeShow();"target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?status=1">Approve</a>
+                               <a class="sortPanelItem" onclick="closeShow();"target="checkRightInner" href="<%=request.getContextPath()%>/reservation/list?status=0">Reject</a>
             
                           </div>
                           <div id="btnFunctionWrapper">

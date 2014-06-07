@@ -1,5 +1,15 @@
-
-
+.star
+{
+	padding-left: 8px;
+font-size: 20px;
+color: red;
+}
+#checkIconWrapper1
+{
+	position: absolute;
+top: 134px;
+right: 88px;
+}
 .panelHeader {
 padding: 8px 10px;
 background-color: #eeeeee;

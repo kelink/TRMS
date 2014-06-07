@@ -299,18 +299,24 @@ function GoToAppointPage(e) {
 	}
 }
 function deleteReservation(reservation_ID){
-	$.ajax({
-		url : "<%=request.getContextPath()%>/reservation/deleteByID",
-		type : "get",
-		data : "reservation_ID=" +reservation_ID,	
-		dataType : "html",
-		success : function(json) {
-			alert(json);
-		},
-		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("error");
+	if(confirm("Are you sure to delete it?"))
+		{
+		    $.ajax({
+			    url : "<%=request.getContextPath()%>/reservation/deleteByID",
+			    type : "get",
+			    data : "reservation_ID=" +reservation_ID,	
+			    dataType : "html",
+			    success : function(json) {
+				    alert(json);
+				    location.reload();
+			    },
+			    error : function(XMLHttpRequest, textStatus, errorThrown) {
+				    alert("error");
+		        }
+		
+	
+            });
 	}
-});
 	//window.parent.location.reload();重新加载窗体
 }
 
