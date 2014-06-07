@@ -114,7 +114,14 @@ public class ReservationController {
 		session.setAttribute("optionStr", optionStr);
 		System.out.println("进入方法list       optionStr--------------->>>"
 				+ optionStr);
-		return new ModelAndView("reservation/list", map);
+		if (session.getAttribute("currentRole").equals("ROLE_TA")) {
+			return new ModelAndView("reservation/adminlist", map);
+		}
+		if (session.getAttribute("currentRole").equals("ROLE_LC")) {
+			return new ModelAndView("reservation/list", map);
+		} else {
+			return null;
+		}
 
 	}
 
@@ -164,8 +171,7 @@ public class ReservationController {
 
 	// Update the unhandled(处理TA尚且没处理的订单)reservation
 	@RequestMapping(value = {"/update"})
-	public @ResponseBody String update(HttpServletRequest request,
-			HttpSession session) {
+	public ModelAndView update(HttpServletRequest request, HttpSession session) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date Applied_Start_Date = null;
 		Date Applied_End_Date = null;
@@ -184,15 +190,23 @@ public class ReservationController {
 		String purpose = request.getParameter("purpose");
 		String reservationStr = request.getParameter("reservation_ID");
 
+		ModelMap map = new ModelMap();
+		String message = null;
+		String url = "list";
 		if (reservationStr == null || reservationStr.length() == 0) {
-			return "request error, no reservation need to update";
+			message = "request error, no reservation need to update";
+			map.addAttribute("message", message);
+			map.addAttribute("url", url);
+			return new ModelAndView("reservation/message", map);
 		}
 		int reservation_ID = Integer.parseInt(reservationStr);
-
 		Reservation reservation = reservationService
 				.getReservation(reservation_ID);
 		if (reservation.getStatus() != C.DB.DEFAULT_RESERVATION_UNHANDLE) {
-			return " reservation have been handle,Please Check";
+			message = " reservation have been handle, can not update it.Please Check";
+			map.addAttribute("message", message);
+			map.addAttribute("url", url);
+			return new ModelAndView("reservation/message", map);
 		}
 		reservation.setApplied_Start_Date(Applied_Start_Date);
 		reservation.setApplied_End_Date(Applied_End_Date);
@@ -200,10 +214,17 @@ public class ReservationController {
 		reservation.setTele(tele);
 		reservation.setPurpose(purpose);
 		if (reservationService.updateReservation(reservation)) {
-			return "update success!";
+			message = "update success! ";
+			map.addAttribute("message", message);
+			map.addAttribute("url", url);
+			return new ModelAndView("reservation/message", map);
 		} else {
-			return "update fail";
+			message = "update fail";
+			map.addAttribute("message", message);
+			map.addAttribute("url", url);
+			return new ModelAndView("reservation/message", map);
 		}
+
 	}
 	// get the view of delete
 	@RequestMapping(value = {"/delete"})

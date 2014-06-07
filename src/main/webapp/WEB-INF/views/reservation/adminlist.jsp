@@ -110,7 +110,7 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 
  					    html+="<div id=\"warning\">The ticket can only be modify when it is at the status of untreated!</div>";
 
-                         html+="<form action=\"<%=request.getContextPath()%>/reservation/update\" method=\"post\" onsubmit=\"return updateCheck("+status+")\">"; 
+                         html+="<form action=\"<%=request.getContextPath()%>/reservation/approveAReservation\" method=\"post\" onsubmit=\"return updateCheck("+status+")\">"; 
  	                    html+="<div id=\"reservationTableWrapper\">";
 	                    html+="<table>";
 	                    html+="</tr>";	
@@ -187,18 +187,18 @@ html+="<td>";
 						
 
                         html+="<tr>";
-                    	                 
+                    	                   
 
-          //////////////判断当前的状态reservation 状态，如果unhandle 则出现approve 和reject,否则只出现delete
+						//////////////判断当前的状态reservation 状态，如果unhandle 则出现approve 和reject,否则只出现delete
 						if(reservation_status==-1)
 						{
-						  html+="<td class=\"btnWrapper\">";	  
-                      	  html+="<input class=\"btnUpdate reservationLcBtn\" type=\"submit\"name=\"submit\" id=\"btnUpdate\"  value=\"update\"/>";
-                      	  html+="</td>";
+							html+="<td class=\"btnWrapper\">";	
+							html+="<input class=\"btnUpdate reservationLcBtn\" type=\"submit\"name=\"submit\" id=\"btnUpdate\"  value=\"approve\"/>";
+							html+="</td>";
 						}
-                       
+                      
                         html+="<td class=\"btnWrapper\">";
-                        html+="<a class=\"btnDelete reservationLcBtn\" href=\"#\" onclick=\"deleteReservation"+reservation_ID+"\">delete</a>";
+                        html+="<a class=\"btnDelete reservationLcBtn\" href=\"#\" onclick=\"deleteReservation("+reservation_ID+")\">delete</a>";
                         html+="</td>";
                         html+="</tr>";
                    
@@ -297,6 +297,22 @@ function GoToAppointPage(e) {
 			AjaxGetData(pageIndex, pageSize);
 		}
 	}
+}
+
+function deleteReservation(reservation_ID){
+	$.ajax({
+		url : "<%=request.getContextPath()%>/reservation/deleteByID",
+		type : "get",
+		data : "reservation_ID=" +reservation_ID,	
+		dataType : "html",
+		success : function(json) {
+			alert(json);
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("error");
+	}
+});
+	window.parent.location.reload();
 }
 
 </script>

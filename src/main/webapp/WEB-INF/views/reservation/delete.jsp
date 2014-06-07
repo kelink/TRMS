@@ -12,9 +12,9 @@
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
-  <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
- <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
- <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+<link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
+<script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 </head>
 <body>
 
