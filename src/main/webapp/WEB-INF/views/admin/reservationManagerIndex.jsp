@@ -20,10 +20,6 @@
 <link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
 </head>
 <body>
-
-
-
-
 <c:url value="/j_spring_security_logout" var="logoutUrl"/>  
 
 <div id="cover">
@@ -214,7 +210,9 @@
 
                               <div class="btnFunction" id="approveBtn" onClick="window.frames['checkRightInner'].checkCheckbox(0)">Approve</div>
                               <div class="btnFunction" id="rejectBtn" onClick="window.frames['checkRightInner'].checkCheckbox(1)">Reject</div>
+                             <!-- 
                               <div class="btnFunction" id="conflictBtn">Conflict</div>
+                               -->
                               <div class="btnFunction" id="showBtn">Show<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
                               <div class="btnFunction" id="sortBtn">Sort<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
                           </div>   
@@ -222,7 +220,7 @@
 			        
 			         
 <!-- 			         ------------------------------------------------------ -->			         
-			         <iframe id="checkRightInner" name="checkRightInner" src="<%=request.getContextPath()%>/reservation/list?status=-1" >
+			         <iframe id="checkRightInner" name="checkRightInner" src="<%=request.getContextPath()%>/reservation/reservationManagerList" >
 			         </iframe>			     
 			     </div>		 
 			 </div>

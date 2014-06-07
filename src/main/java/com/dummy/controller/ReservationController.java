@@ -253,6 +253,23 @@ public class ReservationController {
 		return "delete fail!";
 	}
 
+	@RequestMapping(value = {"/multiDeleteByID"})
+	public @ResponseBody String multiDeleteByID(HttpServletRequest request,
+			HttpSession session) {
+		String reservationStr = request.getParameter("checkbox");
+		String message = null;
+		if (reservationStr == null || reservationStr.length() <= 0) {
+			return "batch to delete reservation error ,can not get the reservation";
+		} else {
+			String[] reservations = reservationStr.split(",");
+			for (int i = 0; i < reservations.length; i++) {
+				int reservation_ID = Integer.parseInt(reservations[i]);
+				message = this.deleteByID(reservation_ID);
+			}
+			return message;
+		}
+	}
+
 	/***********************************************************
 	 * for administrator
 	 **********************************************************/

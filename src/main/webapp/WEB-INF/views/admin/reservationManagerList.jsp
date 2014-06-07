@@ -195,6 +195,7 @@ function checkCheckbox(args){
 				alert("error");
 			}
 		});
+	window.parent.location.reload();
 	return false;
 	
 }
@@ -228,6 +229,7 @@ function checkApproveRejectBtn(args,reservation_ID){
 				alert("error");
 			}
 		});
+	window.parent.location.reload();
 	return false;
 }
 

@@ -320,6 +320,36 @@ function deleteReservation(reservation_ID){
 	//window.parent.location.reload();重新加载窗体
 }
 
+function checkCheckbox(args){
+	//判断是否已经选择
+	var  box = new Array(); 
+	if($("input[name='checkbox']:checkbox:checked").length>0){	   
+	    $("input[name='checkbox']:checkbox:checked").each(function(){
+	    	box.push($(this).val()); 
+	    }); 
+	 }else{
+	    alert('You do not choose an item');
+	    return false;
+	}
+	//ajax to delete seleted reservation
+	if(args=="0")
+		$.ajax({
+				url : "<%=request.getContextPath()%>/reservation/multiDeleteByID",
+				type : "get",
+				data:'checkbox='+box,  		
+				dataType : "html",
+				success : function(json) {
+					alert(json);
+		        },
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("error");
+				}
+			});
+	
+	return false;
+	//window.parent.location.reload();
+}
+
 </script>
 
 </head>

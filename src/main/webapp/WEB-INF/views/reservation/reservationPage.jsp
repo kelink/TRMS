@@ -13,10 +13,12 @@
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
   <link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/checkReservationLc.css" rel="stylesheet" >
-  <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
+<link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/checkReservation.js" type="text/javascript"></script>
+<script type="text/javascript">
 
- <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
-  <script src="<%=request.getContextPath()%>/resources/js/checkReservation.js" type="text/javascript"></script>
+</script>
 </head>
 <body>
 
@@ -194,7 +196,7 @@
                           <div id="btnFunctionWrapper">
                               <a class="btnFunction" href="<%=request.getContextPath()%>/reservation/list" target="checkRightInner">All</a>
                               <div id="verticalLine"></div>
-                              <a class="btnFunction" id="multiDeleteBtn" href="#" target="checkRightInner">Delete</a>
+                              <a class="btnFunction" id="multiDeleteBtn" onClick="window.frames['checkRightInner'].checkCheckbox(0)" target="checkRightInner">Delete</a>
                             
                               <div class="btnFunction" id="showBtn">Show<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
                               <div class="btnFunction" id="sortBtn">Sort<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
