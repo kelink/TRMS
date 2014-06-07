@@ -105,33 +105,38 @@ function addBlackList(){
 </head>
 </head>
 <body>
-	<div class="middle">
-		<div class="middleContainer">
-			<div class="ticketTitle">Ticket Information</div>
+
+			<div class="ticketTitle">Fill in the form</div>
 			<div class="listBody">
 				<form action="<%=request.getContextPath()%>/blacklist/add"
 					method="post">
-					<div id="reservationTableWrapper">
+					<div id="tableWrapper">
 						<table>
 							<tbody>
 								<tr>
-									<td>departments:</td>
-									<td class="readonlyInfo"><select name="departments" id="departments">
+									<td class="leftTd">departments:</td>
+									<td class="rightTd" class="readonlyInfo">
+									    <select class="rightInput" name="departments" id="departments">
 											<option value=""></option>
 											<c:forEach items="${departments}" var="department">
 												<option value="${department.department_ID}">${department.departmentName}</option>
 											</c:forEach>
-									</select></td>
+									    </select>
+								    </td>
 								</tr>
 								<tr>
-									<td>teams：</td>
-									<td><select name="team_ID" id="teams">
+									<td class="leftTd">teams：</td>
+									<td class="rightTd">
+									    <select class="rightInput" name="team_ID" id="teams">
 											<option value=""></option>
-									</select></td>
+									    </select>
+									</td>
 								</tr>
 								<tr>
-									<td>Reason</td>
-									<td><textarea id="reason" name="reason"></textarea></td>
+									<td class="leftTd">Reason</td>
+									<td class="rightTd">
+									<textarea id="textArea"class="rightInput" id="reason" name="reason"></textarea>
+									</td>
 								</tr>
 								<tr>
 									<td class="btnWrapper"><input
@@ -146,8 +151,7 @@ function addBlackList(){
 					</div>
 				</form>
 			</div>
-		</div>
-	</div>
+
 </body>
 </html>
 

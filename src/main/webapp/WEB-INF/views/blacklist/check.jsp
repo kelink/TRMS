@@ -13,6 +13,7 @@
 
 <title> BlackList Page </title>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
+<link href="<%=request.getContextPath()%>/resources/css/checkBlacklist.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
 <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
@@ -72,6 +73,7 @@ function displayBlackList(){
 			$("#updateForm").append("<button name='updateBlackListBtn' id='updateBlackListBtn' onClick='updateBlackList("+json.bl_ID+")'>edit</button>");
 			$("#updateForm").append("<button name='deleteBlackListBtn' id='deleteBlackListBtn' onClick='deleteBlackList("+json.bl_ID+")'>delete</button>");			
 			$("#updateForm").append("</form>");
+			$("#noInfo").css("display","none");
          },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			$("#display").empty();
@@ -111,21 +113,24 @@ function deleteBlackList(bl_ID){
 </head>
 </head>
 <body>	
-					<h1>黑名单管理界面</h1>							
-					departments
+					<h1>Check blacklist</h1>							
+					<div class="checkItem">departments</div>
 					<select name="departments" id="departments">
 						<option value=""></option>
 						<c:forEach items="${departments}" var="department">
 							<option value="${department.department_ID}">${department.departmentName}</option>
 						</c:forEach>
 					</select>
-					teams
+					<div class="checkItem">teams</div>
 					<select name="team_ID" id="teams">
 						<option value=""></option>
 					</select>
 					<button name="checkBtn" id="checkBtn" onClick="displayBlackList()">check</button>				
 					<hr/>
 					<!-- 显示信息区域 -->	
+					<div id="noInfo">
+					    <p>No information to show.</p>
+					</div>
 					<div id="display"></div>
 	
 </body>

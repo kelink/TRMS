@@ -91,31 +91,33 @@ function GoToAppointPage(e) {
 			<div id="reservationTableWrapper">
 				<table>
 					<tbody>				
-					<c:forEach items="${blacklists}" var="blacklist">
 					
+					
+					    <tr>
+					        <th>
+					            department Name
+					        </th>
+					        <th>
+					            Team Name
+					        </th>
+					        <th>
+					            Blacklist Reason
+					        </th>
+					        <th>
+					            Operation
+					        </th>
+					    </tr>
+					    <c:forEach items="${blacklists}" var="blacklist">
 						<tr>
-							<td>department Name</td>
-							<td><input class="readonlyInfo" type="text"
-								name="departmentName" readonly="true"
-								value="${departments.get(blacklist.bl_ID).departmentName}"></td>
-						</tr>	
-						<tr>
-							<td>Team Name</td>
-							<td><input class="readonlyInfo" type="text"
-								name="reservation_Num" readonly="true"
-								value="${teams.get(blacklist.bl_ID).teamName}"></td>
-						</tr>
-						<tr>
-							<td>blackList Reason</td>
-							<td><input class="readonlyInfo" type="text"
-								name="reservation_Num" readonly="true"
-								value="${blacklist.reason}"></td>
-						</tr>					
-						<tr>					
-							<td class="btnWrapper"><a class="btnDelete reservationLcBtn"
+							<td>${departments.get(blacklist.bl_ID).departmentName}</td>
+							<td>${teams.get(blacklist.bl_ID).teamName}</td>
+							<td>${blacklist.reason}</td>
+							<td class="operation"><a class="btnDelete"
 								href="<%=request.getContextPath()%>/blacklist/delete?bl_ID=${blacklist.bl_ID}">delete</a>
 							</td>
-						</tr>				 
+						</tr>	
+										
+									 
 					</c:forEach>
 					</tbody>
 				</table>
