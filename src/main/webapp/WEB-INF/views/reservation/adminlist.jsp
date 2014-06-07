@@ -312,7 +312,7 @@ function deleteReservation(reservation_ID){
 			alert("error");
 	}
 });
-	window.parent.location.reload();
+	//window.parent.location.reload();重新加载窗体
 }
 
 </script>
