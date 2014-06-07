@@ -39,6 +39,7 @@ import com.dummy.service.ReservationService;
 import com.dummy.service.RoomService;
 import com.dummy.service.TeamService;
 import com.dummy.service.UserService;
+import com.dummy.util.EmailUtil;
 import com.dummy.util.ReservationUtil;
 
 @Controller
@@ -271,7 +272,7 @@ public class RoomController {
 
 		System.out.println(reservation);
 		map.addAttribute("reservation_Num", reservation_Num);
-		// 3.Send Email
+		// 3.Send Email(don not need email)
 		// List<DBUser> admins = userService
 		// .getUserByRole(C.DB.DEFAULT_ROLE_TA);
 		// List<String> toAddressList = new ArrayList<String>();
@@ -339,15 +340,11 @@ public class RoomController {
 
 		System.out.println(reservation);
 		map.addAttribute("reservation_Num", reservation_Num);
-		// 3.Send Email
-		// List<DBUser> admins =
-		// userService.getUserByRole(C.DB.DEFAULT_ROLE_TA);
-		// List<String> toAddressList = new ArrayList<String>();
-		// for (DBUser dbUser : admins) {
-		// toAddressList.add(dbUser.getAccount());
-		// MailSender.sendEmailToAllAdmin(toAddressList, null, null);
-		// }
-
+		// 3.Send Email to all admin
+		List<DBUser> admins = userService.getUserByRole(C.DB.DEFAULT_ROLE_TA);
+		for (DBUser dbUser : admins) {
+			EmailUtil.sendEmailToAllAdmin(dbUser.getAccount(), null, null);
+		}
 		// 4.add reservation
 		reservationService.addReservation(reservation);
 		return new ModelAndView("room/success", map);

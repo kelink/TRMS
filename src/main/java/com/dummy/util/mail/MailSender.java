@@ -26,7 +26,7 @@ public class MailSender {
 	 * @param mailInfo
 	 * 
 	 */
-	public boolean sendTextMail(MailSenderInfo mailInfo) {
+	public static boolean sendTextMail(MailSenderInfo mailInfo) {
 		// authenticator
 		EmailAuthenticator authenticator = null;
 		Properties pro = mailInfo.getProperties();

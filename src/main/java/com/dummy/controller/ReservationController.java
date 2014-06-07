@@ -28,6 +28,7 @@ import com.dummy.service.ReservationService;
 import com.dummy.service.RoomService;
 import com.dummy.service.TeamService;
 import com.dummy.service.UserService;
+import com.dummy.util.EmailUtil;
 import com.dummy.util.ReservationUtil;
 
 @Controller
@@ -315,15 +316,18 @@ public class ReservationController {
 		String message = reservationService.checkApprove(reservation);
 		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
 		if (message == null) {
-
-			// send email
-			// List<String> list = new ArrayList<String>();
-			// list.add(reservation.getEmail());
-			// MailSender.sendEmailToAllAdmin(list, null, null);
 			reservation.setHandle_by(currentUser.getUser_ID());
 			reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
-			reservationService.approveOrReject(reservation);
-			message = "approve success,email have sent!";
+			if (reservationService.approveOrReject(reservation)) {
+				message = "approve success,email have sent!";
+				// send email
+				EmailUtil.sendEmailToApplicant(reservation.getEmail(), null,
+						null);
+
+			} else {
+				message = "approve fail";
+			}
+
 		}
 		return message;
 
@@ -341,21 +345,19 @@ public class ReservationController {
 		if (message == null) {
 			reservation.setHandle_by(currentUser.getUser_ID());
 			reservation.setStatus(C.DB.DEFAULT_RESERVATION_REFUSE);
-			reservationService.approveOrReject(reservation);
-			// send email
-			// List<String> list = new ArrayList<String>();
-			// list.add(reservation.getEmail());
-			// MailSender.sendEmailToAllAdmin(list, null, null);
-			// List<String> list = new ArrayList<String>();
-			// list.add(reservation.getEmail());
-			// MailSender.sendEmailToAllAdmin(list, null, null);
-			message += "reject success,email have sent!";
+			if (reservationService.approveOrReject(reservation)) {
+				// send email
+				EmailUtil.sendEmailToApplicant(reservation.getEmail(), null,
+						null);
+				message = "reject success,email have sent!";
+			} else {
+				message = "reject fail";
+			}
 
 		}
 		return message;
 
 	}
-
 	// batch to approve the reservations
 	@RequestMapping(value = "/approveReservations")
 	public @ResponseBody String approveReservations(HttpServletRequest request,

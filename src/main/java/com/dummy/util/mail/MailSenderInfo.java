@@ -26,7 +26,12 @@ public class MailSenderInfo {
 	private String[] attachFileNames;
 
 	public MailSenderInfo() {
-		super();
+		this.mailServerHost = "smtp.qq.com";
+		this.mailServerPort = "25";
+		this.userName = "2804438948@qq.com";
+		this.password = "luo1992724";
+		this.fromAddress = "2804438948@qq.com";
+		this.validate = true;
 	}
 
 	/**
