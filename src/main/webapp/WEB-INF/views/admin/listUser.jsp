@@ -44,7 +44,7 @@ function getDetial(dept_ID){
                           <div class="sortByDepartmentBtn" id="sortByDepartmentBtn">Sort:Department</div>
                           <div id="showPanel">
                                <div class="panelHeader">
-                                   <span class="headerText">Sort Option</span>
+                                   <span class="headerText">Department</span>
                                    <span class="close"id="closeShow"><img class="closeIcon" src="<%=request.getContextPath()%>/resources/images/closeShallow.png"width="16px"height="16px"/></span>
 
                                </div>         
