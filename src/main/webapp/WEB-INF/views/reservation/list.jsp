@@ -332,7 +332,7 @@ function checkCheckbox(args){
 	    return false;
 	}
 	//ajax to delete seleted reservation
-	if(args=="0")
+	if(args=="0"){
 		$.ajax({
 				url : "<%=request.getContextPath()%>/reservation/multiDeleteByID",
 				type : "get",
@@ -340,14 +340,15 @@ function checkCheckbox(args){
 				dataType : "html",
 				success : function(json) {
 					alert(json);
+					location.reload();
 		        },
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					alert("error");
+					location.reload();
 				}
 			});
-	
+	}
 	return false;
-	//window.parent.location.reload();
 }
 
 </script>

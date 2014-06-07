@@ -30,6 +30,7 @@ $(document).ready(function(){
 	});
 
 function getRoomInfo(department_ID){
+	var departmentName=$("#departments").find("option:selected").text();
  	$.ajax({
 		url : "<%=request.getContextPath()%>/room/getRoomsBydepartment",
 		type : "Get",
@@ -42,7 +43,7 @@ function getRoomInfo(department_ID){
 			html+="<table><tr><th>";
 			html+="<input type='checkbox' id='checkAll' class='check' onclick='check_all(this,\"checkbox\");'>";
 			html+="Room</th><th>Last used date</th><th>Own by</th><th>Status</th><th>Operation</th></tr>";
-			for (position in json) {			
+			for (position in json) {
 					var room_ID=json[position].room_ID;
 					var item=json[position].item;
 					var last_Used_Date=json[position].last_Used_Date;
@@ -52,10 +53,18 @@ function getRoomInfo(department_ID){
 					
 					
 					
-					html+="<tr><td><input type='checkbox'name='checkbox' id='check"+room_ID+"' class='check'>"+item+"</td>";
+					html+="<tr><td><input type='checkbox'name='checkbox' id='check"+room_ID+"' class='check' value="+room_ID+">"+item+"</td>";
 					html+="<td>"+last_Used_Date+"</td>";
-					html+="<td>"+department_ID+"</td>";
- 	                html+="<td>"+room_Status+"</td>";
+					html+="<td>"+departmentName+"</td>";
+					if(room_Status==0)
+					{
+						 html+="<td>free</td>";
+					}
+					if(room_Status==1)
+					{
+						 html+="<td>unfree</td>";
+					}
+ 	               
  	               html+="<td>"+"<a class='operation' href='#'>delete</a> ";
  	              html+="<a class='operation' href='#'>edit</a>"+"</td></tr>";
 					
@@ -70,8 +79,9 @@ function getRoomInfo(department_ID){
 		}
 	});
 }
-function teamOperate(args){
-	//delete team
+function roomOperate(args){
+	//get the select item
+	//delete room
 	if(args==0){
 		$.ajax({
 			url : "<%=request.getContextPath()%>/room/getRoomsBydepartment",
@@ -86,6 +96,7 @@ function teamOperate(args){
 			}
 		});
 	}
+	//add room
 	if(args==1){
 		$.ajax({
 			url : "<%=request.getContextPath()%>/room/getRoomsBydepartment",
@@ -101,6 +112,7 @@ function teamOperate(args){
 			}
 		});
 	}
+	//change status
 	if(args==2){
 		$.ajax({
 			url : "<%=request.getContextPath()%>/room/getRoomsBydepartment",
@@ -118,6 +130,53 @@ function teamOperate(args){
 	}
 
 }
+function checkCheckbox(args){
+	//判断是否已经选择
+	var  box = new Array(); 
+	if($("input[name='checkbox']:checkbox:checked").length>0){	   
+	    $("input[name='checkbox']:checkbox:checked").each(function(){
+	    	box.push($(this).val()); 
+	    }); 
+	 }else{
+	    alert('You do not choose any items');
+	    return false;
+	}
+	//multi delete
+	if(args=="0"){
+		$.ajax({
+				url : "<%=request.getContextPath()%>/room/multiDelete",
+				type : "get",
+				data:'checkbox='+box,  		
+				dataType : "html",
+				success : function(json) {
+					alert(json);
+					location.reload();
+		        },
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("error");
+					location.reload();
+				}
+			});
+	}
+	//multi change status
+	if(args=="1"){
+		$.ajax({
+				url : "<%=request.getContextPath()%>/room/multiUpdateRoomStatus",
+				type : "get",
+				data:'checkbox='+box,  		
+				dataType : "html",
+				success : function(json) {
+					alert(json);
+					location.reload();
+		        },
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("error");
+					location.reload();
+				}
+			});
+	}
+	return false;
+}
 </script>
 </head>
 </head>
@@ -132,9 +191,9 @@ function teamOperate(args){
 							<option value="${department.department_ID}">${department.departmentName}</option> 
  						</c:forEach> 
 					</select> 
-					<button name="checkBtn" id="checkBtn" onClick="displayRoom()">check</button>				
- 					<button name="deleteBtn" id="deleteBtn" onClick="deleteRoom()">delete</button>
- 					<button name="addBtn" id="addBtn" onClick="addRoom()">add</button> 
+					<button name="addBtn" id="addBtn" onClick="addRoom()">add room</button> 
+ 					<button name="deleteBtn" id="deleteBtn" onClick="checkCheckbox(0)">delete room</button>
+ 					<button name="checkBtn" id="checkBtn" onClick="checkCheckbox(1)">change Status</button>			
  				</div>
 					<hr/> 
  					 

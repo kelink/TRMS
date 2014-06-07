@@ -485,10 +485,65 @@ public class RoomController {
 		}
 	}
 
+	// batch to delete room
+	@RequestMapping("/multiDelete")
+	public @ResponseBody String multiDelete(HttpServletRequest request,
+			HttpSession session) {
+		String checkboxStr = request.getParameter("checkbox");
+		String message = null;
+		if (checkboxStr == null || checkboxStr.length() <= 0) {
+			return "batch to delete room error ,can not get the rooms";
+		} else {
+			String[] rooms = checkboxStr.split(",");
+			for (int i = 0; i < rooms.length; i++) {
+				int room_ID = Integer.parseInt(rooms[i]);
+				message = this.delete(room_ID);
+			}
+			return message;
+		}
+	}
+
+	// batch to update room
+	@RequestMapping("/updateRoomStatus")
+	public @ResponseBody String updateRoomStatus(
+			@RequestParam(value = "room_ID", required = true) int room_ID,
+			HttpSession session) {
+		Room room = roomService.getRoom(room_ID);
+		if (room.getRoom_Status() == C.DB.DEFAULT_UNFREE_ROOM) {
+			room.setRoom_Status(C.DB.DEFAULT_FREE_ROOM);
+		}
+		if (room.getRoom_Status() == C.DB.DEFAULT_FREE_ROOM) {
+			room.setRoom_Status(C.DB.DEFAULT_UNFREE_ROOM);
+		}
+		if (roomService.updateRoom(room)) {
+			return "changer status success";
+		} else {
+			return "change status error";
+		}
+
+	}
+
+	// batch to update room
+	@RequestMapping("/multiUpdateRoomStatus")
+	public @ResponseBody String multiUpdateRoomStatus(
+			HttpServletRequest request, HttpSession session) {
+		String checkboxStr = request.getParameter("checkbox");
+		String message = null;
+		if (checkboxStr == null || checkboxStr.length() <= 0) {
+			return "batch to delete room error ,can not get the rooms";
+		} else {
+			String[] rooms = checkboxStr.split(",");
+			for (int i = 0; i < rooms.length; i++) {
+				int room_ID = Integer.parseInt(rooms[i]);
+				Room room = roomService.getRoom(room_ID);
+				message = this.updateRoomStatus(room_ID, session);
+			}
+			return "change status error";
+		}
+	}
 	@RequestMapping("/check")
 	public ModelAndView check() {
 		return null;
 	}
-	//
 
 }
