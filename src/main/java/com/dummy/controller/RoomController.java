@@ -300,14 +300,6 @@ public class RoomController {
 			@RequestParam(value = "purpose", required = true) String purpose,
 			@ModelAttribute("currentUser") DBUser currentUser) {
 
-		System.out.println("email------------------>>" + email);
-		System.out.println("tele------------------>>" + tele);
-		System.out.println("purpose------------------>>" + purpose);
-		System.out.println("team_ID------------------>>" + team_ID);
-		System.out.println("begin_time------------------>>" + begin_time);
-		System.out.println("end_time------------------>>" + end_time);
-		System.out.println("room_ID------------------>>" + room_ID);
-
 		ModelMap map = new ModelMap();
 
 		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -348,8 +340,8 @@ public class RoomController {
 		System.out.println(reservation);
 		map.addAttribute("reservation_Num", reservation_Num);
 		// 3.Send Email
-		// List<DBUser> admins = userService
-		// .getUserByRole(C.DB.DEFAULT_ROLE_TA);
+		// List<DBUser> admins =
+		// userService.getUserByRole(C.DB.DEFAULT_ROLE_TA);
 		// List<String> toAddressList = new ArrayList<String>();
 		// for (DBUser dbUser : admins) {
 		// toAddressList.add(dbUser.getAccount());
