@@ -8,6 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<title> Blacklist Management </title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 <link href="<%=request.getContextPath()%>/resources/css/blacklist.css" rel="stylesheet" >
@@ -88,7 +89,7 @@ function changeFrame(args){
 				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
+				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Management</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem selected">BlackList Management</a>
@@ -105,7 +106,7 @@ function changeFrame(args){
 	 
 	 <div class="middle">
 	     <div class="middleContainer">
-		     <h1 class="roomList">Reservation List</h1>
+		     <h1 class="roomList">Blacklist Management</h1>
 			 <div class="roomListBody" style="overflow:hidden;">
 			 
 			     <div id="checkLeftPanel">

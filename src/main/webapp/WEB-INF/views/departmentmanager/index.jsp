@@ -61,7 +61,7 @@
 				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
+				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Management</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
@@ -81,7 +81,7 @@
 
 		 
 
-		     <h1 class="roomList">User Management</h1>
+		     <h1 class="roomList">Database Management</h1>
 			 <div class="roomListBody roomListBodyUserManagement">
 
 

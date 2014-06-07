@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
 
-  <title> LC Page </title>
+  <title> Manage my profile </title>
  <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
   <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
  <link href="<%=request.getContextPath()%>/resources/css/modifyProfile.css" rel="stylesheet" >
@@ -94,7 +94,7 @@
 				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Manager</a>
+				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem">Reservation Management</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>

@@ -36,7 +36,12 @@ function getRoomInfo(department_ID){
 		data : "department_ID=" + department_ID,
 		dataType : "json",
 		success : function(json) {
+			var html="";
 			$("#display").empty();
+			html+="<form action='#' method='get'>";
+			html+="<table><tr><th>";
+			html+="<input type='checkbox' id='checkAll' class='check' onclick='check_all(this,\"checkbox\");'>";
+			html+="Room</th><th>Last used date</th><th>Own by</th><th>Status</th><th>Operation</th></tr>";
 			for (position in json) {			
 					var room_ID=json[position].room_ID;
 					var item=json[position].item;
@@ -44,14 +49,21 @@ function getRoomInfo(department_ID){
 					var department_ID=json[position].department_ID;
 					var room_Status=json[position].room_Status;
 					
-					$("#display").append("room_ID:"+room_ID);
-					$("#display").append("item:"+item);
-					$("#display").append("last_Used_Date:"+last_Used_Date);
-					$("#display").append("department_ID:"+department_ID);
-					$("#display").append("room_Status:"+room_Status);
-					$("#display").append("<a href='#'>delete</a> ");
-					$("#display").append("<a href='#'>edit</a><br/>");
+					
+					
+					
+					html+="<tr><td><input type='checkbox'name='checkbox' id='check"+room_ID+"' class='check'>"+item+"</td>";
+					html+="<td>"+last_Used_Date+"</td>";
+					html+="<td>"+department_ID+"</td>";
+ 	                html+="<td>"+room_Status+"</td>";
+ 	               html+="<td>"+"<a class='operation' href='#'>delete</a> ";
+ 	              html+="<a class='operation' href='#'>edit</a>"+"</td></tr>";
+					
+					
 			}			
+			html+="</table>";
+			html+="</form>";
+			$("#display").html(html);
          },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 
@@ -110,10 +122,10 @@ function teamOperate(args){
 </head>
 </head>
 <body>
- 			 <div class="roomListBody"> 
- 			 			 	<h1>Room 房间管理界面</h1> 
-				<h3>传入的是部门信息，当点击部门的时候,会ajax显示当前选择部门的 room,支持批量处理删除room</h3>				
-					departments 
+ 			 <div class="roomListBody roomListBody1"> 
+ 			 			 	<h1>Room Management</h1> 
+			     <div id="searchWrapper">
+					<div id="roomDeptment">departments</div> 
 					<select name="departments" id="departments"> 
 						<option value=""></option>
 						<c:forEach items="${departments}" var="department"> 
@@ -122,10 +134,14 @@ function teamOperate(args){
 					</select> 
 					<button name="checkBtn" id="checkBtn" onClick="displayRoom()">check</button>				
  					<button name="deleteBtn" id="deleteBtn" onClick="deleteRoom()">delete</button>
- 					<button name="deleteBtn" id="deleteBtn" onClick="addRoom()">add</button> 
+ 					<button name="addBtn" id="addBtn" onClick="addRoom()">add</button> 
+ 				</div>
 					<hr/> 
- 					显示信息区域	 
-				Room:<div id="display"></div> 
+ 					 
+				<div id="roomTitleWrapper">Room:</div>
+				<div id="displayWrapper">
+				    <div id="display"></div> 
+				</div>
 						
 			 </div>
 

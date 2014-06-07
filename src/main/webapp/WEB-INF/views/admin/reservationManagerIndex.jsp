@@ -8,6 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<title>Reservation Management</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
@@ -64,7 +65,7 @@
 				     <a href="<%=request.getContextPath()%>/admin/index" class="navItem">Book Room</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem selected">Reservation Manager</a>
+				     <a href="<%=request.getContextPath()%>/reservation/reservationManagerIndex" class="navItem selected">Reservation Management</a>
 				 </li>
 				 <li>
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
@@ -208,7 +209,7 @@
             
                           </div>
                           <div id="btnFunctionWrapper">
-                              <div class="btnFunction">All</div>
+                              <a href="<%=request.getContextPath()%>/reservation/list"target="checkRightInner" class="btnFunction">All</a>
                               <div id="verticalLine"></div>
 
                               <div class="btnFunction" id="approveBtn" onClick="window.frames['checkRightInner'].checkCheckbox(0)">Approve</div>
