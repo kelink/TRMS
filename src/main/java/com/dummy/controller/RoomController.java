@@ -362,7 +362,7 @@ public class RoomController {
 		BlackList blacklist = blackListService
 				.getBlackListByTeamToObject(team_ID);
 		if (blacklist != null) {
-			return "team is in the blackList,Please Contact Administrator";
+			return "The team is in blackList,please contact administrator";
 		} else {
 			return "";
 		}

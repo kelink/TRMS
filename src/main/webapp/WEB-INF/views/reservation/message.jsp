@@ -14,8 +14,12 @@
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
 <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+	    alert("Update success!");
+	    window.location.href="<%=request.getContextPath()%>/reservation/list";
+</script>
 </head>
 <body>
-	${message}<a href="${url}">BACK</a>
+	
 </body>
 </html>

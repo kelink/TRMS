@@ -189,7 +189,14 @@ window.onload=function(){
 	
 };
 
-
+function closeSort()
+{
+	$("#sortPanel").css("display","none");
+}
+function closeShow()
+{
+	$("#showPanel").css("display","none");
+}
 function logout(url){
 	$("#logoutBtn").attr("class","btnLogout btnSelected");
 	window.location.href=url;
