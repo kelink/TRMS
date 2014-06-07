@@ -1,0 +1,56 @@
+#departments
+{
+	float:left;
+	width: 148px;
+border: 1px solid rgb(167, 167, 167);
+border-radius: 3px;
+height: 27px;
+font-size: 16px;
+}
+#teams
+{
+	float:left;
+	width: 148px;
+border: 1px solid rgb(167, 167, 167);
+border-radius: 3px;
+height: 27px;
+font-size: 16px;
+}
+.checkItem
+{
+	float: left;
+line-height: 24px;
+padding: 0 10px;
+color: rgb(117, 117, 117);
+font-size: 17px;
+
+}
+h1
+{
+color: rgb(109, 109, 109);
+font-weight: bold;
+font-size: 24px;
+padding-left: 10px;
+}
+hr
+{
+	margin-top: 14px;
+}
+#checkBtn
+{
+	margin-left: 33px;
+height: 28px;
+}
+#noInfo
+{
+	height: 154px;
+background: #f5f5f5;
+margin-top: 10px;
+}
+#noInfo p
+{
+	padding-left: 238px;
+font-size: 16px;
+color: #999;
+padding-top: 65px;
+}

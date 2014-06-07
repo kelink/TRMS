@@ -23,13 +23,14 @@ color:rgb(77, 77, 77)
 .btnUpdate
 {
 	margin:0px;
+	margin-top: 19px;
 	float:right;
 	text-decoration:none;
-	line-height: 20px;
+	line-height: 21px;
 box-shadow: none;
 position: relative;
 display: inline-block;
-padding: 0px 12px;
+padding: 0px 17px;
 font-size: 13px;
 font-weight: bold;
 white-space: nowrap;
@@ -57,6 +58,7 @@ user-select: none;
 {
 	text-align: center;
 	margin-left: 15px;
+	margin-top: 19px;
 	float: left;
 text-decoration: none;
 line-height: 20px;
@@ -85,4 +87,38 @@ cursor: pointer;
 -ms-user-select: none;
 user-select: none;
 -webkit-appearance: none;
+}
+#tableWrapper
+{
+	padding: 10px;
+}
+table
+{
+width: 99%;
+
+}
+td.leftTd
+{
+font-size: 15px;
+text-align: left;
+padding-right: 33px;
+width: 7%;
+color: rgb(119, 119, 119);
+font-weight: bold;
+}
+
+.rightInput
+{
+	width: 245px;
+border: 1px solid #cccccc;
+border-radius: 2px;
+}
+td.rightTd
+{
+	width:70%;
+	text-align:left;
+}
+#textArea
+{
+	height: 100px;
 }

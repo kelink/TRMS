@@ -164,7 +164,7 @@ function getDynamicTable(Y, M) {
 										+ M + "," + j + ")'>")
 								+ j + "</td>"
 					} else if (future == false) {
-						Temp += "<td class='idle pass' onclick='alert(\"The date has passed\")'>"
+						Temp += "<td class='idle pass'>"
 								+ j + "</td>"
 					}
 				}
