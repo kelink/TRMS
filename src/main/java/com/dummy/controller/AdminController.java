@@ -54,12 +54,13 @@ public class AdminController {
 			Model model,
 			@RequestParam(value = "pageSize", required = false, defaultValue = "7") int pageSize,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum) {
-		int recordCount = roomService.getAllRoom().size();
+		List<Room> rooms = roomService.getFreeRooms();
+		int recordCount = rooms.size();
 		int pageCount = (recordCount + pageSize - 1) / pageSize;
+
 		ModelMap map = new ModelMap();
 		map.addAttribute("recordCount", recordCount);
 		map.addAttribute("pageCount", pageCount);
-		List<Room> rooms = roomService.getFreeRooms();
 		map.addAttribute("rooms", rooms);
 		return new ModelAndView("admin/index", map);
 	}

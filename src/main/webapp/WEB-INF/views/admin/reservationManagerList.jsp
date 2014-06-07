@@ -251,8 +251,7 @@ function checkApproveRejectBtn(args,reservation_ID){
     
     
     
-    <div style="display:none;" class="btnFunction" id="approveBtn" onClick="checkCheckbox(0)">Approve</div>
-    <div style="display:none;"class="btnFunction" id="rejectBtn" onClick="checkCheckbox(1)">Reject</div>
+ 
     </form>
 
 
