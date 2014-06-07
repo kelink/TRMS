@@ -1,6 +1,5 @@
 package com.dummy.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,24 +48,26 @@ public class BlackListController {
 	@RequestMapping(value = {"/list"})
 	public ModelAndView list() {
 		List<BlackList> blacklists = blackListService.getAllBlackList();
-		ModelMap map = new ModelMap();
-		HashMap<Integer, List<String>> blackLists = new HashMap<Integer, List<String>>();
+		// 1.get team by blacklist ID
+		HashMap<Integer, Team> teams = new HashMap<Integer, Team>();
 		for (BlackList blackList : blacklists) {
-			List<String> temp = new ArrayList<String>();
 			Team team = teamService.getTeam(blackList.getTeam_ID());
-			temp.add(String.valueOf(blackList.getBl_ID()));
-			temp.add(blackList.getReason());
-			temp.add(String.valueOf(blackList.getTeam_ID()));
-			temp.add(team.getTeamName());
-			temp.add(String.valueOf(team.getUser_ID()));
-			blackLists.put(blackList.getBl_ID(), temp);
+			teams.put(blackList.getBl_ID(), team);
 		}
-		List<Department> departments = departmentService.getAllDepartment();
+		// get department information by teams
+		HashMap<Integer, Department> departments = new HashMap<Integer, Department>();
+		for (Integer index : teams.keySet()) {
+			int departent_ID = teams.get(index).getDepartment_ID();
+			Department department = departmentService
+					.getDepartment(departent_ID);
+			departments.put(index, department);
+		}
+		ModelMap map = new ModelMap();
+		map.addAttribute("blacklists", blacklists);
+		map.addAttribute("teams", teams);
 		map.addAttribute("departments", departments);
-		map.addAttribute("blackLists", blackLists);
 		return new ModelAndView("blacklist/list", map);
 	}
-
 	// get the teams information
 	@RequestMapping(value = "/getTeamsByDepartment")
 	public @ResponseBody String getTeamsByDepartment(

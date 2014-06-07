@@ -1,21 +1,30 @@
 <%@page import="com.dummy.domain.Room"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
-<%@ taglib prefix='security' uri='http://www.springframework.org/security/tags'%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix='security'
+	uri='http://www.springframework.org/security/tags'%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
+<link rel="icon" href="/trms/resources/images/hsbcicon.ico"
+	type="image/x-icon" />
 
-<title> BlackList Page </title>
-<link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
-<link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
-<script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
+<title>BlackList Page</title>
+<link href="<%=request.getContextPath()%>/resources/css/lcIndex.css"
+	rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/resources/css/blacklistform.css"
+	rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/css/footer.css"
+	rel="stylesheet">
+<script src="<%=request.getContextPath()%>/resources/js/lcIndex.js"
+	type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js"
+	type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	  $("#departments").change(function(){
@@ -95,34 +104,51 @@ function addBlackList(){
 </script>
 </head>
 </head>
-<body>	 
-	 <div class="middle">
-	     <div class="middleContainer">
-		     <h1 class="roomList">Add BlackList</h1>
-			 <div class="roomListBody">
-					<form action="<%=request.getContextPath()%>/blacklist/add" method="post">					
-					departments
-					<select name="departments" id="departments">
-						<option value=""></option>
-						<c:forEach items="${departments}" var="department">
-							<option value="${department.department_ID}">${department.departmentName}</option>
-						</c:forEach>
-					</select>
-					teams
-					<select name="team_ID" id="teams">
-						<option value=""></option>
-					</select>
-					Reason
-					<textarea id="reason" name="reason"></textarea>
-					<input type="submit" name="submit" value="submit"/>
-					</form>
-					<hr/>
-					<!-- 显示信息区域 -->	
-					<div id="display"></div>
-					
-			 </div>
-		 </div>
-	 </div>	
-</body>
+<body>
+	<div class="middle">
+		<div class="middleContainer">
+			<div class="ticketTitle">Ticket Information</div>
+			<div class="listBody">
+				<form action="<%=request.getContextPath()%>/blacklist/add"
+					method="post">
+					<div id="reservationTableWrapper">
+						<table>
+							<tbody>
+								<tr>
+									<td>departments:</td>
+									<td class="readonlyInfo"><select name="departments" id="departments">
+											<option value=""></option>
+											<c:forEach items="${departments}" var="department">
+												<option value="${department.department_ID}">${department.departmentName}</option>
+											</c:forEach>
+									</select></td>
+								</tr>
+								<tr>
+									<td>teams：</td>
+									<td><select name="team_ID" id="teams">
+											<option value=""></option>
+									</select></td>
+								</tr>
+								<tr>
+									<td>Reason</td>
+									<td><textarea id="reason" name="reason"></textarea></td>
+								</tr>
+								<tr>
+									<td class="btnWrapper"><input
+										class="btnUpdate reservationLcBtn" type="submit" name="submit"
+										id="btnUpdate" value="add"></td>
+									<td class="btnWrapper"><a
+										class="btnDelete reservationLcBtn" href="#"
+										onclick="deleteReservation41">Back</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
+
+
