@@ -1,0 +1,364 @@
+#sortByDepartmentBtnWrapper
+{
+	height:24px;
+	padding-left: 8px;
+	position:relative;
+}
+#linkPot
+{
+float: left;
+width: 10px;
+height: 10px;
+border-radius: 7px;
+background: rgb(180, 180, 180);
+margin-left: 7px;
+margin-top: 236px;
+}
+.sortByDepartmentBtn
+{
+	text-decoration:none;
+	line-height: 22px;
+box-shadow: none;
+position: relative;
+float: left;
+padding: 0px 12px;
+font-size: 13px;
+font-weight: bold;
+color: #333;
+text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+white-space: nowrap;
+background-color: #eeeeee;
+background-image: -moz-linear-gradient(top,#ffffff 0%,#ebebeb 90%,#F3F3F3 100%);
+background-image: -webkit-linear-gradient(top,#ffffff 0%,#ebebeb 90%,#F3F3F3 100%);
+background-image: linear-gradient(top,#ffffff 0%,#ebebeb 90%,#F3F3F3 100%);
+background-repeat: repeat-x;
+border-radius: 3px;
+border: 1px solid rgb(177, 176, 176);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+margin-left: 3px;
+}
+.removeUserBtn
+{
+	text-align: center;
+margin-left: 15px;
+float: left;
+text-decoration: none;
+line-height: 20px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 12px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(255,48, 48);
+background-image: -moz-linear-gradient(rgb(252,110,110),rgb(255,48,48));
+background-image: -webkit-linear-gradient(rgb(252, 110, 110),rgb(255,48,48));
+background-image: linear-gradient(rgb(252, 110, 110), rgb(255, 48, 48));
+background-repeat: repeat-x;
+border-radius: 3px;
+border: 1px solid rgb(211, 55, 55);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+}
+.addUserTeamBtn
+{
+	float:left;
+	
+		line-height: 21px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 28px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(94, 151, 189);
+background-image: -moz-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: -webkit-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: linear-gradient(rgb(155, 207, 255), rgb(94, 151, 189));
+background-repeat: repeat-x;
+border-radius: 3px;
+border: 1px solid rgb(152, 207, 243);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+}
+.addUserBtn
+{
+	line-height: 24px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 50px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(94, 151, 189);
+background-image: -moz-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: -webkit-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: linear-gradient(rgb(155, 207, 255), rgb(94, 151, 189));
+background-repeat: repeat-x;
+border-radius: 3px;
+border: 1px solid rgb(152, 207, 243);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+}
+#allInfoWrapper
+{
+padding: 10px;
+height: 617px;
+}
+#userListWrapper
+{
+	width: 74%;
+height: 100%;
+
+float: left;
+}
+#userListinner
+{
+	height:86%;
+overflow:auto;
+overflow-x:hidden;
+border: 1px solid #cccccc;
+border-radius: 3px;
+box-shadow: 0 1px 12px rgb(224, 224, 224);
+
+	
+}
+#userListBtnWrapper
+{
+	height:8%;
+	position:relative;
+	padding-top: 15px;
+}
+#userTeamListWrapper
+{
+	width: 23%;
+height: 100%;
+
+float: right;
+}
+#userTeamListInner
+{
+	overflow:auto;
+	overflow-x:hidden;
+	height:86%;
+	border: 1px solid #cccccc;
+border-radius: 3px;
+box-shadow: 0 1px 12px rgb(224, 224, 224);
+}
+#userTeamListBtnWrapper
+{
+	padding-top:15px;
+	height:8%;
+}
+#showPanel
+{
+	position:absolute;
+	z-index:1000;
+	top: 24px;
+    left: 10px;
+	display:none;
+	width:300px;
+	overflow:hidden;
+	background:white;
+	border-radius:5px;
+	border:1px solid #cccccc;
+	box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+}
+#showPanel1
+{
+	height: 280px;
+position: absolute;
+z-index: 1000;
+top: -239px;
+left: 133px;
+	display:none;
+	width:300px;
+	overflow:hidden;
+	background:white;
+	border-radius:5px;
+	border:1px solid #cccccc;
+	box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+}
+.panelHeader {
+padding: 8px 10px;
+background-color: #eeeeee;
+background-image: -moz-linear-gradient(#fafafa, #eee);
+background-image: -webkit-linear-gradient(#fafafa, #eee);
+background-image: linear-gradient(#fafafa, #eee);
+background-repeat: repeat-x;
+border-bottom: 1px solid #ddd;
+font-size: 14px;
+}
+.headerText
+{
+	font-weight: bold;
+color: #333;
+text-shadow: 0 1px 0 #fff;
+}
+.sortPanelItem
+{
+	color:rgb(105, 105, 105);
+	padding:8px 0px 8px 8px;
+	text-align:left;
+	display:block;
+	border-bottom: 1px solid #eee;
+	cursor:pointer;
+	text-decoration:none;
+	
+}
+#close {
+	cursor:pointer;
+float:right;
+}
+.close {
+	cursor:pointer;
+float:right;
+}
+.listTopMenu
+{
+	padding-left:38px;
+	height:5%;
+	padding-top: 8px;
+color: gray;
+}
+::-webkit-scrollbar
+{
+	width:6px;
+	height:6px;
+}
+::-webkit-scrollbar-track-piece
+{
+    background-color: #CCCCCC;
+    -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:vertical
+{
+    height: 5px;
+    background-color: #999999;
+    -webkit-border-radius: 6px;
+}
+.userListItem
+{
+	border-bottom: 1px solid #cccccc;
+height: 55px;
+cursor:pointer;
+}
+.lc
+{
+	float:left;
+	margin-left: 5px;
+margin-top: 8px;
+width:36px;
+}
+.userInfoWrapper
+{
+	font-size: 16px;
+font-weight: bold;
+color: rgb(90, 90, 90);
+	float:left;
+	line-height: 54px;
+	
+}
+
+.userTopMenuTitle
+{
+	margin-left: 24px;
+	display:inline-block;
+}
+.userTopMenuTitle1
+{
+	
+}
+.userTopMenuTitle2
+{
+	width: 60px;
+margin-left: 51px;
+}
+.userTopMenuTitle3
+{
+	margin-left: 14px;
+}
+.userTopMenuTitle4
+{
+	width: 100px;
+	margin-left: 32px;
+}
+.userTopMenuTitle5
+{
+	margin-left: 12px;
+}
+.userInfo
+{
+	margin-left: 7px;
+	display:inline-block;
+}
+.userInfo1
+{
+	margin-left: 18px;
+	width: 96px;
+}
+.userInfo2
+{
+	width: 61px;
+}
+.userInfo3
+{
+	width: 60px;
+}
+.userInfo4
+{
+	width: 113px;
+}
+.userInfo5
+{
+	
+}
+.operation
+{
+	color:rgb(78, 130, 179);
+	text-decoration:underline;
+}
+#display
+{
+	border: none;
+height: 100%;
+width: 100%;
+}
