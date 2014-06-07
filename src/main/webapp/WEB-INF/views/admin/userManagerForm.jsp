@@ -12,31 +12,20 @@
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 </head>
 <body>
-
-	
-
-
-
-
 	<!-- 一开始不显示，当提交选择部门时候 ，ajax显示-->
 	User detial:
 		<c:forEach items="${userMap}" var="user">
-			User Name:${user.value.account}
-			<a href="<%=request.getContextPath()%>/team/delete?user_ID=${user.value.user_ID}">delete</a>
-			
+			User Name:${user.value.account}		
 			<br/>
 			<c:forEach items="${teamMap[user.key]}" var="team">
-			
-				team_ID:${team.team_ID}
-				user_ID:${team.user_ID}
-				department_ID:${team.department_ID}
-				teamName:${team.teamName}
-				<a href="<%=request.getContextPath()%>/team/update?team_ID=${team.team_ID}">update</a>	
+				department:${departments[team.team_ID].departmentName}<br/>
+				team_ID:${team.team_ID}<br/>
+				user_ID:${team.user_ID}<br/>
+				department_ID:${team.department_ID}<br/>
+				teamName:${team.teamName}<br/>
 				<hr/>
 			</c:forEach>				
 		</c:forEach>
-	<hr/>
-	<a href="<%=request.getContextPath()%>/team/getUserAddForm">add</a>
 	<hr/>
 </body>
 </body>

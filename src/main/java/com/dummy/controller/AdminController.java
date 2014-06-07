@@ -3,6 +3,8 @@ package com.dummy.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,13 +66,14 @@ public class AdminController {
 		map.addAttribute("rooms", rooms);
 		return new ModelAndView("admin/index", map);
 	}
-    
+
+	// 查询用户
 	@RequestMapping("/listUser")
 	public ModelAndView listUser() {
 		List<DBUser> commonUsers = userService
 				.getUserByRole(C.DB.DEFAULT_ROLE_LC);
-		DBUser a=commonUsers.get(0);
-	
+		DBUser a = commonUsers.get(0);
+
 		List<DBUser> admins = userService.getUserByRole(C.DB.DEFAULT_ROLE_TA);
 		ModelMap map = new ModelMap();
 		map.addAttribute("commonUsers", commonUsers);
@@ -78,6 +81,7 @@ public class AdminController {
 		return new ModelAndView("admin/listUser", map);
 	}
 
+	// 删除用户
 	@RequestMapping("/deleteCommonUser")
 	public @ResponseBody String deleteCommonUser(
 			@RequestParam(value = "user_ID", required = true) int user_ID) {
@@ -93,7 +97,44 @@ public class AdminController {
 		}
 	}
 
-	// get department information
+	// 增加用户
+	@RequestMapping
+	public @ResponseBody String addUser(HttpSession session,
+			HttpServletRequest request,
+			@RequestParam(value = "user_ID", required = true) int user_ID) {
+		String teleStr = request.getParameter("tele");
+		String accountStr = request.getParameter("account");
+		String accessStr = request.getParameter("access");
+		String genderStr = request.getParameter("gender");
+		String passwordStr = request.getParameter("password");
+		String dept_IDStr = request.getParameter("dept_ID");
+		DBUser user = new DBUser();
+		if (teleStr.length() > 0) {
+			user.setTele(teleStr.trim());
+		}
+		if (accountStr.length() > 0) {
+			user.setAccount(accountStr.trim());
+		}
+		if (accessStr.length() > 0) {
+			user.setAccess(Integer.parseInt(accessStr.trim()));
+		}
+		if (genderStr.length() > 0) {
+			user.setGender(Integer.parseInt(genderStr.trim()));
+		}
+		if (passwordStr.length() > 0) {
+			user.setPassword(passwordStr.trim());
+		}
+		if (dept_IDStr.length() > 0) {
+			user.setDept_ID(Integer.parseInt(dept_IDStr.trim()));
+		}
+		try {
+			userService.addUser(user);
+			return "add Success";
+		} catch (Exception e) {
+			return "fail operation";
+		}
+	}
+	// ajax 获取部门的名字
 	@RequestMapping("/getUserDepartment")
 	public @ResponseBody String getUserDepartment(
 			@RequestParam(value = "department_ID", required = true) int department_ID) {
@@ -102,6 +143,41 @@ public class AdminController {
 			return department.getDepartmentName() + "";
 		} else {
 			return null;
+		}
+	}
+	// 更新用户
+	public @ResponseBody String updateUser(HttpSession session,
+			HttpServletRequest request,
+			@RequestParam(value = "user_ID", required = true) int user_ID) {
+		String teleStr = request.getParameter("tele");
+		String accountStr = request.getParameter("account");
+		String accessStr = request.getParameter("access");
+		String genderStr = request.getParameter("gender");
+		String passwordStr = request.getParameter("password");
+		String dept_IDStr = request.getParameter("dept_ID");
+		DBUser user = new DBUser();
+		if (teleStr.length() > 0) {
+			user.setTele(teleStr.trim());
+		}
+		if (accountStr.length() > 0) {
+			user.setAccount(accountStr.trim());
+		}
+		if (accessStr.length() > 0) {
+			user.setAccess(Integer.parseInt(accessStr.trim()));
+		}
+		if (genderStr.length() > 0) {
+			user.setGender(Integer.parseInt(genderStr.trim()));
+		}
+		if (passwordStr.length() > 0) {
+			user.setPassword(passwordStr.trim());
+		}
+		if (dept_IDStr.length() > 0) {
+			user.setDept_ID(Integer.parseInt(dept_IDStr.trim()));
+		}
+		if (userService.updateUser(user)) {
+			return "update Success";
+		} else {
+			return "fail operation";
 		}
 	}
 }

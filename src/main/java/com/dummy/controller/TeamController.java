@@ -50,6 +50,7 @@ public class TeamController {
 		return new ModelAndView("team/index", map);
 	}
 
+	// 获取每个用户管理的team
 	@RequestMapping(value = {"/getDetail"})
 	public ModelAndView getDetial(
 			HttpSession session,
@@ -57,21 +58,31 @@ public class TeamController {
 		System.out.println(department_ID);
 		HashMap<String, DBUser> userMap = new HashMap<String, DBUser>();
 		HashMap<String, List<Team>> teamMap = new HashMap<String, List<Team>>();
-
 		List<DBUser> userList = userService.getUserByDepartment(department_ID);
+		// 获取team对应的department
+		HashMap<Integer, Department> departments = new HashMap<Integer, Department>();
+
 		for (DBUser dbUser : userList) {
 			userMap.put(String.valueOf(dbUser.getUser_ID()), dbUser);
 			List<Team> teams = teamService.getTeamByUserDepartment(
 					dbUser.getUser_ID(), department_ID);
+			for (Team team : teams) {
+				int departent_ID = team.getDepartment_ID();
+				Department department = departmentService
+						.getDepartment(departent_ID);
+				departments.put(team.getTeam_ID(), department);
+			}
 			teamMap.put(String.valueOf(dbUser.getUser_ID()), teams);
 		}
+
 		ModelMap map = new ModelMap();
 		map.addAttribute("userMap", userMap);// 每个user_id对应dbuser对象
 		map.addAttribute("teamMap", teamMap);// 每个user_id对应一个teams list包含多个team
+		map.addAttribute("departments", departments);
 		System.out.println(map);
 		return new ModelAndView("admin/userManagerForm", map);
 	}
-	// 添加LC （对每一个部门，都只能选择本部门的team ，且只能为本部门里面的user 角色为LC 的用户添加）
+	// 添加LC(选择部门里面的LC用户)
 	@RequestMapping(value = {"/getUserAddForm"})
 	public ModelAndView getUserAddForm() {
 		List<Department> departments = departmentService.getAllDepartment();
