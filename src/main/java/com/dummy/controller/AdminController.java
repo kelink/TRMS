@@ -64,11 +64,13 @@ public class AdminController {
 		map.addAttribute("rooms", rooms);
 		return new ModelAndView("admin/index", map);
 	}
-
+    
 	@RequestMapping("/listUser")
 	public ModelAndView listUser() {
 		List<DBUser> commonUsers = userService
 				.getUserByRole(C.DB.DEFAULT_ROLE_LC);
+		DBUser a=commonUsers.get(0);
+	
 		List<DBUser> admins = userService.getUserByRole(C.DB.DEFAULT_ROLE_TA);
 		ModelMap map = new ModelMap();
 		map.addAttribute("commonUsers", commonUsers);
