@@ -272,7 +272,51 @@ html+="<td class='infoTd'>";
 				}
 			});
 }
-
+function checkCheckbox(args){
+	//判断是否已经选择
+	var  box = new Array(); 
+	if($("input[name='checkbox']:checkbox:checked").length>0){	   
+	    $("input[name='checkbox']:checkbox:checked").each(function(){
+	    	box.push($(this).val());  
+	    }); 
+	 }else{
+	    alert('You do not choose an item');
+	    return false;
+	}
+	//ajax to approve or reject seleted reservation
+	
+	if(args=="0")
+		//approve 
+		$.ajax({
+				url : "<%=request.getContextPath()%>/reservation/approveReservations",
+				type : "get",
+				data:'checkbox='+box,  		
+				dataType : "html",
+				success : function(json) {
+					alert(json);
+		        },
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("error");
+				}
+			});
+	//reject
+	if(args=='1')
+		$.ajax({
+			url : "<%=request.getContextPath()%>/reservation/rejectReservations",
+			type : "get",
+			data:'checkbox='+box, 
+			dataType : "html",
+			success : function(json) {
+				alert(json);
+	        },
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("error");
+			}
+		});
+	window.parent.location.reload();
+	return false;
+	
+}
 function GoToFirstPage() {
 	pageIndex = 1;
 	AjaxGetData(pageIndex, pageSize);
