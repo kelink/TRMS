@@ -80,12 +80,29 @@ function showEdit(team_ID, teamName,department_ID,departmentName) {
 	$("#teamName").attr("value", teamName);
 	$("#team_ID").attr("value", team_ID);
 	$("#department_ID").attr("value", team_ID);
+	$("#deleteBtn").attr("onClick", "deleteTeam("+team_ID+")");
 }
 function back() {
 	$("#tipsWrapper").css("display", "none");
-
 }
 
+function deleteTeam(bl_ID){
+	$.ajax({
+		url : "<%=request.getContextPath()%>/team/deleteTeam",
+		type : "Get",
+		data : "team_ID=" + team_ID,
+		dataType : "html",
+		success : function(json) {
+			alert(json);
+			//window.location.reload();//刷新当前界面
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("error");
+			//window.location.reload();//刷新当前界面
+		}
+	});	
+	
+}
 </script>
 </head>
 
@@ -136,7 +153,7 @@ function back() {
 		<div id="btnWrapper">
 
 		<input class="btnUpdate" type="submit"name="submit" id="btnUpdate"  value="update"/>
-		<a class="btnDelete" href="#" onclick="deleteReservation(${reservation.reservation_ID})">delete</a>
+		<a class="btnDelete" id="deleteBtn">delete</a>
 		</div>
 		</form>
         </div>
