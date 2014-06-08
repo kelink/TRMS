@@ -361,13 +361,140 @@ top: 0px;
 left: 100px;
 background: white;
 	box-shadow: 0 1px 3px rgb(190, 190, 190);
-width: 515px;
-height: 339px;
+width: 387px;
+height: 248px;
 position: absolute;
 z-index: 1000;
 border: 1px solid #cccccc;
 display: none;
 border-radius: 5px;
 }
+::-webkit-scrollbar
+{
+	width:6px;
+	height:6px;
+}
+::-webkit-scrollbar-track-piece
+{
+    background-color: #CCCCCC;
+    -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:vertical
+{
+    height: 5px;
+    background-color: #999999;
+    -webkit-border-radius: 6px;
+}
 
+#addTeamBtn
+{
+	
+	margin:0px;
+	margin-left:15px;
+	float: left;
+line-height: 23px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 25px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(94, 151, 189);
+background-image: -moz-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: -webkit-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: linear-gradient(rgb(129, 181, 230), rgb(50, 111, 153));
+background-repeat: repeat-x;
+border-radius: 3px;
+border: 1px solid rgb(78, 141, 182);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;	
+}
+.roomListBody1
+{
+	max-height:639px;
+	
+}
+h1
+{
+	rgb(105, 102, 102)
+}
+#roomDeptment
+{
+	float:left;
+}
+#departments
+{
 
+	float: left;
+width: 128px;
+margin-left: 10px;
+border: 1px solid rgb(153, 152, 152);
+border-radius: 2px;
+height: 25px;
+font-size: 14px;
+}
+#searchWrapper
+{
+	overflow: hidden;
+padding-top: 3px;
+line-height: 22px;
+font-size: 14px;
+color: rgb(87, 87, 87);
+}
+#displayWrapper
+{
+	max-height:476px;
+	overflow:auto;
+}
+table
+{
+	width:100%;
+	border: 1px solid #cccccc;
+box-shadow: 0 0 12px rgb(236, 236, 236);
+
+}
+th
+{
+	width:20%;
+	height:40px;
+}
+td
+{
+	text-align: center;
+height: 40px;
+font-size: 15px;
+color: rgb(83, 83, 83);
+}
+.operation
+{
+	font-size: 18px;
+color: rgb(34, 123, 192);
+text-decoration: none;
+cursor:pointer;
+
+}
+.editTeamTitle
+{
+	line-height: 41px;
+font-size: 16px;
+padding-left: 3px;
+color: rgb(75, 75, 75);
+}
+.teamEditContent
+{
+	width: 259px;
+line-height: 21px;
+border-radius: 2px;
+border: 1px solid rgb(172, 171, 171);
+padding-left: 10px;
+}

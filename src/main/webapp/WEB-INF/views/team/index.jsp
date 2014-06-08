@@ -40,17 +40,24 @@ function getDepartmentAllteam(department_ID,departmentName){
 			$("#teams").empty();
 			$("#teams").append("<option value=''></option>");
 			var html="";
+			html+="<table><tr><th>Team</th><th>LC</th><th>Operation</th></tr>";
 			for (position in json) {					
 					var team_ID=json[position].team_ID;
 					var department_ID=json[position].department_ID;
 					var teamName=json[position].teamName;
 					var account=json[position].user_Account;
 					//添加元素，使得option可以选择
-					html+="team_ID:"+teamName+"<br/>";
-					html+="account:"+account+"<br/>";
-					html+='<button onclick="showEdit('+team_ID+',\''+teamName+'\''+',\''+departmentName+'\')">'+"edit"+'</button>';			
-					html+="<br/>";
+					
+					html+="<tr>";
+					
+					html+="<td>"+teamName+"</td>";
+					html+="<td>"+account+"</td>";
+					html+='<td><a class="operation" onclick="showEdit('+team_ID+',\''+teamName+'\''+',\''+departmentName+'\')">'+"edit"+'</a></td>';			
+				
+					
+					html+="</tr>";
 			}	
+			html+="</table>";
 			$("#display").empty();
 			$("#display").html(html);
        },
@@ -75,20 +82,24 @@ function back() {
 
 <body>
 
- <div class="roomListBody"> 
- 			 <h1>team管理界面</h1>							
-					departments
+ <div class="roomListBody roomListBody1"> 
+ 			 <h1>Team Management</h1>	
+ 			 <div id="searchWrapper">						
+					<div id="roomDeptment">departments</div> 
 					<select name="departments" id="departments">
 						<option value=""></option>
 						<c:forEach items="${departments}" var="department">
 							<option value="${department.department_ID}">${department.departmentName}</option>
 						</c:forEach>
 					</select>
-						<button>add Team</button>
+						<button id="addTeamBtn">add Team</button>
+			</div>
 					<hr/>
 					<!-- 显示信息区域 -->
 					teams Information	
-					<div id="display"></div>
+				<div id="displayWrapper">
+				    <div id="display"></div> 
+				</div>
 					
 </div>
 <!-- top -->
@@ -101,10 +112,12 @@ function back() {
         <div id="modifyWrapper">
 	    
 		<form action="<%=request.getContextPath()%>/reservation/update" method="post">
-		<br/>
-		<h2>Department Name:<input type="text" id="departmentName" name="departmentName" readOnly="true"/></h2>
-		<br/>
-		<h2>Team Item：<input type="text" id="team_item" name="team_item"/><br/></h2>
+		
+		<div class="editTeamTitle">Department Name:</div>
+		<div><input type="text" id="departmentName" class="teamEditContent"name="departmentName" readOnly="true"/></div>
+		
+		<div class="editTeamTitle">Team Item：</div>
+		<div><input type="text" id="team_item" name="team_item"class="teamEditContent"/></div>
 	
 		<input type="hidden" id="team_ID" name="team_ID"/>
 		<div id="btnWrapper">
