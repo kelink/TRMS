@@ -1,0 +1,24 @@
+.teamListTitle
+{
+	padding-left: 8px;
+font-size: 15px;
+line-height: 23px;
+background: rgb(142, 164, 184);
+color: white;
+}
+#departmentContent
+{
+	line-height: 30px;
+padding-left: 10px;
+font-size: 15px;
+}
+#teamListContent
+{
+	padding-left: 10px;
+padding-top: 10px;
+}
+.teamListItem
+{
+	height: 28px;
+font-size: 13px;
+}

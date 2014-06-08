@@ -153,7 +153,7 @@ public class TeamController {
 		team.setUser_ID(users);
 
 		if (teamService.updateTeam(team)) {
-			return "update success";
+			return "<script>alert('Add team success!');history.back();</script>";
 		} else {
 			return "update fail";
 		}

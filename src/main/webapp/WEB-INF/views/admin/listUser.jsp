@@ -40,6 +40,26 @@ function getDepartmentInfo(dept_ID){
 }
 function getTeamByUser(dept_ID,user_ID){
 	$("#display").attr("src","<%=request.getContextPath()%>/team/getTeamByUser?department_ID="+dept_ID+"&user_ID="+user_ID);
+	var department=document.getElementById("departments");
+	var user=document.getElementById("users");
+	for(var i=0;i<department.options.length;i++)
+	{
+		     if(department.options[i].value==dept_ID)
+		     {
+		    	 department.options[i].selected=true;
+		     }
+		     
+		     
+	}
+	$("#departments").trigger("change");
+	for(var i=0;i<teams.options.length;i++){
+		if(user.options[i].value==user_ID)
+	     {
+	    	 user.options[i].selected=true;
+	     }
+	}
+	$("#teams").trigger("change");
+	
 }
 
 function deleteCommonUser(args){
@@ -83,12 +103,11 @@ function deleteCommonUser(args){
 
 			</div>
 			<div id="panelContent">
-				<a class="sortPanelItem" target="checkRightInner"
-					href="<%=request.getContextPath()%>/reservation/list?status=-1">Unhandled</a>
-				<a class="sortPanelItem" target="checkRightInner"
-					href="<%=request.getContextPath()%>/reservation/list?status=1">Approve</a>
-				<a class="sortPanelItem" target="checkRightInner"
-					href="<%=request.getContextPath()%>/reservation/list?status=0">Reject</a>
+				
+				<c:forEach items="${departments}" var="department">
+				    <a class="sortPanelItem" target="checkRightInner"href="#">${department.departmentName}</a>
+			    </c:forEach>
+			    <a class="sortPanelItem" target="checkRightInner" href="#">All</a>
 			</div>
 		</div>
 	</div>
@@ -140,29 +159,47 @@ function deleteCommonUser(args){
 					</div>
 					<div id="panelContent">
 						<form action="<%=request.getContextPath()%>/admin/addUser" method="post">
-							ACCOUNT:<input type="text" name="account" id="account" required /><br/>
-							PASSWORD:<input type="text" name="password" id="password" required/><br/>
-							ROLE:
-							<select name="access" id="access" required>
+						    <div class="addUserLine">
+							<div class="addUserLabel">ACCOUNT:</div>
+							<input class="addUserInput" type="text" name="account" id="account" required />
+							</div>
+							<div class="addUserLine">
+							<div class="addUserLabel">PASSWORD:</div>
+							<input class="addUserInput" type="text" name="password" id="password" required/>
+							</div>
+							<div class="addUserLine">
+							<div class="addUserLabel">ROLE:</div>
+							<select class="addUserInput" name="access" id="access" required>
 								<option></option>
 								<option value="1">LC</option>
 								<option value="2">TA</option>	
-							</select><br/><br/>
-							GENDER:
-							<select name="gender" id="gender" required>
+							</select>
+							</div>
+							<div class="addUserLine">
+							<div class="addUserLabel">GENDER:</div>
+							<select class="addUserInput" name="gender" id="gender" required>
 								<option></option>
 								<option value="1">male</option>
 								<option value="0">female</option>
-							</select><br/><br/>
-							TELE:<input type="text" name="tele" id="tele" required /><br/>
-							DEPAETMENT:	${department.departmentName }
-							<select name="dept_ID" id="dept_ID" required>
+							</select>
+							</div>
+							<div class="addUserLine">
+							<div class="addUserLabel">TELE:</div>
+							<input class="addUserInput" type="text" name="tele" id="tele" required />
+							</div>
+							<div class="addUserLine">
+							<div class="addUserLabel">DEPAETMENT:</div>	
+							
+							<select class="addUserInput" name="dept_ID" id="dept_ID" required>
 								<option></option>
 								<c:forEach items="${departments}" var="department">
 										<option value="${department.department_ID }">${department.departmentName }</option>
 								</c:forEach>
 							</select>
-							<input type="submit" name="submit" id="submit" value="add"/>
+							</div>
+							<div><input class="addUserSubmit btnAdd" type="submit" name="submit" id="submit" value="add"/></div>
+							
+							
 						</form>
 					
 					</div>
@@ -177,8 +214,47 @@ function deleteCommonUser(args){
 					src="<%=request.getContextPath()%>/team/getTeamByUser?department_ID=${commonUsers[0].dept_ID}&user_ID=${commonUsers[0].user_ID}"></iframe>
 			</div>
 			<div id="userTeamListBtnWrapper">
-				<a class="addUserTeamBtn" target="_blank" rel="nofollow" href="<%=request.getContextPath()%>/team/getUserAddTeamForm" >Add</a>
+<%-- 				<a class="addUserTeamBtn" id="addTeamBtn" target="_blank"  href="<%=request.getContextPath()%>/team/getUserAddTeamForm" >Add</a> --%>
+				<a class="addUserTeamBtn" id="addTeamBtn" >Add</a>
 				<a class="removeUserBtn" onclick="removeBtn()" id="remove">Remove</a>
+				<div id="showPanel2">
+					<div class="panelHeader">
+						<span class="headerText">Add team for LC</span> <span class="close"
+							id="closeShow2"><img class="closeIcon"
+							src="<%=request.getContextPath()%>/resources/images/closeShallow.png"
+							width="16px" height="16px" /></span>
+					</div>
+					<div id="panelContent2">
+						<form action="<%=request.getContextPath()%>/team/addTeamForUser" method="post" onSubmit="return checkSubmit()">
+						    <div class="addUserLine">
+							<div class="addUserLabel">Department:</div>
+							<select class="addUserInput" name="departments"id="departments"  required >
+							<option value=""></option>
+							<c:forEach items="${departments}" var="department">
+							<option value="${department.department_ID}">${department.departmentName}</option>
+						    </c:forEach>
+							</select>
+							</div>
+							<div class="addUserLine">
+							<div class="addUserLabel">User:</div>
+							<select class="addUserInput"  name="users"id="users"  required >
+							<option value=""></option>
+							</select>
+							</div>
+							<div class="addUserLine">
+							<div class="addUserLabel">Team:</div>
+							<select class="addUserInput"  name="teams"id="teams" required >
+							<option value=""></option>
+							</select>
+							</div>
+							
+							<div><input class="addUserSubmit btnAdd" type="submit" name="submit" id="submit" value="add"/></div>
+							
+							
+						</form>
+					
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
