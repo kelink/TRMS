@@ -54,9 +54,11 @@ public class TeamController {
 	@RequestMapping(value = {"/getTeamByUser"})
 	public ModelAndView getTeamByUser(
 			HttpSession session,
-			@RequestParam(value = "user_ID", required = true) int user_ID,
-			@RequestParam(value = "department_ID", required = true) int department_ID) {
-
+			@RequestParam(value = "user_ID", required = false, defaultValue = "0") int user_ID,
+			@RequestParam(value = "department_ID", required = true, defaultValue = "0") int department_ID) {
+		if (user_ID == 0 || department_ID == 0) {
+			return null;
+		}
 		List<Team> teams = teamService.getTeamByUser(user_ID);
 		Department department = departmentService.getDepartment(department_ID);
 		ModelMap map = new ModelMap();

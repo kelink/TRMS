@@ -85,6 +85,11 @@ function deleteCommonUser(args){
 	}
 	
 }
+function sortByDepartment(department_ID){
+	//修改父窗口
+	$("#userDisplay",parent.document).attr("src","<%=request.getContextPath()%>/admin/listUser?department_ID="+department_ID);
+}
+
 </script>
 
 <title>User Page</title>
@@ -105,9 +110,9 @@ function deleteCommonUser(args){
 			<div id="panelContent">
 				
 				<c:forEach items="${departments}" var="department">
-				    <a class="sortPanelItem" target="checkRightInner"href="#">${department.departmentName}</a>
+				    <a class="sortPanelItem" target="checkRightInner" onClick="sortByDepartment(${department.department_ID})">${department.departmentName}</a>
 			    </c:forEach>
-			    <a class="sortPanelItem" target="checkRightInner" href="#">All</a>
+			    <a class="sortPanelItem" target="checkRightInner" onClick="sortByDepartment(0)">All</a>
 			</div>
 		</div>
 	</div>

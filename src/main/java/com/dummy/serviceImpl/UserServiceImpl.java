@@ -90,4 +90,10 @@ public class UserServiceImpl implements UserService {
 		DBUser user = userDao.getUser(user_ID);
 		return user.getAccess();
 	}
+
+	@Override
+	public List<DBUser> getDepartmentUserByRoleToObject(int roleType,
+			int department_ID) {
+		return userDao.getDepartmentUserByRole(roleType, department_ID);
+	}
 }

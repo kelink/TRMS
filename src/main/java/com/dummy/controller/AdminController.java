@@ -1,5 +1,6 @@
 package com.dummy.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -69,18 +70,38 @@ public class AdminController {
 
 	// 查询用户
 	@RequestMapping("/listUser")
-	public ModelAndView listUser() {
-		List<DBUser> commonUsers = userService
-				.getUserByRole(C.DB.DEFAULT_ROLE_LC);
-		List<DBUser> admins = userService.getUserByRole(C.DB.DEFAULT_ROLE_TA);
-		List<Department> departments = departmentService.getAllDepartment();
+	public ModelAndView listUser(
+			@RequestParam(value = "department_ID", required = false, defaultValue = "0") int department_ID) {
+		// List<DBUser> commonUsers = userService
+		// .getUserByRole(C.DB.DEFAULT_ROLE_LC);
+		// List<DBUser> admins =
+		// userService.getUserByRole(C.DB.DEFAULT_ROLE_TA);
+		// List<Department> departments = departmentService.getAllDepartment();
+		// ModelMap map = new ModelMap();
+		// map.addAttribute("commonUsers", commonUsers);
+		// map.addAttribute("admins", admins);
+		// map.addAttribute("departments", departments);
+		// return new ModelAndView("admin/listUser", map);
+
 		ModelMap map = new ModelMap();
-		map.addAttribute("commonUsers", commonUsers);
-		map.addAttribute("admins", admins);
-		map.addAttribute("departments", departments);
+		// 默认全部的部门
+		if (department_ID == 0) {
+			List<DBUser> commonUsers = userService
+					.getUserByRole(C.DB.DEFAULT_ROLE_LC);
+			List<Department> departments = departmentService.getAllDepartment();
+			map.addAttribute("commonUsers", commonUsers);
+			map.addAttribute("departments", departments);
+		} else {
+			List<DBUser> commonUsers = userService
+					.getDepartmentUserByRoleToObject(C.DB.DEFAULT_ROLE_LC,
+							department_ID);
+			List<Department> departments = new ArrayList<Department>();
+			departments.add(departmentService.getDepartment(department_ID));
+			map.addAttribute("commonUsers", commonUsers);
+			map.addAttribute("departments", departments);
+		}
 		return new ModelAndView("admin/listUser", map);
 	}
-
 	// 删除用户
 	@RequestMapping("/deleteCommonUser")
 	public @ResponseBody String deleteCommonUser(

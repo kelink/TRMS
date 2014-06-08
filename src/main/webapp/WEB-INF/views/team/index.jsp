@@ -86,7 +86,7 @@ function back() {
 	$("#tipsWrapper").css("display", "none");
 }
 
-function deleteTeam(bl_ID){
+function deleteTeam(team_ID){
 	$.ajax({
 		url : "<%=request.getContextPath()%>/team/deleteTeam",
 		type : "Get",
@@ -94,11 +94,11 @@ function deleteTeam(bl_ID){
 		dataType : "html",
 		success : function(json) {
 			alert(json);
-			//window.location.reload();//刷新当前界面
+			window.location.reload();//刷新当前界面
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			alert("error");
-			//window.location.reload();//刷新当前界面
+			window.location.reload();//刷新当前界面
 		}
 	});	
 	
