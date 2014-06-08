@@ -185,6 +185,7 @@ public class BlackListController {
 	public @ResponseBody String delete(
 			@RequestParam(value = "bl_ID", required = true) int bl_ID,
 			HttpSession session) {
+		System.out.println("into this method");
 		if (blackListService.delBlackList(bl_ID) == true) {
 			return "delete success";
 		} else {

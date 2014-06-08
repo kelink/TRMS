@@ -54,10 +54,11 @@ function getDepartmentAllteam(department_ID){
 }
 function displayBlackList(){
 	var team_ID=$("#teams").val();	
-	var departmentName=$("#departments option:selected").text();
-	var teamName=$("#teams option:selected").text();
+	//var departmentName=$("#departments option:selected").text();
+	//var teamName=$("#teams option:selected").text();
 	if(team_ID==""){
-		$("#display").empty();
+		$("#display").css("display","none");
+		$("#noInfo").css("display","block");
 		return false;
 	}
 	$.ajax({
@@ -66,16 +67,22 @@ function displayBlackList(){
 		data : "team_ID=" + team_ID,
 		dataType : "json",
 		success : function(json) {
-			$("#display").css("display","block");
-			$("textArea").attr("readonly","readonly");
-			$("textArea").attr("value",json.reason);	
-			$("#updateBlackListBtn").attr("onClick","return updateBlackList("+json.bl_ID+")");
-			$("#deleteBlackListBtn").attr("onClick","deleteBlackList("+json.bl_ID+")");
-			$("#noInfo").css("display","none");
-			
+			if(json!=""){
+				$("#display").css("display","block");
+				$("#noInfo").css("display","none");
+				$("textArea").attr("readonly","readonly");
+				$("textArea").attr("value",json.reason);	
+				$("#updateBlackListBtn").attr("onClick","return updateBlackList("+json.bl_ID+")");
+				$("#deleteBlackListBtn").attr("onClick","deleteBlackList("+json.bl_ID+")");
+				
+			}else{
+				$("#noInfo").css("display","block");
+				$("#display").css("display","none");
+			}			
          },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			$("#display").empty();
+			$("#noInfo").css("display","block");
+			$("#display").css("display","none");
 		}
 	});	
 }
@@ -89,8 +96,7 @@ function updateBlackList(bl_ID){
 		$("#textArea").after("<input id='hidden' type='hidden' name='bl_ID' value='"+bl_ID+"'/>");
 		return false;
 	}
-	
-	
+
 }
 
 function deleteBlackList(bl_ID){
@@ -98,15 +104,16 @@ function deleteBlackList(bl_ID){
 		url : "<%=request.getContextPath()%>/blacklist/delete",
 		type : "Get",
 		data : "bl_ID=" + bl_ID,
+		dataType : "html",
 		success : function(json) {
-			alert("test"+json);
+			alert(json);
+			window.location.reload();//刷新当前界面
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			$("#display").empty();
 			alert("error");
+			window.location.reload();//刷新当前界面
 		}
 	});	
-	window.location.reload();//刷新当前界面
 	
 }
 </script>
@@ -149,7 +156,7 @@ function deleteBlackList(bl_ID){
 											<input class="btnUpdate reservationLcBtn" type="submit" name="submit" id="updateBlackListBtn" value="edit">
 										</td>
 										<td class="btnWrapper">
-											<a class="btnDelete reservationLcBtn" href="#" onclick="deleteReservation41" id="deleteBlackListBtn">Back</a>
+											<a class="btnDelete reservationLcBtn" id="deleteBlackListBtn">Delete</a>
 										</td>
 									</tr>
 								</tbody>
