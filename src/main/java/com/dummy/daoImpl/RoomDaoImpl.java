@@ -57,7 +57,7 @@ public class RoomDaoImpl implements RoomDao {
 
 	@Override
 	public boolean updateRoom(Room room) {
-		String hql = "update room set " + "item=?," + "last_Used_Date=?,"
+		String hql = "update Room set " + "item=?," + "last_Used_Date=?,"
 				+ "room_Status=?," + "department_ID=?" + " where room_ID=?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setString(0, room.getItem());

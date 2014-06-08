@@ -512,9 +512,6 @@ public class RoomController {
 		if (room.getRoom_Status() == C.DB.DEFAULT_UNFREE_ROOM) {
 			room.setRoom_Status(C.DB.DEFAULT_FREE_ROOM);
 		}
-		if (room.getRoom_Status() == C.DB.DEFAULT_FREE_ROOM) {
-			room.setRoom_Status(C.DB.DEFAULT_UNFREE_ROOM);
-		}
 		if (roomService.updateRoom(room)) {
 			return "changer status success";
 		} else {
@@ -522,7 +519,6 @@ public class RoomController {
 		}
 
 	}
-
 	// batch to update room
 	@RequestMapping("/multiUpdateRoomStatus")
 	public @ResponseBody String multiUpdateRoomStatus(
@@ -535,10 +531,9 @@ public class RoomController {
 			String[] rooms = checkboxStr.split(",");
 			for (int i = 0; i < rooms.length; i++) {
 				int room_ID = Integer.parseInt(rooms[i]);
-				Room room = roomService.getRoom(room_ID);
 				message = this.updateRoomStatus(room_ID, session);
 			}
-			return "change status error";
+			return message;
 		}
 	}
 	@RequestMapping("/check")

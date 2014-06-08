@@ -15,6 +15,7 @@
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/checkBlacklist.css" rel="stylesheet" >
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
+<link href="<%=request.getContextPath()%>/resources/css/blacklistform.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/resources/js/lcIndex.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -65,15 +66,13 @@ function displayBlackList(){
 		data : "team_ID=" + team_ID,
 		dataType : "json",
 		success : function(json) {
-			$("#display").empty();
-			$("#display").append("<form action='#' method='post' name='updateForm' id='updateForm'>");
-			$("#updateForm").append("<p>departmentName:"+departmentName+"</p>");
-			$("#updateForm").append("<p>teamName"+teamName+"</p>");
-			$("#updateForm").append("reason:<textarea id='reason_area' readonly='readonly' name='reason'>"+json.reason+"</textarea>");
-			$("#updateForm").append("<button name='updateBlackListBtn' id='updateBlackListBtn' onClick='updateBlackList("+json.bl_ID+")'>edit</button>");
-			$("#updateForm").append("<button name='deleteBlackListBtn' id='deleteBlackListBtn' onClick='deleteBlackList("+json.bl_ID+")'>delete</button>");			
-			$("#updateForm").append("</form>");
+			$("#display").css("display","block");
+			$("textArea").attr("readonly","readonly");
+			$("textArea").attr("value",json.reason);	
+			$("#updateBlackListBtn").attr("onClick","return updateBlackList("+json.bl_ID+")");
+			$("#deleteBlackListBtn").attr("onClick","deleteBlackList("+json.bl_ID+")");
 			$("#noInfo").css("display","none");
+			
          },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			$("#display").empty();
@@ -82,12 +81,16 @@ function displayBlackList(){
 }
 
 function updateBlackList(bl_ID){
-	$("#reason_area").attr('readonly','');
-	$("#updateBlackListBtn").remove();
-	$("#updateForm").attr('action','<%=request.getContextPath()%>/blacklist/update');
-	$("#reason_area").after("<input id='hidden' type='hidden' name='bl_ID' value='"+bl_ID+"'/>");
-	$("#hidden").after("<input type='submit' value='update' /></form>");
-	window.location.reload();//刷新当前界面
+	var arg=$("#updateBlackListBtn").val();
+	if(arg=="edit"){
+		$("#textArea").attr('readonly','');
+		$("#updateBlackListBtn").attr("value","update");
+		$("#updateForm").attr('action','<%=request.getContextPath()%>/blacklist/update');
+		$("#textArea").after("<input id='hidden' type='hidden' name='bl_ID' value='"+bl_ID+"'/>");
+		return false;
+	}
+	
+	
 }
 
 function deleteBlackList(bl_ID){
@@ -106,13 +109,12 @@ function deleteBlackList(bl_ID){
 	window.location.reload();//刷新当前界面
 	
 }
-
-
-
 </script>
 </head>
-</head>
 <body>	
+<div class="listBody">
+
+</div>
 					<h1>Check blacklist</h1>							
 					<div class="checkItem">departments</div>
 					<select name="departments" id="departments">
@@ -131,7 +133,30 @@ function deleteBlackList(bl_ID){
 					<div id="noInfo">
 					    <p>No information to show.</p>
 					</div>
-					<div id="display"></div>
+					<div id="display" style="display:none">
+						<form action="/trms/blacklist/add" method="post" id='updateForm'>
+							<div id="tableWrapper">
+								<table>
+								<tbody>							
+									<tr>
+										<td class="leftTd">Reason</td>
+										<td class="rightTd">
+											<textarea id="textArea" class="rightInput" name="reason"></textarea>
+										</td>
+									</tr>
+									<tr>
+										<td class="btnWrapper">
+											<input class="btnUpdate reservationLcBtn" type="submit" name="submit" id="updateBlackListBtn" value="edit">
+										</td>
+										<td class="btnWrapper">
+											<a class="btnDelete reservationLcBtn" href="#" onclick="deleteReservation41" id="deleteBlackListBtn">Back</a>
+										</td>
+									</tr>
+								</tbody>
+								</table>
+							</div>
+						</form>				
+					</div>
 	
 </body>
 </body>

@@ -133,6 +133,18 @@ public class BlackListController {
 		return blacklist.toString();
 	}
 
+	// // check a blacklist
+	// @RequestMapping(value = "/getABlackList")
+	// public ModelAndView getABlackList(
+	// @RequestParam(value = "team_ID", required = true) int team_ID,
+	// HttpSession session) {
+	// BlackList blacklist = blackListService
+	// .getBlackListByTeamToObject(team_ID);
+	// ModelMap map = new ModelMap();
+	// map.addAttribute("blacklist", blacklist);
+	// return new ModelAndView("blacklist/checkResult", map);
+	// }
+
 	// get AddForm
 	@RequestMapping(value = "/getAddForm")
 	public ModelAndView getAddForm() {
