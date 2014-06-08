@@ -508,6 +508,14 @@ text-overflow:ellipsis;
 overflow: hidden; 
 height:15px;
 }
+td.infoTd
+{
+	padding-left: 10px;
+height: 31px;
+font-weight: normal;
+font-size: 14px;
+color: black;
+}
 .topBarItem1
 {
 	margin-top:4px;

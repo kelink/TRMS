@@ -220,7 +220,7 @@
 			        
 			         
 <!-- 			         ------------------------------------------------------ -->			         
-			         <iframe id="checkRightInner" name="checkRightInner" src="<%=request.getContextPath()%>/reservation/reservationManagerList" >
+			         <iframe id="checkRightInner" name="checkRightInner" src="<%=request.getContextPath()%>/reservation/list?status=-1" >
 			         </iframe>			     
 			     </div>		 
 			 </div>

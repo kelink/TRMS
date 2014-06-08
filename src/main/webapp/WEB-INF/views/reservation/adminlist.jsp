@@ -108,7 +108,7 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 
                          html+="<div id='modifyWrapper'>";
 
- 					    html+="<div id=\"warning\">The ticket can only be modify when it is at the status of untreated!</div>";
+ 					    html+="<div id=\"warning\">You must handle the ticket in 48 hours after it was submitted!</div>";
 
                          html+="<form action=\"<%=request.getContextPath()%>/reservation/approveAReservation\" method=\"post\" onsubmit=\"return updateCheck("+status+")\">"; 
  	                    html+="<div id=\"reservationTableWrapper\">";
@@ -138,9 +138,9 @@ html+="<tr>";
 html+="<td>";	
                         html+="Planned Use Start Time：";
                         html+="</td>";
-                        html+="<td>";	
+                        html+="<td class='infoTd'>";	
 
-                        html+="<input type=\"date\" name=\"Applied_Start_Date\" value=\""+reservation_start_Daty+"\"/>";
+                        html+=reservation_start_Daty;
 
 html+="</td>";
 html+="</tr>";	
@@ -148,9 +148,9 @@ html+="<tr>";
 html+="<td>";	
                         html+="Planned Use End Time：";
                         html+="</td>";
-                        html+="<td>";	
+                        html+="<td class='infoTd'>";	
 
-                        html+="<input type=\"date\" name=\"Applied_End_Date\"value=\""+reservation_end_Daty+"\"/>";
+                        html+=reservation_end_Daty;
 
 	html+="</td>";
 	html+="</tr>";	
@@ -158,8 +158,8 @@ html+="<td>";
 	html+="<td>";	
 	                    html+="User LN:";
 
-html+="<td>";	
-                        html+="<input type=\"text\" name=\"email\" value=\""+email+"\"/>";
+html+="<td class='infoTd'>";	
+                        html+=email;
 
 	html+="</td>";
 	html+="</tr>";	
@@ -167,9 +167,9 @@ html+="<td>";
 	html+="<td>";	
 	                    html+="User TelLine:";
 	                    html+="</td>";
-	                    html+="<td>";	
+	                    html+="<td class='infoTd'>";	
 
-                        html+="<input type=\"text\" name=\"tele\" value=\""+tele+"\"/>";
+                        html+=tele;
                         html+="</td>";
 
 	html+="</tr>";	
@@ -177,9 +177,9 @@ html+="<td>";
 	html+="<td>";	
 	                    html+="Use Resaon:";
 	                    html+="</td>";
-	                    html+="<td>";	
+	                    html+="<td class='infoTd'>";	
 
-                        html+="<input type=\"text\" name=\"purpose\"value=\""+purpose+"\"/>";
+                        html+=purpose;
                         html+="</td>";
     html+="</tr>";					
 
