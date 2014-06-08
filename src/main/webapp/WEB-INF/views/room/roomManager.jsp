@@ -198,7 +198,9 @@ function checkCheckbox(args){
 					<button name="addBtn" id="addBtn" onClick="addRoom()">add room</button> 
  					<button name="deleteBtn" id="deleteBtn" onClick="checkCheckbox(0)">delete room</button>
  					<button name="checkBtn" id="checkBtn" onClick="checkCheckbox(1)">change Status</button>	
- 									<div id="showPanel2">
+ 						
+ 				</div>
+ 				<div id="showPanel2">
 					<div class="panelHeader">
 						<span class="headerText">Add team for LC</span> <span class="close"
 							id="closeShow2"><img class="closeIcon"
@@ -233,8 +235,7 @@ function checkCheckbox(args){
 						</form>
 					
 					</div>
-				</div>		
- 				</div>
+				</div>
 					<hr/> 
  					 
 			

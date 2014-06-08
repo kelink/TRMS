@@ -119,7 +119,13 @@ function deleteTeam(team_ID){
 						</c:forEach>
 					</select>
 						<button id="addTeamBtn">add Team</button>
-					<div id="showPanel2">
+					
+						
+						
+						
+						
+			</div>
+			<div id="showPanel2">
 					<div class="panelHeader">
 						<span class="headerText">Add team</span> <span class="close"
 							id="closeShow2"><img class="closeIcon"
@@ -156,11 +162,6 @@ function deleteTeam(team_ID){
 					
 					</div>
 				</div>
-						
-						
-						
-						
-			</div>
 					<hr/>
 					<!-- 显示信息区域 -->
 				
