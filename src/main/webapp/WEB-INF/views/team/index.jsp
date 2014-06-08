@@ -119,6 +119,47 @@ function deleteTeam(team_ID){
 						</c:forEach>
 					</select>
 						<button id="addTeamBtn">add Team</button>
+					<div id="showPanel2">
+					<div class="panelHeader">
+						<span class="headerText">Add team</span> <span class="close"
+							id="closeShow2"><img class="closeIcon"
+							src="<%=request.getContextPath()%>/resources/images/closeShallow.png"
+							width="16px" height="16px" /></span>
+					</div>
+					<div id="panelContent2">
+						<form action="#" method="post" >
+						    <div class="addUserLine">
+							<div class="addUserLabel">Team name:</div>
+							<input class="addUserInput" name="team"id="team"  required >
+							
+							</div>
+							
+							<div class="addUserLine">
+							<div class="addUserLabel">Department name:</div>
+							<select class="addUserInput" name="department"id="department"  required >
+							<option value=""></option>
+							</select>
+							</div>
+							
+							<div class="addUserLine">
+							<div class="addUserLabel">LC:</div>
+							<select class="addUserInput" name="user"id="user"  required >
+							<option value=""></option>
+							</select>
+							</div>
+							
+							
+							<div><input class="addUserSubmit btnAdd" type="submit" name="submit" id="submit" value="add"/></div>
+							
+							
+						</form>
+					
+					</div>
+				</div>
+						
+						
+						
+						
 			</div>
 					<hr/>
 					<!-- 显示信息区域 -->

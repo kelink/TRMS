@@ -199,3 +199,97 @@ text-decoration: none;
     background-color: #999999;
     -webkit-border-radius: 6px;
 }
+
+#showPanel2
+{
+height: 196px;
+position: absolute;
+z-index: 1000;
+top: 116px;
+left: 252px;
+display: none;
+width: 300px;
+overflow: hidden;
+background: white;
+border-radius: 5px;
+border: 1px solid #cccccc;
+box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+}
+.panelHeader {
+padding: 8px 10px;
+background-color: #eeeeee;
+background-image: -moz-linear-gradient(#fafafa, #eee);
+background-image: -webkit-linear-gradient(#fafafa, #eee);
+background-image: linear-gradient(#fafafa, #eee);
+background-repeat: repeat-x;
+border-bottom: 1px solid #ddd;
+font-size: 14px;
+}
+.headerText
+{
+	font-weight: bold;
+color: #333;
+text-shadow: 0 1px 0 #fff;
+}
+.close {
+	cursor:pointer;
+float:right;
+}
+
+
+.addUserLabel
+{
+color: rgb(94, 94, 94);
+font-weight: bold;
+font-size: 10px;
+float: left;
+width: 102px;
+padding-left: 5px;
+line-height: 27px;
+}
+.addUserInput
+{
+	height: 23px;
+float: left;
+width: 150px;
+border-radius: 2px;
+border: 1px solid rgb(158, 155, 155);
+}
+.addUserLine
+{
+
+	overflow: hidden;
+margin-top: 7px;
+padding-left: 8px;
+}
+.btnAdd
+{
+line-height: 20px;
+margin-left: 12px;
+box-shadow: none;
+position: relative;
+margin-top:10px;
+display: inline-block;
+padding: 0px 111px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: #60b044;
+background-image: -moz-linear-gradient(#8add6d, #60b044);
+background-image: -webkit-linear-gradient(#8add6d, #60b044);
+background-image: linear-gradient(#8add6d, #60b044);
+background-repeat: repeat-x;
+border-radius: 3px;
+border: 1px solid #5ca941;
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+}

@@ -98,7 +98,7 @@ function checkSubmit(team_ID){
 			
        },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("error");
+			
 			return false;
 		}
 	});	
@@ -124,7 +124,7 @@ function getDepartmentAllUser(department_ID){
 				$("#users").html(html);
            },
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("error");
+				
 			}
 		});
 }
@@ -146,7 +146,7 @@ function getDepartmentAllteam(department_ID){
 			$("#teams").html(html);
        },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("error");
+			
 		}
 	});
 }

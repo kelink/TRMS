@@ -197,7 +197,43 @@ function checkCheckbox(args){
 					</select> 
 					<button name="addBtn" id="addBtn" onClick="addRoom()">add room</button> 
  					<button name="deleteBtn" id="deleteBtn" onClick="checkCheckbox(0)">delete room</button>
- 					<button name="checkBtn" id="checkBtn" onClick="checkCheckbox(1)">change Status</button>			
+ 					<button name="checkBtn" id="checkBtn" onClick="checkCheckbox(1)">change Status</button>	
+ 									<div id="showPanel2">
+					<div class="panelHeader">
+						<span class="headerText">Add team for LC</span> <span class="close"
+							id="closeShow2"><img class="closeIcon"
+							src="<%=request.getContextPath()%>/resources/images/closeShallow.png"
+							width="16px" height="16px" /></span>
+					</div>
+					<div id="panelContent2">
+						<form action="#" method="post" >
+						    <div class="addUserLine">
+							<div class="addUserLabel">Room:</div>
+							<input class="addUserInput" name="room"id="room"  required >
+							
+							</div>
+							
+							 <div class="addUserLine">
+							<div class="addUserLabel">Own by:</div>
+							<select class="addUserInput" name="department"id="department"  required >
+							<option value=""></option>
+							</select>
+							</div>
+							
+							 <div class="addUserLine">
+							<div class="addUserLabel">Status:</div>
+							<input class="addUserInput" name="status"id="status"  required >
+							<option value=""></option>
+							
+							</div>
+							
+							<div><input class="addUserSubmit btnAdd" type="submit" name="submit" id="submit" value="add"/></div>
+							
+							
+						</form>
+					
+					</div>
+				</div>		
  				</div>
 					<hr/> 
  					 

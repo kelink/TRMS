@@ -33,46 +33,42 @@ function changeFrame(args){
     <div id="searchBtnWrapper">
  	    <a id="addBtn">add Department</a>
  	    <a id="deleteBtn">delete Department</a>
+ 	    
+				<div id="showPanel2">
+					<div class="panelHeader">
+						<span class="headerText">Add team for LC</span> <span class="close"
+							id="closeShow2"><img class="closeIcon"
+							src="<%=request.getContextPath()%>/resources/images/closeShallow.png"
+							width="16px" height="16px" /></span>
+					</div>
+					<div id="panelContent2">
+						<form action="#" method="post" >
+						    <div class="addUserLine">
+							<div class="addUserLabel">Department:</div>
+							<input class="addUserInput" name="department"id="department"  required >
+							
+							</div>
+							
+							
+							<div><input class="addUserSubmit btnAdd" type="submit" name="submit" id="submit" value="add"/></div>
+							
+							
+						</form>
+					
+					</div>
+				</div>
+ 	    
+ 	    
  	</div>
  	<hr/> 
-<!--  	<ul>		 -->
- 	
-<%--  		<c:forEach var="department" items="${departments}"> --%>
- 		
-<!-- 		<li> -->
-		<!-- 当点击选择部门时候才显示部门的信息 -->
-<%-- 			<input type='radio' name='department' value=${department.department_ID }>${department.departmentName }<br>			 --%>
-<%--  			<a href="#" onClick="changeFrame(0)">User numbers:(${userList[department.department_ID].size()})</a><br/> --%>
-<%-- 			<a href="#"  onClick="changeFrame(1)">Team numbers(${department.getTeamSet().size() })</a><br/> --%>
-<%-- 			<a href="#"  onClick="changeFrame(2)">Room numbers(${department.getRoomSet().size() })</a><br/> --%>
- 			 <!--  
-			<c:if test="${department.departmentName}">
-				<p id="defaultInfo">No user information to show</p> 
-			</c:if>	
-			<c:forEach var="team" items="${department.getTeamSet()}"> 
- 						${team } 
- 			</c:forEach> 
- 			department room: <br/> 
-			<c:forEach var="room" items="${department.getRoomSet()}"> 
- 					${room } 
- 			</c:forEach>
- 			 -->
-<!--  			<hr/>	 -->
-<!--  		</li>								 -->
- 								
-<%-- 		</c:forEach>  --%>
- 		
-<!--  	</ul> -->
-	 
+
 			<div id="displayWrapper">
 		      <div id="displayArea">
 		      <table>
 		      <tr><th><input type="checkbox" class="check" onclick="check_all(this,'checkbox')">Department Name</th><th>Own Team</th><th>Own Room</th><th>Operation</th></tr>
 		      <c:forEach var="department" items="${departments}">
 		         
-<%-- 			     <c:if test="${department.departmentName}"> --%>
-<!-- 				     <p id="defaultInfo">No user information to show</p>  -->
-<%-- 			     </c:if>	 --%>
+
                  <tr>
                  <td>
                      <input type="checkbox" name="checkbox"class="check">
@@ -89,13 +85,6 @@ function changeFrame(args){
 			         <a class="operation1">Delete</a>
 			     </td>
 			     </tr>
-<%-- 			     <c:forEach var="team" items="${department.getTeamSet()}">  --%>
-<%--  						${team }  --%>
-<%--  			     </c:forEach>  --%>
-<!--  			            department room: <br/>  -->
-<%-- 			     <c:forEach var="room" items="${department.getRoomSet()}">  --%>
-<%--  					${room }  --%>
-<%--  			     </c:forEach>		       --%>
                  
 		      </c:forEach> 
 		      </table>
