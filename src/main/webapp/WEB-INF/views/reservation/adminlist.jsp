@@ -268,7 +268,7 @@ html+="<td class='infoTd'>";
 	               $('#pageIndex').html(pageIndex);
 	                },
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
-						alert("error");
+		
 				}
 			});
 }
@@ -296,7 +296,7 @@ function checkCheckbox(args){
 					alert(json);
 		        },
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
-					alert("error");
+			
 				}
 			});
 	//reject
@@ -310,7 +310,7 @@ function checkCheckbox(args){
 				alert(json);
 	        },
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("error");
+			
 			}
 		});
 	window.parent.location.reload();
@@ -366,7 +366,7 @@ function deleteReservation(reservation_ID){
 			alert(json);
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("error");
+			
 	}
 });
 	//window.parent.location.reload();重新加载窗体
