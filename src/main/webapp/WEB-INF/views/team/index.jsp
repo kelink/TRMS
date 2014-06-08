@@ -52,7 +52,7 @@ function getDepartmentAllteam(department_ID,departmentName){
 					
 					html+="<td>"+teamName+"</td>";
 					html+="<td>"+account+"</td>";
-					html+='<td><a class="operation" onclick="showEdit('+team_ID+',\''+teamName+'\''+',\''+departmentName+'\')">'+"edit"+'</a></td>';			
+					html+='<td><a class="operation" onclick="showEdit('+team_ID+',\''+teamName+'\''+','+department_ID+',\''+departmentName+'\')">'+"edit"+'</a></td>';			
 				
 					
 					html+="</tr>";
@@ -66,11 +66,12 @@ function getDepartmentAllteam(department_ID,departmentName){
 		}
 	});
 }
-function showEdit(team_ID, teamName,departmentName) {
+function showEdit(team_ID, teamName,department_ID,departmentName) {
 	$("#tipsWrapper").css("display", "block");
 	$("#departmentName").attr("value", departmentName);
-	$("#team_item").attr("value", teamName);
+	$("#teamName").attr("value", teamName);
 	$("#team_ID").attr("value", team_ID);
+	$("#department_ID").attr("value", team_ID);
 }
 function back() {
 	$("#tipsWrapper").css("display", "none");
@@ -111,14 +112,14 @@ function back() {
 <!-- content -->
         <div id="modifyWrapper">
 	    
-		<form action="<%=request.getContextPath()%>/reservation/update" method="post">
+		<form action="<%=request.getContextPath()%>/team/updateTeam" method="post">
 		
 		<div class="editTeamTitle">Department Name:</div>
 		<div><input type="text" id="departmentName" class="teamEditContent"name="departmentName" readOnly="true"/></div>
 		
 		<div class="editTeamTitle">Team Item：</div>
-		<div><input type="text" id="team_item" name="team_item"class="teamEditContent"/></div>
-	
+		<div><input type="text" id="teamName" name="teamName"class="teamEditContent"/></div>
+		<input type="hidden" id="department_ID" name="department_ID"/>
 		<input type="hidden" id="team_ID" name="team_ID"/>
 		<div id="btnWrapper">
 

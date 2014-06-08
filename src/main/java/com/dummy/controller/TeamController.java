@@ -3,6 +3,7 @@ package com.dummy.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -161,7 +162,8 @@ public class TeamController {
 	// 判断当前team 是否已经被其他TA管理
 	@RequestMapping("/isTeamManaged")
 	public @ResponseBody String isTeamManaged(
-			@RequestParam(value = "team_ID", required = true) int team_ID) {
+			@RequestParam(value = "team_ID", required = true) int team_ID,
+			HttpSession session) {
 		Team team = teamService.getTeam(team_ID);
 		System.out.println("team------------>" + team);
 		if (team == null) {
@@ -177,5 +179,46 @@ public class TeamController {
 			return "This Team manage by" + account
 					+ ",if you want to update,continue!Otherwise please cancel";
 		}
+	}
+	// 更新update team
+	@RequestMapping("/updateTeam")
+	public @ResponseBody String updateTeam(HttpServletRequest request,
+			HttpSession session) {
+		String team_ID = request.getParameter("team_ID");
+		String teamName = request.getParameter("teamName");
+		String department_ID = request.getParameter("department_ID");
+		String user_ID = request.getParameter("user_ID");
+		if (team_ID == null) {
+			return "update fail";
+		}
+		Team team = teamService.getTeam(Integer.parseInt(team_ID));
+		if (teamName != null) {
+			team.setTeamName(teamName);
+		}
+		if (department_ID != null) {
+			team.setDepartment_ID(Integer.parseInt(department_ID));
+		}
+		if (user_ID != null) {
+			team.setDepartment_ID(Integer.parseInt(user_ID));
+		}
+		if (teamService.updateTeam(team)) {
+			return "update success";
+		} else {
+			return "update fail";
+		}
+
+	}
+	// add team for department(给部门添加team)
+	@RequestMapping("/addTeamForDepartment")
+	public ModelAndView addTeamForDepartment(
+			@RequestParam(value = "department_ID", required = true) int department_ID,
+			@RequestParam(value = "teamName", required = true) String teamName,
+			HttpSession session) {
+		Team team = new Team();
+		team.setDepartment_ID(department_ID);
+		team.setTeamName(teamName);
+		team.setUser_ID(C.DB.DEFAULT_TEAM_NOUSER);
+		teamService.addTeam(team);
+		return null;
 	}
 }
