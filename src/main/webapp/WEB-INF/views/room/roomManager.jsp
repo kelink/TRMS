@@ -26,6 +26,7 @@ $(document).ready(function(){
 			return false;
 		}	
 		getRoomInfo(department_ID);
+		$("#noInfo").css("display","none");
 		
 	  });
 	  
@@ -200,7 +201,11 @@ function checkCheckbox(args){
  				</div>
 					<hr/> 
  					 
-				<div id="roomTitleWrapper">Room:</div>
+			
+<!-- 				显示空信息 -->
+				<div id="noInfo">
+					    <p>No information to show.</p>
+				</div>
 				<div id="displayWrapper">
 				    <div id="display"></div> 
 				</div>

@@ -6,6 +6,19 @@ h1
 {
 	float:left;
 }
+#noInfo
+{
+	height: 154px;
+background: #f5f5f5;
+margin-top: 10px;
+}
+#noInfo p
+{
+	padding-left: 323px;
+font-size: 16px;
+color:rgb(129, 129, 129);
+padding-top: 65px;
+}
 #departments
 {
 
