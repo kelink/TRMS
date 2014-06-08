@@ -41,7 +41,7 @@ function getDepartmentInfo(dept_ID){
 function getTeamByUser(dept_ID,user_ID){
 	$("#display").attr("src","<%=request.getContextPath()%>/team/getTeamByUser?department_ID="+dept_ID+"&user_ID="+user_ID);
 	var department=document.getElementById("departments");
-	var user=document.getElementById("users");
+	
 	for(var i=0;i<department.options.length;i++)
 	{
 		     if(department.options[i].value==dept_ID)
@@ -52,16 +52,23 @@ function getTeamByUser(dept_ID,user_ID){
 		     
 	}
 	$("#departments").trigger("change");
-	for(var i=0;i<teams.options.length;i++){
+
+    setTimeout("chooseUser("+user_ID+")",200);
+
+	
+}
+function chooseUser(user_ID){
+
+
+ 	var user=document.getElementById("users");
+	for(var i=0;i<user.options.length;i++){
 		if(user.options[i].value==user_ID)
 	     {
+			
 	    	 user.options[i].selected=true;
 	     }
 	}
-	$("#teams").trigger("change");
-	
 }
-
 function deleteCommonUser(args){
 	if(confirm("Are you sure to delete it?All information about this user will lost"))
 	{

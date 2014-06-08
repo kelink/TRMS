@@ -59,13 +59,12 @@ window.onload=function(){
 		  $("#departments").change(function(){
 			 
 			var department_ID=$("#departments").val();
-			if(department_ID==""){
-				$("#users").empty();
-				$("#teams").empty(); 
-				return false;
-			}
+
 		    getDepartmentAllUser(department_ID);
 		    getDepartmentAllteam(department_ID);
+
+		
+		    
 		  });
 	
 	
@@ -113,13 +112,16 @@ function getDepartmentAllUser(department_ID){
 			success : function(json) {
 				if(json=="")
 					$("#users").empty();
+				html="<option value=''></option>";
+				
 				for (position in json) {				
 						var user_ID=json[position].user_ID;
 						var department_ID=json[position].department_ID;
 						var account=json[position].account;
 						//添加元素，使得option可以选择
-						$("#users").append("<option value='"+user_ID+"'>"+account+"</option>");
-				}			
+						html+="<option value=\""+user_ID+"\">"+account+"</option>"
+				}		
+				$("#users").html(html);
            },
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				alert("error");
@@ -133,13 +135,15 @@ function getDepartmentAllteam(department_ID){
 		data : "department_ID=" + department_ID,
 		dataType : "json",
 		success : function(json) {
+			html="<option value=''></option>";
 			for (position in json) {				
 					var team_ID=json[position].team_ID;
 					var department_ID=json[position].department_ID;
 					var teamName=json[position].teamName;
 					//添加元素，使得option可以选择
-					$("#teams").append("<option value='"+team_ID+"'>"+teamName+"</option>");
+					html+="<option value=\""+team_ID+"\">"+teamName+"</option>";
 			}			
+			$("#teams").html(html);
        },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			alert("error");
