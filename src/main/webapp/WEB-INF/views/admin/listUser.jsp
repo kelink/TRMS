@@ -38,8 +38,8 @@ function getDepartmentInfo(dept_ID){
 			}
 		});
 }
-function getDetial(dept_ID){
-	$("#display").attr("src","<%=request.getContextPath()%>/team/getDetail?department_ID="+dept_ID);
+function getTeamByUser(dept_ID,user_ID){
+	$("#display").attr("src","<%=request.getContextPath()%>/team/getTeamByUser?department_ID="+dept_ID+"&user_ID="+user_ID);
 }
 
 function deleteCommonUser(args){
@@ -101,15 +101,9 @@ function deleteCommonUser(args){
 					class="userTopMenuTitle userTopMenuTitle5">Operation</span>
 			</div>
 			<div id="userListinner">
-
-
-
-
-
-
-				<c:forEach items="${commonUsers}" var="commonUser">
+			<c:forEach items="${commonUsers}" var="commonUser">
 					<div class="userListItem"
-						onclick='getDetial(${commonUser.dept_ID})'>
+						onclick='getTeamByUser(${commonUser.dept_ID},${commonUser.user_ID})'>
 						<img class="lc"
 							src="<%=request.getContextPath()%>/resources/images/lc.png" />
 						<div class="userInfoWrapper">
@@ -143,7 +137,34 @@ function deleteCommonUser(args){
 							src="<%=request.getContextPath()%>/resources/images/closeShallow.png"
 							width="16px" height="16px" /></span>
 					</div>
-					<div id="panelContent"></div>
+					<div id="panelContent">
+						<form action="<%=request.getContextPath()%>/admin/addUser" method="post">
+							ACCOUNT:<input type="text" name="account" id="account" required /><br/>
+							PASSWORD:<input type="text" name="password" id="password" required/><br/>
+							ROLE:
+							<select name="access" id="access" required>
+								<option></option>
+								<option value="1">LC</option>
+								<option value="2">TA</option>	
+							</select><br/><br/>
+							GENDER:
+							<select name="gender" id="gender" required>
+								<option></option>
+								<option value="1">male</option>
+								<option value="0">female</option>
+							</select><br/><br/>
+							TELE:<input type="text" name="tele" id="tele" required /><br/>
+							DEPAETMENT:	${department.departmentName }
+							<select name="dept_ID" id="dept_ID" required>
+								<option></option>
+								<c:forEach items="${departments}" var="department">
+										<option value="${department.department_ID }">${department.departmentName }</option>
+								</c:forEach>
+							</select>
+							<input type="submit" name="submit" id="submit" value="add"/>
+						</form>
+					
+					</div>
 				</div>
 			</div>
 		</div>
@@ -152,10 +173,11 @@ function deleteCommonUser(args){
 			<div class="listTopMenu"></div>
 			<div id="userTeamListInner">
 				<iframe id="display" name="display"
-					src="<%=request.getContextPath()%>/team/getDetail?department_ID=1"></iframe>
+					src="<%=request.getContextPath()%>/team/getTeamByUser?department_ID=${commonUsers[0].dept_ID}&user_ID=${commonUsers[0].user_ID}"></iframe>
 			</div>
 			<div id="userTeamListBtnWrapper">
-				<a class="addUserTeamBtn">Add</a> <a class="removeUserBtn">Remove</a>
+				<a class="addUserTeamBtn" target="_blank" rel="nofollow" href="<%=request.getContextPath()%>/team/getUserAddTeamForm" >Add</a>
+				<a class="removeUserBtn" onclick="removeBtn()" id="remove">Remove</a>
 			</div>
 		</div>
 	</div>

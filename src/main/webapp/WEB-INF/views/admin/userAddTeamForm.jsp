@@ -44,14 +44,11 @@ function getDepartmentAllUser(department_ID){
 						var department_ID=json[position].department_ID;
 						var account=json[position].account;
 						//添加元素，使得option可以选择
-						$("#users").empty();
 						$("#users").append("<option value='"+user_ID+"'>"+account+"</option>");
 				}			
              },
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert(XMLHttpRequest);
-				alert(textStatus);
-				alert(errorThrown);
+				alert("error");
 			}
 		});
 }
@@ -67,14 +64,11 @@ function getDepartmentAllteam(department_ID){
 					var department_ID=json[position].department_ID;
 					var teamName=json[position].teamName;
 					//添加元素，使得option可以选择
-					$("#teams").empty(); 
 					$("#teams").append("<option value='"+team_ID+"'>"+teamName+"</option>");
 			}			
          },
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert(XMLHttpRequest);
-			alert(textStatus);
-			alert(errorThrown);
+			alert("error");
 		}
 	});
 }
@@ -146,6 +140,7 @@ function getDepartmentAllteam(department_ID){
 			 	<h1>LC用户添加管理界面</h1>
 				<h3>传入的是部门信息，当点击部门的时候,显示出选择team的框，会ajax调用获取team信息，当点击选中team后会ajax 查新当前的黑名单情况，接口已经定义</h3>				
 				<form action="" method="post">
+					
 					departments
 					<select name="departments" id="departments">
 						<option value=""></option>
@@ -153,15 +148,17 @@ function getDepartmentAllteam(department_ID){
 							<option value="${department.department_ID}">${department.departmentName}</option>
 						</c:forEach>
 					</select>
+					<br/>
 					users
 					<select name="users" id="users">
 						<option value=""></option>
 					</select>
+					<br/>
 					teams
 					<select name="teams" id="teams">
 						<option value=""></option>
 					</select>
-					
+					<br/>
 					<input type="submit" name="submit" value="submit"/>
 				</form>
 				<div id="display">

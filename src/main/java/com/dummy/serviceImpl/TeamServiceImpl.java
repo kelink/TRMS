@@ -86,4 +86,9 @@ public class TeamServiceImpl implements TeamService {
 	public List<Team> getTeamsByDepartmentToObject(int department_ID) {
 		return teamDao.getTeamsByDepartment(department_ID);
 	}
+
+	@Override
+	public boolean isOKToAdd(Team team) {
+		return teamDao.isOKToAdd(team);
+	}
 }

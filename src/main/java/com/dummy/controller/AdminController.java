@@ -72,12 +72,12 @@ public class AdminController {
 	public ModelAndView listUser() {
 		List<DBUser> commonUsers = userService
 				.getUserByRole(C.DB.DEFAULT_ROLE_LC);
-		DBUser a = commonUsers.get(0);
-
 		List<DBUser> admins = userService.getUserByRole(C.DB.DEFAULT_ROLE_TA);
+		List<Department> departments = departmentService.getAllDepartment();
 		ModelMap map = new ModelMap();
 		map.addAttribute("commonUsers", commonUsers);
 		map.addAttribute("admins", admins);
+		map.addAttribute("departments", departments);
 		return new ModelAndView("admin/listUser", map);
 	}
 
@@ -98,10 +98,9 @@ public class AdminController {
 	}
 
 	// 增加用户
-	@RequestMapping
+	@RequestMapping("/addUser")
 	public @ResponseBody String addUser(HttpSession session,
-			HttpServletRequest request,
-			@RequestParam(value = "user_ID", required = true) int user_ID) {
+			HttpServletRequest request) {
 		String teleStr = request.getParameter("tele");
 		String accountStr = request.getParameter("account");
 		String accessStr = request.getParameter("access");

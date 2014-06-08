@@ -98,4 +98,18 @@ public class TeamDaoImpl implements TeamDao {
 		query.setInteger(0, user_ID);
 		return query.list();
 	}
+
+	@Override
+	public boolean isOKToAdd(Team team) {
+		String hql = "from Team t where t.department_ID=? and t.user_ID=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, team.getDepartment_ID());
+		query.setInteger(1, team.getUser_ID());
+		int n = query.list().size();
+		if (n > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

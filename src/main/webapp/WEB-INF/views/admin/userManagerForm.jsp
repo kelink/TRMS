@@ -12,20 +12,14 @@
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 </head>
 <body>
-	<!-- 一开始不显示，当提交选择部门时候 ，ajax显示-->
-	User detial:
-		<c:forEach items="${userMap}" var="user">
-			User Name:${user.value.account}		
-			<br/>
-			<c:forEach items="${teamMap[user.key]}" var="team">
-				department:${departments[team.team_ID].departmentName}<br/>
-				team_ID:${team.team_ID}<br/>
-				user_ID:${team.user_ID}<br/>
-				department_ID:${team.department_ID}<br/>
-				teamName:${team.teamName}<br/>
-				<hr/>
-			</c:forEach>				
-		</c:forEach>
+	Department:${department.departmentName }
+	Team List:<br/>
+	<form action="" method="post">
+	<c:forEach items="${teams}" var="team">
+		<li><input type="checkbox" name="checkbox" value="${team.team_ID }"/>${team.teamName }</li>
+	</c:forEach>
+	</form>
+		
 	<hr/>
 </body>
 </body>

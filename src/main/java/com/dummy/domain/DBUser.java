@@ -31,6 +31,7 @@ public class DBUser {
 	@Column(length = 50, nullable = false)
 	private String Tele;
 
+	@Column(length = 50, nullable = false)
 	private int dept_ID;
 
 	public int getDept_ID() {
@@ -93,7 +94,8 @@ public class DBUser {
 	public String toString() {
 		return "DBUser [user_ID=" + user_ID + ", access=" + access
 				+ ", account=" + account + ", password=" + password
-				+ ", gender=" + gender + ", Tele=" + Tele + "]";
+				+ ", gender=" + gender + ", Tele=" + Tele + ", dept_ID="
+				+ dept_ID + "]";
 	}
 
 }

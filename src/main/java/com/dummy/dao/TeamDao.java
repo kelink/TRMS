@@ -22,4 +22,6 @@ public interface TeamDao {
 	public boolean delTeamByUser(int user_ID);
 
 	public List<Team> getTeamByUser(int user_ID);
+
+	public boolean isOKToAdd(Team team);
 }

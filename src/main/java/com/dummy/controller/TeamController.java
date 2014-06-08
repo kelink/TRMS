@@ -1,6 +1,5 @@
 package com.dummy.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -51,44 +50,26 @@ public class TeamController {
 	}
 
 	// 获取每个用户管理的team
-	@RequestMapping(value = {"/getDetail"})
-	public ModelAndView getDetial(
+	@RequestMapping(value = {"/getTeamByUser"})
+	public ModelAndView getTeamByUser(
 			HttpSession session,
+			@RequestParam(value = "user_ID", required = true) int user_ID,
 			@RequestParam(value = "department_ID", required = true) int department_ID) {
-		System.out.println(department_ID);
-		HashMap<String, DBUser> userMap = new HashMap<String, DBUser>();
-		HashMap<String, List<Team>> teamMap = new HashMap<String, List<Team>>();
-		List<DBUser> userList = userService.getUserByDepartment(department_ID);
-		// 获取team对应的department
-		HashMap<Integer, Department> departments = new HashMap<Integer, Department>();
 
-		for (DBUser dbUser : userList) {
-			userMap.put(String.valueOf(dbUser.getUser_ID()), dbUser);
-			List<Team> teams = teamService.getTeamByUserDepartment(
-					dbUser.getUser_ID(), department_ID);
-			for (Team team : teams) {
-				int departent_ID = team.getDepartment_ID();
-				Department department = departmentService
-						.getDepartment(departent_ID);
-				departments.put(team.getTeam_ID(), department);
-			}
-			teamMap.put(String.valueOf(dbUser.getUser_ID()), teams);
-		}
-
+		List<Team> teams = teamService.getTeamByUser(user_ID);
+		Department department = departmentService.getDepartment(department_ID);
 		ModelMap map = new ModelMap();
-		map.addAttribute("userMap", userMap);// 每个user_id对应dbuser对象
-		map.addAttribute("teamMap", teamMap);// 每个user_id对应一个teams list包含多个team
-		map.addAttribute("departments", departments);
-		System.out.println(map);
+		map.addAttribute("teams", teams);// 每个user_id对应dbuser对象
+		map.addAttribute("department", department);// 每个user_id对应一个teams
 		return new ModelAndView("admin/userManagerForm", map);
 	}
-	// 获取为添加用户的表单
-	@RequestMapping(value = {"/getUserAddForm"})
-	public ModelAndView getUserAddForm() {
+	// 获取为用户add team的表单
+	@RequestMapping(value = {"/getUserAddTeamForm"})
+	public ModelAndView getUserAddTeamForm() {
 		List<Department> departments = departmentService.getAllDepartment();
 		ModelMap map = new ModelMap();
 		map.addAttribute("departments", departments);
-		return new ModelAndView("admin/userAddForm", map);
+		return new ModelAndView("admin/userAddTeamForm", map);
 	}
 
 	// Ajax to get user of department
@@ -133,27 +114,7 @@ public class TeamController {
 		}
 		return null;
 	}
-	// 获取team对应的LC user
-	// @RequestMapping(value = {"/getTeamUser"})
-	// public ModelAndView getTeamUser(
-	// HttpSession session,
-	// @RequestParam(value = "department_ID", required = true) int
-	// department_ID) {
-	// HashMap<Integer, DBUser> userMap = new HashMap<Integer, DBUser>();
-	// List<Team> teamList = teamService
-	// .getTeamsByDepartmentToObject(department_ID);
-	// for (Team team : teamList) {
-	// int user_ID = team.getUser_ID();
-	// DBUser user = userService.getUser(user_ID);
-	// userMap.put(team.getTeam_ID(), user);
-	// }
-	//
-	// ModelMap map = new ModelMap();
-	// map.addAttribute("teamList", teamList);// department 下面的team
-	// map.addAttribute("userMap", userMap);// 每个team_ID对应dbuser对象
-	// System.out.println(map);
-	// return new ModelAndView("admin/userManagerForm", map);
-	// }
+
 	// delete LC for team
 	@RequestMapping(value = {"/deleteUser"})
 	public @ResponseBody String deleteUser(
@@ -178,4 +139,22 @@ public class TeamController {
 			return "delete fail";
 		}
 	}
+	// add team
+	// @RequestMapping(value = {"/addTeam"})
+	// public @ResponseBody String addTeam(
+	// @RequestParam(value = "departments", required = true) int departments,
+	// @RequestParam(value = "users", required = true) int users,
+	// @RequestParam(value = "teams", required = true) int teams,
+	// HttpSession session) {
+	// // Team =new Team();
+	// // team.setDepartment_ID(department_ID);;
+	// // team.setTeamName(teamName);
+	// // team.setUser_ID(user_ID);
+	// boolean isOK = teamService.delTeam(team_ID);
+	// if (isOK) {
+	// return "delete success!";
+	// } else {
+	// return "delete fail";
+	// }
+	// }
 }
