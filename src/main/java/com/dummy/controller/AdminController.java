@@ -151,7 +151,7 @@ public class AdminController {
 		}
 		try {
 			userService.addUser(user);
-			return "<script>alert(\"Add User Success!\");history.back();</script>";
+			return "<script>alert(\"Add User Success!\");history.back();window.top.location.reload();</script>";
 		} catch (Exception e) {
 			return "fail operation";
 		}
