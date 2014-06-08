@@ -42,7 +42,7 @@ function AjaxGetData(index, pageSize) {
 					
 	                },
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
-					alert("error");
+				
 				}
 			});
 }
