@@ -148,7 +148,7 @@ function sortByDepartment(department_ID){
 									test="${commonUser.gender==0}">female</c:if>
 							</span> <span class="userInfo userInfo4">${commonUser.tele}</span> <span class="userInfo userInfo5"> 
 								
-								<a class="operation" >Edit&nbsp&nbsp&nbsp</a>
+								<a class="operation"class="editBtn" >Edit&nbsp&nbsp&nbsp</a>
 								<a class="operation" onclick="deleteCommonUser(${commonUser.user_ID})">Remove</a>
 							</span>
 						</div>
@@ -157,6 +157,51 @@ function sortByDepartment(department_ID){
 
 				</c:forEach>
 			</div>
+			<div id="showPanel6">
+					<div class="panelHeader">
+						<span class="headerText">Add team for LC</span> <span class="close"
+							id="closeShow6"><img class="closeIcon"
+							src="<%=request.getContextPath()%>/resources/images/closeShallow.png"
+							width="16px" height="16px" /></span>
+					</div>
+					<div id="panelContent6">
+						<form action="#" method="post" >
+						    <div class="addUserLine">
+							    <div class="addUserLabel">Department:</div>
+							    <input class="addUserInput" name="department"id="department"  required >
+							</div>
+
+						    <div class="addUserLine">
+							    <div class="addUserLabel">Department:</div>
+							    <input class="addUserInput" name="department"id="department"  required >
+							</div>							
+							
+							<div class="addUserLine">
+							    <div class="addUserLabel">Department:</div>
+							    <input class="addUserInput" name="department"id="department"  required >
+							</div>	
+							
+							<div class="addUserLine">
+							    <div class="addUserLabel">Department:</div>
+							    <input class="addUserInput" name="department"id="department"  required >
+							</div>	
+							
+							<div class="addUserLine">
+							    <div class="addUserLabel">Department:</div>
+							    <input class="addUserInput" name="department"id="department"  required >
+							</div>	
+							
+							<div class="addUserLine">
+							    <div class="addUserLabel">Department:</div>
+							    <input class="addUserInput" name="department"id="department"  required >
+							</div>	
+							<div><input class="addUserSubmit btnAdd1" type="submit" name="submit" id="submit" value="add"/></div>
+							
+							
+						</form>
+					
+					</div>
+				</div>
 			
 			
 			<div id="userListBtnWrapper">

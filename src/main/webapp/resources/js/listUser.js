@@ -14,8 +14,18 @@ window.onload=function(){
 	$("#closeShow2").click(function(){
 		$("#showPanel2").css("display","none");
 	});
+	$("#closeShow6").click(function(){
+		$("#showPanel6").css("display","none");
+	});
 	
 	
+	$(".editBtn").click(function(){
+		if($("#showPanel6").css("display")=="none")
+		$("#showPanel6").css("display","block");
+		else
+			$("#showPanel6").css("display","none");
+		$("#sortPanel6").css("display","none");
+	});
 	$("#addTeamBtn").click(function(){
 		if($("#showPanel2").css("display")=="none")
 		$("#showPanel2").css("display","block");
