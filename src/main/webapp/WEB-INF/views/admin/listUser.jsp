@@ -119,7 +119,7 @@ function sortByDepartment(department_ID){
 				<c:forEach items="${departments}" var="department">
 				    <a class="sortPanelItem" target="checkRightInner" onClick="sortByDepartment(${department.department_ID})">${department.departmentName}</a>
 			    </c:forEach>
-			    <a class="sortPanelItem" target="checkRightInner" onClick="sortByDepartment(0)">All</a>
+			    <a class="sortPanelItem" target="checkRightInner" onClick="sortByDepartment(0)"style="font-weight:bold;">&ltBack</a>
 			</div>
 		</div>
 	</div>
