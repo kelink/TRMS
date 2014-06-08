@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: trms1
 Target Host: localhost
 Target Database: trms1
-Date: 2014/6/7 23:01:45
+Date: 2014/6/8 11:02:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -16,7 +16,7 @@ CREATE TABLE `blacklist` (
   `reason` varchar(255) DEFAULT NULL,
   `team_ID` int(11) NOT NULL,
   PRIMARY KEY (`bl_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for dbuser
@@ -30,7 +30,7 @@ CREATE TABLE `dbuser` (
   `password` varchar(255) NOT NULL,
   `dept_ID` int(11) NOT NULL,
   PRIMARY KEY (`user_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for department
@@ -59,7 +59,7 @@ CREATE TABLE `reservation` (
   `handle_by` int(11) DEFAULT NULL,
   `user_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`reservation_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for role
@@ -101,10 +101,12 @@ CREATE TABLE `team` (
 -- Records 
 -- ----------------------------
 INSERT INTO `blacklist` VALUES ('2', 'll', '2');
+INSERT INTO `blacklist` VALUES ('10', '', '1');
 INSERT INTO `dbuser` VALUES ('1', '18854689457', '1', 'luo', '1', '123', '1');
 INSERT INTO `dbuser` VALUES ('2', '18846565465', '2', 'luo2', '0', '1234', '2');
 INSERT INTO `dbuser` VALUES ('3', '18845261414', '2', '1030041097@qq.com', '0', '1234', '3');
 INSERT INTO `dbuser` VALUES ('4', '18845662658', '1', '2804438948@qq.com', '0', '123', '4');
+INSERT INTO `dbuser` VALUES ('5', '18745', '1', 'luo@163.com', '1', '1234', '1');
 INSERT INTO `department` VALUES ('1', 'Training');
 INSERT INTO `department` VALUES ('2', 'Financial');
 INSERT INTO `department` VALUES ('3', 'HR');
@@ -114,9 +116,8 @@ INSERT INTO `reservation` VALUES ('16', 'e38ee11b-836b-4b32-aad0-0204bd21bb8a', 
 INSERT INTO `reservation` VALUES ('17', '68642c18-f354-4751-ad9b-ce353ffbc07a', '2014-05-28', '2014-05-28', '454sdadd5@163.com', '18754568585', '2014-05-26', 'Test', '2', '0', '2', '0', '2');
 INSERT INTO `reservation` VALUES ('18', '7ac769cd-d4c9-4c60-9668-231c57050d34', '2014-05-31', '2014-05-31', '1030041097@qq.com', '18845453665', '2014-05-29', 'test', '1', '0', '2', '2', '2');
 INSERT INTO `reservation` VALUES ('19', 'e518d2e8-ddb5-47aa-927b-54fdd768e680', '2014-05-31', '2014-05-31', '1030041097@qq.com', '18745454454', '2014-05-29', 'Test', '4', '0', '2', '2', '2');
-INSERT INTO `reservation` VALUES ('40', 'e543c464-20ec-4bb7-b73b-b17033da7229', '2014-06-20', '2014-06-20', '???', '???', '2014-06-06', '??', '4', '0', '8', '2', '1');
-INSERT INTO `reservation` VALUES ('42', '6c0cbdc7-cd34-41c2-8eae-1a48d218048c', '2014-06-20', '2014-06-20', '1030041097@qq.com', '18825162414', '2014-06-07', 'test', '4', '1', '8', '2', '1');
 INSERT INTO `reservation` VALUES ('43', '8493c78f-8f32-4d67-b47a-1f434324ccf1', '2014-06-10', '2014-06-10', '1030041097@qq.com', '188254685984', '2014-06-07', 'test', '5', '1', '4', '3', '4');
+INSERT INTO `reservation` VALUES ('48', '0e615861-2a2d-46b9-8098-43d990cae08d', '2014-06-11', '2014-06-11', '1030041097@qq.com', '123', '2014-06-08', '123', '6', '-1', '4', '0', '4');
 INSERT INTO `role` VALUES ('1', 'ROLE_LC');
 INSERT INTO `role` VALUES ('2', 'ROLE_TA');
 INSERT INTO `room` VALUES ('1', 'TKH OT2 22.5', '2014-05-14', '1', '2');

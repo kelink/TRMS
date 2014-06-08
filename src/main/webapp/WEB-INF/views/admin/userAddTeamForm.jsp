@@ -139,7 +139,7 @@ function getDepartmentAllteam(department_ID){
 			 <div class="roomListBody">
 			 	<h1>LC用户添加管理界面</h1>
 				<h3>传入的是部门信息，当点击部门的时候,显示出选择team的框，会ajax调用获取team信息，当点击选中team后会ajax 查新当前的黑名单情况，接口已经定义</h3>				
-				<form action="" method="post">
+				<form action="<%=request.getContextPath()%>/team/addTeamForUser" method="post">
 					
 					departments
 					<select name="departments" id="departments">

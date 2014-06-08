@@ -139,22 +139,22 @@ public class TeamController {
 			return "delete fail";
 		}
 	}
-	// add team
-	// @RequestMapping(value = {"/addTeam"})
-	// public @ResponseBody String addTeam(
-	// @RequestParam(value = "departments", required = true) int departments,
-	// @RequestParam(value = "users", required = true) int users,
-	// @RequestParam(value = "teams", required = true) int teams,
-	// HttpSession session) {
-	// // Team =new Team();
-	// // team.setDepartment_ID(department_ID);;
-	// // team.setTeamName(teamName);
-	// // team.setUser_ID(user_ID);
-	// boolean isOK = teamService.delTeam(team_ID);
-	// if (isOK) {
-	// return "delete success!";
-	// } else {
-	// return "delete fail";
-	// }
-	// }
+	// add team for user
+	@RequestMapping(value = {"/addTeamForUser"})
+	public @ResponseBody String addTeamForUser(
+			@RequestParam(value = "users", required = true) int users,
+			@RequestParam(value = "teams", required = true) int teams,
+			HttpSession session) {
+		Team team = teamService.getTeam(teams);
+		if (team == null) {
+			return "team does not exist";
+		} else {
+			team.setUser_ID(users);
+			if (teamService.updateTeam(team)) {
+				return "add team for user success";
+			} else {
+				return "fail";
+			}
+		}
+	}
 }
