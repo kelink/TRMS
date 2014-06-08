@@ -26,7 +26,10 @@ $(document).ready(function(){
 			return false;
 		}	
 		getRoomInfo(department_ID);
+		
 	  });
+	  
+
 	});
 
 function getRoomInfo(department_ID){

@@ -166,8 +166,41 @@ function check_all(obj,cName)
 	var checkboxs = document.getElementsByName(cName); 
     for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;}
 }
+
+function choose(){
+	var departments=document.getElementById("departments");
+	var name=window.parent.name;
+	
+	
+		for(var i=0;i<departments.options.length;i++)
+		{
+		    if(departments.options[i].value==name)
+		    {
+		    	departments.options[i].selected=true;
+		    }
+		}
+
+		 window.parent.name="";
+	
+	    $("#departments").trigger("change");
+	
+	
+	
+	
+}
+
+
 var count = 0;
 window.onload = function() {
+	
+	  if(window.parent.name!="")
+	  {
+	
+		  choose();
+	  }
+	
+	
+	
 	$(".rightNavItem").mouseover(function(){
 		$(this).css("border-left","3px solid rgb(231, 231, 231)");
 	});

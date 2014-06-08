@@ -1,8 +1,18 @@
 #sortByDepartmentBtnWrapper
 {
-	height:24px;
+	height:23px;
 	padding-left: 8px;
 	position:relative;
+}
+#lcManagementTitle
+{
+	float:left;
+line-height: 26px;
+font-size: 19px;
+margin-right: 10px;
+margin-left: 7px;
+font-weight: bold;
+color: rgb(109, 108, 108);
 }
 #linkPot
 {
@@ -17,7 +27,8 @@ margin-top: 236px;
 .sortByDepartmentBtn
 {
 	text-decoration:none;
-	line-height: 22px;
+	line-height: 20px;
+margin-top: 2px;
 box-shadow: none;
 position: relative;
 float: left;

@@ -28,6 +28,13 @@ $(document).ready(function(){
 		}	
 	    getDepartmentAllteam(department_ID,departmentName);
 	  });
+	  if(window.parent.name!="")
+	  {
+	
+		  choose();
+	  }
+	
+	  
 	});
 
 function getDepartmentAllteam(department_ID,departmentName){
