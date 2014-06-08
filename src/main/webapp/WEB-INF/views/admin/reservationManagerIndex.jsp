@@ -17,7 +17,7 @@
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/adminReservation.js" type="text/javascript"></script>
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
-<link href="<%=request.getContextPath()%>/resources/css/reservationList.css" rel="stylesheet" >
+
 </head>
 <body>
 <c:url value="/j_spring_security_logout" var="logoutUrl"/>  
@@ -205,7 +205,7 @@
             
                           </div>
                           <div id="btnFunctionWrapper">
-                              <a href="<%=request.getContextPath()%>/reservation/list"target="checkRightInner" class="btnFunction">All</a>
+                              <button id="backBtn"  class="btnFunction">Back</button>
                               <div id="verticalLine"></div>
 
                               <div class="btnFunction" id="approveBtn" onClick="window.frames['checkRightInner'].checkCheckbox(0)">Approve</div>

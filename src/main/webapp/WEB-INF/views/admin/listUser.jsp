@@ -34,7 +34,7 @@ function getDepartmentInfo(dept_ID){
 				alert(json);
              },
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("error");
+	
 			}
 		});
 }
@@ -82,7 +82,7 @@ function deleteCommonUser(args){
 			    location.reload();
 		    },
 		    error : function(XMLHttpRequest, textStatus, errorThrown) {
-			    alert("error");
+		
 	        }
 	
 

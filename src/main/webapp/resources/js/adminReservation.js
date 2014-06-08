@@ -1,7 +1,9 @@
 window.onload = function() {
 
 	// ////////////////////////////////////////////
-
+    $("#backBtn").click(function(){
+    	window.top.location.reload();
+    });
 	$("#logoutBtn").mouseover(function() {
 		$(this).attr("class", "btnLogout btnHover");
 
