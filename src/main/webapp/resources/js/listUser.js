@@ -19,13 +19,7 @@ window.onload=function(){
 	});
 	
 	
-	$(".editBtn").click(function(){
-		if($("#showPanel6").css("display")=="none")
-		$("#showPanel6").css("display","block");
-		else
-			$("#showPanel6").css("display","none");
-		$("#sortPanel6").css("display","none");
-	});
+
 	$("#addTeamBtn").click(function(){
 		if($("#showPanel2").css("display")=="none")
 		$("#showPanel2").css("display","block");
@@ -84,7 +78,27 @@ window.onload=function(){
 };
 
 
-
+function edit(account,access,gender,tele,password,dept_ID,user_ID)
+{ 
+//	for(var i=1;i<=6;i++)
+//	{  
+//		if(i==2||i==3||i==6)
+//		{
+//			
+//		}
+//		else{
+//			document.getElementById(i).value=
+//		}
+//		
+//	}
+	
+	
+	if($("#showPanel6").css("display")=="none")
+		$("#showPanel6").css("display","block");
+		else
+			$("#showPanel6").css("display","none");
+		$("#sortPanel6").css("display","none");	
+}
 
 function checkSubmit(team_ID){
 	//判断当前team 是否存在

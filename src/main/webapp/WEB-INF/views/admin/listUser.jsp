@@ -148,7 +148,7 @@ function sortByDepartment(department_ID){
 									test="${commonUser.gender==0}">female</c:if>
 							</span> <span class="userInfo userInfo4">${commonUser.tele}</span> <span class="userInfo userInfo5"> 
 								
-								<a class="operation"class="editBtn" >Edit&nbsp&nbsp&nbsp</a>
+								<a class="operation"onclick="edit('${commonUser.account}',${commonUser.access},${commonUser.gender},${commonUser.tele},${commonUser.password},${commonUser.dept_ID},${commonUser.user_ID})" >Edit&nbsp&nbsp&nbsp</a>
 								<a class="operation" onclick="deleteCommonUser(${commonUser.user_ID})">Remove</a>
 							</span>
 						</div>
@@ -159,7 +159,7 @@ function sortByDepartment(department_ID){
 			</div>
 			<div id="showPanel6">
 					<div class="panelHeader">
-						<span class="headerText">Add team for LC</span> <span class="close"
+						<span class="headerText">Edit user</span> <span class="close"
 							id="closeShow6"><img class="closeIcon"
 							src="<%=request.getContextPath()%>/resources/images/closeShallow.png"
 							width="16px" height="16px" /></span>
@@ -167,35 +167,49 @@ function sortByDepartment(department_ID){
 					<div id="panelContent6">
 						<form action="#" method="post" >
 						    <div class="addUserLine">
-							    <div class="addUserLabel">Department:</div>
-							    <input class="addUserInput" name="department"id="department"  required >
+							    <div class="addUserLabel">User LN:</div>
+							    <input class="addUserInput" name="account" id="1"  required >
 							</div>
 
 						    <div class="addUserLine">
-							    <div class="addUserLabel">Department:</div>
-							    <input class="addUserInput" name="department"id="department"  required >
+							    <div class="addUserLabel">Role:</div>
+							    <select class="addUserInput" name="access" id="2"  required >
+							    <option value=""></option>
+							    <option value="1">LC</option>
+							    <option value="2">TA</option>
+							    </select>
 							</div>							
 							
 							<div class="addUserLine">
-							    <div class="addUserLabel">Department:</div>
-							    <input class="addUserInput" name="department"id="department"  required >
+							    <div class="addUserLabel">Gender:</div>
+							    <select class="addUserInput" name="gender" id="3" required >
+							    <option value=""></option>
+							    <option value="1">male</option>
+							    <option value="0">female</option>
+							    </select>
+							</div>	
+							
+							<div class="addUserLine">
+							    <div class="addUserLabel">Telephone:</div>
+							    <input class="addUserInput" name="tele" id="4" required >
+							</div>	
+							
+							<div class="addUserLine">
+							    <div class="addUserLabel">Password:</div>
+							    <input class="addUserInput" name="password" id="5" required >
 							</div>	
 							
 							<div class="addUserLine">
 							    <div class="addUserLabel">Department:</div>
-							    <input class="addUserInput" name="department"id="department"  required >
+							    <select class="addUserInput" name="department" id="6" required >
+							    <option value=""></option>
+							    <c:forEach items="${departments}" var="department">
+										<option value="${department.department_ID }">${department.departmentName }</option>
+								</c:forEach>
+							    
+							    </select>
 							</div>	
-							
-							<div class="addUserLine">
-							    <div class="addUserLabel">Department:</div>
-							    <input class="addUserInput" name="department"id="department"  required >
-							</div>	
-							
-							<div class="addUserLine">
-							    <div class="addUserLabel">Department:</div>
-							    <input class="addUserInput" name="department"id="department"  required >
-							</div>	
-							<div><input class="addUserSubmit btnAdd1" type="submit" name="submit" id="submit" value="add"/></div>
+							<div><input class="addUserSubmit btnAdd1" type="submit" name="submit" id="submit" value="Update"/></div>
 							
 							
 						</form>
@@ -245,7 +259,6 @@ function sortByDepartment(department_ID){
 							</div>
 							<div class="addUserLine">
 							<div class="addUserLabel">DEPAETMENT:</div>	
-							
 							<select class="addUserInput" name="dept_ID" id="dept_ID" required>
 								<option></option>
 								<c:forEach items="${departments}" var="department">
