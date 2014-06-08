@@ -21,4 +21,5 @@ public interface RoomDao {
 
 	public List<Room> getRoomsBydepartment(int department_ID);
 
+	public boolean isRoomExit(Room room);
 }

@@ -71,20 +71,20 @@ function checkCheckbox(args){
  	    
 				<div id="showPanel2">
 					<div class="panelHeader">
-						<span class="headerText">Add team for LC</span> <span class="close"
+						<span class="headerText">New Department</span> <span class="close"
 							id="closeShow2"><img class="closeIcon"
 							src="<%=request.getContextPath()%>/resources/images/closeShallow.png"
 							width="16px" height="16px" /></span>
 					</div>
 					<div id="panelContent2">
-						<form action="#" method="post" >
+						<form action="<%=request.getContextPath()%>/department/addDepartment" method="post" >
 						    <div class="addUserLine">
 							<div class="addUserLabel">Department:</div>
-							<input class="addUserInput" name="department"id="department"  required >
+							<input class="addUserInput" name="departmentName"id="department"  required >
 							
 							</div>
 							
-							
+						
 							<div><input class="addUserSubmit btnAdd" type="submit" name="submit" id="submit" value="add"/></div>
 							
 							

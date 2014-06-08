@@ -402,37 +402,36 @@ public class RoomController {
 	public @ResponseBody String add(HttpServletRequest request,
 			HttpSession session) {
 		String item = request.getParameter("item");
-		String last_Used_date = request.getParameter("last_Used_date");
 		String room_Status = request.getParameter("room_Status");
 		String department_ID = request.getParameter("department_ID");
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-DD");
 		String message = "";
 		Room room = new Room();
-		try {
-			if (item.length() > 0) {
-				room.setItem(item);
-			}
-			if (last_Used_date.length() > 0) {
-				Date date = new Date();
-				String now = format.format(date);
-				try {
-					room.setLast_Used_Date(format.parse(now));
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if (room_Status.length() > 0) {
-				room.setRoom_Status(C.DB.DEFAULT_UNFREE_ROOM);
-			}
-			if (department_ID.length() > 0) {
-				room.setDepartment_ID(Integer.parseInt(department_ID));
-			}
-			roomService.addRoom(room);
-			message = "add Room success";
-		} catch (Exception e) {
-			message = "add Room fail";
+
+		if (item != null) {
+			room.setItem(item);
 		}
+		Date date = new Date();
+		String now = format.format(date);
+		try {
+			room.setLast_Used_Date(format.parse(now));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (room_Status != null) {
+			room.setRoom_Status(Integer.parseInt(room_Status));
+		}
+		if (department_ID != null) {
+			room.setDepartment_ID(Integer.parseInt(department_ID));
+		}
+		// 判断当期的room是否已经存在
+		if (roomService.isRoomExit(room)) {
+			return "<script>alert('add Room fail,same room name in the same department!');history.back()</script>";
+		}
+		roomService.addRoom(room);
+		message = "<script>alert('add Room success');history.back()</script>";
 		return message;
 	}
 	// update room
@@ -448,29 +447,27 @@ public class RoomController {
 		String message = "";
 		Room room = roomService.getRoom(Integer.parseInt(room_ID.trim()));
 		try {
-			if (item.length() > 0) {
+			if (item != null) {
 				room.setItem(item);
 			}
 			if (last_Used_date.length() > 0) {
-				Date date = new Date();
-				String now = format.format(date);
 				try {
-					room.setLast_Used_Date(format.parse(now));
+					room.setLast_Used_Date(format.parse(last_Used_date));
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			if (room_Status.length() > 0) {
-				room.setRoom_Status(C.DB.DEFAULT_UNFREE_ROOM);
+			if (room_Status != null) {
+				room.setRoom_Status(Integer.parseInt(room_Status));
 			}
-			if (department_ID.length() > 0) {
+			if (department_ID != null) {
 				room.setDepartment_ID(Integer.parseInt(department_ID));
 			}
 			roomService.updateRoom(room);
-			message = "update Room success";
+			message = "<script>alert('update Room success');history.back()</script>";
 		} catch (Exception e) {
-			message = "update Room fail";
+			message = "<script>alert('update Room fail');history.back()</script>";
 		}
 		return message;
 	}

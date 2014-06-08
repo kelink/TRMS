@@ -103,4 +103,18 @@ public class RoomDaoImpl implements RoomDao {
 		return query.list();
 	}
 
+	@Override
+	public boolean isRoomExit(Room room) {
+		String hql = "from Room r where r.item=? and r.department_ID=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setString(0, room.getItem());
+		query.setInteger(0, room.getDepartment_ID());
+		int n = query.list().size();
+		if (n > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

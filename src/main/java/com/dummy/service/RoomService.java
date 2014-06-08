@@ -27,4 +27,6 @@ public interface RoomService {
 
 	public List<Room> getRoomByStatus(int status);
 
+	public boolean isRoomExit(Room room);
+
 }

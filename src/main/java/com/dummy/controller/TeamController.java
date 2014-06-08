@@ -237,7 +237,7 @@ public class TeamController {
 	}
 	// add team for department(给部门添加team)
 	@RequestMapping("/addTeamForDepartment")
-	public ModelAndView addTeamForDepartment(
+	public @ResponseBody String addTeamForDepartment(
 			@RequestParam(value = "department_ID", required = true) int department_ID,
 			@RequestParam(value = "teamName", required = true) String teamName,
 			HttpSession session) {
@@ -246,6 +246,6 @@ public class TeamController {
 		team.setTeamName(teamName);
 		team.setUser_ID(C.DB.DEFAULT_TEAM_NOUSER);
 		teamService.addTeam(team);
-		return null;
+		return "<script>alert('Add team success!');history.back();</script>";
 	}
 }

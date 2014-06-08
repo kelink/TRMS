@@ -48,7 +48,7 @@ function getDepartmentAllteam(department_ID,departmentName){
 			$("#teams").empty();
 			$("#teams").append("<option value=''></option>");
 			var html="";
-			html+="<table><tr><th>Team</th><th>LC</th><th>Operation</th></tr>";
+			html+="<table><tr><th>Team</th><th>Manager User</th><th>Operation</th></tr>";
 			for (position in json) {					
 					var team_ID=json[position].team_ID;
 					var department_ID=json[position].department_ID;
@@ -123,7 +123,6 @@ function deleteTeam(team_ID){
 						
 						
 						
-						
 			</div>
 			<div id="showPanel2">
 					<div class="panelHeader">
@@ -133,26 +132,25 @@ function deleteTeam(team_ID){
 							width="16px" height="16px" /></span>
 					</div>
 					<div id="panelContent2">
-						<form action="#" method="post" >
+						<form action="<%=request.getContextPath()%>/team/addTeamForDepartment" method="post" >
 						    <div class="addUserLine">
 							<div class="addUserLabel">Team name:</div>
-							<input class="addUserInput" name="team"id="team"  required >
+							<input class="addUserInput" name="teamName"id="team"  required >
 							
 							</div>
 							
 							<div class="addUserLine">
-							<div class="addUserLabel">Department name:</div>
-							<select class="addUserInput" name="department"id="department"  required >
+							<div class="addUserLabel">Department:</div>
+							<select class="addUserInput" name="department_ID"id="department"  required >
 							<option value=""></option>
+							<c:forEach items="${departments}" var="department">
+								<option value="${department.department_ID}">${department.departmentName}</option>
+							</c:forEach>
 							</select>
 							</div>
 							
-							<div class="addUserLine">
-							<div class="addUserLabel">LC:</div>
-							<select class="addUserInput" name="user"id="user"  required >
-							<option value=""></option>
-							</select>
-							</div>
+							<br/>
+						
 							
 							
 							<div><input class="addUserSubmit btnAdd" type="submit" name="submit" id="submit" value="add"/></div>

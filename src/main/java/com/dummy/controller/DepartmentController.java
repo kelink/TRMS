@@ -106,19 +106,21 @@ public class DepartmentController {
 
 	// add Department
 	@RequestMapping(value = "/addDepartment")
-	public ModelAndView addDepartment(HttpServletRequest request,
+	public @ResponseBody String addDepartment(HttpServletRequest request,
 			HttpSession session) {
-		String departmentName = request.getParameter("departmentName").trim();
+		String departmentName = request.getParameter("departmentName");
+		if (departmentName == null)
+			return "<script>alert(error');history.back();</script>";
 		if (departmentService.isDepartmentExit(departmentName)) {
-			return new ModelAndView("error");
+			return "<script>alert('department exist,please enter another name');history.back();</script>";
 		}
 		if ((departmentName != null) && (!departmentName.equals(""))) {
 			Department department = new Department();
 			department.setDepartmentName(departmentName);
 			departmentService.addDepartment(department);
-			return new ModelAndView("redirect:/department/index");
+			return "<script>alert('add department success');history.back();</script>";
 		} else {
-			return new ModelAndView("error");
+			return "<script>alert('error');history.back();</script>";
 		}
 	}
 	// get updateForm 等待部门管理

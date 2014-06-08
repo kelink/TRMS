@@ -81,4 +81,9 @@ public class RoomServiceImpl implements RoomService {
 	public List<Room> getRoomByStatus(int status) {
 		return roomDao.getRoomByStatus(status);
 	}
+
+	@Override
+	public boolean isRoomExit(Room room) {
+		return roomDao.isRoomExit(room);
+	}
 }

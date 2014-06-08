@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import com.dummy.common.C;
 import com.dummy.dao.TeamDao;
 import com.dummy.dao.UserDao;
 import com.dummy.domain.Team;
@@ -53,13 +54,19 @@ public class TeamServiceImpl implements TeamService {
 		List<Team> teams = teamDao.getTeamsByDepartment(department_ID);
 		ArrayList<JSONObject> result = new ArrayList<JSONObject>();
 		for (Team team : teams) {
+
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("team_ID", String.valueOf(team.getTeam_ID()));
 			map.put("department_ID", String.valueOf(team.getDepartment_ID()));
 			map.put("teamName", team.getTeamName());
 			map.put("user_ID", String.valueOf(team.getUser_ID()));
-			map.put("user_Account", userDao.getUser(team.getUser_ID())
-					.getAccount());
+			if (team.getUser_ID() == C.DB.DEFAULT_TEAM_NOUSER) {
+				map.put("user_Account", "");
+			} else {
+				map.put("user_Account", userDao.getUser(team.getUser_ID())
+						.getAccount());
+			}
+
 			JSONObject object = new JSONObject(map);
 			result.add(object);
 		}
