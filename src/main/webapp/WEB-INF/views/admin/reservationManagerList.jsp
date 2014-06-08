@@ -97,6 +97,20 @@ function AjaxGetData(index, size) {
                         html+=("<span class=\"listContent1 listContent listContentClass"+reservation_ID+"\">"+reservation_Num+"</span>");
                         html+=("<span class=\"listContent2 listContentClass"+reservation_ID+"\">"+purpose+"</span>");
                         html+=("<span class=\"listContent3 listContentClass"+reservation_ID+"\">"+Order_Date+"</span>");
+                        html+=("<span class=\"listContent4 listContentClass"+reservation_ID+"\">"+order_Team+"</span>");
+                        if(status==-1)
+                        {
+                        	html+=("<span class=\"listContent5 listContentClass"+reservation_ID+"\"><img class='statusIcon' width='10px' src='/trms/resources/images/ticketUnhandle.png'/></span>");
+                        }
+                        else if(status==0)
+                        {
+                        	html+=("<span class=\"listContent5 listContentClass"+reservation_ID+"\"><img class='statusIcon' width='10px' src='/trms/resources/images/ticketReject.png'/></span>");
+                        }
+                        else if(status==1)
+                        {
+                        	html+=("<span class=\"listContent5 listContentClass"+reservation_ID+"\"><img class='statusIcon' width='10px' src='/trms/resources/images/ticketApprove.png'/></span>");
+                        }	
+                        
                         html+=("</div>");
 
 				}
@@ -247,6 +261,8 @@ function checkApproveRejectBtn(args,reservation_ID){
     <span class="topBarItem topBarItem1">Reservation No.</span>
     <span class="topBarItem topBarItem2">Usage</span>
     <span class="topBarItem topBarItem3">Order Time</span>
+        <span class="topBarItem topBarItem4">Team</span>
+    <span class="topBarItem topBarItem5">Status</span>
     </div>
     <div id="listWrapper">   
     </div>

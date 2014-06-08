@@ -268,7 +268,7 @@ margin-left: 7px;
 .listContent2
 {
 	float:left;
-	width: 313px;
+	width: 186px;
 margin-left: 20px;
 white-space:nowrap; 
 text-overflow:ellipsis; 
@@ -281,6 +281,29 @@ height:15px;
 	float:left;
 	width: 72px;
 margin-left: 20px;
+white-space:nowrap; 
+text-overflow:ellipsis; 
+-o-text-overflow:ellipsis; 
+overflow: hidden; 
+height:15px;
+}
+.listContent4
+{
+	float:left;
+	width: 140px;
+margin-left: 20px;
+white-space:nowrap; 
+text-overflow:ellipsis; 
+-o-text-overflow:ellipsis; 
+overflow: hidden; 
+height:15px;
+}
+.listContent5
+{
+
+	float:left;
+	width: 23px;
+margin-left: 10px;
 white-space:nowrap; 
 text-overflow:ellipsis; 
 -o-text-overflow:ellipsis; 
@@ -324,7 +347,7 @@ left: 7px;
 }
 .listContent
 {
-    margin-left: 54px;
+    margin-left: 22px;
 }
 #listInfoWrapper1
 {
@@ -384,6 +407,13 @@ text-shadow: 0 1px 0 #fff;
 	border:1px solid #cccccc;
 	box-shadow: 0 3px 12px rgba(0,0,0,0.25);
 }
+.statusIcon
+{
+	width: 23px;
+position: absolute;
+z-index: 1000;
+top: 4px;
+}
 #showPanel
 {
 	position:absolute;
@@ -434,10 +464,32 @@ text-shadow: 0 1px 0 #fff;
 	padding-left:9px;
 
 }
+.topBarItem5
+{
+		float:left;
+	width: 62px;
+margin-left: 20px;
+white-space:nowrap; 
+text-overflow:ellipsis; 
+-o-text-overflow:ellipsis; 
+overflow: hidden; 
+height:15px;
+}
+.topBarItem4
+{
+		float:left;
+	width: 112px;
+margin-left: 20px;
+white-space:nowrap; 
+text-overflow:ellipsis; 
+-o-text-overflow:ellipsis; 
+overflow: hidden; 
+height:15px;
+}
 .topBarItem3
 {
 		float:left;
-	width: 150px;
+	width: 90px;
 margin-left: 20px;
 white-space:nowrap; 
 text-overflow:ellipsis; 
@@ -448,7 +500,7 @@ height:15px;
 .topBarItem2
 {
 		float:left;
-	width: 312px;
+	width: 180px;
 margin-left: 20px;
 white-space:nowrap; 
 text-overflow:ellipsis; 
@@ -459,7 +511,7 @@ height:15px;
 .topBarItem1
 {
 	margin-top:4px;
-	margin-left:38px;
+	margin-left:7px;
 		float:left;
 	width: 102px;
 	white-space:nowrap; 
