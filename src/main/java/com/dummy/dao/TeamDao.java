@@ -24,4 +24,6 @@ public interface TeamDao {
 	public List<Team> getTeamByUser(int user_ID);
 
 	public boolean isOKToAdd(Team team);
+
+	public boolean isTeamExist(Team team);
 }

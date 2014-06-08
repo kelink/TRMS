@@ -245,6 +245,9 @@ public class TeamController {
 		team.setDepartment_ID(department_ID);
 		team.setTeamName(teamName);
 		team.setUser_ID(C.DB.DEFAULT_TEAM_NOUSER);
+		if (teamService.isTeamExist(team)) {
+			return "<script>alert(' Team in this department is exist!');history.back();</script>";
+		}
 		teamService.addTeam(team);
 		return "<script>alert('Add team success!');history.back();</script>";
 	}

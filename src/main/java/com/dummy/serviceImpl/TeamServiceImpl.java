@@ -98,4 +98,9 @@ public class TeamServiceImpl implements TeamService {
 	public boolean isOKToAdd(Team team) {
 		return teamDao.isOKToAdd(team);
 	}
+
+	@Override
+	public boolean isTeamExist(Team team) {
+		return teamDao.isTeamExist(team);
+	}
 }

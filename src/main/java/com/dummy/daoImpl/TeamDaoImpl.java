@@ -112,4 +112,18 @@ public class TeamDaoImpl implements TeamDao {
 			return true;
 		}
 	}
+
+	@Override
+	public boolean isTeamExist(Team team) {
+		String hql = "from Team t where t.department_ID=? and t.teamName=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, team.getDepartment_ID());
+		query.setString(1, team.getTeamName());
+		int n = query.list().size();
+		if (n > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
