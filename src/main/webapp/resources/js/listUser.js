@@ -11,7 +11,18 @@ window.onload=function(){
 	$("#closeShow1").click(function(){
 		$("#showPanel1").css("display","none");
 	});
+	$("#closeShow2").click(function(){
+		$("#showPanel2").css("display","none");
+	});
 	
+	
+	$("#addTeamBtn").click(function(){
+		if($("#showPanel2").css("display")=="none")
+		$("#showPanel2").css("display","block");
+		else
+			$("#showPanel2").css("display","none");
+		$("#sortPanel2").css("display","none");
+	});
 	$("#sortByDepartmentBtn").click(function(){
 		if($("#showPanel").css("display")=="none")
 		$("#showPanel").css("display","block");
@@ -43,4 +54,95 @@ window.onload=function(){
 		$(this).css("background","white");
 		
 	});
+	
+
+		  $("#departments").change(function(){
+			 
+			var department_ID=$("#departments").val();
+			if(department_ID==""){
+				$("#users").empty();
+				$("#teams").empty(); 
+				return false;
+			}
+		    getDepartmentAllUser(department_ID);
+		    getDepartmentAllteam(department_ID);
+		  });
+	
+	
+	
+	
+	
 };
+
+
+
+
+function checkSubmit(team_ID){
+	//判断当前team 是否存在
+	var team_ID=$("#teams").val();
+	$.ajax({
+		url : "/trms/team/isTeamManaged",
+		type : "Get",
+		data : "team_ID=" + team_ID,
+		dataType : "html",
+		success : function(json) {
+			if(json!=""){
+				if(confirm(json))
+				{
+				   return true;	
+			    }else{
+				  return false;
+			  	}
+			}else{
+				return 
+			}
+			
+       },
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("error");
+			return false;
+		}
+	});	
+}
+function getDepartmentAllUser(department_ID){
+	$.ajax({
+			url : "/trms/team/getDepartmentAllCommontUser",
+			type : "Get",
+			data : "department_ID=" + department_ID,
+			dataType : "json",
+			success : function(json) {
+				if(json=="")
+					$("#users").empty();
+				for (position in json) {				
+						var user_ID=json[position].user_ID;
+						var department_ID=json[position].department_ID;
+						var account=json[position].account;
+						//添加元素，使得option可以选择
+						$("#users").append("<option value='"+user_ID+"'>"+account+"</option>");
+				}			
+           },
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("error");
+			}
+		});
+}
+function getDepartmentAllteam(department_ID){
+	$.ajax({
+		url : "/trms/team/getDepartmentAllteam",
+		type : "Get",
+		data : "department_ID=" + department_ID,
+		dataType : "json",
+		success : function(json) {
+			for (position in json) {				
+					var team_ID=json[position].team_ID;
+					var department_ID=json[position].department_ID;
+					var teamName=json[position].teamName;
+					//添加元素，使得option可以选择
+					$("#teams").append("<option value='"+team_ID+"'>"+teamName+"</option>");
+			}			
+       },
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("error");
+		}
+	});
+}

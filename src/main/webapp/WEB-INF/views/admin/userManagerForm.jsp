@@ -10,17 +10,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
+<link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/css/userManagementForm.css" rel="stylesheet">
 </head>
 <body>
-	Department:${department.departmentName }
-	Team List:<br/>
+	<div class="teamListTitle">Department</div>
+	<div id="departmentContent">${department.departmentName }</div>
+	<div class="teamListTitle">Team List</div>
+	<div id="teamListContent">
 	<form action="" method="post">
 	<c:forEach items="${teams}" var="team">
-		<li><input type="checkbox" name="checkbox" value="${team.team_ID }"/>${team.teamName }</li>
+		<div class="teamListItem"><input type="checkbox" name="checkbox" value="${team.team_ID }"/>${team.teamName }</div>
 	</c:forEach>
 	</form>
-		
-	<hr/>
+	</div>	
+	
 </body>
 </body>
 </html>
