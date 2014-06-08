@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dummy.common.C;
@@ -153,13 +154,32 @@ public class DepartmentController {
 
 	// delete Department
 	@RequestMapping(value = "/delete")
-	public ModelAndView deleteDepartment(
+	public @ResponseBody String deleteDepartment(
 			@RequestParam(value = "department_ID", required = true) int department_ID,
 			HttpSession session) {
 		if (departmentService.delDepartment(department_ID)) {
-			return new ModelAndView("redirect:/department/index");
+			return "delete success";
 		} else {
-			return new ModelAndView("error");
+			return "delete fail";
+		}
+	}
+
+	// 删除多个departmnet
+	@RequestMapping(value = "/multiDeleteDepartment")
+	public @ResponseBody String multiDeleteDepartment(
+			HttpServletRequest request, HttpSession session) {
+		String checkboxStr = request.getParameter("checkbox");
+		System.out.println("checkboxStr" + checkboxStr);
+		String message = "";
+		if (checkboxStr == null || checkboxStr.length() <= 0) {
+			return "batch to delete departmnet error ,can not get the rooms item!";
+		} else {
+			String[] departments = checkboxStr.split(",");
+			for (int i = 0; i < departments.length; i++) {
+				int department_ID = Integer.parseInt(departments[i]);
+				message = this.deleteDepartment(department_ID, session);
+			}
+			return message;
 		}
 	}
 

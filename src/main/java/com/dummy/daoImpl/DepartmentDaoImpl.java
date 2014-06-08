@@ -43,7 +43,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
 	@Override
 	public boolean delDepartment(int id) {
-		String hql = "delete Department d where d.deptment_ID= ?";
+		String hql = "delete Department d where d.department_ID= ?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, id);
 		return (query.executeUpdate() > 0);

@@ -25,6 +25,40 @@ function changeFrame(args){
 	}
 }
 
+function checkCheckbox(args){
+	//判断是否已经选择
+	var  box = new Array(); 
+	if($("input[name='checkbox']:checkbox:checked").length>0){	   
+	    $("input[name='checkbox']:checkbox:checked").each(function(){
+	    	box.push($(this).val()); 
+	    }); 
+	 }else{
+	    alert('You do not choose any items');
+	    return false;
+	}
+	alert(box);
+	//multi delete
+	if(args=="0"){
+		$.ajax({
+				url : "/trms/department/multiDeleteDepartment",
+				type : "get",
+				data:'checkbox='+box,  		
+				dataType : "html",
+				success : function(json) {
+					alert(json);
+					history.back();
+		        },
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					history.back();
+				}
+			});
+	}
+	return false;
+}
+
+
+
+
 </script>
 </head>
 <body>
@@ -32,7 +66,7 @@ function changeFrame(args){
  <h1>Department information</h2>
     <div id="searchBtnWrapper">
  	    <a id="addBtn">add Department</a>
- 	    <a id="deleteBtn">delete Department</a>
+ 	    <a id="deleteBtn" onClick="checkCheckbox(0)">delete Department</a>
  	</div>
  	<hr/> 
 <!--  	<ul>		 -->
@@ -75,7 +109,7 @@ function changeFrame(args){
 <%-- 			     </c:if>	 --%>
                  <tr>
                  <td>
-                     <input type="checkbox" name="checkbox"class="check">
+                     <input type="checkbox" name="checkbox"class="check" value="${department.getDepartment_ID()}">
                      ${department.getDepartmentName()}
 
 			     </td>
