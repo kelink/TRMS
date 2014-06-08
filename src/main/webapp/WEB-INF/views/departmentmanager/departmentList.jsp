@@ -32,7 +32,7 @@ function changeFrame(args){
  <h2>department information</h2>
  	<button>add Department</button>
  	<button>delete Department</button>
- 	<button onclick="display()">check Department</button><br/>
+ 	
  	<ul>		
  	
  		<c:forEach var="department" items="${departments}">
