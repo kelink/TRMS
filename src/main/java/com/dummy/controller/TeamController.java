@@ -96,7 +96,32 @@ public class TeamController {
 		System.out.println(teamList);
 		return teamList.toString();
 	}
+	// 批量移除teams(改team对应的userID变为0)
+	@RequestMapping("/batchRemoveTeam")
+	public @ResponseBody String batchRemoveTeam(HttpSession sesison,
+			HttpServletRequest request) {
+		String checkboxStr = request.getParameter("checkbox");
+		System.out.println("checkboxStr" + checkboxStr);
+		if (checkboxStr == null || checkboxStr.length() <= 0) {
+			return "batch to remove team error ,can not get the rooms item!";
+		} else {
+			String[] teams = checkboxStr.split(",");
+			boolean isOK = false;
 
+			for (int i = 0; i < teams.length; i++) {
+				int teams_ID = Integer.parseInt(teams[i]);
+				Team team = teamService.getTeam(teams_ID);
+				team.setUser_ID(C.DB.DEFAULT_TEAM_NOUSER);// 无人管理
+				isOK = teamService.updateTeam(team);
+			}
+			if (isOK) {
+				return "remove success!";
+			} else {
+				return "remove fail!";
+			}
+
+		}
+	}
 	// 同时支持添加多个 LC
 	@RequestMapping(value = {"/addUser"})
 	public ModelAndView addUser(

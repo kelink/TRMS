@@ -96,7 +96,6 @@ function sortByDepartment(department_ID){
 	//修改父窗口
 	$("#userDisplay",parent.document).attr("src","<%=request.getContextPath()%>/admin/listUser?department_ID="+department_ID);
 }
-
 </script>
 
 <title>User Page</title>
@@ -228,7 +227,7 @@ function sortByDepartment(department_ID){
 			<div id="userTeamListBtnWrapper">
 <%-- 				<a class="addUserTeamBtn" id="addTeamBtn" target="_blank"  href="<%=request.getContextPath()%>/team/getUserAddTeamForm" >Add</a> --%>
 				<a class="addUserTeamBtn" id="addTeamBtn" >Add</a>
-				<a class="removeUserBtn" onclick="removeBtn()" id="remove">Remove</a>
+				<a class="removeUserBtn" onclick="window.frames['display'].checkCheckbox(0)" id="remove">Remove</a>
 				<div id="showPanel2">
 					<div class="panelHeader">
 						<span class="headerText">Add team for LC</span> <span class="close"

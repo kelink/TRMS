@@ -11,7 +11,42 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="<%=request.getContextPath()%>/resources/images/hsbcicon.ico" type="image/x-icon"/>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet">
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
 <link href="<%=request.getContextPath()%>/resources/css/userManagementForm.css" rel="stylesheet">
+<script type="text/javascript">
+function checkCheckbox(args){
+	//判断是否已经选择
+	var  box = new Array(); 
+	if($("input[name='checkbox']:checkbox:checked").length>0){	   
+	    $("input[name='checkbox']:checkbox:checked").each(function(){
+	    	box.push($(this).val()); 
+	    }); 
+	 }else{
+	    alert('You do not choose any items');
+	    return false;
+	}
+	alert(box);
+	//multi delete
+	if(args=="0"){
+		$.ajax({
+				url : "<%=request.getContextPath()%>/team/batchRemoveTeam",
+				type : "get",
+				data:'checkbox='+box,  		
+				dataType : "html",
+				success : function(json) {
+					alert(json);
+					history.back();
+		        },
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					history.back();
+				}
+			});
+	}
+	return false;
+}
+
+
+</script>
 </head>
 <body>
 	<div class="teamListTitle">Department</div>
