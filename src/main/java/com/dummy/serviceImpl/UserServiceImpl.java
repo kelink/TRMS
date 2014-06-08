@@ -96,4 +96,9 @@ public class UserServiceImpl implements UserService {
 			int department_ID) {
 		return userDao.getDepartmentUserByRole(roleType, department_ID);
 	}
+
+	@Override
+	public boolean isUserExit(String account) {
+		return userDao.isUserExit(account);
+	}
 }

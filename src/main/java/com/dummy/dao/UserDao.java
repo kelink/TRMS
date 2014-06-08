@@ -24,4 +24,6 @@ public interface UserDao {
 	public List<DBUser> getUserByRole(int roleType);
 
 	public List<DBUser> getDepartmentUserByRole(int roleType, int department_ID);
+
+	public boolean isUserExit(String account);
 }

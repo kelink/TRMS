@@ -133,6 +133,8 @@ public class AdminController {
 			user.setTele(teleStr.trim());
 		}
 		if (accountStr.length() > 0) {
+			if (userService.isUserExit(accountStr.trim()))
+				return "the account exist,Please use other name";
 			user.setAccount(accountStr.trim());
 		}
 		if (accessStr.length() > 0) {

@@ -32,4 +32,6 @@ public interface UserService {
 			int department_ID);
 
 	public int getUserRole(int user_ID);
+
+	public boolean isUserExit(String account);
 }

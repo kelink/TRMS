@@ -54,4 +54,17 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		return false;
 	}
 
+	@Override
+	public boolean isDepartmentExit(String departmentName) {
+		String hql = "from Department d where d.departmentName=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setString(0, departmentName);
+		int n = query.list().size();
+		if (n > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

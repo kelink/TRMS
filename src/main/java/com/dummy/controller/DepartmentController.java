@@ -108,6 +108,9 @@ public class DepartmentController {
 	public ModelAndView addDepartment(HttpServletRequest request,
 			HttpSession session) {
 		String departmentName = request.getParameter("departmentName").trim();
+		if (departmentService.isDepartmentExit(departmentName)) {
+			return new ModelAndView("error");
+		}
 		if ((departmentName != null) && (!departmentName.equals(""))) {
 			Department department = new Department();
 			department.setDepartmentName(departmentName);

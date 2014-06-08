@@ -119,4 +119,17 @@ public class UserDaoImpl implements UserDao {
 		return query.list();
 	}
 
+	@Override
+	public boolean isUserExit(String account) {
+		String hql = "from DBUser where account=?";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setParameter(0, account);
+		int n = query.list().size();
+		if (n > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

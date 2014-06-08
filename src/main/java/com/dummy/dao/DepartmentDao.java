@@ -14,4 +14,7 @@ public interface DepartmentDao {
 	public boolean delDepartment(int id);
 
 	public boolean updateDepartment(Department department);
+
+	public boolean isDepartmentExit(String departmentName);
+
 }

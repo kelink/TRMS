@@ -40,4 +40,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return departmentDao.updateDepartment(department);
 	}
 
+	@Override
+	public boolean isDepartmentExit(String departmentName) {
+		return departmentDao.isDepartmentExit(departmentName);
+	}
 }
