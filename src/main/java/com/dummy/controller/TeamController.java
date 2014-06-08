@@ -145,16 +145,37 @@ public class TeamController {
 			@RequestParam(value = "users", required = true) int users,
 			@RequestParam(value = "teams", required = true) int teams,
 			HttpSession session) {
+		System.out.println("users" + users);
+		System.out.println("teams" + teams);;
+		// 判断是否存在
 		Team team = teamService.getTeam(teams);
+		team.setUser_ID(users);
+
+		if (teamService.updateTeam(team)) {
+			return "update success";
+		} else {
+			return "update fail";
+		}
+
+	}
+	// 判断当前team 是否已经被其他TA管理
+	@RequestMapping("/isTeamManaged")
+	public @ResponseBody String isTeamManaged(
+			@RequestParam(value = "team_ID", required = true) int team_ID) {
+		Team team = teamService.getTeam(team_ID);
+		System.out.println("team------------>" + team);
 		if (team == null) {
 			return "team does not exist";
+		}
+		int n = team.getUser_ID();
+		if (n == 0) {
+			return "";
 		} else {
-			team.setUser_ID(users);
-			if (teamService.updateTeam(team)) {
-				return "add team for user success";
-			} else {
-				return "fail";
-			}
+			// 管理者
+			String account = userService.getUser(team.getUser_ID())
+					.getAccount();
+			return "This Team manage by" + account
+					+ ",if you want to update,continue!Otherwise please cancel";
 		}
 	}
 }

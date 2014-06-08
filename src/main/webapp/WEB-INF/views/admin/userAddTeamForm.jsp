@@ -30,6 +30,34 @@ $(document).ready(function(){
 	  });
 	});
 
+
+function checkSubmit(team_ID){
+	//判断当前team 是否存在
+	var team_ID=$("#teams").val();
+	$.ajax({
+		url : "<%=request.getContextPath()%>/team/isTeamManaged",
+		type : "Get",
+		data : "team_ID=" + team_ID,
+		dataType : "html",
+		success : function(json) {
+			if(json!=""){
+				if(confirm(json))
+				{
+				   return true;	
+			    }else{
+				  return false;
+			  	}
+			}else{
+				return 
+			}
+			
+         },
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("error");
+			return false;
+		}
+	});	
+}
 function getDepartmentAllUser(department_ID){
  	$.ajax({
 			url : "<%=request.getContextPath()%>/team/getDepartmentAllCommontUser",
@@ -139,10 +167,10 @@ function getDepartmentAllteam(department_ID){
 			 <div class="roomListBody">
 			 	<h1>LC用户添加管理界面</h1>
 				<h3>传入的是部门信息，当点击部门的时候,显示出选择team的框，会ajax调用获取team信息，当点击选中team后会ajax 查新当前的黑名单情况，接口已经定义</h3>				
-				<form action="<%=request.getContextPath()%>/team/addTeamForUser" method="post">
+				<form action="<%=request.getContextPath()%>/team/addTeamForUser" method="post" onSubmit="return checkSubmit()">
 					
 					departments
-					<select name="departments" id="departments">
+					<select name="departments" id="departments" required>
 						<option value=""></option>
 						<c:forEach items="${departments}" var="department">
 							<option value="${department.department_ID}">${department.departmentName}</option>
@@ -150,12 +178,12 @@ function getDepartmentAllteam(department_ID){
 					</select>
 					<br/>
 					users
-					<select name="users" id="users">
+					<select name="users" id="users" required>
 						<option value=""></option>
 					</select>
 					<br/>
 					teams
-					<select name="teams" id="teams">
+					<select name="teams" id="teams" required>
 						<option value=""></option>
 					</select>
 					<br/>

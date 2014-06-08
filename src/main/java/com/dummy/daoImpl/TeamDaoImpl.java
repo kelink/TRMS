@@ -52,8 +52,8 @@ public class TeamDaoImpl implements TeamDao {
 
 	@Override
 	public boolean updateTeam(Team team) {
-		String hql = "update team set " + "department_ID=?," + "teamName=?,"
-				+ "user_ID=?," + " where team_ID=?";
+		String hql = "update Team set " + "department_ID=?," + "teamName=?,"
+				+ "user_ID=?" + " where team_ID=?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, team.getDepartment_ID());
 		query.setString(1, team.getTeamName());
