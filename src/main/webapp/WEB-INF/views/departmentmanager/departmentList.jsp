@@ -29,20 +29,22 @@ function changeFrame(args){
 </head>
 <body>
 <div class="roomListBody"> 
- <h2>department information</h2>
- 	<button>add Department</button>
- 	<button>delete Department</button>
+ <h1>Department information</h2>
+    <div id="searchBtnWrapper">
+ 	    <a id="addBtn">add Department</a>
+ 	    <a id="deleteBtn">delete Department</a>
+ 	</div>
+ 	<hr/> 
+<!--  	<ul>		 -->
  	
- 	<ul>		
- 	
- 		<c:forEach var="department" items="${departments}">
+<%--  		<c:forEach var="department" items="${departments}"> --%>
  		
-		<li>
+<!-- 		<li> -->
 		<!-- 当点击选择部门时候才显示部门的信息 -->
-			<input type='radio' name='department' value=${department.department_ID }>${department.departmentName }<br>			
- 			<a href="#" onClick="changeFrame(0)">User numbers:(${userList[department.department_ID].size()})</a><br/>
-			<a href="#"  onClick="changeFrame(1)">Team numbers(${department.getTeamSet().size() })</a><br/>
-			<a href="#"  onClick="changeFrame(2)">Room numbers(${department.getRoomSet().size() })</a><br/>
+<%-- 			<input type='radio' name='department' value=${department.department_ID }>${department.departmentName }<br>			 --%>
+<%--  			<a href="#" onClick="changeFrame(0)">User numbers:(${userList[department.department_ID].size()})</a><br/> --%>
+<%-- 			<a href="#"  onClick="changeFrame(1)">Team numbers(${department.getTeamSet().size() })</a><br/> --%>
+<%-- 			<a href="#"  onClick="changeFrame(2)">Room numbers(${department.getRoomSet().size() })</a><br/> --%>
  			 <!--  
 			<c:if test="${department.departmentName}">
 				<p id="defaultInfo">No user information to show</p> 
@@ -55,15 +57,50 @@ function changeFrame(args){
  					${room } 
  			</c:forEach>
  			 -->
- 			<hr/>	
- 		</li>								
+<!--  			<hr/>	 -->
+<!--  		</li>								 -->
  								
-		</c:forEach> 
+<%-- 		</c:forEach>  --%>
  		
- 	</ul>
+<!--  	</ul> -->
 	 
-			
-		      <div id="displayArea"></div>
+			<div id="displayWrapper">
+		      <div id="displayArea">
+		      <table>
+		      <tr><th><input type="checkbox" class="check" onclick="check_all(this,'checkbox')">Department Name</th><th>Own Team</th><th>Own Room</th><th>Operation</th></tr>
+		      <c:forEach var="department" items="${departments}">
+		         
+<%-- 			     <c:if test="${department.departmentName}"> --%>
+<!-- 				     <p id="defaultInfo">No user information to show</p>  -->
+<%-- 			     </c:if>	 --%>
+                 <tr>
+                 <td>
+                     <input type="checkbox" name="checkbox"class="check">
+                     ${department.getDepartmentName()}
+
+			     </td>
+			     <td>
+			         <a class="operation checkTeam" id="${department.getDepartment_ID()}"href="<%=request.getContextPath()%>/team/index">Check</a>
+			     </td>
+			     <td>
+			         <a class="operation checkRoom" id="${department.getDepartment_ID()}"href="<%=request.getContextPath()%>/room/roommanager">Check</a>
+			     </td>
+			     <td>
+			         <a class="operation1">Delete</a>
+			     </td>
+			     </tr>
+<%-- 			     <c:forEach var="team" items="${department.getTeamSet()}">  --%>
+<%--  						${team }  --%>
+<%--  			     </c:forEach>  --%>
+<!--  			            department room: <br/>  -->
+<%-- 			     <c:forEach var="room" items="${department.getRoomSet()}">  --%>
+<%--  					${room }  --%>
+<%--  			     </c:forEach>		       --%>
+                 
+		      </c:forEach> 
+		      </table>
+		      </div>
+		      </div>
 </div>
 </body>
 </html>

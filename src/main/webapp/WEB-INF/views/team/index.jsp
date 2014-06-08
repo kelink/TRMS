@@ -27,7 +27,15 @@ $(document).ready(function(){
 			return false;
 		}	
 	    getDepartmentAllteam(department_ID,departmentName);
+	    $("#noInfo").css("display","none");
 	  });
+	  if(window.parent.name!="")
+	  {
+	
+		  choose();
+	  }
+	
+	  
 	});
 
 function getDepartmentAllteam(department_ID,departmentName){
@@ -97,7 +105,11 @@ function back() {
 			</div>
 					<hr/>
 					<!-- 显示信息区域 -->
-					teams Information	
+				
+					<!-- 				显示空信息 -->
+				<div id="noInfo">
+					    <p>No information to show.</p>
+				</div>
 				<div id="displayWrapper">
 				    <div id="display"></div> 
 				</div>

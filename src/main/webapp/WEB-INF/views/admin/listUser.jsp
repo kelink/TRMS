@@ -72,6 +72,7 @@ function deleteCommonUser(args){
 <body>
 
 	<div id="sortByDepartmentBtnWrapper">
+	    <div id="lcManagementTitle">LC Management</div>
 		<div class="sortByDepartmentBtn" id="sortByDepartmentBtn">Sort:Department</div>
 		<div id="showPanel">
 			<div class="panelHeader">

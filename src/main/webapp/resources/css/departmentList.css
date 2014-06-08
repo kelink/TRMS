@@ -1,3 +1,139 @@
+h1
+{
+	rgb(105, 102, 102);
+}
+#searchBtnWrapper
+{
+	height:30px;
+}
+#displayWrapper
+{
+	max-height:476px;
+	overflow:auto;
+}
+table
+{
+	width:100%;
+	border: 1px solid #cccccc;
+box-shadow: 0 0 12px rgb(236, 236, 236);
+
+}
+.check
+{
+	float:left;
+}
+td
+{
+	text-align: center;
+height: 40px;
+font-size: 15px;
+color: rgb(83, 83, 83);
+}
+th
+{
+	width:20%;
+	height:40px;
+}
+.operation
+{
+	font-size: 16px;
+color: rgb(34, 123, 192);
+text-decoration: none;
+cursor:pointer;
+}
+.operation1
+{
+	font-size: 16px;
+color: rgb(255, 94, 94);
+text-decoration: none;
+cursor:pointer;
+}
+#deleteBtn
+{
+	margin:0px;
+	text-align: center;
+	
+margin-left: 15px;
+float: left;
+text-decoration: none;
+line-height: 23px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 8px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(255,48, 48);
+background-image: -moz-linear-gradient(rgb(252,110,110),rgb(255,48,48));
+background-image: -webkit-linear-gradient(rgb(252, 110, 110),rgb(255,48,48));
+background-image: linear-gradient(rgb(252, 110, 110), rgb(255, 48, 48));
+background-repeat: repeat-x;
+border-radius: 3px;
+border: 1px solid rgb(211, 55, 55);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+}
+#addBtn
+{
+	
+	margin:0px;
+
+	float: left;
+line-height: 23px;
+box-shadow: none;
+position: relative;
+display: inline-block;
+padding: 0px 10px;
+font-size: 13px;
+font-weight: bold;
+white-space: nowrap;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: rgb(94, 151, 189);
+background-image: -moz-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: -webkit-linear-gradient(rgb(155, 207, 255),rgb(94, 151, 189));
+background-image: linear-gradient(rgb(129, 181, 230), rgb(50, 111, 153));
+background-repeat: repeat-x;
+border-radius: 3px;
+border: 1px solid rgb(78, 141, 182);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #userSearchDiv
 {
     overflow:hidden;
