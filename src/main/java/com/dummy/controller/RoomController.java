@@ -508,6 +508,8 @@ public class RoomController {
 		Room room = roomService.getRoom(room_ID);
 		if (room.getRoom_Status() == C.DB.DEFAULT_UNFREE_ROOM) {
 			room.setRoom_Status(C.DB.DEFAULT_FREE_ROOM);
+		}else {
+			room.setRoom_Status(C.DB.DEFAULT_UNFREE_ROOM);
 		}
 		if (roomService.updateRoom(room)) {
 			return "changer status success";

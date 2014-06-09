@@ -337,10 +337,15 @@ function deleteReservation(reservation_ID){
 function checkCheckbox(args){
 	//判断是否已经选择
 	var  box = new Array(); 
-	if($("input[name='checkbox']:checkbox:checked").length>0){	   
-	    $("input[name='checkbox']:checkbox:checked").each(function(){
-	    	box.push($(this).val()); 
-	    }); 
+	if($("input[name='checkbox']:checkbox:checked").length>0){	
+		if(confirm("Are you sure to delete?"))
+		{
+			 $("input[name='checkbox']:checkbox:checked").each(function(){
+			    	box.push($(this).val()); 
+			    }); 
+		}
+		else{return false;}
+	   
 	 }else{
 	    alert('You do not choose an item');
 	    return false;
