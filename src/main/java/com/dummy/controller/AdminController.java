@@ -198,9 +198,9 @@ public class AdminController {
 			user.setDept_ID(Integer.parseInt(dept_IDStr.trim()));
 		}
 		if (userService.updateUser(user)) {
-			return "<script>alert('update Success');history.back();</script>";
+			return "<script>alert('update Success');window.parent.location.reload();;</script>";
 		} else {
-			return "<script>alert('fail operation');history.back();</script>";
+			return "<script>alert('fail operation');window.parent.location.reload();;</script>";
 		}
 	}
 }
