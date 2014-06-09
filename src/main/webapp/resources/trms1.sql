@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: trms1
 Target Host: localhost
 Target Database: trms1
-Date: 2014/6/8 11:02:50
+Date: 2014/6/9 12:29:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -82,7 +82,7 @@ CREATE TABLE `room` (
   PRIMARY KEY (`room_ID`),
   KEY `FK_io02x9xii8dr7ly1jv4ru57o2` (`department_ID`),
   CONSTRAINT `FK_io02x9xii8dr7ly1jv4ru57o2` FOREIGN KEY (`department_ID`) REFERENCES `department` (`department_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for team
@@ -95,44 +95,48 @@ CREATE TABLE `team` (
   PRIMARY KEY (`team_ID`),
   KEY `FK_igkdd6e6ghkvr2uwduwlrg5hb` (`department_ID`),
   CONSTRAINT `FK_igkdd6e6ghkvr2uwduwlrg5hb` FOREIGN KEY (`department_ID`) REFERENCES `department` (`department_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `blacklist` VALUES ('2', 'll', '2');
-INSERT INTO `blacklist` VALUES ('10', '', '1');
-INSERT INTO `dbuser` VALUES ('1', '18854689457', '1', 'luo', '1', '123', '1');
-INSERT INTO `dbuser` VALUES ('2', '18846565465', '2', 'luo2', '0', '1234', '2');
-INSERT INTO `dbuser` VALUES ('3', '18845261414', '2', '1030041097@qq.com', '0', '1234', '3');
-INSERT INTO `dbuser` VALUES ('4', '18845662658', '1', '2804438948@qq.com', '0', '123', '4');
-INSERT INTO `dbuser` VALUES ('5', '18745', '1', 'luo@163.com', '1', '1234', '1');
-INSERT INTO `department` VALUES ('1', 'Training');
-INSERT INTO `department` VALUES ('2', 'Financial');
-INSERT INTO `department` VALUES ('3', 'HR');
-INSERT INTO `department` VALUES ('4', 'GLTC');
-INSERT INTO `reservation` VALUES ('10', '1400663561529-9f1dcd61-f547-4530-a288-6fd8eaa65eae', '2014-05-21', '2014-05-24', 'sdsdasda@qq.com', '18745468546', '2014-05-21', 'test', '1', '0', '1', '2', '2');
-INSERT INTO `reservation` VALUES ('16', 'e38ee11b-836b-4b32-aad0-0204bd21bb8a', '2014-05-28', '2014-06-01', '10300410697@qq.com', '18846589565', '2014-05-26', 'test1', '1', '0', '4', '0', '2');
-INSERT INTO `reservation` VALUES ('17', '68642c18-f354-4751-ad9b-ce353ffbc07a', '2014-05-28', '2014-05-28', '454sdadd5@163.com', '18754568585', '2014-05-26', 'Test', '2', '0', '2', '0', '2');
-INSERT INTO `reservation` VALUES ('18', '7ac769cd-d4c9-4c60-9668-231c57050d34', '2014-05-31', '2014-05-31', '1030041097@qq.com', '18845453665', '2014-05-29', 'test', '1', '0', '2', '2', '2');
-INSERT INTO `reservation` VALUES ('19', 'e518d2e8-ddb5-47aa-927b-54fdd768e680', '2014-05-31', '2014-05-31', '1030041097@qq.com', '18745454454', '2014-05-29', 'Test', '4', '0', '2', '2', '2');
-INSERT INTO `reservation` VALUES ('43', '8493c78f-8f32-4d67-b47a-1f434324ccf1', '2014-06-10', '2014-06-10', '1030041097@qq.com', '188254685984', '2014-06-07', 'test', '5', '1', '4', '3', '4');
-INSERT INTO `reservation` VALUES ('48', '0e615861-2a2d-46b9-8098-43d990cae08d', '2014-06-11', '2014-06-11', '1030041097@qq.com', '123', '2014-06-08', '123', '6', '-1', '4', '0', '4');
+INSERT INTO `dbuser` VALUES ('1', '18854689457', '1', '1030041097@qq.com', '1', '1234', '1');
+INSERT INTO `dbuser` VALUES ('2', '18846565465', '2', 'aaronlin88@126.com', '0', '1234', '2');
+INSERT INTO `dbuser` VALUES ('3', '18845261414', '1', '510025953@qq.com', '1', '1234', '3');
+INSERT INTO `dbuser` VALUES ('4', '18845662658', '2', '2804438948@qq.com', '0', '1234', '4');
+INSERT INTO `department` VALUES ('1', 'GBM');
+INSERT INTO `department` VALUES ('2', 'Global CMB & TSC');
+INSERT INTO `department` VALUES ('3', 'Global Finance IT');
+INSERT INTO `department` VALUES ('4', 'Global HR IT');
 INSERT INTO `role` VALUES ('1', 'ROLE_LC');
 INSERT INTO `role` VALUES ('2', 'ROLE_TA');
-INSERT INTO `room` VALUES ('1', 'TKH OT2 22.5', '2014-05-14', '1', '2');
+INSERT INTO `room` VALUES ('1', 'TKH OT2 22.5', '2014-05-14', '1', '1');
 INSERT INTO `room` VALUES ('2', 'TKH OT2 24.5', '2014-05-06', '1', '1');
-INSERT INTO `room` VALUES ('3', 'TKH OT2 25.5', '2014-05-06', '1', '2');
+INSERT INTO `room` VALUES ('3', 'TKH OT2 25.5', '2014-05-06', '1', '1');
 INSERT INTO `room` VALUES ('4', 'TKH OT2 26.5', '2014-05-07', '1', '1');
-INSERT INTO `room` VALUES ('5', 'TKH OT2 27.5', '2014-05-06', '1', '3');
-INSERT INTO `room` VALUES ('6', 'TKH OT1 22.5', '2014-05-05', '0', '3');
-INSERT INTO `room` VALUES ('7', 'TKH OT2 24.5', '2014-05-14', '0', '4');
-INSERT INTO `room` VALUES ('8', 'TKH OT2 27.5', '2014-05-15', '0', '4');
-INSERT INTO `team` VALUES ('1', '1', 'Training Team1', '1');
-INSERT INTO `team` VALUES ('2', '1', 'Training Team2', '1');
-INSERT INTO `team` VALUES ('3', '3', 'HR Team1', '2');
-INSERT INTO `team` VALUES ('4', '3', 'HR Team2', '4');
-INSERT INTO `team` VALUES ('6', '2', 'Financial Team1', '3');
-INSERT INTO `team` VALUES ('8', '2', 'Financial Team2', '1');
-INSERT INTO `team` VALUES ('9', '4', 'GLTC Team1', '1');
-INSERT INTO `team` VALUES ('10', '4', 'GLTC Team2', '2');
+INSERT INTO `room` VALUES ('5', 'TKH OT2 27.5', '2014-05-06', '1', '2');
+INSERT INTO `room` VALUES ('6', 'TKH OT1 22.5', '2014-05-05', '0', '2');
+INSERT INTO `room` VALUES ('7', 'TKH OT2 24.5', '2014-05-14', '0', '2');
+INSERT INTO `room` VALUES ('8', 'TKH OT2 28', '2014-05-15', '0', '2');
+INSERT INTO `room` VALUES ('9', 'TKH OT2 27.5', '2014-06-10', '0', '3');
+INSERT INTO `room` VALUES ('10', 'TKH OT2 28.5', '2014-06-10', '0', '3');
+INSERT INTO `room` VALUES ('11', 'TKH OT2 29', '2014-06-03', '0', '3');
+INSERT INTO `room` VALUES ('12', 'TKH OT1 28.5', '2014-06-10', '1', '3');
+INSERT INTO `room` VALUES ('13', 'TKH OT1 22', '2014-06-10', '0', '4');
+INSERT INTO `room` VALUES ('14', 'TKH OT1 23', '2014-06-03', '0', '4');
+INSERT INTO `room` VALUES ('15', 'TKH OT1 22.5', '2014-06-07', '0', '4');
+INSERT INTO `room` VALUES ('16', 'TKH OT1 22', '2014-06-06', '1', '4');
+INSERT INTO `team` VALUES ('1', '1', 'GLT_GLB_GBM_FO_FINANCE', '0');
+INSERT INTO `team` VALUES ('2', '1', 'GLT_GLB_GBM_FO_FIXED_INCOME', '0');
+INSERT INTO `team` VALUES ('3', '3', 'GLT_GLB_GBM_FO_CROSS_ASSET_IT', '0');
+INSERT INTO `team` VALUES ('4', '3', 'GLT_GLB_GBM_FO_ETD&OTC', '0');
+INSERT INTO `team` VALUES ('6', '2', 'GLT_GLB_GBM_FO_FXMM', '0');
+INSERT INTO `team` VALUES ('8', '2', 'GLT_GLB_GBM_FO_GFIX', '0');
+INSERT INTO `team` VALUES ('9', '4', 'GLT_GLB_GBM_GLOBAL_PRD_SUP', '0');
+INSERT INTO `team` VALUES ('10', '4', 'GLTC Team2', '0');
+INSERT INTO `team` VALUES ('12', '4', 'GLT_Global CMB&TSC_GTRF', '0');
+INSERT INTO `team` VALUES ('13', '3', 'GLT_Global CMB&TSC_GTRF APAC', '0');
+INSERT INTO `team` VALUES ('14', '3', 'GLT_GLOBAL FUNCTION_INT SYS', '0');
+INSERT INTO `team` VALUES ('15', '4', 'GFIT-Asia Pacific Finance IT', '0');
+INSERT INTO `team` VALUES ('16', '3', 'GFIT-Finance Accounting', '0');
+INSERT INTO `team` VALUES ('17', '4', 'Global HR IT - SWD', '0');
