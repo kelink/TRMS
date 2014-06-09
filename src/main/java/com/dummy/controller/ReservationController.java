@@ -50,7 +50,12 @@ public class ReservationController {
 
 	@RequestMapping(value = {"/reservationPage"})
 	public ModelAndView reservationPage() {
-		return new ModelAndView("reservation/reservationPage");
+		List<Room> rooms = roomService.getAllRoom();
+		List<Team> teams = teamService.getAllTeam();
+		ModelMap map = new ModelMap();
+		map.addAttribute("rooms", rooms);
+		map.addAttribute("teams", teams);
+		return new ModelAndView("reservation/reservationPage", map);
 	}
 
 	// reservation list
@@ -336,11 +341,12 @@ public class ReservationController {
 			reservation.setHandle_by(currentUser.getUser_ID());
 			reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
 			if (reservationService.approveOrReject(reservation)) {
-				message = "<script>alert('approve success,email have sent!');</script>";
+
 				// send email
 				EmailUtil.sendEmailToApplicant(reservation.getEmail(), null,
 						null);
-
+				message = "<script>alert('approve success,email have sent!');</script>";
+				return message;
 			} else {
 				message = "<script>alert('approve fail');</script>";
 			}

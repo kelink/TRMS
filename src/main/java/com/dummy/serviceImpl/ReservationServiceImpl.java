@@ -230,7 +230,7 @@ public class ReservationServiceImpl implements ReservationService {
 					reservation.getApplied_Start_DateByString(),
 					reservation.getApplied_End_DateByString(),
 					reservation.getRoom_ID())) {
-				message = "Reservation applied time is not in current month,please reject it!";
+				message = "apply time error ,please reject it!";
 				return message;
 			}
 			// 判断当前reservation状态

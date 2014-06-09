@@ -83,7 +83,7 @@
 			 
 			     <div id="checkLeftPanel">
 			         <div id="search1" class="checkMethod selected">
-			             Search by ID
+			             Search by Number
 			         </div>
 			         <div id="search2" class="checkMethod">
 			             Fuzzy search
@@ -134,8 +134,8 @@
 			             <select name="status"id="status" class="preciseSearch preciseInput">
 			                  <option></option>
 			                  <option value="1">accept</option>
-			                  <option value="-1">refuse</option>
-		 	                  <option value="0">unhandle</option>
+			                  <option value="0">refuse</option>
+		 	                  <option value="-1">unhandle</option>
 		                 </select>
 		                 <div class="preciseSearch preciseLabel">Order Room</div>
 		                 <select name="room_ID" id="orderRoom"class="preciseSearch preciseInput">
