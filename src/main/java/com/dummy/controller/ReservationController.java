@@ -336,13 +336,13 @@ public class ReservationController {
 			reservation.setHandle_by(currentUser.getUser_ID());
 			reservation.setStatus(C.DB.DEFAULT_RESERVATION_ACCEPT);
 			if (reservationService.approveOrReject(reservation)) {
-				message = "approve success,email have sent!";
+				message = "<script>alert('approve success,email have sent!');</script>";
 				// send email
 				EmailUtil.sendEmailToApplicant(reservation.getEmail(), null,
 						null);
 
 			} else {
-				message = "approve fail";
+				message = "<script>alert('approve fail');</script>";
 			}
 
 		}

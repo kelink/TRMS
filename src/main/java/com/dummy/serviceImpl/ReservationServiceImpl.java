@@ -245,7 +245,7 @@ public class ReservationServiceImpl implements ReservationService {
 			}
 			// 判断当前room是否可以对外申请
 			Room room = roomDao.getRoom(reservation.getRoom_ID());
-			if (room.getRoom_Status() == C.DB.DEFAULT_FREE_ROOM) {
+			if (room.getRoom_Status() == C.DB.DEFAULT_UNFREE_ROOM) {
 				message = "Room can't book now";
 				return message;
 			}
