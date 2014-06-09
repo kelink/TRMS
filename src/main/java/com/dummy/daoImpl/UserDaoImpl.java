@@ -58,7 +58,7 @@ public class UserDaoImpl implements UserDao {
 	public boolean updateUser(DBUser user) {
 
 		String hql = "update DBUser set " + "Tele=?," + "access=?,"
-				+ "account=?," + "gender=?," + "password=?," + "dept_ID=?,"
+				+ "account=?," + "gender=?," + "password=?," + "dept_ID=?"
 				+ " where user_ID=?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setString(0, user.getTele());

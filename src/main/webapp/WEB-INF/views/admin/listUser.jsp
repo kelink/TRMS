@@ -96,6 +96,23 @@ function sortByDepartment(department_ID){
 	//修改父窗口
 	$("#userDisplay",parent.document).attr("src","<%=request.getContextPath()%>/admin/listUser?department_ID="+department_ID);
 }
+function edit(account,access,gender,tele,password,dept_ID,user_ID)
+{ 
+	$("#account").attr("value",account);
+	$("#access").attr("value",access);
+	$("#gender").attr("value",gender);
+	$("#tele").attr("value",tele);
+	$("#password").attr("value",password);
+	$("#dept_ID").attr("value",dept_ID);	
+	$("#user_ID").attr("value",user_ID);
+	
+	if($("#showPanel6").css("display")=="none")
+		$("#showPanel6").css("display","block");
+	else
+		$("#showPanel6").css("display","none");
+	$("#sortPanel6").css("display","none");	
+}
+
 </script>
 
 <title>User Page</title>
@@ -165,15 +182,15 @@ function sortByDepartment(department_ID){
 							width="16px" height="16px" /></span>
 					</div>
 					<div id="panelContent6">
-						<form action="#" method="post" >
+						<form action="<%=request.getContextPath()%>/admin/updateUser" method="post" >
 						    <div class="addUserLine">
 							    <div class="addUserLabel">User LN:</div>
-							    <input class="addUserInput" name="account" id="1"  required >
+							    <input class="addUserInput" name="account" id="account"  required >
 							</div>
 
 						    <div class="addUserLine">
 							    <div class="addUserLabel">Role:</div>
-							    <select class="addUserInput" name="access" id="2"  required >
+							    <select class="addUserInput" name="access" id="access"  required >
 							    <option value=""></option>
 							    <option value="1">LC</option>
 							    <option value="2">TA</option>
@@ -182,7 +199,7 @@ function sortByDepartment(department_ID){
 							
 							<div class="addUserLine">
 							    <div class="addUserLabel">Gender:</div>
-							    <select class="addUserInput" name="gender" id="3" required >
+							    <select class="addUserInput" name="gender" id="gender" required >
 							    <option value=""></option>
 							    <option value="1">male</option>
 							    <option value="0">female</option>
@@ -191,17 +208,17 @@ function sortByDepartment(department_ID){
 							
 							<div class="addUserLine">
 							    <div class="addUserLabel">Telephone:</div>
-							    <input class="addUserInput" name="tele" id="4" required >
+							    <input class="addUserInput" name="tele" id="tele" required >
 							</div>	
 							
 							<div class="addUserLine">
 							    <div class="addUserLabel">Password:</div>
-							    <input class="addUserInput" name="password" id="5" required >
+							    <input class="addUserInput" name="password" id="password" required >
 							</div>	
 							
 							<div class="addUserLine">
 							    <div class="addUserLabel">Department:</div>
-							    <select class="addUserInput" name="department" id="6" required >
+							    <select class="addUserInput" name="dept_ID" id="dept_ID" required >
 							    <option value=""></option>
 							    <c:forEach items="${departments}" var="department">
 										<option value="${department.department_ID }">${department.departmentName }</option>
@@ -209,6 +226,7 @@ function sortByDepartment(department_ID){
 							    
 							    </select>
 							</div>	
+							<input type="hidden" name="user_ID" id="user_ID"/>
 							<div><input class="addUserSubmit btnAdd1" type="submit" name="submit" id="submit" value="Update"/></div>
 							
 							

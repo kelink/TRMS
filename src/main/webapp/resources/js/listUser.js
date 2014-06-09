@@ -78,30 +78,9 @@ window.onload=function(){
 };
 
 
-function edit(account,access,gender,tele,password,dept_ID,user_ID)
-{ 
-//	for(var i=1;i<=6;i++)
-//	{  
-//		if(i==2||i==3||i==6)
-//		{
-//			
-//		}
-//		else{
-//			document.getElementById(i).value=
-//		}
-//		
-//	}
-	
-	
-	if($("#showPanel6").css("display")=="none")
-		$("#showPanel6").css("display","block");
-		else
-			$("#showPanel6").css("display","none");
-		$("#sortPanel6").css("display","none");	
-}
 
 function checkSubmit(team_ID){
-	//判断当前team 是否存在
+	// 判断当前team 是否存在
 	var team_ID=$("#teams").val();
 	$.ajax({
 		url : "/trms/team/isTeamManaged",
@@ -142,7 +121,7 @@ function getDepartmentAllUser(department_ID){
 						var user_ID=json[position].user_ID;
 						var department_ID=json[position].department_ID;
 						var account=json[position].account;
-						//添加元素，使得option可以选择
+						// 添加元素，使得option可以选择
 						html+="<option value=\""+user_ID+"\">"+account+"</option>"
 				}		
 				$("#users").html(html);
@@ -164,7 +143,7 @@ function getDepartmentAllteam(department_ID){
 					var team_ID=json[position].team_ID;
 					var department_ID=json[position].department_ID;
 					var teamName=json[position].teamName;
-					//添加元素，使得option可以选择
+					// 添加元素，使得option可以选择
 					html+="<option value=\""+team_ID+"\">"+teamName+"</option>";
 			}			
 			$("#teams").html(html);

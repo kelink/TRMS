@@ -168,6 +168,7 @@ public class AdminController {
 		}
 	}
 	// 更新用户
+	@RequestMapping(value = "/updateUser")
 	public @ResponseBody String updateUser(HttpSession session,
 			HttpServletRequest request,
 			@RequestParam(value = "user_ID", required = true) int user_ID) {
@@ -177,29 +178,29 @@ public class AdminController {
 		String genderStr = request.getParameter("gender");
 		String passwordStr = request.getParameter("password");
 		String dept_IDStr = request.getParameter("dept_ID");
-		DBUser user = new DBUser();
-		if (teleStr.length() > 0) {
+		DBUser user = userService.getUser(user_ID);
+		if (teleStr != null) {
 			user.setTele(teleStr.trim());
 		}
-		if (accountStr.length() > 0) {
+		if (accountStr != null) {
 			user.setAccount(accountStr.trim());
 		}
-		if (accessStr.length() > 0) {
+		if (accessStr != null) {
 			user.setAccess(Integer.parseInt(accessStr.trim()));
 		}
-		if (genderStr.length() > 0) {
+		if (genderStr != null) {
 			user.setGender(Integer.parseInt(genderStr.trim()));
 		}
-		if (passwordStr.length() > 0) {
+		if (passwordStr != null) {
 			user.setPassword(passwordStr.trim());
 		}
-		if (dept_IDStr.length() > 0) {
+		if (dept_IDStr != null) {
 			user.setDept_ID(Integer.parseInt(dept_IDStr.trim()));
 		}
 		if (userService.updateUser(user)) {
-			return "update Success";
+			return "<script>alert('update Success');history.back();</script>";
 		} else {
-			return "fail operation";
+			return "<script>alert('fail operation');history.back();</script>";
 		}
 	}
 }
