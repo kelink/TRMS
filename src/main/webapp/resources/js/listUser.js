@@ -80,17 +80,43 @@ window.onload=function(){
 
 function edit(account,access,gender,tele,password,dept_ID,user_ID)
 { 
-//	for(var i=1;i<=6;i++)
-//	{  
-//		if(i==2||i==3||i==6)
-//		{
-//			
-//		}
-//		else{
-//			document.getElementById(i).value=
-//		}
-//		
-//	}
+	for(var i=1;i<=6;i++)
+	{  
+         if(i==1){document.getElementById("1").value=account;}
+         else if(i==2){
+        	 var a=document.getElementById("2");
+        	 for(k=0;k<a.options.length;k++)
+        		 {
+        		     if(a.options[k].value==access)
+        		    	 {
+        		    	     a.options[k].selected=true;
+        		    	 }
+        		 }
+         }
+         else if(i==3){
+        	 var a=document.getElementById("3");
+        	 for(k=0;k<a.options.length;k++)
+        		 {
+        		     if(a.options[k].value==gender)
+        		    	 {
+        		    	     a.options[k].selected=true;
+        		    	 }
+        		 }
+         }
+         else if(i==4){document.getElementById("4").value=tele;}
+         else if(i==5){document.getElementById("5").value=password;}
+         else if(i==6){
+        	 var a=document.getElementById("6");
+        	 for(k=0;k<a.options.length;k++)
+        		 {
+        		     if(a.options[k].value==dept_ID)
+        		    	 {
+        		    	     a.options[k].selected=true;
+        		    	 }
+        		 }
+         }
+		
+	}
 	
 	
 	if($("#showPanel6").css("display")=="none")
