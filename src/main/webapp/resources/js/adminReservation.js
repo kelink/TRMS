@@ -250,6 +250,7 @@ window.onload = function() {
 		$("#search2").attr("class", "checkMethod");
 		$("#search4").attr("class", "checkMethod");
 
+		$(".btnSearch").css("display", "block");
 		$("#searchDivWrapper").animate({
 			height : "188px"
 		}, {
@@ -294,7 +295,7 @@ window.onload = function() {
 		$("#search1").attr("class", "checkMethod");
 		$("#search2").attr("class", "checkMethod");
 		$("#search3").attr("class", "checkMethod");
-
+		$(".btnSearch").css("display", "block");
 		$("#searchDivWrapper").animate({
 			height : "390px"
 		}, {

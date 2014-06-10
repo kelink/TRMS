@@ -208,6 +208,7 @@ function bookInfo(a) {
 }
 function setDate(year, month, day) {
 	$("#email,#tele,#purpose", window.parent.document).val("");
+	   $("#checkIconWrapper1",window.parent.document).html("");
 	// var
 	// url=path+'/room/getForm?room_ID='+roomId+'&year='+year+'&month='+month+'&day='+day;
 	// window.location.href=url;//禁用这个url，直接复制给floatTicketDiv浮出来

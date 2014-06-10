@@ -115,6 +115,7 @@
 			 var team_ID = $("#teams").val();
 			
 			 if (team_ID == "") {
+				 $("#checkIconWrapper1").html("");
 			 return false;
 			 }			
 			 isInBlackList(team_ID);		
@@ -136,6 +137,7 @@
 					
 					$("#checkIconWrapper1").html("<img width=\"24px\" src=\"<%=request.getContextPath()%>/resources/images/cross.png\" />");
 					alert(json);
+					$("#empty").attr("selected","selected");
 				}
 				else{
 					$("#checkIconWrapper1").html("<img width=\"24px\" src=\"<%=request.getContextPath()%>/resources/images/tick.gif\" />");
@@ -244,7 +246,7 @@
 	                         <option id="roomOption" ></option>
                          </select>
                          <div class="bookFormLabel">Team</div>
-                         <select class="bookFormInput" name="team_ID" id="teams">
+                         <select class="bookFormInput" name="team_ID" id="teams" required>
     	                     <option value=""></option>
 	                 
                          </select><span class="star">*</span><span id="checkIconWrapper1"></span>
