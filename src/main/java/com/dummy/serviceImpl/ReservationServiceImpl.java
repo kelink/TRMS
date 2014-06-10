@@ -256,6 +256,48 @@ public class ReservationServiceImpl implements ReservationService {
 		}
 	}
 
+	// book room check
+	@Override
+	public String checkBookRoom(Reservation reservation) {
+		// 检验当前表单时候是否可以approve
+		String message = null;
+		try {
+			// 判断申请时间是否已经过去
+			if (reservation.getApplied_Start_Date().getTime() < System
+					.currentTimeMillis()) {
+				message = "Reservation time is passed,please chose another time";
+				return message;
+			}
+			// 判断是否是本月订单
+			// if (condition) {
+			//
+			// }
+			// 判断当前申请时间段内是否有预定，而且approve的
+			if (!reservationDao.isBetween(
+					reservation.getApplied_Start_DateByString(),
+					reservation.getApplied_End_DateByString(),
+					reservation.getRoom_ID())) {
+				message = "apply time error ,please change it!";
+				return message;
+			}
+			// 判断是否在黑名单
+			if (blackListDao.getBlackList(reservation.getTeam_ID()) != null) {
+				message = "Reservation team is in the blacklist,can't book room for this team";
+				return message;
+			}
+			// 判断当前room是否可以对外申请
+			Room room = roomDao.getRoom(reservation.getRoom_ID());
+			if (room.getRoom_Status() == C.DB.DEFAULT_UNFREE_ROOM) {
+				message = "Room is unfree,can't book now";
+				return message;
+			}
+			return null;
+		} catch (Exception e) {
+			message = "Exception";
+			return message;
+		}
+	}
+
 	// check whether the reservation can approve
 	@Override
 	public String checkReject(Reservation reservation) {

@@ -41,4 +41,6 @@ public interface ReservationService {
 	public String checkTime(String beginTime, String endTime, int room_ID);
 
 	public List<ReservationDetial> getConflictReservationDetials(int room_ID);
+
+	public String checkBookRoom(Reservation reservation);
 }

@@ -22,9 +22,8 @@
 <div id="bookRoomFeedback">
 <span id="successTitle">Success!</span>
 <br/>
-Your application has been sent to the TA.
-<br/>
-Please wait for the TA to handle your reservation!
+${message }
+
 </div>
 <a class="btnReturn"id="btnReturn" href="<%=request.getContextPath()%>/room/headInfo">Return</a>
 </body>

@@ -22,7 +22,7 @@
 <div id="bookRoomFeedback">
 <span id="successTitle">Book room success!</span>
 <br/>
-Now you can use this room at the time you applied.
+${message }
 <br/>
 
 </div>

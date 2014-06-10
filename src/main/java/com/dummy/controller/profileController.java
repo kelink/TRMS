@@ -69,9 +69,9 @@ public class profileController {
 			@ModelAttribute("currentUser") DBUser currentUser) {
 		String oldpassword = request.getParameter("oldPassword").trim();
 		if (oldpassword.equals(currentUser.getPassword())) {
-			return "old password auth";
+			return "1";
 		} else {
-			return "old password fail to auth";
+			return "0";
 		}
 	}
 

@@ -28,12 +28,18 @@
 		 			data : "oldPassword="+oldPassword,
 		 			dataType : "html",
 		 			success : function(html) {
-						alert(html);
+						if(html==1){
+							alert("password auth success");
+							$("#form").attr("onSubmit",'return false');
+						}
+						if(html==0){
+							alert("password auth fail");
+							$("#form").attr("onSubmit",'');
+						}
+						
 		 	       },
 		 			error : function(XMLHttpRequest, textStatus, errorThrown) {
-		 				alert(XMLHttpRequest);
-		 				alert(textStatus);
-		 				alert(errorThrown);
+		 				alert("error");
 		 			}
 		 		});
  }
@@ -141,19 +147,19 @@
                              </div>
                              
                              <div>
-                                 <form action="<%=request.getContextPath()%>/profile/changepwd" method="post">
+                                 <form action="<%=request.getContextPath()%>/profile/changepwd" method="post" id="form">
                                      <div class="chPwdLabel">
                                          Old password
                                      </div>
-                                     <input class="chPwdInput" type="password" name="oldPassword" id="oldPassword" onBlur="checkOldPassword()" >
+                                     <input class="chPwdInput" required type="password" name="oldPassword" id="oldPassword" onBlur="checkOldPassword()" >
                                      <div class="chPwdLabel">
                                          New password
                                      </div>
-                                     <input class="chPwdInput"type="password" name="newPassword" id="newPassword">
+                                     <input class="chPwdInput"required type="password" name="newPassword" id="newPassword">
                                      <div class="chPwdLabel">
                                          Confirm new password
                                      </div type="password">
-                                     <input class="chPwdInput"type="password" name="newPassword2" id="newPassword2" onBlur="checkTwicePassword()">
+                                     <input class="chPwdInput"required type="password" name="newPassword2" id="newPassword2" onBlur="checkTwicePassword()">
                                      
                                      <div>
                                          <input id="chPwdSubmit" type="submit" value="Update"class="btnLogout">

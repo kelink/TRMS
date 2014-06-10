@@ -280,10 +280,18 @@ public class RoomController {
 		// toAddressList.add(dbUser.getAccount());
 		// MailSender.sendEmailToAllAdmin(toAddressList, null, null);
 		// }
-
-		// 4.add reservation
-		reservationService.addReservation(reservation);
-		return new ModelAndView("room/successTA", map);
+		// 检查订单信息正确与否
+		String message = reservationService.checkBookRoom(reservation);
+		System.out.println("message------>" + message);
+		if (message == null) {
+			// 4.add reservation
+			message = "Now you can use this room at the time you applied.";
+			reservationService.addReservation(reservation);
+			return new ModelAndView("room/successTA", map);
+		} else {
+			map.addAttribute("message", message);
+			return new ModelAndView("room/successTA", map);
+		}
 
 	}
 
@@ -340,15 +348,23 @@ public class RoomController {
 
 		System.out.println(reservation);
 		map.addAttribute("reservation_Num", reservation_Num);
-		// 3.Send Email to all admin
-		List<DBUser> admins = userService.getUserByRole(C.DB.DEFAULT_ROLE_TA);
-		for (DBUser dbUser : admins) {
-			EmailUtil.sendEmailToAllAdmin(dbUser.getAccount(), null, null);
+		// 检查订单信息正确与否
+		String message = reservationService.checkBookRoom(reservation);
+		if (message == null) {
+			// 3.add reservation
+			reservationService.addReservation(reservation);
+			// 4.Send Email to all admin
+			List<DBUser> admins = userService
+					.getUserByRole(C.DB.DEFAULT_ROLE_TA);
+			for (DBUser dbUser : admins) {
+				EmailUtil.sendEmailToAllAdmin(dbUser.getAccount(), null, null);
+			}
+			message = "Your application has been sent to the TA.<br/>Please wait for the TA to handle your reservation!";
+			return new ModelAndView("room/success", map);
+		} else {
+			map.addAttribute("message", message);
+			return new ModelAndView("room/success", map);
 		}
-		// 4.add reservation
-		reservationService.addReservation(reservation);
-		return new ModelAndView("room/success", map);
-
 	}
 
 	// 判断是否属于黑名单
@@ -508,7 +524,7 @@ public class RoomController {
 		Room room = roomService.getRoom(room_ID);
 		if (room.getRoom_Status() == C.DB.DEFAULT_UNFREE_ROOM) {
 			room.setRoom_Status(C.DB.DEFAULT_FREE_ROOM);
-		}else {
+		} else {
 			room.setRoom_Status(C.DB.DEFAULT_UNFREE_ROOM);
 		}
 		if (roomService.updateRoom(room)) {

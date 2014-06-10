@@ -107,8 +107,12 @@ html+=("<div class=\"reservationInfo\"id=\"reservationInfo"+reservation_ID+"\">"
 						
 
                          html+="<div id='modifyWrapper'>";
-
- 					    html+="<div id=\"warning\">The ticket can only be modify when it is at the status of untreated!</div>";
+                         if(reservation_status==-1)
+                         {
+                        	 html+="<div id=\"warning\">The ticket is unhandled,You can update it!</div>";
+                         }else{
+                        	 html+="<div id=\"warning\">The ticket can only be modify when it is at the status of untreated!</div>";
+                         }
 
                          html+="<form action=\"<%=request.getContextPath()%>/reservation/update\" method=\"post\" onsubmit=\"return updateCheck("+status+")\">"; 
  	                    html+="<div id=\"reservationTableWrapper\">";
@@ -130,7 +134,7 @@ html+="</tr>";
 					    html+="Room：";
 					    html+="</td>";
 					    html+="<td>";	
-					    html+="<input class=\"readonlyInfo\" type=\"text\" name=\"room_item\" readOnly=\"true\" value=\""+room_item+"\"/>";
+					    html+="<input class=\"readonlyInfo\" type=\"text\"  name=\"room_item\" readOnly=\"true\" value=\""+room_item+"\"/>";
 
 html+="</td>";
 html+="</tr>";	
@@ -140,7 +144,7 @@ html+="<td>";
                         html+="</td>";
                         html+="<td>";	
 
-                        html+="<input type=\"date\" name=\"Applied_Start_Date\" value=\""+reservation_start_Daty+"\"/>";
+                        html+="<input type=\"date\" required name=\"Applied_Start_Date\" value=\""+reservation_start_Daty+"\"/>";
 
 html+="</td>";
 html+="</tr>";	
@@ -150,7 +154,7 @@ html+="<td>";
                         html+="</td>";
                         html+="<td>";	
 
-                        html+="<input type=\"date\" name=\"Applied_End_Date\"value=\""+reservation_end_Daty+"\"/>";
+                        html+="<input type=\"date\" required name=\"Applied_End_Date\"value=\""+reservation_end_Daty+"\"/>";
 
 	html+="</td>";
 	html+="</tr>";	
@@ -159,7 +163,7 @@ html+="<td>";
 	                    html+="User LN:";
 
 html+="<td>";	
-                        html+="<input type=\"text\" name=\"email\" value=\""+email+"\"/>";
+                        html+="<input type=\"text\" required name=\"email\" value=\""+email+"\"/>";
 
 	html+="</td>";
 	html+="</tr>";	
@@ -169,7 +173,7 @@ html+="<td>";
 	                    html+="</td>";
 	                    html+="<td>";	
 
-                        html+="<input type=\"text\" name=\"tele\" value=\""+tele+"\"/>";
+                        html+="<input type=\"text\" required name=\"tele\" value=\""+tele+"\"/>";
                         html+="</td>";
 
 	html+="</tr>";	
@@ -179,7 +183,7 @@ html+="<td>";
 	                    html+="</td>";
 	                    html+="<td>";	
 
-                        html+="<input type=\"text\" name=\"purpose\"value=\""+purpose+"\"/>";
+                        html+="<input type=\"text\"required  name=\"purpose\"value=\""+purpose+"\"/>";
                         html+="</td>";
     html+="</tr>";					
 
