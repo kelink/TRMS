@@ -31,7 +31,7 @@ function isEmpty(){
 		//document.getElementById("iframe"+id).setAttribute("src","/trms/room/calendarTA?room_ID="+id);
 	    a.setAttribute("class","");
 	    b.setAttribute("class","");
-	    $("#email,#tele,#purpose").val("");
+
 	    scrollTo(0,0);
 		
 		

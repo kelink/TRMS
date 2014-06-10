@@ -114,6 +114,7 @@
 		$("#teams").change(function() {
 			 var team_ID = $("#teams").val();
 			 if (team_ID == "") {
+				 $("#checkIconWrapper1").html("");
 			 return false;
 			 }			
 			 isInBlackList(team_ID);
