@@ -77,13 +77,22 @@ public class profileController {
 
 	// Edit your password
 	@RequestMapping(value = "/changepwd")
-	public ModelAndView changepwd(HttpServletRequest request,
+	public @ResponseBody String changepwd(HttpServletRequest request,
 			@ModelAttribute("currentUser") DBUser currentUser) {
+		String oldpassword = request.getParameter("oldPassword").trim();
 		String newPassword = request.getParameter("newPassword").trim();
-		currentUser.setPassword(newPassword);
-		userService.updateUser(currentUser);
+		if (oldpassword.equals(currentUser.getPassword())) {
+			currentUser.setPassword(newPassword);
+			userService.updateUser(currentUser);
+			return "Change password success!";
+
+		} else {
+			return "Invalid old password!";
+		}
+		
+		
 		// 使得当前会话失效，重新登录(后面新增)
-		return new ModelAndView("redirect:/login/index");
+		//return new ModelAndView("redirect:/login/index");
 	}
 
 	// edit user information

@@ -19,32 +19,75 @@
   <script src="<%=request.getContextPath()%>/resources/js/modifyProfile.js" type="text/javascript"></script>
  <script src="<%=request.getContextPath()%>/resources/js/jquery.js" type="text/javascript"></script>
  <script type="text/javascript">
+ 
+ var oldPassword=false;
+ var twicePassword=false;
+ function checkSubmit()
+ {
+	 //阻止空表单提交
+	 if($("#oldPassword").val==""||$("#newPassword").val()==0||$("#newPassword2").val()==0)
+	 {
+		 alert("Please fill in the blank field!");
+		 return false;
+	 }
+	 //阻止两次新密码不同提交
+	 var newPassword=$("#newPassword").attr("value");
+	 var newPassword2=$("#newPassword2").attr("value");
+	 if(newPassword!=newPassword2){
+		 alert("New password doesn't match the confirmation!");
+		 twicePassword=false;
+		 return false;
+	 }
+	 else{
+		 twicePassword=true;
+	 }
+
+	 
+	 
+	 
+	 
+	 //阻止旧密码错误提交
+	 var oldPassword=$("#oldPassword").attr("value");
+	 	$.ajax({
+	 			url : "<%=request.getContextPath()%>/profile/changepwd",
+	 			type : "Get",
+	 			data : "oldPassword="+oldPassword+"&newPassword="+newPassword,
+	 			dataType : "html",
+	 			success : function(html) {
+	 	
+                   alert(html);
+                   if(html=="Change password success!")
+                   {
+                	   $("#chPwdPanel").css("display","none");
+                   }
+					
+	 	       },
+	 			error : function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Please submit again!");
+	 			}
+	 		});
+
+
+      return false;
+
+
+}
+
+
+	 
+	
+
+	
+ 
+ 
  //判断旧密码
  function checkOldPassword(){
-	 var oldPassword=$("#oldPassword").attr("value");
-		 	$.ajax({
-		 			url : "<%=request.getContextPath()%>/profile/checkOldPwd",
-		 			type : "Get",
-		 			data : "oldPassword="+oldPassword,
-		 			dataType : "html",
-		 			success : function(html) {
-						alert(html);
-		 	       },
-		 			error : function(XMLHttpRequest, textStatus, errorThrown) {
-		 				alert(XMLHttpRequest);
-		 				alert(textStatus);
-		 				alert(errorThrown);
-		 			}
-		 		});
+
  }
 
  //判断重复密码
  function checkTwicePassword(){
-	 var newPassword=$("#newPassword").attr("value");
-	 var newPassword2=$("#newPassword2").attr("value");
-	 if(newPassword!=newPassword2){
-		 alert("twice password you enter not match");
-	 }
+
  }
  
  //
@@ -137,7 +180,7 @@
                              </div>
                              
                              <div>
-                                 <form action="<%=request.getContextPath()%>/profile/changepwd" method="post">
+                                 <form action="#" method="post" onsubmit="return checkSubmit();">
                                      <div class="chPwdLabel">
                                          Old password
                                      </div>
