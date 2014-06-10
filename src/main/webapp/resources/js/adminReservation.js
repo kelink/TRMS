@@ -1,9 +1,9 @@
 window.onload = function() {
 
 	// ////////////////////////////////////////////
-    $("#backBtn").click(function(){
-    	window.top.location.reload();
-    });
+	$("#backBtn").click(function() {
+		window.top.location.reload();
+	});
 	$("#logoutBtn").mouseover(function() {
 		$(this).attr("class", "btnLogout btnHover");
 
@@ -87,47 +87,45 @@ window.onload = function() {
 		$(this).css("background-color", "");
 	});
 
-	$("#search0").click(
-			function() {
-				$("#search0").unbind("mouseover mouseout");
-				$("#search0").css("background-color", "");
-				$("#search1").bind("mouseover", function() {
-					$(this).css("background-color", "rgb(238, 238, 238)");
-				});
-				$("#search1").bind("mouseout", function() {
-					$(this).css("background-color", "");
-				});
-				$("#search2").bind("mouseover", function() {
-					$(this).css("background-color", "rgb(238, 238, 238)");
-				});
-				$("#search2").bind("mouseout", function() {
-					$(this).css("background-color", "");
-				});
-				$("#search3").bind("mouseover", function() {
-					$(this).css("background-color", "rgb(238, 238, 238)");
-				});
-				$("#search3").bind("mouseout", function() {
-					$(this).css("background-color", "");
-				});
-				$("#search4").bind("mouseover", function() {
-					$(this).css("background-color", "rgb(238, 238, 238)");
-				});
-				$("#search4").bind("mouseout", function() {
-					$(this).css("background-color", "");
-				});
+	$("#search0").click(function() {
+		$("#search0").unbind("mouseover mouseout");
+		$("#search0").css("background-color", "");
+		$("#search1").bind("mouseover", function() {
+			$(this).css("background-color", "rgb(238, 238, 238)");
+		});
+		$("#search1").bind("mouseout", function() {
+			$(this).css("background-color", "");
+		});
+		$("#search2").bind("mouseover", function() {
+			$(this).css("background-color", "rgb(238, 238, 238)");
+		});
+		$("#search2").bind("mouseout", function() {
+			$(this).css("background-color", "");
+		});
+		$("#search3").bind("mouseover", function() {
+			$(this).css("background-color", "rgb(238, 238, 238)");
+		});
+		$("#search3").bind("mouseout", function() {
+			$(this).css("background-color", "");
+		});
+		$("#search4").bind("mouseover", function() {
+			$(this).css("background-color", "rgb(238, 238, 238)");
+		});
+		$("#search4").bind("mouseout", function() {
+			$(this).css("background-color", "");
+		});
 
-				$(this).attr("class", "checkMethod selected");
-				$("#search1").attr("class", "checkMethod");
-				$("#search2").attr("class", "checkMethod");
-				$("#search3").attr("class", "checkMethod");
-				$("#search4").attr("class", "checkMethod");
-				$("#searchDivWrapper").css("display", "none");
-				$(".btnSearch").css("display", "none");
+		$(this).attr("class", "checkMethod selected");
+		$("#search1").attr("class", "checkMethod");
+		$("#search2").attr("class", "checkMethod");
+		$("#search3").attr("class", "checkMethod");
+		$("#search4").attr("class", "checkMethod");
+		$("#searchDivWrapper").css("display", "none");
+		$(".btnSearch").css("display", "none");
 
-				$("#checkRightInner").attr("src",
-						"/trms/reservation/list?status=-1");
-		
-			});
+		$("#checkRightInner").attr("src", "/trms/reservation/list?status=-1");
+
+	});
 
 	$("#search1").click(function() {
 		$("#search1").unbind("mouseover mouseout");
@@ -320,15 +318,17 @@ window.onload = function() {
 	}
 
 };
-function closeSort()
-{
-	$("#sortPanel").css("display","none");
+function closeSort() {
+	$("#sortPanel").css("display", "none");
 }
-function closeShow()
-{
-	$("#showPanel").css("display","none");
+function closeShow() {
+	$("#showPanel").css("display", "none");
 }
 function logout(url) {
 	$("#logoutBtn").attr("class", "btnLogout btnSelected");
 	window.location.href = url;
+}
+function checkMyReservation(user_ID) {
+	$("#checkRightInner").attr("src",
+			"/trms/reservation/list?user_ID=" + user_ID);
 }

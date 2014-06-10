@@ -205,7 +205,7 @@
             
                           </div>
                           <div id="btnFunctionWrapper">
-                              <button id="backBtn"  class="btnFunction">Back</button>
+                              <button id="mineBtn"  class="btnFunction" onClick="checkMyReservation(${currentUser.user_ID})">Mine</button>
                               <div id="verticalLine"></div>
 
                               <div class="btnFunction" id="approveBtn" onClick="window.frames['checkRightInner'].checkCheckbox(0)">Approve</div>

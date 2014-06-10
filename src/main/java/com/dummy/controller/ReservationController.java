@@ -69,6 +69,7 @@ public class ReservationController {
 
 		// get the query
 		String advOption = ReservationUtil.generateQueryOption(request);
+		String isMine = request.getParameter("user_ID");
 		DBUser currentUser = (DBUser) session.getAttribute("currentUser");
 		String orderby = request.getParameter("orderby");
 		String reservationOrderBy = null;
@@ -81,12 +82,25 @@ public class ReservationController {
 		}
 		String optionStr = null;
 		if (session.getAttribute("currentRole").equals("ROLE_TA")) {
-			// 默认搜索的是全部
-			if (advOption.length() > 0) {
-				optionStr = "where " + advOption + reservationOrderBy;
+			// 搜索当前用户
+			if (isMine != null) {
+				if (advOption.length() > 0) {
+					optionStr = "where DBUser.user_ID="
+							+ currentUser.getUser_ID() + " and " + advOption
+							+ reservationOrderBy;
+				} else {
+					optionStr = "where DBUser.user_ID="
+							+ currentUser.getUser_ID() + reservationOrderBy;
+				}
 			} else {
-				optionStr = "" + reservationOrderBy;
+				// 默认搜索的是全部
+				if (advOption.length() > 0) {
+					optionStr = "where " + advOption + reservationOrderBy;
+				} else {
+					optionStr = "" + reservationOrderBy;
+				}
 			}
+
 		}
 		if (session.getAttribute("currentRole").equals("ROLE_LC")) {
 			// 默认搜索的是当前用户
@@ -130,7 +144,6 @@ public class ReservationController {
 		}
 
 	}
-
 	// AJAX get the ReservationDetial
 	@RequestMapping("/listPageReservation")
 	public @ResponseBody List<ReservationDetial> listPageReservation(
@@ -280,7 +293,7 @@ public class ReservationController {
 	 * for administrator
 	 **********************************************************/
 	@RequestMapping(value = "/reservationManagerIndex")
-	public ModelAndView reservationManagerIndex() {
+	public ModelAndView reservationManagerIndex(HttpSession session) {
 
 		List<ReservationDetial> reservationDetials = reservationService
 				.getReservationByOption("where reservation.status="
@@ -289,6 +302,7 @@ public class ReservationController {
 		ModelMap map = new ModelMap();
 		map.addAttribute("recordCount", recordCount);
 		map.addAttribute("reservationDetials", reservationDetials);
+		map.addAttribute("currentUser", session.getAttribute("currentUser"));
 		return new ModelAndView("admin/reservationManagerIndex", map);
 	}
 
