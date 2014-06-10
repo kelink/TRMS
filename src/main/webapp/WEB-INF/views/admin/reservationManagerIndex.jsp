@@ -209,10 +209,8 @@
                               <div id="verticalLine"></div>
 
                               <div class="btnFunction" id="approveBtn" onClick="window.frames['checkRightInner'].checkCheckbox(0)">Approve</div>
-                              <div class="btnFunction" id="rejectBtn" onClick="window.frames['checkRightInner'].checkCheckbox(1)">Reject</div>
-                             <!-- 
-                              <div class="btnFunction" id="conflictBtn">Conflict</div>
-                               -->
+                              <div class="btnFunction" id="rejectBtn" onClick="window.frames['checkRightInner'].checkCheckbox(1)">Reject</div>                            
+                              <div class="btnFunction" id="deleteBtn" onClick="window.frames['checkRightInner'].checkCheckbox(2)">delete</div> 
                               <div class="btnFunction" id="showBtn">Show<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
                               <div class="btnFunction" id="sortBtn">Sort<img class="downImg" src="<%=request.getContextPath()%>/resources/images/down.png"/></div>
                           </div>   

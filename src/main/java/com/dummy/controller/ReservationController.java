@@ -263,6 +263,7 @@ public class ReservationController {
 			HttpSession session) {
 		String reservationStr = request.getParameter("checkbox");
 		String message = null;
+		System.out.println("reservationStr------>" + reservationStr);
 		if (reservationStr == null || reservationStr.length() <= 0) {
 			return "batch to delete reservation error ,can not get the reservation";
 		} else {

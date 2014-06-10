@@ -20,7 +20,9 @@
 <img width="95px;" src="<%=request.getContextPath()%>/resources/images/success.png"/>
 </div>
 <div id="bookRoomFeedback">
+<!-- 
 <span id="successTitle">Book room success!</span>
+-->
 <br/>
 ${message }
 <br/>

@@ -313,6 +313,20 @@ function checkCheckbox(args){
 			
 			}
 		});
+	//delete
+	if(args=='2')
+		$.ajax({
+			url : "<%=request.getContextPath()%>/reservation/multiDeleteByID",
+			type : "get",
+			data:'checkbox='+box, 
+			dataType : "html",
+			success : function(json) {
+				alert(json);
+	        },
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+			
+			}
+		});
 	window.parent.location.reload();
 	return false;
 	
