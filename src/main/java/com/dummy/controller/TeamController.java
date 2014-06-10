@@ -226,7 +226,7 @@ public class TeamController {
 			team.setDepartment_ID(Integer.parseInt(department_ID));
 		}
 		if (user_ID != null) {
-			team.setDepartment_ID(Integer.parseInt(user_ID));
+			team.setUser_ID(Integer.parseInt(user_ID));
 		}
 		if (teamService.updateTeam(team)) {
 			return "update success";

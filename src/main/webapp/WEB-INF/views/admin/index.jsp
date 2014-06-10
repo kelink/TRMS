@@ -221,27 +221,27 @@
                      <form class="bookForm" action="<%=request.getContextPath()%>/room/bookRoomTA" method="post" name="bookForm" onsubmit="return isEmpty()" target="bookRoomResult">
 
                          <div class="bookFormLabel">Free Room</div>
-                         <select class="bookFormInput" name="room_ID"> 
+                         <select class="bookFormInput" name="room_ID" required> 
 	                         <option id="roomOption" ></option>
                          </select>
                          <div class="bookFormLabel">Team</div>
-                         <select class="bookFormInput" name="team_ID" id="teams">
+                         <select class="bookFormInput" name="team_ID" id="teams" required>
     	                     <option value=""></option>
 	                 
                          </select><span class="star">*</span><span id="checkIconWrapper1"></span>
     
                          <div class="bookFormLabel">Start_Time</div>
-                         <input class="bookFormInput"  type="date" name="begin_time"  id="begin_time"/><span class="star">*</span>
+                         <input class="bookFormInput"  type="date" required name="begin_time"  id="begin_time"/><span class="star">*</span>
                          <div class="bookFormLabel">End_Time</div>
-                         <input class="bookFormInput" type="date" name="end_time"  id="end_time"/><span class="star">*</span>
+                         <input class="bookFormInput" type="date" required name="end_time"  id="end_time"/><span class="star">*</span>
                          <div class="bookFormLabel">Email</div>
-                         <input class="bookFormInput" type="text" name="email" id="email"/><span class="star">*</span>
+                         <input class="bookFormInput" type="text" required name="email" id="email"/><span class="star">*</span>
    
     
                          <div class="bookFormLabel">TelLine</div>
-                         <input class="bookFormInput" type="text" name="tele" id="tele">
+                         <input class="bookFormInput" type="text" required name="tele" id="tele">
                          <div class="bookFormLabel">Purpose</div>
-                          <textarea class="bookFormInput" type="text" name="purpose" id="purpose"></textarea>
+                          <textarea class="bookFormInput" type="text" required name="purpose" id="purpose"></textarea>
                          <br />
                          <input id="bookFormSubmit" class="btnBook" type="submit" name="submit" value="Submit"/>
                          </form>
