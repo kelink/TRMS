@@ -191,6 +191,8 @@ function deleteTeam(team_ID){
 		<input type="hidden" id="department_ID" name="department_ID"/>
 		<input type="hidden" id="team_ID" name="team_ID"/>
 		<div id="btnWrapper">
+		
+		
 
 		<input class="btnUpdate" type="submit"name="submit" id="btnUpdate"  value="update"/>
 		<a class="btnDelete" id="deleteBtn">delete</a>

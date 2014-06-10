@@ -25,7 +25,6 @@ function checkCheckbox(args){
 	    alert('You do not choose any items');
 	    return false;
 	}
-	alert(box);
 	//multi delete
 	if(args=="0"){
 		$.ajax({
@@ -35,7 +34,7 @@ function checkCheckbox(args){
 				dataType : "html",
 				success : function(json) {
 					alert(json);
-					history.back();
+					window.parent.location.reload();
 		        },
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					history.back();

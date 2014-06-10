@@ -129,32 +129,35 @@ public class AdminController {
 		String passwordStr = request.getParameter("password");
 		String dept_IDStr = request.getParameter("dept_ID");
 		DBUser user = new DBUser();
-		if (teleStr.length() > 0) {
+		if (teleStr != null) {
 			user.setTele(teleStr.trim());
 		}
-		if (accountStr.length() > 0) {
-			if (userService.isUserExit(accountStr.trim()))
-				return "the account exist,Please use other name";
+		if (accountStr != null) {
 			user.setAccount(accountStr.trim());
 		}
-		if (accessStr.length() > 0) {
+		if (accessStr != null) {
 			user.setAccess(Integer.parseInt(accessStr.trim()));
 		}
-		if (genderStr.length() > 0) {
+		if (genderStr != null) {
 			user.setGender(Integer.parseInt(genderStr.trim()));
 		}
-		if (passwordStr.length() > 0) {
+		if (passwordStr != null) {
 			user.setPassword(passwordStr.trim());
 		}
-		if (dept_IDStr.length() > 0) {
+		if (dept_IDStr != null) {
 			user.setDept_ID(Integer.parseInt(dept_IDStr.trim()));
+		}
+
+		if (userService.isUserExit(accountStr.trim())) {
+			return "<script>alert('the account exist,Please use another name');window.parent.location.reload();</script>";
 		}
 		try {
 			userService.addUser(user);
-			return "<script>alert(\"Add User Success!\");history.back();window.top.location.reload();</script>";
+			return "<script>alert(\"Add User Success!\");window.parent.location.reload();</script>";
 		} catch (Exception e) {
-			return "fail operation";
+			return "<script>alert('fail operation');window.parent.location.reload();</script>";
 		}
+
 	}
 	// ajax 获取部门的名字
 	@RequestMapping("/getUserDepartment")
@@ -183,6 +186,9 @@ public class AdminController {
 			user.setTele(teleStr.trim());
 		}
 		if (accountStr != null) {
+			if (accountStr.trim().length() == 0) {
+				return "<script>alert('fail operation');window.parent.location.reload();;</script>";
+			}
 			user.setAccount(accountStr.trim());
 		}
 		if (accessStr != null) {

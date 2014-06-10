@@ -180,12 +180,29 @@ public class TeamController {
 		team.setUser_ID(users);
 
 		if (teamService.updateTeam(team)) {
-			return "<script>alert('Add team success!');history.back();</script>";
+			return "<script>alert('Add team success!');window.parent.location.reload();</script>";
 		} else {
-			return "update fail";
+			return "<script>alert('update fail');window.parent.location.reload();</script>";
 		}
 
 	}
+	// 为team添加管理的LC
+	@RequestMapping(value = {"/addUserForTeam"})
+	public @ResponseBody String addUserForTeam(
+			@RequestParam(value = "user_ID", required = true) int user_ID,
+			@RequestParam(value = "team_ID", required = true) int team_ID,
+			HttpSession session) {
+		// 判断是否存在
+		Team team = teamService.getTeam(team_ID);
+		team.setUser_ID(user_ID);
+		if (teamService.updateTeam(team)) {
+			return "<script>alert('Add user success!');window.parent.location.reload();</script>";
+		} else {
+			return "<script>alert('action fail');window.parent.location.reload();</script>";
+		}
+
+	}
+
 	// 判断当前team 是否已经被其他TA管理
 	@RequestMapping("/isTeamManaged")
 	public @ResponseBody String isTeamManaged(

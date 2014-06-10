@@ -69,8 +69,8 @@ function getRoomInfo(department_ID){
 						 html+="<td>unfree</td>";
 					}
  	               
- 	               html+="<td>"+"<a class='operation' href='#'>delete</a> ";
- 	              html+="<a class='operation' href='#'>edit</a>"+"</td></tr>";
+ 	               html+="<td>"+"<a class='operation' href='#'>edit</a> ";
+ 	             // html+="<a class='operation' href='#'>edit</a>"+"</td></tr>";
 					
 					
 			}			
