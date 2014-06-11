@@ -124,8 +124,8 @@ function getDynamicTable(Y, M) {
 			if (buffer == true) {
 
 				if (book == true) {
-					Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle infoCursor'onclick=\"alert('The date is unavailable to book')\"><div class=\"bookedDiv\"></div>"
-							: "<td class='idle infoCursor'onclick=\"alert('The date is unavailable to book')\"><div class=\"bookedDiv\"></div>")
+					Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle infoCursor'onclick='bookInfo(" + l + ")'><div class=\"bookedDiv\"></div>"
+							: "<td class='idle infoCursor'onclick='bookInfo(" + l + ")'><div class=\"bookedDiv\"></div>")
 							+ j + "</td>"
 				} else {
 					Temp += (SY == Y && SM == M && SD == j ? "<td class='now idle buffer'onclick=\"alert('The date is unavailable to book')\">"
@@ -200,10 +200,10 @@ function GetWeekdayMonthStartsOn(Y, M) { // '�õ����µĵ�һ���
 }
 
 function bookInfo(a) {
-	alert("Sorry, This Room has been booked by" + bookedDate[a].applicant_Team
-			+ "More Information Please Contact��" + bookedDate[a].tele
-			+ "or emails to this Address:" + bookedDate[a].email
-			+ "or contact LC:" + bookedDate[a].approveBy);
+	alert("Room has been booked by: " + bookedDate[a].applicant_Team+"\n\n"
+			+ "Please Contact: " + bookedDate[a].tele+"\n\n"
+			+ "Emails to: " + bookedDate[a].email+"\n\n"
+			+ "Contact LC: " + bookedDate[a].approveBy);
 	// alert("dept:"+bookedDate[a].department+"lc:"+bookedDate[a].lc+"tele:"+bookedDate[a].usertele);
 }
 function setDate(year, month, day) {
