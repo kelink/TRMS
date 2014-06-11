@@ -32,7 +32,8 @@ function AjaxGetData(index, size) {
 				success : function(json) {
 					var html="";
 					for (position in json) {	
-									
+						var reservation_user_ID=json[position].reservation.user_ID;
+						//alert(reservation_user_ID);
 						var reservation_ID=json[position].reservation.reservation_ID;
 						var reservation_start_Daty=json[position].reservation.applied_Start_Date;
 						var reservation_end_Daty=json[position].reservation.applied_End_Date;
@@ -189,20 +190,27 @@ html+="<td class='infoTd'>";
                         html+="<tr>";
                     	                   
 
-						//////////////判断当前的状态reservation 状态，如果unhandle 则出现approve 和reject,否则只出现delete
+						//////////////判断当前的状态reservation 状态，如果unhandle,同时非 则出现approve 和reject,否则只出现delete
 						if(reservation_status==-1)
 						{
 							html+="<td class=\"btnWrapper\">";	
 							html+="<input class=\"btnUpdate reservationLcBtn\" type=\"submit\"name=\"submit\" id=\"btnUpdate\"  value=\"approve\"/>";
 							html+="</td>";
+							html+="<td class=\"btnWrapper\">";
+		                    html+="<a class=\"btnDelete reservationLcBtn\" href=\"#\" onclick=\"rejectReservation("+reservation_ID+")\">reject</a>";
+		                    html+="</td>";
+							
 						}
-                      
-                        html+="<td class=\"btnWrapper\">";
-                        html+="<a class=\"btnDelete reservationLcBtn\" href=\"#\" onclick=\"deleteReservation("+reservation_ID+")\">delete</a>";
-                        html+="</td>";
-                        html+="</tr>";
-                   
-
+						//判断是否为自己的订单，是的出现delete ,否则不出现
+                      if(reservation_user_ID==${currentUser.user_ID})
+                      {
+                    	  html+="<td class=\"btnWrapper\">";
+                          html+="<a class=\"btnDelete reservationLcBtn\" href=\"#\" onclick=\"deleteReservation("+reservation_ID+")\">delete</a>";
+                          html+="</td>";
+                         
+                      }
+                      	 html+="</tr>";
+                      	 
                          html+="</table>";
                          html+="</div>";
                          html+="</form>";
@@ -372,6 +380,21 @@ function GoToAppointPage(e) {
 	}
 }
 
+function rejectReservation(reservation_ID){
+	$.ajax({
+		url : "<%=request.getContextPath()%>/reservation/rejectAReservation",
+		type : "get",
+		data : "reservation_ID=" +reservation_ID,	
+		dataType : "html",
+		success : function(json) {
+			alert(json);
+			window.parent.location.reload();
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			
+	}
+});
+}
 function deleteReservation(reservation_ID){
 	$.ajax({
 		url : "<%=request.getContextPath()%>/reservation/deleteByID",

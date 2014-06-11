@@ -130,6 +130,7 @@ public class ReservationController {
 		map.addAttribute("pageCount", pageCount);
 		map.addAttribute("rooms", rooms);
 		map.addAttribute("teams", teams);
+		map.addAttribute("currentUser", currentUser);
 		map.addAttribute("optionStr", optionStr);
 		session.setAttribute("optionStr", optionStr);
 		System.out.println("进入方法list       optionStr--------------->>>"
