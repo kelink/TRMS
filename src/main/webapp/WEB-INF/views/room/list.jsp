@@ -109,8 +109,46 @@
  		}
  	}
  }
-	
+ 
+ //转换html5 calendar格式 返回new Date()
+ function parseDate(str){   
+	  if(typeof str == 'string'){   
+	    var results = str.match(/^ *(\d{4})-(\d{1,2})-(\d{1,2}) *$/);   
+	    if(results && results.length>3)   
+	      return new Date(parseInt(results[1]),parseInt(results[2]) -1,parseInt(results[3]));    
+	    results = str.match(/^ *(\d{4})-(\d{1,2})-(\d{1,2}) +(\d{1,2}):(\d{1,2}):(\d{1,2}) *$/);   
+	    if(results && results.length>6)   
+	      return new Date(parseInt(results[1]),parseInt(results[2]) -1,parseInt(results[3]),parseInt(results[4]),parseInt(results[5]),parseInt(results[6]));    
+	    results = str.match(/^ *(\d{4})-(\d{1,2})-(\d{1,2}) +(\d{1,2}):(\d{1,2}):(\d{1,2})\.(\d{1,9}) *$/);   
+	    if(results && results.length>7)   
+	      return new Date(parseInt(results[1]),parseInt(results[2]) -1,parseInt(results[3]),parseInt(results[4]),parseInt(results[5]),parseInt(results[6]),parseInt(results[7]));    
+	  }   
+	  return null;   
+	}   
+var endAndBeginTime=true;
 	$(document).ready(function() {
+		
+		
+// 		$("#begin_time,#end_time").change(function(){
+			
+// 			var begin1=$("#begin_time").val();
+// 			var end1=$("#end_time").val();
+// 			var begin=parseDate(begin1);
+// 			var end=parseDate(end1);
+			
+// 			var begin_y=begin.getFullYear();
+// 			var begin_m=begin.getMonth()+1;
+// 			var begin_d=begin.getDate();
+			
+// 			var end_y=begin.getFullYear();
+// 			var end_m=begin.getMonth()+1;
+// 			var end_d=begin.getDate();
+// 		});
+			
+
+	
+		
+		
 		$("#teams").change(function() {
 			 var team_ID = $("#teams").val();
 			
@@ -138,6 +176,7 @@
 					$("#checkIconWrapper1").html("<img width=\"24px\" src=\"<%=request.getContextPath()%>/resources/images/cross.png\" />");
 					alert(json);
 					$("#empty").attr("selected","selected");
+					
 				}
 				else{
 					$("#checkIconWrapper1").html("<img width=\"24px\" src=\"<%=request.getContextPath()%>/resources/images/tick.gif\" />");
