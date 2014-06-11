@@ -170,15 +170,15 @@
                                      <div class="chPwdLabel">
                                          Old password
                                      </div>
-                                     <input class="chPwdInput" required type="password" name="oldPassword" id="oldPassword" onBlur="checkOldPassword()" >
+                                     <input class="chPwdInput" required type="password" name="oldPassword" required id="oldPassword" onBlur="checkOldPassword()" >
                                      <div class="chPwdLabel">
                                          New password
                                      </div>
-                                     <input class="chPwdInput"required type="password" name="newPassword" id="newPassword">
+                                     <input class="chPwdInput"required type="password" name="newPassword"  required id="newPassword">
                                      <div class="chPwdLabel">
                                          Confirm new password
                                      </div type="password">
-                                     <input class="chPwdInput"required type="password" name="newPassword2" id="newPassword2" onBlur="checkTwicePassword()">
+                                     <input class="chPwdInput"required type="password" name="newPassword2" required id="newPassword2" onBlur="checkTwicePassword()">
                                      
                                      <div>
                                          <input id="chPwdSubmit" type="submit" value="Update"class="btnLogout">

@@ -203,7 +203,7 @@ function bookInfo(a) {
 	alert("Room has been booked by: " + bookedDate[a].applicant_Team+"\n\n"
 			+ "Please Contact: " + bookedDate[a].tele+"\n\n"
 			+ "Emails to: " + bookedDate[a].email+"\n\n"
-			+ "Contact LC: " + bookedDate[a].approveBy);
+			);
 	// alert("dept:"+bookedDate[a].department+"lc:"+bookedDate[a].lc+"tele:"+bookedDate[a].usertele);
 }
 function setDate(year, month, day) {

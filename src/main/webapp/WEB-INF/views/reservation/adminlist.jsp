@@ -302,6 +302,7 @@ function checkCheckbox(args){
 				dataType : "html",
 				success : function(json) {
 					alert(json);
+					window.parent.location.reload();
 		        },
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 			
@@ -316,6 +317,7 @@ function checkCheckbox(args){
 			dataType : "html",
 			success : function(json) {
 				alert(json);
+				window.parent.location.reload();
 	        },
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 			
@@ -329,11 +331,11 @@ function checkCheckbox(args){
 				dataType : "html",
 				success : function(json) {
 					alert(json);
-					location.reload();
+					window.parent.location.reload();
 		        },
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					alert("error");
-					location.reload();
+					window.parent.location.reload();
 				}
 			});
 	}

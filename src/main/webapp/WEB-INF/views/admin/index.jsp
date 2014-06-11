@@ -336,7 +336,7 @@ var endAndBeginTime=true;
                          <input class="bookFormInput"  type="date" required name="begin_time"  id="begin_time"/><span class="star">*</span>
                          <div class="bookFormLabel">End_Time</div>
                          <input class="bookFormInput" type="date" required name="end_time"  id="end_time"/><span class="star">*</span><span id="checkIconWrapper3"></span>
-                         <div class="bookFormLabel">Email</div>
+                         <div class="bookFormLabel">User LN</div>
                          <input class="bookFormInput" type="text" required name="email" id="email"/><span class="star">*</span>
    
     

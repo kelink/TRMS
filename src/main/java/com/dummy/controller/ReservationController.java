@@ -385,9 +385,9 @@ public class ReservationController {
 			reservation.setHandle_by(currentUser.getUser_ID());
 			reservation.setStatus(C.DB.DEFAULT_RESERVATION_REFUSE);
 			if (reservationService.approveOrReject(reservation)) {
-				// send email
-				EmailUtil.sendEmailToApplicant(reservation.getEmail(), null,
-						null);
+//				// send email
+//				EmailUtil.sendEmailToApplicant(reservation.getEmail(), null,
+//						null);
 				message = "reject success,email have sent!";
 			} else {
 				message = "reject fail";
