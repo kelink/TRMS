@@ -20,11 +20,11 @@
 <img width="95px;" src="<%=request.getContextPath()%>/resources/images/success.png"/>
 </div>
 <div id="bookRoomFeedback">
-<!-- 
+ 
 <span id="successTitle">Book room success!</span>
--->
+
 <br/>
-${message }
+You can use the room during the time you booked!
 <br/>
 
 </div>

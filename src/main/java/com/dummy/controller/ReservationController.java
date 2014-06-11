@@ -359,8 +359,8 @@ public class ReservationController {
 			if (reservationService.approveOrReject(reservation)) {
 
 				// send email
-				EmailUtil.sendEmailToApplicant(reservation.getEmail(), null,
-						null);
+				// EmailUtil.sendEmailToApplicant(reservation.getEmail(), null,
+				// null);
 				message = "<script>alert('approve success,email have sent!');</script>";
 				return message;
 			} else {

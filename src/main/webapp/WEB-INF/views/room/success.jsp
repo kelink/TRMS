@@ -20,12 +20,11 @@
 <img width="95px;" src="<%=request.getContextPath()%>/resources/images/success.png"/>
 </div>
 <div id="bookRoomFeedback">
-<!-- 
 <span id="successTitle">Success!</span>
- -->
 <br/>
-${message }
-
+Your reservation has been sent to the Training Assistant.
+<br/>
+Please wait for the  Training Assistant to handle your reservation!
 </div>
 <a class="btnReturn"id="btnReturn" href="<%=request.getContextPath()%>/room/headInfo">Return</a>
 </body>

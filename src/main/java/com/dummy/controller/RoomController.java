@@ -39,7 +39,6 @@ import com.dummy.service.ReservationService;
 import com.dummy.service.RoomService;
 import com.dummy.service.TeamService;
 import com.dummy.service.UserService;
-import com.dummy.util.EmailUtil;
 import com.dummy.util.ReservationUtil;
 
 @Controller
@@ -354,11 +353,11 @@ public class RoomController {
 			// 3.add reservation
 			reservationService.addReservation(reservation);
 			// 4.Send Email to all admin
-			List<DBUser> admins = userService
-					.getUserByRole(C.DB.DEFAULT_ROLE_TA);
-			for (DBUser dbUser : admins) {
-				EmailUtil.sendEmailToAllAdmin(dbUser.getAccount(), null, null);
-			}
+			// List<DBUser> admins = userService
+			// .getUserByRole(C.DB.DEFAULT_ROLE_TA);
+			// for (DBUser dbUser : admins) {
+			// EmailUtil.sendEmailToAllAdmin(dbUser.getAccount(), null, null);
+			// }
 			message = "Your application has been sent to the TA.<br/>Please wait for the TA to handle your reservation!";
 			return new ModelAndView("room/success", map);
 		} else {

@@ -125,11 +125,10 @@
 	  }   
 	  return null;   
 	}   
-var canSubmit=false;
+var canSubmit=true;
 var endAndBeginTime=true;
 	// 检验是否属于黑名单
 	$(document).ready(function() {
-		
 		$("#begin_time,#end_time").change(function(){
 			
 			var begin1=$("#begin_time").val();
@@ -183,7 +182,7 @@ var endAndBeginTime=true;
 			
 			
 		});
-		
+
 		
 		$("#teams").change(function() {
 			 var team_ID = $("#teams").val();

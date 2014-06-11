@@ -125,11 +125,11 @@
 	  }   
 	  return null;   
 	}   
-var canSubmit=false;
+var canSubmit=true;
 var endAndBeginTime=true;
 	$(document).ready(function() {
 		
-		
+	
 		$("#begin_time,#end_time").change(function(){
 			
 			var begin1=$("#begin_time").val();
