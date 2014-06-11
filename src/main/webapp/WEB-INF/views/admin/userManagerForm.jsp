@@ -46,6 +46,36 @@ function checkCheckbox(args){
 
 
 </script>
+<style>
+a
+{
+color:black;
+text-decoration:none;
+}
+span
+{
+width: 156px;
+display: none;
+position: absolute;
+z-index: 1000;
+top: 11px;
+left: 23px;
+white-space: pre;
+word-wrap: break-word;
+word-break: normal;
+background: rgb(252, 251, 221);
+border: 1px solid #cccccc;
+overflow: hidden;
+border-radius: 3px;
+box-shadow: 0 1px 5px rgb(180, 180, 180);
+}
+
+a:hover span
+{
+    display:block;
+}
+
+</style>
 </head>
 <body>
 	<div class="teamListTitle">Department</div>
@@ -54,7 +84,10 @@ function checkCheckbox(args){
 	<div id="teamListContent">
 	<form action="<%=request.getContextPath()%>/team/batchRemoveTeam" method="post">
 	<c:forEach items="${teams}" var="team">
-		<div class="teamListItem"><input type="checkbox" name="checkbox" value="${team.team_ID }"/>${team.teamName }</div>
+		<div class="teamListItem" style="position:relative;">
+		<input type="checkbox" name="checkbox" value="${team.team_ID }"/>
+		<a href="#">${team.teamName }<span>${team.teamName }</span></a>
+		</div>
 	</c:forEach>
 	</form>
 	</div>	

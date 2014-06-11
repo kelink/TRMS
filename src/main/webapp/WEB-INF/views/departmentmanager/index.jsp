@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
 
-<title> Departments Manager Page </title>
+<title> Database Manager Page </title>
 <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/css/userManagement.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" />
@@ -67,7 +67,7 @@
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/department/index"class="navItem selected">Department Management </a>
+				     <a href="<%=request.getContextPath()%>/department/index"class="navItem selected">Database Management </a>
 				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>

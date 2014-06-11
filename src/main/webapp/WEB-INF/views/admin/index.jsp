@@ -300,7 +300,7 @@ var endAndBeginTime=true;
 				     <a href="<%=request.getContextPath()%>/blacklist/index" class="navItem">BlackList Management</a>
 				 </li>
 				 <li>
-				     <a href="<%=request.getContextPath()%>/department/index"class="navItem">Department Management </a>
+				     <a href="<%=request.getContextPath()%>/department/index"class="navItem">Database Management </a>
 				 </li>			
 				  <li>
 				     <a href="<%=request.getContextPath()%>/profile/modify"class="navItem">Manage My Profile</a>
