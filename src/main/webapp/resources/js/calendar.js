@@ -207,7 +207,7 @@ function bookInfo(a) {
 	// alert("dept:"+bookedDate[a].department+"lc:"+bookedDate[a].lc+"tele:"+bookedDate[a].usertele);
 }
 function setDate(year, month, day) {
-	$("#email,#tele,#purpose", window.parent.document).val("");
+	$("#email,#tele,#purpose,#begin_time,#end_time", window.parent.document).val("");
 	   $("#checkIconWrapper1",window.parent.document).html("");
 	// var
 	// url=path+'/room/getForm?room_ID='+roomId+'&year='+year+'&month='+month+'&day='+day;

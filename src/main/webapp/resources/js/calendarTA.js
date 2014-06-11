@@ -126,8 +126,7 @@ function getDynamicTable(Y, M) {
 				} else {
 
 					if (future == true) {
-						Temp += (SY == Y && SM == M && SD == j ? "<td class='now'onclick='setDate("
-								+ Y + "," + M + "," + j + ")'>"
+						Temp += (SY == Y && SM == M && SD == j ? "<td class='now pass'>"
 								: "<td class='idle'onclick='setDate(" + Y + ","
 										+ M + "," + j + ")'>")
 								+ j + "</td>"

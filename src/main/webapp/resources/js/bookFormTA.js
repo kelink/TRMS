@@ -13,7 +13,8 @@ function back(id)
 }
 //判断日期超过本月31日，保证start day 会小于end day ，同时不跨月
 function isEmpty(){
-	
+if(canSubmit==true)
+	{	
 	var department_ID=$("#departments").val();
 	var team_ID=$("#teams").val();
 	var begin_time=$("#begin_time").val();
@@ -37,6 +38,11 @@ function isEmpty(){
 		
 	}
 	
+	}
+else{
+	alert("Please choose another date!");
+	return false;
+}
 }
 
 var expand = [];

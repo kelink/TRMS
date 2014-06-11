@@ -125,26 +125,68 @@
 	  }   
 	  return null;   
 	}   
+var canSubmit=false;
 var endAndBeginTime=true;
 	$(document).ready(function() {
 		
 		
-// 		$("#begin_time,#end_time").change(function(){
+		$("#begin_time,#end_time").change(function(){
 			
-// 			var begin1=$("#begin_time").val();
-// 			var end1=$("#end_time").val();
-// 			var begin=parseDate(begin1);
-// 			var end=parseDate(end1);
+			var begin1=$("#begin_time").val();
+			var end1=$("#end_time").val();
 			
-// 			var begin_y=begin.getFullYear();
-// 			var begin_m=begin.getMonth()+1;
-// 			var begin_d=begin.getDate();
+			var begin=parseDate(begin1);
+			var end=parseDate(end1);
 			
-// 			var end_y=begin.getFullYear();
-// 			var end_m=begin.getMonth()+1;
-// 			var end_d=begin.getDate();
-// 		});
+			var begin_y=begin.getFullYear();
+			var begin_m=begin.getMonth()+1;
+			var begin_d=begin.getDate();
 			
+			var end_y=end.getFullYear();
+			var end_m=end.getMonth()+1;
+			var end_d=end.getDate();
+			
+			if(end_y>=begin_y)
+			{
+				if(end_m>=begin_m)
+				{
+					if(end_d>=begin_d)
+					{
+						endAndBeginTime=true;
+					}
+					else
+					{
+						endAndBeginTime=false;
+					}
+					
+				}
+				else
+				{
+					endAndBeginTime=false;
+				}
+			}
+			else
+			{
+				endAndBeginTime=false;
+			}
+			
+			if(endAndBeginTime==false)
+			{
+				alert("End date and start date conflict!");
+				$("#checkIconWrapper3").html("<img width=\"24px\" src=\"<%=request.getContextPath()%>/resources/images/cross.png\" />");
+				canSubmit=false;
+			}
+			else
+			{
+				isTimeBook();
+			}
+			
+			
+		});
+		
+// 		$('#end_time').change(function (){
+// 			 
+// 		});	
 
 	
 		
@@ -159,9 +201,7 @@ var endAndBeginTime=true;
 			 isInBlackList(team_ID);		
 		});
 		
-		$('#end_time').blur(function (){
-			 isTimeBook();
-		});
+
 	});
 	// 检验是否属于黑名单
 	function isInBlackList(team_ID) {
@@ -191,6 +231,7 @@ var endAndBeginTime=true;
 	function  isTimeBook() {
 		var beginTime = $("#begin_time").val();
 		var endTime = $("#end_time").val();
+	
 		var room_ID = $("#roomOption").val();		 
 		$.ajax({
 			url : "<%=request.getContextPath()%>/room/checkTime",
@@ -199,7 +240,13 @@ var endAndBeginTime=true;
 			dataType : "html",
 			success : function(json) {
 				if(json!=""){
-					alert(json);
+					alert("Some of the dates you chose have been booked by other teams,please choose another date!");
+					canSubmit=false;
+					$("#checkIconWrapper3").html("<img width=\"24px\" src=\"<%=request.getContextPath()%>/resources/images/cross.png\" />");
+				}
+				else{
+					canSubmit=true;
+					$("#checkIconWrapper3").html("<img width=\"24px\" src=\"<%=request.getContextPath()%>/resources/images/tick.gif\" />");
 				}
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {			

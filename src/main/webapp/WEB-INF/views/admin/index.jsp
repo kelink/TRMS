@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="/trms/resources/images/hsbcicon.ico" type="image/x-icon"/>
 
-  <title> LC Page </title>
+  <title> TA Page </title>
   <link href="<%=request.getContextPath()%>/resources/css/bookForm.css" rel="stylesheet" type="text/css" >
  <link href="<%=request.getContextPath()%>/resources/css/lcIndex.css" rel="stylesheet" >
   <link href="<%=request.getContextPath()%>/resources/css/footer.css" rel="stylesheet" >
@@ -109,8 +109,82 @@
  		}
  	}
  }
+ 
+ //转换html5 calendar格式 返回new Date()
+ function parseDate(str){   
+	  if(typeof str == 'string'){   
+	    var results = str.match(/^ *(\d{4})-(\d{1,2})-(\d{1,2}) *$/);   
+	    if(results && results.length>3)   
+	      return new Date(parseInt(results[1]),parseInt(results[2]) -1,parseInt(results[3]));    
+	    results = str.match(/^ *(\d{4})-(\d{1,2})-(\d{1,2}) +(\d{1,2}):(\d{1,2}):(\d{1,2}) *$/);   
+	    if(results && results.length>6)   
+	      return new Date(parseInt(results[1]),parseInt(results[2]) -1,parseInt(results[3]),parseInt(results[4]),parseInt(results[5]),parseInt(results[6]));    
+	    results = str.match(/^ *(\d{4})-(\d{1,2})-(\d{1,2}) +(\d{1,2}):(\d{1,2}):(\d{1,2})\.(\d{1,9}) *$/);   
+	    if(results && results.length>7)   
+	      return new Date(parseInt(results[1]),parseInt(results[2]) -1,parseInt(results[3]),parseInt(results[4]),parseInt(results[5]),parseInt(results[6]),parseInt(results[7]));    
+	  }   
+	  return null;   
+	}   
+var canSubmit=false;
+var endAndBeginTime=true;
 	// 检验是否属于黑名单
 	$(document).ready(function() {
+		
+		$("#begin_time,#end_time").change(function(){
+			
+			var begin1=$("#begin_time").val();
+			var end1=$("#end_time").val();
+			
+			var begin=parseDate(begin1);
+			var end=parseDate(end1);
+			
+			var begin_y=begin.getFullYear();
+			var begin_m=begin.getMonth()+1;
+			var begin_d=begin.getDate();
+			
+			var end_y=end.getFullYear();
+			var end_m=end.getMonth()+1;
+			var end_d=end.getDate();
+			
+			if(end_y>=begin_y)
+			{
+				if(end_m>=begin_m)
+				{
+					if(end_d>=begin_d)
+					{
+						endAndBeginTime=true;
+					}
+					else
+					{
+						endAndBeginTime=false;
+					}
+					
+				}
+				else
+				{
+					endAndBeginTime=false;
+				}
+			}
+			else
+			{
+				endAndBeginTime=false;
+			}
+			
+			if(endAndBeginTime==false)
+			{
+				alert("End date and start date conflict!");
+				$("#checkIconWrapper3").html("<img width=\"24px\" src=\"<%=request.getContextPath()%>/resources/images/cross.png\" />");
+				canSubmit=false;
+			}
+			else
+			{
+				isTimeBook();
+			}
+			
+			
+		});
+		
+		
 		$("#teams").change(function() {
 			 var team_ID = $("#teams").val();
 			 if (team_ID == "") {
@@ -136,6 +210,34 @@
 				}
 				else{
 					$("#checkIconWrapper1").html("<img width=\"24px\" src=\"<%=request.getContextPath()%>/resources/images/tick.gif\" />");
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {			
+				alert("error");
+			}
+		});
+	}
+	
+	// 检验时间是否可以book
+	function  isTimeBook() {
+		var beginTime = $("#begin_time").val();
+		var endTime = $("#end_time").val();
+	
+		var room_ID = $("#roomOption").val();		 
+		$.ajax({
+			url : "<%=request.getContextPath()%>/room/checkTime",
+			type : "Get",
+			data : "room_ID=" + room_ID+"&beginTime="+beginTime+"&endTime="+endTime,
+			dataType : "html",
+			success : function(json) {
+				if(json!=""){
+					alert("Some of the dates you chose have been booked by other teams,please choose another date!");
+					$("#checkIconWrapper3").html("<img width=\"24px\" src=\"<%=request.getContextPath()%>/resources/images/cross.png\" />");
+					canSubmit=false;
+				}
+				else{
+					canSubmit=true;
+					$("#checkIconWrapper3").html("<img width=\"24px\" src=\"<%=request.getContextPath()%>/resources/images/tick.gif\" />");
 				}
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {			
@@ -234,7 +336,7 @@
                          <div class="bookFormLabel">Start_Time</div>
                          <input class="bookFormInput"  type="date" required name="begin_time"  id="begin_time"/><span class="star">*</span>
                          <div class="bookFormLabel">End_Time</div>
-                         <input class="bookFormInput" type="date" required name="end_time"  id="end_time"/><span class="star">*</span>
+                         <input class="bookFormInput" type="date" required name="end_time"  id="end_time"/><span class="star">*</span><span id="checkIconWrapper3"></span>
                          <div class="bookFormLabel">Email</div>
                          <input class="bookFormInput" type="text" required name="email" id="email"/><span class="star">*</span>
    

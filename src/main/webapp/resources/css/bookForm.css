@@ -10,6 +10,12 @@ color: red;
 top: 134px;
 right: 88px;
 }
+#checkIconWrapper3
+{
+	position: absolute;
+top: 259px;
+right: 88px;
+}
 .panelHeader {
 padding: 8px 10px;
 background-color: #eeeeee;
