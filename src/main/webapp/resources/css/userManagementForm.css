@@ -5,6 +5,7 @@ font-size: 15px;
 line-height: 23px;
 background: rgb(142, 164, 184);
 color: white;
+
 }
 #departmentContent
 {
@@ -21,4 +22,8 @@ padding-top: 10px;
 {
 	height: 28px;
 font-size: 13px;
+white-space: nowrap;
+text-overflow: ellipsis;
+-o-text-overflow: ellipsis;
+overflow: hidden;
 }
