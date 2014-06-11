@@ -207,8 +207,9 @@ function bookInfo(a) {
 	// alert("dept:"+bookedDate[a].department+"lc:"+bookedDate[a].lc+"tele:"+bookedDate[a].usertele);
 }
 function setDate(year, month, day) {
-	$("#email,#tele,#purpose,#begin_time,#end_time", window.parent.document).val("");
+	$("#email,#tele,#purpose", window.parent.document).val("");
 	   $("#checkIconWrapper1",window.parent.document).html("");
+	   $("#checkIconWrapper3",window.parent.document).html("");
 	// var
 	// url=path+'/room/getForm?room_ID='+roomId+'&year='+year+'&month='+month+'&day='+day;
 	// window.location.href=url;//禁用这个url，直接复制给floatTicketDiv浮出来
@@ -243,14 +244,13 @@ function setDate(year, month, day) {
 			// Team1","user_ID":"1","team_ID":"9","department_ID":"4"}]}
 
 			var roomOption = window.top.document.getElementById("roomOption");
-			var time1 = window.top.document.getElementById("begin_time");
-			var time2 = window.top.document.getElementById("end_time");
+
 			var close = window.top.document.getElementById("close");
 
 			roomOption.setAttribute("value", json.roomList[0].room_ID);
 			roomOption.innerHTML = json.roomList[0].item;
-			time1.setAttribute("value", json.select_date[0].select_date);
-			time2.setAttribute("value", json.select_date[0].select_date);
+			$("#begin_time,#end_time", window.parent.document).val(json.select_date[0].select_date);
+
 
 			close.setAttribute("onclick", "back(" + json.roomList[0].room_ID
 					+ ")");
